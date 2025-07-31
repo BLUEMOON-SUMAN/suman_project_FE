@@ -73,29 +73,29 @@ export default function CeoPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-snug">
               {lang === "KOR" ? (
                 <>
-                  <span className="text-blue-600 font-bold">SUMAN</span>
-                  <span className="text-black font-bold">을</span>
+                  <span className="text-blue-600 font-bold tracking-wide">SUMAN</span>
+                  <span className="text-black font-bold tracking-wide">을</span>
                   <br />
-                  <span className="text-black font-bold">
-                    찾아주신 고객 여러분 반갑습니다
+                  <span className="text-black font-bold tracking-wide">
+                    찾아주신 고객 여러분, 반갑습니다.
                   </span>
                 </>
               ) : (
                 <>
-                  <span className="text-blue-600 font-bold">SUMAN</span>
+                  <span className="text-blue-600 font-bold tracking-wide">SUMAN</span>
                   <br />
-                  <span className="text-black font-bold">
+                  <span className="text-black font-bold tracking-wide">
                     Welcome, dear customers,
                   </span>
                 </>
               )}
             </h2>
-            <p className="mb-4 text-lg">{intro}</p>
-            <p className="mb-4 text-lg whitespace-pre-line">{body}</p>
-            <p className="mb-4 text-lg">{closing}</p>
+            <p className="mb-4 text-lg tracking-wide leading-[2]">{intro}</p>
+            <p className="mb-4 text-lg whitespace-pre-line tracking-wide leading-[1.7]">{body}</p>
+            <p className="mb-4 text-lg tracking-wide leading-[2]">{closing}</p>
             {/* 서명 영역 - 이제 별도의 motion.div가 아님 */}
-            <div className="signature-area text-lg  text-gray-800 mt-8">
-              (주) 수만 대표이사 <strong>임태형</strong>{" "}
+            <div className="signature-area text-lg  text-gray-800 mt-14 tracking-wide">
+              (주) 수만 대표이사 <strong className="ml-4"> 임태형</strong>{" "}
               {/* <Image
                 src="/images/signature.png"
                 alt="대표이사 서명"
@@ -107,7 +107,7 @@ export default function CeoPage() {
           </motion.div>
 
           {/*Ceo 인사말과 Ceo이미지 사이 회색 실선 */}
-          <div className="hidden md:block w-px min-h-[700px] bg-gray-300 self-stretch mr-8" />
+          <div className="hidden md:block w-px min-h-[700px] bg-gray-200 self-stretch mr-8" />
 
           {/* 이미지 플레이스홀더 */}
           <motion.div
@@ -121,8 +121,7 @@ export default function CeoPage() {
               className="placeholder-image w-full flex items-center justify-center text-blue-500 font-bold text-2xl"
               style={{
                 height: "auto",
-                maxHeight: "500px",
-                borderRadius: "8px",
+                maxHeight: "550px",
                 overflow: "hidden",
               }}
             >

@@ -173,18 +173,18 @@ export default function VisionPage() {
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-xl font-bold text-gray-800 text-left">
+            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-16 text-left tracking-wide">
               Vision
             </h2>
             <div className="vision-neo-area mt-12 flex flex-col items-center">
               <div className="w-full text-left">
-                <p className="text-gray-800 font-semibold text-[30px] mb-2">
+                <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-gray-800 mb-2">
                   {main.topLabel}
                 </p>
-                <h3 className="text-4xl font-bold text-blue-600 text-[50px] leading-tight">
+                <h3 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-blue-600 mb-2">
                   {main.blueTitle}
                 </h3>
-                <h3 className="text-4xl font-bold text-gray-800 text-[50px] leading-tight">
+                <h3 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-gray-800 mb-2">
                   {main.blackTitle}
                 </h3>
               </div>
@@ -260,14 +260,18 @@ export default function VisionPage() {
         {/* Core Value Section */}
         <section className="core-value-section bg-white py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-xl font-bold text-gray-800 mb-4 text-left">
+            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-4 text-left tracking-wide">
               Core Value
             </h2>
-            <p className="text-[50px] font-bold text-gray-800 mb-12 text-left whitespace-pre-line">
+            <br />
+            <br />
+            <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-gray-800 mb-2 whitespace-pre-line">
               {lang === "KOR"
                 ? "끊임없이 변화하는 시대\n우리는 유연함과 전문성으로 대응합니다"
                 : "In a Constantly Changing Era\nWe Respond with Agility and Expertise"}
             </p>
+            <br />
+            <br />
             <motion.div
               className="grid grid-cols-1 md:grid-cols-4 gap-x-12 gap-y-8"
               variants={containerVariants}
@@ -327,8 +331,10 @@ export default function VisionPage() {
           }}
         >
           <div className="max-w-7xl mx-auto relative z-10">
-            <h2 className="text-xl font-bold mb-4 text-left">{rnd.title}</h2>
-            <p className="text-[40px] font-bold mb-12 text-left whitespace-pre-line">
+            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-white mb-18 text-left tracking-wide ">
+              {rnd.title}
+            </h2>
+            <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-12 text-left whitespace-pre-line tracking-wide">
               {rnd.subtitle}
             </p>
             <div className="rnd-content flex flex-col md:flex-row items-center justify-between gap-12">
@@ -368,7 +374,8 @@ export default function VisionPage() {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <mask
-                    id="mask0"
+                    id={`mask0_${lang}`}
+                    style={{ maskType: "alpha" }} // Corrected line: Removed trailing comma if any, and ensured comment is outside the style object if present.
                     maskUnits="userSpaceOnUse"
                     x="0"
                     y="0"
@@ -381,17 +388,17 @@ export default function VisionPage() {
                     <rect x="126" width="20" height="71" fill="black" />
                     <rect x="168" width="20" height="71" fill="black" />
                   </mask>
-                  <g mask="url(#mask0)">
+                  <g mask={`url(#mask0_${lang})`}>
                     <rect
                       x="-23"
                       width="226"
                       height="71"
-                      fill="url(#paint0_linear)"
+                      fill={`url(#paint0_linear_${lang})`}
                     />
                   </g>
                   <defs>
                     <linearGradient
-                      id="paint0_linear"
+                      id={`paint0_linear_${lang}`}
                       x1="-23"
                       y1="35.5"
                       x2="203"
