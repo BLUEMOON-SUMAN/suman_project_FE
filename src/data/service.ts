@@ -14,6 +14,8 @@ export const serviceContent = {
         processsub: "제품의 신뢰성과 고객 만족을 보장하도록 설계되어 있습니다",
         production2: "정밀 부품, 모듈, 자동화 장비까지",
         production2sub: "미래 산업에 필요한 핵심 솔루션을 제조합니다",
+        processSteps: ["컨셉 및 개발 / 가공설계","발주(소재/부품)","가공/제작","최종검사","납품 및 피드백",
+        ],
       },
     ],
     // 생산가공/ 조립 영역
@@ -88,6 +90,12 @@ export const serviceContent = {
         production2: "From precision parts to modules and automation equipment",
         production2sub:
           "We manufacture key solutions essential for future industries",
+        processSteps: [ "Concept Development / Machining Design",
+          "Ordering (Materials/Parts)",
+          "Machining / Fabrication",
+          "Final Inspection",
+          "Delivery & Feedback",
+        ],
       },
     ],
     equipmentList: [
