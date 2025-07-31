@@ -285,7 +285,7 @@ export default function HomePage({ content }: HomePageProps) {
         </motion.section>
 
         <motion.section
-          className="relative z-30 bg-white px-4 md:px-6"
+          className="relative z-30 bg-white px-4 md:px-6 "
           initial={{ opacity: 1, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
@@ -304,7 +304,7 @@ export default function HomePage({ content }: HomePageProps) {
             <br />
             <br />
             <br />
-            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal mt-16 mb-5">
+            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal -mt-20 lg:mt-16 mb-5">
               고객 맞춤형 장비/제조 서비스를 제공합니다
             </h2>
 
@@ -317,12 +317,12 @@ export default function HomePage({ content }: HomePageProps) {
 
           <div className="lg:translate-x-18 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center relative z-10 mt-20 lg:h-[400px]">
             <div className="flex-1 lg:pr-0 text-left mb-12 lg:mb-0 hidden lg:block" />{" "}
-              <div className="flex-1 flex flex-col items-center justify-center gap-8 lg:gap-0 relative w-full lg:h-full ">
+              <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-0 relative w-full lg:h-full">
               <motion.div
-                className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           mb-8 lg:mb-0
-                           lg:absolute lg:right-10 lg:top-5 lg:-translate-y-1/2 lg:transform-none/* Reset transform for PC */
-                           overflow-hidden"
+                className="relative w-44 h-44 lg:w-64 lg:h-64  aspect-square rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
+                          mb-8 lg:mb-0
+                          lg:absolute lg:right-10 lg:top-5 lg:-translate-y-1/2 lg:transform-none
+                          overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -332,16 +332,17 @@ export default function HomePage({ content }: HomePageProps) {
                   src="/images/index_solution.jpg"
                   alt="솔루션 서비스"
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
-                <h3 className="text-2xl font-semibold pb-5 z-20">
+                <h3 className="sm:text-base md:text-lg lg:text-2xl font-semibold pb-5 z-20">
                   솔루션 서비스
                 </h3>
               </motion.div>
 
+
               <motion.div
-                className=" relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
+                className=" relative w-44 h-44 lg:w-64 lg:h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
                            mb-8 lg:mb-0
                            lg:absolute lg:right-40 lg:-translate-x-1/2 lg:bottom-120 lg:transform-none /* Reset transform for PC */
                            overflow-hidden"
@@ -357,14 +358,14 @@ export default function HomePage({ content }: HomePageProps) {
                   className="object-cover "
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
-                <h3 className="text-2xl font-semibold pb-5 z-20">
+                <h3 className="sm:text-base md:text-lg lg:text-2xl font-semibold pb-5 z-20">
                   맞춤형 장비/설비
                 </h3>
               </motion.div>
 
               <motion.div
-                className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           lg:absolute lg:left-100 lg:bottom-140 lg:transform-none /* Reset transform for PC */
+                className="relative w-44 h-44 lg:w-64 lg:h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
+                           lg:absolute lg:left-100 lg:bottom-140 bottom-5 lg:transform-none /* Reset transform for PC */
                            overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
@@ -378,7 +379,7 @@ export default function HomePage({ content }: HomePageProps) {
                   className="object-cover "
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
-                <h3 className="text-2xl font-semibold pb-5 z-20">
+                <h3 className="sm:text-base md:text-lg lg:text-2xl font-semibold pb-5 z-20">
                   정밀 가공 부품
                 </h3>
               </motion.div>

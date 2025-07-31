@@ -64,7 +64,7 @@ export default function CertificationsPage() {
               viewport={{ once: true, amount: 0.3 }}
             >
               <p className="text-base sm:text-lg lg:text-2xl font-semibold text-black">
-                {lang === "KOR" ? "인증 현황" : "Certifications"}
+                {lang === "KOR" ? "Certifications" : "Certifications"}
               </p>
               <div className="flex-grow" />
             </motion.div>
