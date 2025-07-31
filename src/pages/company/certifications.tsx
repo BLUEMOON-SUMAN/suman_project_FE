@@ -91,7 +91,7 @@ export default function CertificationsPage() {
               viewport={{ once: true, amount: 0.3 }}
             >
               {(lang === "KOR"
-                ? ["기술 인증", "품질 보증"]
+                ? ["Technology Certification", "Quality Assurance"]
                 : ["Technology Certification", "Quality Assurance"]
               ).map((tag, i) => (
                 <span
