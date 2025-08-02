@@ -206,7 +206,7 @@ export default function VisionPage() {
                         onMouseLeave={() => setHoveredSection(null)}
                       >
                         <image
-                          href={`/images/vision_arrow${3 - idx}.png`}
+                          href={`/images/company/vision/vision_arrow${3 - idx}.png`}
                           x={idx === 0 ? "-6" : idx === 1 ? "79" : "486"}
                           y={idx === 0 ? "169" : idx === 1 ? "499" : "0"}
                           width={idx === 0 ? "270" : idx === 1 ? "470" : "578"}
@@ -285,7 +285,7 @@ export default function VisionPage() {
                   className="relative flex flex-col justify-end p-4 shadow-md overflow-hidden hover:scale-105 transition-transform duration-300 ease-out min-h-[380px]"
                   variants={itemRiseVariants}
                   style={{
-                    backgroundImage: `url(/images/vision_${
+                    backgroundImage: `url(/images/company/vision/vision_${
                       ["Flex", "pro", "tek", "rnbd"][idx]
                     }.png)`,
                     backgroundSize: "cover",
@@ -324,7 +324,7 @@ export default function VisionPage() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
           style={{
-            backgroundImage: 'url("/images/vision_R&D_bg.png")',
+            backgroundImage: 'url("/images/company/vision/vision_R&D_bg.png")',
             backgroundSize: "cover",
             backgroundPosition: "center 245px",
             backgroundRepeat: "no-repeat",
@@ -414,7 +414,7 @@ export default function VisionPage() {
               <div className="md:w-1/2 flex flex-col justify-center pl-0">
                 <motion.div
                   className="relative w-full h-[400px] bg-cover bg-center rounded-lg overflow-hidden"
-                  style={{ backgroundImage: 'url("/images/vision_dev.png")' }}
+                  style={{ backgroundImage: 'url("/images/company/vision/vision_dev.png")' }}
                   variants={rndBoxRightInVariants}
                 >
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/100 via-[79%] to-transparent p-4">

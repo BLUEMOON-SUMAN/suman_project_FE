@@ -87,7 +87,7 @@ const RecruitmentBoard: React.FC = () => {
       <HeroSection
         title="채용공고"
         subtitle="Recruit"
-        backgroundImage="/images/careers_hero.png"
+        backgroundImage="/images/sub_banner/careers_hero.png"
       />
       <BreadcrumbSection path="인재채용 > 채용공고" />
 

@@ -39,7 +39,7 @@ export default function OrgPage() {
           >
             <div className="relative w-full h-auto overflow-hidden rounded-lg">
               <Image
-                src="/images/organization_suman.png"
+                src="/images/company/organization/organization_suman.png"
                 alt="조직도"
                 width={1200}
                 height={800}

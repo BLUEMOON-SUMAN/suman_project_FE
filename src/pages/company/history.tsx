@@ -47,7 +47,7 @@ export default function HistoryPage() {
           <div
             className="absolute inset-0 bg-cover z-0"
             style={{
-              backgroundImage: "url('/images/history_suman.png')",
+              backgroundImage: "url('/images/company/history/history_suman.png')",
               backgroundPosition: "center 70%",
             }}
           >

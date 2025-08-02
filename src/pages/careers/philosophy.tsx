@@ -90,7 +90,7 @@ export default function TalentPage() {
       <HeroSection
         title="인재상"
         subtitle="Our Talent"
-        backgroundImage="/images/careers_hero.png"
+        backgroundImage="/images/sub_banner/careers_hero.png"
       />
 
       {/* Replaced the manual breadcrumb section with BreadcrumbSection component */}

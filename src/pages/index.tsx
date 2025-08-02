@@ -284,13 +284,7 @@ export default function HomePage({ content }: HomePageProps) {
           </div>
         </motion.section>
 
-        <motion.section
-          className="relative z-30 bg-white px-4 md:px-6 "
-          initial={{ opacity: 1, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
+        <section className="relative z-30 bg-white px-4 md:px-6 ">
           <motion.div
             className="text-left text-black mb-20 max-w-7xl mx-[30px] md:mx-[120px] text-base sm:text-lg lg:text-2xl font-semibold tracking-wide"
             initial="hidden"
@@ -329,7 +323,7 @@ export default function HomePage({ content }: HomePageProps) {
                 variants={circleVariants}
               >
                 <Image
-                  src="/images/index_solution.jpg"
+                  src="/images/main/service/index_solution.jpg"
                   alt="솔루션 서비스"
                   fill
                   className="object-cover rounded-full"
@@ -352,7 +346,7 @@ export default function HomePage({ content }: HomePageProps) {
                 variants={circleVariants}
               >
                 <Image
-                  src="/images/index_equipment.png"
+                  src="/images/main/service/index_equipment.png"
                   alt="맞춤형 장비/설비"
                   fill
                   className="object-cover "
@@ -373,7 +367,7 @@ export default function HomePage({ content }: HomePageProps) {
                 variants={circleVariants}
               >
                 <Image
-                  src="/images/index_parts.png"
+                  src="/images/main/service/index_parts.png"
                   alt="정밀 가공 부품"
                   fill
                   className="object-cover "
@@ -385,7 +379,7 @@ export default function HomePage({ content }: HomePageProps) {
               </motion.div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         <section className="relative w-full mt-0">
           <Image
