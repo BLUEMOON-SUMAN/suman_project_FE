@@ -51,7 +51,7 @@ export default function OrgPage() {
 
       <BreadcrumbSection path={breadcrumbPath} />
 
-      <main className="content-wrapper py-24 px-4 md:px-8 bg-white flex justify-center items-center">
+      <main className="content-wrapper py-24 px-4 md:px-8 bg-white flex justify-center items-center overflow-x-hidden">
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
           <motion.div
             className="w-full max-w-7xl"
@@ -61,29 +61,29 @@ export default function OrgPage() {
             viewport={{ once: true, amount: 0.3 }}
           >
             {/* Coporate Identity Section */}
-            <div className="mb-44">
-              <h2 className=" text-base sm:text-lg lg:text-2xl font-semibold  tracking-wide">{sectionTitle}</h2>
-              <div
-                className="h-2 mt-3"
-                style={{
-                  width: "25%",
-                  background: "linear-gradient(to right, #2E3092, #ED1B23)",
-                }}
-              ></div>
+            <div className="mb-24 sm:mb-32">
+              <h2 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide">{sectionTitle}</h2>
+              <div className="h-2 mt-3 w-1/4 bg-gradient-to-r from-[#2E3092] to-[#ED1B23]"></div>
               <p className="text-sm sm:text-base md:text-lg tracking-wide text-gray-700 mt-5">{sectionDesc}</p>
             </div>
 
             {/* Logo Section */}
-            <div className="mb-12 relative">
-              <h3 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-5">
-                {logoTitle}
-              </h3>
+            <div className="mb-16">
+              {/* 제목 + 버튼 한 줄 */}
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-4">
+                <h3 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide">
+                  {logoTitle}
+                </h3>
+                
+              </div>
+
               <p className="text-sm sm:text-base md:text-lg tracking-wide text-gray-700 mb-10">
                 {logoDesc}
               </p>
 
-              <div className="flex flex-col md:flex-row justify-around items-center gap-8">
-                <div className="relative w-64 h-64 flex items-center justify-center rounded-lg">
+              {/* 로고 이미지 영역 */}
+              <div className="flex flex-col md:flex-row justify-center items-center gap-10 sm:gap-20 xl:gap-90">
+                <div className="relative w-64 h-64">
                   <Image
                     src="/images/company/ci/ci.png"
                     alt={monoAlt}
@@ -100,61 +100,50 @@ export default function OrgPage() {
                   />
                 </div>
               </div>
-
-              {/* 다운로드 버튼*/}
-              <a
-                href="/images/logo_suman.png"
-                download="SUMAN_logo.png"
-                className="absolute right-10 text-sm sm:text-base border-2 border-gray-300 
-                          bg-transparent hover:bg-gray-300 text-black font-medium 
-                          px-4 py-0.3 rounded-full transition"
-              >
-                PNG ↓
-              </a>
+              <div className="flex justify-end mt-4">
+                <a
+                  href="/images/logo_suman.png"
+                  download="SUMAN_logo.png"
+                  className="text-sm sm:text-base font-medium bg-white text-black px-3 py-0.3 rounded-full border-2 border-gray-300 
+                            hover:bg-gray-300 hover:text-black transition duration-200 tracking-wide"
+                >
+                  PNG ↓
+                </a>
+              </div>
             </div>
 
 
             {/* Color Code Section */}
             <div className="flex flex-col md:flex-row justify-center items-stretch gap-60 mt-65 w-full">
               {/* RED */}
-              <div
-                className="w-100 h-50 p-5  shadow-md flex flex-col justify-between"
-                style={{ backgroundColor: "#ED1B23", position: "relative" }}
-              >
-                <div className="flex items-center mb-2 tracking-wide">
-                  <h4 className="text-white text-2xl font-medium text-left inline-block pt-1">
-                    SUMAN
-                    <br />
-                    RED
+              <div className="w-full max-w-sm p-5 shadow-md flex flex-col justify-between bg-[#ED1B23] relative">
+                <div className="mb-2 tracking-wide">
+                  <h4 className="text-white text-2xl font-medium leading-tight">
+                    SUMAN<br />RED
                   </h4>
-                  <div className="absolute top-[40px] left-[130px] w-62 h-0.5 bg-white"></div>
+                  <div className="absolute top-[40px] left-[130px] w-24 h-0.5 bg-white"></div>
                 </div>
-                <div className="text-light text-right tracking-wide -mt-3">
-                  <p className="text-white text-medium">PANTONE 485 C</p>
-                  <p className="text-white text-medium">CMYK 0/100/100/0</p>
-                  <p className="text-white text-medium">RGB 237/27/35</p>
-                  <p className="text-white text-medium">HEX #ED1B23</p>
+                <div className="text-right text-white tracking-wide">
+                  <p>PANTONE 485 C</p>
+                  <p>CMYK 0/100/100/0</p>
+                  <p>RGB 237/27/35</p>
+                  <p>HEX #ED1B23</p>
                 </div>
               </div>
 
               {/* BLUE */}
-              <div
-                className="w-100 h-50 p-5 shadow-md flex flex-col justify-between"
-                style={{ backgroundColor: "#2E3092", position: "relative" }}
-              >
-                <div className="flex items-center mb-2 tracking-wide">
-                  <h4 className="text-white text-2xl font-medium text-left inline-block pt-1">
-                    SUMAN
-                    <br />
-                    BLUE
+              <div className="w-full max-w-sm p-5 shadow-md flex flex-col justify-between bg-[#2E3092] relative">
+                <div className="mb-2 tracking-wide">
+                  <h4 className="text-white text-2xl font-medium leading-tight">
+                    SUMAN<br />BLUE
                   </h4>
-                  <div className="absolute top-[40px] left-[130px] w-62 h-0.5 bg-white"></div>
+                  <div className="absolute top-[40px] left-[130px] w-24 h-0.5 bg-white"></div>
                 </div>
-                <div className="text-light text-right tracking-wide -mt-3">
-                  <p className="text-white text-medium">PANTONE 2736 C</p>
-                  <p className="text-white text-medium">CMYK 100/100/0/39</p>
-                  <p className="text-white text-medium">RGB 46/48/146</p>
-                  <p className="text-white text-medium">HEX #2E3092</p>
+                <div className="text-right text-white tracking-wide">
+                  <p>PANTONE 2736 C</p>
+                  <p>CMYK 100/100/0/39</p>
+                  <p>RGB 46/48/146</p>
+                  <p>HEX #2E3092</p>
                 </div>
               </div>
             </div>
