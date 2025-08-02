@@ -74,42 +74,48 @@ export default function OrgPage() {
             </div>
 
             {/* Logo Section */}
-            <div className="mb-12">
-              <h3 className=" text-base sm:text-lg lg:text-2xl font-semibold  tracking-wide mb-5">{logoTitle}</h3>
-              <p className="text-sm sm:text-base md:text-lg tracking-wide text-gray-700 mb-10">{logoDesc}</p>
+            <div className="mb-12 relative">
+              <h3 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-5">
+                {logoTitle}
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg tracking-wide text-gray-700 mb-10">
+                {logoDesc}
+              </p>
 
-              <div className="flex flex-col md:flex-row justify-around items-center">
+              <div className="flex flex-col md:flex-row justify-around items-center gap-8">
                 <div className="relative w-64 h-64 flex items-center justify-center rounded-lg">
                   <Image
-                    src="/images/ci.png"
+                    src="/images/company/ci/ci.png"
                     alt={monoAlt}
                     layout="fill"
                     objectFit="contain"
                   />
                 </div>
-
                 <div className="relative w-64 h-64 flex items-center justify-center rounded-lg">
                   <Image
-                    src="/images/ci_color.png"
+                    src="/images/company/ci/ci_color.png"
                     alt={colorAlt}
                     layout="fill"
                     objectFit="contain"
                   />
                 </div>
-                <a
-                  href="/images/logo_suman.png"
-                  download="SUMAN_logo.png"
-                  className="absolute bottom-[-200px] right-90 tracking-wide border-2 border-gray-300 
-                            bg-transparent hover:bg-gray-300 text-black text-base font-medium 
-                            px-4 py-0.5 rounded-full transition"
-                >
-                  PNG ↓
-                </a>
               </div>
+
+              {/* 다운로드 버튼*/}
+              <a
+                href="/images/logo_suman.png"
+                download="SUMAN_logo.png"
+                className="absolute right-10 text-sm sm:text-base border-2 border-gray-300 
+                          bg-transparent hover:bg-gray-300 text-black font-medium 
+                          px-4 py-0.3 rounded-full transition"
+              >
+                PNG ↓
+              </a>
             </div>
 
+
             {/* Color Code Section */}
-            <div className="flex flex-col md:flex-row justify-center items-stretch gap-60 mt-60 w-full">
+            <div className="flex flex-col md:flex-row justify-center items-stretch gap-60 mt-65 w-full">
               {/* RED */}
               <div
                 className="w-100 h-50 p-5  shadow-md flex flex-col justify-between"
@@ -156,7 +162,8 @@ export default function OrgPage() {
         </div>
       </main>
 
-      <hr className="my-20 border-gray-200 w-full" />
+      <hr className="my-10
+       border-gray-200 w-full" />
     </Layout>
   );
 }

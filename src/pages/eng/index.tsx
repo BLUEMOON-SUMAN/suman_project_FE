@@ -328,7 +328,7 @@ export default function HomePage({ content }: HomePageProps) {
                 variants={circleVariants}
               >
                 <Image
-                  src="/images/index_solution.jpg"
+                  src="/images/main/service/index_solution.jpg"
                   alt="솔루션 서비스"
                   fill
                   className="object-cover"
@@ -351,7 +351,7 @@ export default function HomePage({ content }: HomePageProps) {
                 variants={circleVariants}
               >
                 <Image
-                  src="/images/index_equipment.png"
+                  src="/images/main/service/index_equipment.png"
                   alt="맞춤형 장비/설비"
                   fill
                   className="object-cover "
@@ -373,7 +373,7 @@ export default function HomePage({ content }: HomePageProps) {
                 variants={circleVariants}
               >
                 <Image
-                  src="/images/index_parts.png"
+                  src="/images/main/service/index_parts.png"
                   alt="정밀 가공 부품"
                   fill
                   className="object-cover "

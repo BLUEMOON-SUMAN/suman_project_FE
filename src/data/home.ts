@@ -13,7 +13,7 @@ export const homeContentKor = {
       title: '산업을 움직이는 기술',
       description:
         '수만은 2차전지 생산 장비 및 신뢰성 평가 시스템을 설계 및 제작하는 전문 기업입니다.\n대전 R&D 센터에서 축적한 기술력과 생산 인프라를 기반으로, 고객 맞춤형 고신뢰성 솔루션을 제공합니다.',
-      bgImage: '/images/main_tech.png',
+      bgImage: '/images/main/main_tech.png',
       buttonLabel: '기업 비전 바로가기 →',
       keywords: ["ENJOY", "NEO", "INTENSELY", "QUICKLY"],
       translations: ["즐겁게", "새롭게", "치열하게", "빠르게"]
@@ -27,25 +27,25 @@ export const homeContentKor = {
           title: '이차전지',
           subtitle: 'Secondary Battery',
           description: '고정밀 부품 / 모듈 설계',
-          img: '/images/solution/main_secondary_battery.png',
+          img: '/images/main/solution/main_secondary_battery.png',
         },
         {
           title: '전기·전자',
           subtitle: 'Electrical & Electronics',
           description: '고정밀 부품 / 맞춤형 설비제작기술',
-          img: '/images/solution/main_electronics.png',
+          img: '/images/main/solution/main_electronics.png',
         },
         {
           title: '반도체',
           subtitle: 'Semiconductor',
           description: '고정밀 부품 / 솔루션 서비스 기술 융합',
-          img: '/images/solution/main_semiconductor.png',
+          img: '/images/main/solution/main_semiconductor.png',
         },
         {
           title: '자동차',
           subtitle: 'Mobility',
           description: '고정밀 가공기술',
-          img: '/images/solution/main_mobility.png',
+          img: '/images/main/solution/main_mobility.png',
         },
       ],
     },
@@ -73,7 +73,7 @@ export const homeContentKor = {
    },
 
   footer_banner: [
-    '/images/main_banner.png'
+    '/images/main/main_banner.png'
   ],
 };
 //--------------------------------------------
@@ -89,7 +89,7 @@ export const homeContentEng = {
       title: 'Technology that Drives Industry',
       description:
         'SUMAN is a specialized company that designs and manufactures secondary battery production equipment and reliability evaluation systems.\nBased on the technological expertise and production infrastructure accumulated at our Daejeon R&D center, we provide customized, high-reliability solutions.',
-      bgImage: '/images/main_tech.png',
+      bgImage: '/images/main/main_tech.png',
       buttonLabel: 'Go to Vision →',
       keywords: ["ENJOY", "NEO", "INTENSELY", "QUICKLY"],
       translations: ["Enjoyably", "Newly", "Fiercely", "Quickly"]
@@ -103,25 +103,25 @@ export const homeContentEng = {
           title: 'Secondary Battery',
           subtitle: 'Secondary Battery',
           description: 'Precision parts / module design',
-          img: '/images/solution/main_secondary_battery.png',
+          img: '/images/main/solution/main_secondary_battery.png',
         },
         {
           title: 'Electrical & Electronics',
           subtitle: 'Electrical & Electronics',
           description: 'Precision parts / customized equipment manufacturing',
-          img: '/images/solution/main_electronics.png',
+          img: '/images/main/solution/main_electronics.png',
         },
         {
           title: 'Semiconductor',
           subtitle: 'Semiconductor',
           description: 'Fusion of precision parts / solution service technology',
-          img: '/images/solution/main_semiconductor.png',
+          img: '/images/main/solution/main_semiconductor.png',
         },
         {
           title: 'Mobility',
           subtitle: 'Mobility',
           description: 'Precision machining technology',
-          img: '/images/solution/main_mobility.png',
+          img: '/images/main/solution/main_mobility.png',
         },
       ],
     },
@@ -148,7 +148,7 @@ export const homeContentEng = {
       legal: 'Holding 6 intellectual property rights including-Piston Ring Manufacturing Device and Method',
     },
     footer_banner: [
-      '/images/main_banner.png'
+      '/images/main/main_banner.png'
     ],
 };
 

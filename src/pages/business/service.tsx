@@ -16,11 +16,11 @@ export default function ServicePage() {
   const section = serviceContent[lang].sectionList?.[0];
 
   const processImages = [
-    "/images/service_design.png",
-    "/images/service_order.png",
-    "/images/service_product.png",
-    "/images/service_test.png",
-    "/images/service_deliver.png",
+    "/images/business/process/service_design.png",
+    "/images/business/process/service_order.png",
+    "/images/business/process/service_product.png",
+    "/images/business/process/service_test.png",
+    "/images/business/process/service_deliver.png",
   ];
 
   const itemVariants = {
@@ -52,7 +52,7 @@ export default function ServicePage() {
         <HeroSection
           title={lang === "KOR" ? "기술 소개" : "Technology"}
           subtitle="SUMAN"
-          backgroundImage="/images/business_hero.png"
+          backgroundImage="/images/sub_banner/business_hero.png"
         />
 
         <BreadcrumbSection
@@ -244,7 +244,7 @@ export default function ServicePage() {
           whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain" style={{ backgroundImage: "url('/images/business/Group 124.png')" }}></div>
+          <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain" style={{ backgroundImage: "url('/images/business/layer2.png')" }}></div>
 
           <div className="max-w-7xl mx-auto relative z-10">
             <h2 className="text-white text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-10">
