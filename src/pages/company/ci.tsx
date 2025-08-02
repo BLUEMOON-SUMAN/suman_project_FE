@@ -69,44 +69,52 @@ export default function OrgPage() {
 
             {/* Logo Section */}
             <div className="mb-16">
-              <h3 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-5">{logoTitle}</h3>
-              <p className="text-sm sm:text-base md:text-lg tracking-wide text-gray-700 mb-10">{logoDesc}</p>
+              {/* 제목 + 버튼 한 줄 */}
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-4">
+                <h3 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide">
+                  {logoTitle}
+                </h3>
+                
+              </div>
 
-              <div className="flex flex-col md:flex-row justify-center items-center gap-10 sm:gap-20">
+              <p className="text-sm sm:text-base md:text-lg tracking-wide text-gray-700 mb-10">
+                {logoDesc}
+              </p>
+
+              {/* 로고 이미지 영역 */}
+              <div className="flex flex-col md:flex-row justify-center items-center gap-10 sm:gap-20 xl:gap-90">
                 <div className="relative w-64 h-64">
                   <Image
-                    src="/images/ci.png"
+                    src="/images/company/ci/ci.png"
                     alt={monoAlt}
                     layout="fill"
                     objectFit="contain"
                   />
                 </div>
-
-                <div className="relative w-64 h-64">
+                <div className="relative w-64 h-64 flex items-center justify-center rounded-lg">
                   <Image
-                    src="/images/ci_color.png"
+                    src="/images/company/ci/ci_color.png"
                     alt={colorAlt}
                     layout="fill"
                     objectFit="contain"
                   />
                 </div>
               </div>
-
-              <div className="mt-8">
+              <div className="flex justify-end mt-4">
                 <a
                   href="/images/logo_suman.png"
                   download="SUMAN_logo.png"
-                  className="inline-block tracking-wide border-2 border-gray-300 
-                    bg-transparent hover:bg-gray-300 text-black text-base font-medium 
-                    px-4 py-1 rounded-full transition"
+                  className="text-sm sm:text-base font-medium bg-white text-black px-3 py-0.3 rounded-full border-2 border-gray-300 
+                            hover:bg-gray-300 hover:text-black transition duration-200 tracking-wide"
                 >
                   PNG ↓
                 </a>
               </div>
             </div>
 
+
             {/* Color Code Section */}
-            <div className="flex flex-col md:flex-row justify-center items-stretch gap-10 sm:gap-20 mt-20 w-full">
+            <div className="flex flex-col md:flex-row justify-center items-stretch gap-60 mt-65 w-full">
               {/* RED */}
               <div className="w-full max-w-sm p-5 shadow-md flex flex-col justify-between bg-[#ED1B23] relative">
                 <div className="mb-2 tracking-wide">
@@ -143,7 +151,8 @@ export default function OrgPage() {
         </div>
       </main>
 
-      <hr className="my-20 border-gray-200 w-full" />
+      <hr className="my-10
+       border-gray-200 w-full" />
     </Layout>
   );
 }

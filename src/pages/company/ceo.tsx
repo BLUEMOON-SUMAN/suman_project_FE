@@ -53,7 +53,7 @@ export default function CeoPage() {
       <HeroSection
         title="CEO 인사말"
         subtitle="CEO Message"
-        backgroundImage="/images/ceo_hero.png"
+        backgroundImage="/images/sub_banner/ceo_hero.png"
       />
 
       {/* 서브 내비게이션 (Breadcrumb) 섹션 */}
@@ -126,7 +126,7 @@ export default function CeoPage() {
               }}
             >
               <Image
-                src="/images/ceo.jpeg"
+                src="/images/company/ceo/ceo.jpeg"
                 alt="SUMAN CEO"
                 className="w-full h-full object-cover"
                 width={700}

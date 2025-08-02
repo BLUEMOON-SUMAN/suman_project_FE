@@ -87,7 +87,7 @@ export default function InquiryFormPage() {
               <section className="max-w-3xl mx-auto">
                 {" "}
                 {/* 기존 InquiryForm의 section 태그 */}
-                <h2 className="text-2xl font-bold mb-8 text-center">
+                <h2 className="text-3xl font-bold mb-12 text-center">
                   {lang === "KOR" ? " 고객 문의" : "Client Contact Form"}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6 text-sm">
@@ -95,7 +95,7 @@ export default function InquiryFormPage() {
                   <div className="flex">
                     <label className="w-24 font-semibold">
                       {lang === "KOR" ? " 이름" : "Name"}
-                      <span className="text-red-500">*</span>
+                      <span className="text-blue-500">*</span>
                     </label>
                     <input
                       name="name"
@@ -109,7 +109,7 @@ export default function InquiryFormPage() {
                   <div className="flex">
                     <label className="w-24 font-semibold">
                       {lang === "KOR" ? "소속" : "Affiliation"}
-                      <span className="text-red-500">*</span>
+                      <span className="text-blue-500">*</span>
                     </label>
                     <input
                       name="affiliation"
@@ -123,7 +123,7 @@ export default function InquiryFormPage() {
                   <div className="flex">
                     <label className="w-24 font-semibold">
                       {lang === "KOR" ? "연략처" : "Affiliation"}
-                      <span className="text-red-500">*</span>
+                      <span className="text-blue-500">*</span>
                     </label>
                     <input
                       name="phone"
@@ -137,7 +137,7 @@ export default function InquiryFormPage() {
                   {/* 이메일 */}
                   <div className="flex">
                     <label className="w-24 font-semibold">
-                      E-mail<span className="text-red-500">*</span>
+                      E-mail<span className="text-blue-500">*</span>
                     </label>
                     <input
                       name="email"
@@ -152,7 +152,7 @@ export default function InquiryFormPage() {
                   <div className="flex">
                     <label className="w-24 font-semibold">
                       {lang === "KOR" ? "문의내용" : "contact"}
-                      <span className="text-red-500">*</span>
+                      <span className="text-blue-500">*</span>
                     </label>
                     <textarea
                       name="contect" // 오타 주의: 'contect'
@@ -166,7 +166,7 @@ export default function InquiryFormPage() {
                   <div className="text-right">
                     <button
                       type="submit"
-                      className="bg-gray-500 text-white px-6 py-2 hover:bg-blue-700 transition cursor-pointer"
+                      className="bg-gray-500 text-white px-6 py-2 hover:bg-gray-700 transition cursor-pointer"
                     >
                       {lang === "KOR" ? "제출" : "POST"}
                     </button>
