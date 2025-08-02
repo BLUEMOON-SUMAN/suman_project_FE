@@ -396,7 +396,7 @@ export default function HomePage({ content }: HomePageProps) {
             className="w-full object-cover"
             style={{ aspectRatio: "1440/220" }}
           />
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6 pointer-events-none transfrom translate-x-20">
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6 pointer-events-none transfrom lg:translate-x-20">
             <h2 className="text-sm md:text-xl lg:text-4xl font-semibold md:font-semibold lg:font-bold mb-2 md:mb-4 lg:mb-7 tracking-wide">
               Contact us
             </h2>
