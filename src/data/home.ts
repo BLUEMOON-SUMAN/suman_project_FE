@@ -7,7 +7,8 @@ export const homeContentKor = {
 export default function GuidePage() {
   
     section1Text: {
-      title:'리뉴얼 중 입니다'
+      title:'-리뉴얼 중 입니다-',  
+      subtitle : 'we are in renewal'
     },
     
     section2: {
