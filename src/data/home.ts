@@ -26,7 +26,7 @@ export default function GuidePage() {
       </div>
 
       {/* ✅ Main Banner Content */}
-      <h1 style={{ color: 'white' }}>정밀한 기술이 만드는 내일의 기업</h1>
+      <h1 style={{ color: 'white' }}> TEST 정밀한 기술이 만드는 내일의 기업</h1>
       <p style={{ color: 'white' }}>
         (주) 수만은 정밀 제조 분야의 깊은 know-how를 바탕으로, 고객 맞춤형 솔루션을 제공합니다.
       </p>
