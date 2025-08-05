@@ -19,7 +19,7 @@ export default function GuidePage() {
         boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
         fontWeight: 'bold',
         fontSize: '18px',
-        color: '#333',
+        color: 'white',
         zIndex: 999
       }}>
         📢 리뉴얼 중 입니다
