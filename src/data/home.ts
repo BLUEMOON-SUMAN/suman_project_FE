@@ -5,37 +5,9 @@ export const homeContentKor = {
 //                   KOR
 //--------------------------------------------  
 export default function GuidePage() {
-  return (
-    <div style={{ position: 'relative', backgroundColor: '#000', height: '100vh', padding: '2rem' }}>
-      
-      {/* ✅ Announcement Box */}
-      <div style={{
-        position: 'absolute',
-        top: '20px',
-        right: '20px',
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        padding: '12px 20px',
-        borderRadius: '8px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-        fontWeight: 'bold',
-        fontSize: '18px',
-        color: 'white',
-        zIndex: 999
-      }}>
-        📢 리뉴얼 중 입니다
-      </div>
-
-      {/* ✅ Main Banner Content */}
-      <h1 style={{ color: 'white' }}> TEST 정밀한 기술이 만드는 내일의 기업</h1>
-      <p style={{ color: 'white' }}>
-        (주) 수만은 정밀 제조 분야의 깊은 know-how를 바탕으로, 고객 맞춤형 솔루션을 제공합니다.
-      </p>
-    </div>
-  );
-}
+  
     section1Text: {
-      title: '정밀한 기술이 만드는\n내일의 기업',
-      subtitle: '(주) 수만은 정밀 제조 분야의 깊은 know-how를 바탕으로, 고객 맞춤형 솔루션을 제공합니다.',
+      title:'리뉴얼 중 입니다'
     },
     
     section2: {
