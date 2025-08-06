@@ -40,7 +40,7 @@ const navItemsKor = [
     label: "고객지원",
     href: "/support/faq",
     submenu: [
-      { label: "FAQ", href: "/support/faq" },
+      //{ label: "FAQ", href: "/support/faq" },
       { label: "문의하기", href: "/support/contact" },
     ],
   },
@@ -80,7 +80,7 @@ const navItemsEng = [
     label: "Support",
     href: "/eng/support/faq",
     submenu: [
-      { label: "FAQ", href: "/eng/support/faq" },
+      //{ label: "FAQ", href: "/eng/support/faq" },
       { label: "Contact Us", href: "/eng/support/contact" },
     ],
   },
