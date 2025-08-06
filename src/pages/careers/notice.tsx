@@ -223,7 +223,7 @@ const RecruitmentBoard: React.FC = () => {
                   </p>
                 </div>
                 <Link
-                  href="https://www.jobkorea.co.kr/company/43257667/Recruit"
+                  href="https://www.jobkorea.co.kr/net/company/45215125/Recruit"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-white text-gray-700 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 flex items-center justify-center"

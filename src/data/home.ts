@@ -5,8 +5,8 @@ export const homeContentKor = {
 //                   KOR
 //--------------------------------------------  
     section1Text: {
-      title: '정밀한 기술이 만드는\n내일의 기업',
-      subtitle: '(주) 수만은 정밀 제조 분야의 깊은 know-how를 바탕으로, 고객 맞춤형 솔루션을 제공합니다.',
+      title: '해당 홈페이지는 내용 리뉴얼 중입니다.',
+      subtitle: 'FAQ 및 문의하기는 추후 정식 운영될 예정이며 현재는 미운영 중입니다.',
     },
     
     section2: {
