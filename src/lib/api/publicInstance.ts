@@ -5,7 +5,7 @@
 import axios from 'axios';
 
 const publicInstance = axios.create({
-  baseURL: 'https://suman-project-cap5.onrender.com/api/', // API 주소. 백엔드 주소 변경시 수정 필수
+  baseURL: 'https://suman-project-31hc.onrender.com/api/', // API 주소. 백엔드 주소 변경시 수정 필수
   timeout: 5000,
 });
 

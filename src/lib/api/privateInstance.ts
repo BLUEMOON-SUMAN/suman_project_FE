@@ -7,7 +7,7 @@ import publicInstance from './publicInstance';
 import { useAuthStore } from '@/stores/useAuthStore';
 
 const privateInstance = axios.create({
-  baseURL: 'https://suman-project-cap5.onrender.com/api/', // API 주소. 백엔드 주소 변경시 수정 필수
+  baseURL: 'https://suman-project-31hc.onrender.com/api/', // API 주소. 백엔드 주소 변경시 수정 필수
   timeout: 15000, // 백엔드 서버 wake-up time 고려
 });
 
