@@ -136,7 +136,7 @@ export default function Header() {
                 width={90}
                 height={90}
                 priority
-                className="cursor-pointer"
+                className="h-20 w-auto"
               />
             </Link>
           </div>
