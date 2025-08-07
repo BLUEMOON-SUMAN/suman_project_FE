@@ -110,7 +110,7 @@ const RecruitmentBoard: React.FC = () => {
                   <th className="px-6 py-4 text-left text-sm font-medium text-gray-700 w-16">
                     번호
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700">
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700 w-16">
                     제목
                   </th>
                   <th className="px-6 py-4 text-center text-sm font-medium text-gray-700 w-24">
