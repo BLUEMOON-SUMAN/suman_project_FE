@@ -26,13 +26,13 @@ export const homeContentKor = {
         {
           title: '이차전지',
           subtitle: 'Secondary Battery',
-          description: '고정밀 부품 / 모듈 설계',
+          description: '고정밀 부품 / 모듈 설계\n',
           img: '/images/main/solution/main_secondary_battery.png',
         },
         {
           title: '전기·전자',
           subtitle: 'Electrical & Electronics',
-          description: '고정밀 부품 / 맞춤형 설비제작기술',
+          description: '고정밀 부품 / 맞춤형 설비제작기술\n',
           img: '/images/main/solution/main_electronics.png',
         },
         {
@@ -44,7 +44,7 @@ export const homeContentKor = {
         {
           title: '자동차',
           subtitle: 'Mobility',
-          description: '고정밀 가공기술',
+          description: '고정밀 가공기술\n',
           img: '/images/main/solution/main_mobility.png',
         },
       ],
