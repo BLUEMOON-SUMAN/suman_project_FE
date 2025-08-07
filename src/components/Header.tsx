@@ -119,7 +119,7 @@ export default function Header() {
         animate={{
           y: isVisible ? 0 : -100,
           backgroundColor: bgColor,
-          height: isHovered ? 135 : 80,
+          height: isHovered ? 140 : 90,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
@@ -136,7 +136,7 @@ export default function Header() {
                 width={90}
                 height={90}
                 priority
-                className="h-20 w-auto"
+                className="cursor-pointer"
               />
             </Link>
           </div>
