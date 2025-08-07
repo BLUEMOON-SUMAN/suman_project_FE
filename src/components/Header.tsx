@@ -124,22 +124,21 @@ export default function Header() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* 메인 메뉴 영역 */}
-        <div
-          className={`w-full mx-auto px-6 md:px-[60px] lg:px-[120px] py-6 flex justify-between items-center text-lg font-medium ${textColor}`}
-        >
+        <div className={`w-full mx-auto px-4 md:px-10 lg:px-[120px] h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
           {/* 로고 */}
-          <div className="flex-none">
+          <div className="flex-none h-full flex items-center">
             <Link href="/">
-              <Image
-                src="/images/logo_suman.png"
-                alt="회사 로고"
-                width={120}
-                height={120}
-                priority
-                className="cursor-pointer max-h-[80px] w-auto"
-              />
-            </Link>
-          </div>
+            <Image
+            src="/images/logo_suman.png"
+            alt="회사 로고"
+            width={140}
+            height={140}
+            priority
+            className="cursor-pointer max-h-[60px] sm:max-h-[70px] md:max-h-[80px] w-auto"
+            />
+          </Link>
+        </div>
+
 
           {/* 메인 메뉴 (데스크탑) */}
           <nav className="hidden md:flex flex-1 justify-center space-x-12 lg:space-x-24 xl:space-x-40 tracking-wide">
@@ -185,8 +184,8 @@ export default function Header() {
                   <Image
                     src="/images/logo_suman.png"
                     alt="회사 로고"
-                    width={70}
-                    height={70}
+                    width={98}
+                    height={98}
                     className="cursor-pointer"
                   />
                 </Link>

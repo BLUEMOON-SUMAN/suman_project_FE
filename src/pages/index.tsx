@@ -81,7 +81,7 @@ export default function HomePage({ content }: HomePageProps) {
             muted
             loop
             playsInline
-            className="absolute w-full h-full object-cover"
+            className="fixed top-0 left-0 w-full h-screen object-cover z-[-1]"
           >
             <source src="/videos/main_banner_1.mp4" type="video/mp4" />
             브라우저가 video 태그를 지원하지 않습니다.
