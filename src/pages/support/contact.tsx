@@ -21,7 +21,7 @@ export default function InquiryFormPage() {
 
   // 백엔드 슬립 깨우기 요청
   useEffect(() => {
-    fetch("https://suman-project-cap5.onrender.com/api/")
+    fetch("https://suman-project-31hc.onrender.com/api/")
       .then(() => console.log("Render 서버 깨우기 완료"))
       .catch(() => console.warn("Render 서버 깨우기 실패"));
   }, []);

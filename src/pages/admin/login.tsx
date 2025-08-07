@@ -15,7 +15,7 @@ export default function LoginScreen() {
 
   // 백엔드 서버 슬립 방지용 깨우기 요청
   useEffect(() => {
-  fetch("https://suman-project-cap5.onrender.com/api/")
+  fetch("https://suman-project-31hc.onrender.com/api/")
     .then(() => console.log("Render 서버 깨우기 완료"))
     .catch(() => console.warn("Render 서버 깨우기 실패"));
   }, []);
