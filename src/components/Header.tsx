@@ -100,10 +100,12 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+  const isVisible = true; // Always visible
+  const isSolid = true;   // Always white background
 
-const isVisible = true; // Always visible
-const isSolid = true;   // Always white background
-
+  //const isAtTop = lastScrollY === 0;
+  //const isVisible = scrollDir === "up" || isHovered;
+  //const isSolid = isHovered || (!isAtTop && scrollDir === "up");
 
   const bgColor = isSolid ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0)";
   const textColor = isSolid ? "text-black" : "text-white";
@@ -117,13 +119,13 @@ const isSolid = true;   // Always white background
         animate={{
           y: isVisible ? 0 : -100,
           backgroundColor: bgColor,
-          height: isHovered ? 120 : 64,
+          height: isHovered ? 140 : 90,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* 메인 메뉴 영역 */}
         <div
-          className={`w-full mx-auto px-6 md:px-[60px] lg:px-[120px] py-3 flex justify-between items-center text-lg font-medium ${textColor}`}
+          className={`w-full mx-auto px-6 md:px-[60px] lg:px-[120px] py-6 flex justify-between items-center text-lg font-medium ${textColor}`}
         >
           {/* 로고 */}
           <div className="flex-none">
@@ -131,8 +133,8 @@ const isSolid = true;   // Always white background
               <Image
                 src="/images/logo_suman.png"
                 alt="회사 로고"
-                width={70}
-                height={70}
+                width={90}
+                height={90}
                 priority
                 className="cursor-pointer"
               />
