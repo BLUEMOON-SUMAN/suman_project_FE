@@ -38,7 +38,7 @@ export const homeContentKor = {
         {
           title: '반도체',
           subtitle: 'Semiconductor',
-          description: '고정밀 부품 / 솔루션 서비스 기술 융합',
+          description: '고정밀 부품 / 솔루션 서비스',
           img: '/images/main/solution/main_semiconductor.png',
         },
         {
