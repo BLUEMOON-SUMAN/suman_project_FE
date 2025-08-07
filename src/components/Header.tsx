@@ -38,7 +38,7 @@ const navItemsKor = [
   },
   {
     label: "고객지원",
-    href: "/support/faq",
+    //href: "/support/faq",
     submenu: [
       //{ label: "FAQ", href: "/support/faq" },
       { label: "문의하기", href: "/support/contact" },

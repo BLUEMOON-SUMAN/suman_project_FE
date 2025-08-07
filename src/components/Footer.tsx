@@ -110,8 +110,8 @@ export default function Footer() {
           <Image
             src="/images/logo_suman.png"
             alt="logo"
-            width={60}
-            height={60}
+            width={70}
+            height={70}
           />
           <p className="text-lg font-semibold leading-tight tracking-wide">
             {lang === "KOR" ? (
