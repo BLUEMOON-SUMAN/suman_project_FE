@@ -119,7 +119,7 @@ export default function Header() {
         animate={{
           y: isVisible ? 0 : -100,
           backgroundColor: bgColor,
-          height: isHovered ? 140 : 90,
+          height: isHovered ? 135 : 80,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
