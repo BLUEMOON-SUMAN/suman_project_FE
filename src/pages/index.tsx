@@ -69,7 +69,7 @@ export default function HomePage({ content }: HomePageProps) {
         <meta property="og:url" content="https://www.suman.co.kr" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="수만" />
-        <link rel="icon" sizes="20x20" href="/images/logo.ico" />
+        <link rel="icon" sizes="16x16" href="/images/logo.ico" />
       </Head>
 
       <Header />
