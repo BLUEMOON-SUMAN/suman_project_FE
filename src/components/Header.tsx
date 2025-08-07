@@ -134,7 +134,7 @@ export default function Header() {
             width={100}
             height={100}
             priority
-            className="cursor-pointer max-h-[60px] sm:max-h-[70px] md:max-h-[80px] w-auto"
+            className="cursor-pointer max-h-[40x] sm:max-h-[50px] md:max-h-[60px] w-auto"
             />
           </Link>
         </div>
