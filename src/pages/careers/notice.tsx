@@ -107,10 +107,10 @@ const RecruitmentBoard: React.FC = () => {
             <table className="w-full">
               <thead className="bg-gray-100">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700 w-16">
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700 w-10">
                     번호
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700 w-16">
+                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700 w-10">
                     제목
                   </th>
                   <th className="px-6 py-4 text-center text-sm font-medium text-gray-700 w-24">
