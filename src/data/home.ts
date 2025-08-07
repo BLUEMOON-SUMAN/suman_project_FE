@@ -83,7 +83,7 @@ export const homeContentEng = {
     
     section1Text: {
       title: 'This website is currently undergoing a content renewal.',
-      subtitle: 'The FAQ and Contact Us sections will be officially available in the future, but are currently not in operation.',
+      subtitle: 'The FAQ and Contact Us sections will be officially available in the future.',
     },
     section2: {
       title: 'Technology that Drives Industry',
