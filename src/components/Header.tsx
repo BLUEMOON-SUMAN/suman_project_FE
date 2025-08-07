@@ -131,8 +131,8 @@ export default function Header() {
               <Image
                 src="/images/logo_suman.png"
                 alt="회사 로고"
-                width={120}
-                height={120}
+                width={95}
+                height={95}
                 priority
                 className="cursor-pointer"
               />
@@ -183,8 +183,8 @@ export default function Header() {
                   <Image
                     src="/images/logo_suman.png"
                     alt="회사 로고"
-                    width={100}
-                    height={100}
+                    width={95}
+                    height={95}
                     className="cursor-pointer"
                   />
                 </Link>
