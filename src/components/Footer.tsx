@@ -36,9 +36,7 @@ const menuGroups = {
     {
       title: "고객지원",
       items: [
-        //{ label: "FAQ", href: "/support/faq" },
-        { label: "문의하기", href: "/support/contact" },
-      ],
+        { label: "문의하기", href: "/support/contact" }],
     },
   ],
 
@@ -69,10 +67,7 @@ const menuGroups = {
     },
     {
       title: "Support",
-      items: [
-        //{ label: "FAQ", href: "/eng/support/faq" },
-        { label: "Contact Us", href: "/eng/support/contact" },
-      ],
+      items: [{ label: "Contact Us", href: "/eng/support/contact" }],
     },
   ],
 };
@@ -110,8 +105,8 @@ export default function Footer() {
           <Image
             src="/images/logo_suman.png"
             alt="logo"
-            width={70}
-            height={70}
+            width={60}
+            height={60}
           />
           <p className="text-lg font-semibold leading-tight tracking-wide">
             {lang === "KOR" ? (
