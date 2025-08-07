@@ -197,7 +197,7 @@ const AdminGuidePage = () => {
           export const homeContent = {
             kor: {
               slogan: "정밀한 기술이 만드는 내일의 기업",
-              description: "혁신적인 솔루션과 최적의 서비스를 제공합니다.",
+              description: "혁신적인 솔루션과 최적의 서비스를 제조합니다.",
             },
             eng: {
               slogan: "Tomorrow's enterprise built with precision",

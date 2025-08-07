@@ -299,7 +299,7 @@ export default function HomePage({ content }: HomePageProps) {
             <br />
             <br />
             <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal -mt-20 lg:mt-16 mb-5">
-              고객 맞춤형 장비/제조 서비스를 제공합니다
+              고객 맞춤형 장비/제조 서비스를 제조합니다
             </h2>
 
             <p className="text-sm md:text-sm lg:text-xl text-black/80 font-medium leading-relaxed mb-8">

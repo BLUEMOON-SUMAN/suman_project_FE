@@ -12,7 +12,7 @@ export const homeContentKor = {
     section2: {
       title: '산업을 움직이는 기술',
       description:
-        '수만은 2차전지 생산 장비 및 신뢰성 평가 시스템을 설계 및 제작하는 전문 기업입니다.\n대전 R&D 센터에서 축적한 기술력과 생산 인프라를 기반으로, 고객 맞춤형 고신뢰성 솔루션을 제공합니다.',
+        '수만은 2차전지 생산 장비 및 신뢰성 평가 시스템을 설계 및 제작하는 전문 기업입니다.\n대전 R&D 센터에서 축적한 기술력과 생산 인프라를 기반으로, 고객 맞춤형 고신뢰성 솔루션을 제조합니다.',
       bgImage: '/images/main/main_tech.png',
       buttonLabel: '기업 비전 바로가기 →',
       keywords: ["ENJOY", "NEO", "INTENSELY", "QUICKLY"],
