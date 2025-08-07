@@ -119,13 +119,13 @@ export default function Header() {
         animate={{
           y: isVisible ? 0 : -100,
           backgroundColor: bgColor,
-          height: isHovered ? 135 : 90,
+          height: isHovered ? 130 : 90,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* 메인 메뉴 영역 */}
         <div
-          className={`w-full mx-auto px-6 md:px-[60px] lg:px-[120px] h-[90px] flex justify-between items-center text-lg font-medium ${textColor}`}
+          className={`w-full mx-auto px-6 md:px-[60px] lg:px-[120px] py-6 flex justify-between items-center text-lg font-medium ${textColor}`}
         >
           {/* 로고 */}
           <div className="flex-none">
@@ -133,8 +133,8 @@ export default function Header() {
               <Image
                 src="/images/logo_suman.png"
                 alt="회사 로고"
-                width={100}
-                height={100}
+                width={90}
+                height={90}
                 priority
                 className="cursor-pointer"
               />
@@ -185,8 +185,8 @@ export default function Header() {
                   <Image
                     src="/images/logo_suman.png"
                     alt="회사 로고"
-                    width={100}
-                    height={100}
+                    width={70}
+                    height={70}
                     className="cursor-pointer"
                   />
                 </Link>
