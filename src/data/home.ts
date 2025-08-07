@@ -6,7 +6,7 @@ export const homeContentKor = {
 //--------------------------------------------  
     section1Text: {
       title: '해당 홈페이지는 내용 리뉴얼 중입니다.',
-      subtitle: 'FAQ 및 문의하기는 추후 정식 운영될 예정이며 현재는 미운영 중입니다.',
+      subtitle: '문의하기는 추후 정식 운영될 예정이며 현재는 미운영 중입니다.',
     },
     
     section2: {
@@ -83,7 +83,7 @@ export const homeContentEng = {
     
     section1Text: {
       title: 'This website is currently undergoing a content renewal.',
-      subtitle: 'The FAQ and Contact Us sections will be officially available in the future.',
+      subtitle: 'Contact Us sections will be officially available in the future.',
     },
     section2: {
       title: 'Technology that Drives Industry',
