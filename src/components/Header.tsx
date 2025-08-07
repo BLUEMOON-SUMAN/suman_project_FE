@@ -141,7 +141,7 @@ export default function Header() {
 
 
           {/* 메인 메뉴 (데스크탑) */}
-          <nav className="hidden md:flex flex-1 justify-center space-x-12 lg:space-x-24 xl:space-x-40 tracking-wide">
+          <nav className="hidden md:flex flex-1 justify-center space-x-6 sm:space-x-10 md:space-x-12 lg:space-x-20 xl:space-x-32 tracking-wide">
             {NAV_ITEMS.map((item, index) => (
               <div
                 key={item.label}
