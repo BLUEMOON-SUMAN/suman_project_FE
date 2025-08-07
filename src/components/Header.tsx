@@ -133,10 +133,10 @@ export default function Header() {
               <Image
                 src="/images/logo_suman.png"
                 alt="회사 로고"
-                width={90}
-                height={90}
+                width={120}
+                height={120}
                 priority
-                className="cursor-pointer"
+                className="cursor-pointer max-h-[80px] w-auto"
               />
             </Link>
           </div>
