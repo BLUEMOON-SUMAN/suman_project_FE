@@ -101,9 +101,9 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const isAtTop = lastScrollY === 0;
-  const isVisible = scrollDir === "up" || isHovered;
-  const isSolid = isHovered || (!isAtTop && scrollDir === "up");
+const isVisible = true; // Always visible
+const isSolid = true;   // Always white background
+
 
   const bgColor = isSolid ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0)";
   const textColor = isSolid ? "text-black" : "text-white";
