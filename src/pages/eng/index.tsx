@@ -306,7 +306,7 @@ export default function HomePage({ content }: HomePageProps) {
             <br />
             <br />
             <p className="text-2xl text-gray-700 leading-relaxed mb-8">
-              Suman thoroughly analyzes each customer specific <br />requirements to deliver optimized custom equipment, facilities,<br />and high-quality precision-machined parts.
+              Suman thoroughly analyzes each customer specific <br />requirements to deliver optimized custom equipment, <br />facilities, and high-quality precision-machined parts.
             </p>
           </motion.div>
 
