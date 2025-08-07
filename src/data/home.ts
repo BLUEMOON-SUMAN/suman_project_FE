@@ -82,8 +82,8 @@ export const homeContentKor = {
 export const homeContentEng = {
     
     section1Text: {
-      title: 'Tomorrow company that creates precision technology',
-      subtitle: 'With deep know-how in precision manufacturing, SUMAN provides customized solutions.',
+      title: 'This website is currently undergoing a content renewal.',
+      subtitle: 'The FAQ and Contact Us sections will be officially available in the future, but are currently not in operation.',
     },
     section2: {
       title: 'Technology that Drives Industry',
