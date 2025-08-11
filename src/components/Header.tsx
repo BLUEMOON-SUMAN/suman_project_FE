@@ -75,75 +75,72 @@ const navItemsEng = [
 ];
 
 export default function Header() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobileIndex, setExpandedMobileIndex] = useState<number | null>(null);
   const { lang } = useLangStore();
   const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng;
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
   }, [mobileMenuOpen]);
 
-  const isSolid = scrollY > 0 || isHovered;
-  const bgColor = isSolid ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)";
-  const textColor = isSolid ? "text-black" : "text-white";
+  const headerHeight = hoveredIndex !== null ? 220 : 90;
+  const isHovered = hoveredIndex !== null;
 
   return (
     <AnimatePresence>
       <motion.header
         role="navigation"
         aria-label="Main Navigation"
-        className="fixed top-0 left-0 w-full z-50"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        className={`fixed top-0 left-0 w-full z-50 bg-white shadow-md`}
         initial={false}
         animate={{
           y: 0,
-          backgroundColor: bgColor,
+          height: headerHeight,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* Main Nav */}
         <div
-          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}
+          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex justify-between items-center text-sm md:text-base font-medium text-black`}
           style={{ height: "90px" }}
+          onMouseLeave={() => setHoveredIndex(null)}
         >
-          {/* Logo */}
-          <Link href="/" className="flex items-center h-full">
-            <Image
-              src="/images/logo_suman.png"
-              alt="회사 로고"
-              width={100}
-              height={100}
-              priority
-              className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
-            />
-          </Link>
+          {/* Logo and Nav Container */}
+          <div className="flex items-center h-full">
+            {/* Logo */}
+            <Link href="/" className="flex items-center h-full pr-16 md:pr-24">
+              <Image
+                src="/images/logo_suman.png"
+                alt="회사 로고"
+                width={100}
+                height={100}
+                priority
+                className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
+              />
+            </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide">
-            {NAV_ITEMS.map((item) => (
-              <div
-                key={item.label}
-                className="relative cursor-pointer h-full flex items-center"
-              >
-                <Link
-                  href={item.href}
-                  className={`hover:font-semibold transition-colors duration-200 ${textColor}`}
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex justify-start space-x-10 lg:space-x-16 tracking-wide">
+              {NAV_ITEMS.map((item, index) => (
+                <div
+                  key={item.label}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  className="relative cursor-pointer h-full flex items-center"
                 >
-                  {item.label}
-                </Link>
-              </div>
-            ))}
-          </nav>
+                  <Link
+                    href={item.href}
+                    className={`hover:font-semibold transition-colors duration-200 ${
+                      isHovered ? "font-semibold" : ""
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </div>
+              ))}
+            </nav>
+          </div>
 
           {/* Language Switcher */}
           <div className="hidden md:flex items-center h-full">
@@ -164,16 +161,20 @@ export default function Header() {
         <AnimatePresence>
           {isHovered && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-[90px] left-0 w-full bg-white text-black shadow-md border-t border-gray-200 overflow-hidden hidden md:block"
+              className="w-full bg-white text-black hidden md:block"
             >
-              <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex justify-between items-start">
+              <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex justify-between">
                 {NAV_ITEMS.map((item, index) => (
                   <div key={item.label} className="min-w-0">
-                    <h3 className="text-sm font-bold mb-2 text-black">
+                    <h3
+                      className={`text-sm font-bold mb-2 transition-colors duration-200 text-gray-400 ${
+                        hoveredIndex === index ? "text-blue-500" : ""
+                      }`}
+                    >
                       {item.label}
                     </h3>
                     <ul className="space-y-1 text-sm">
@@ -194,8 +195,8 @@ export default function Header() {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Mobile Menu */}
+        
+        {/* Mobile Menu (remains unchanged) */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div

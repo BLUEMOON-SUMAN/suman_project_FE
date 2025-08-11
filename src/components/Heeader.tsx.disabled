@@ -75,7 +75,7 @@ const navItemsEng = [
   },
   {
     label: "Support",
-    href: "/eng/support/faq",
+    href: "/eng/support/contact",
     submenu: [{ label: "Contact Us", href: "/eng/support/contact" }],
   },
 ];
