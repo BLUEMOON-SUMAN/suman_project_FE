@@ -103,14 +103,14 @@ export default function Header() {
       >
         {/* Main Nav */}
         <div
-          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex justify-between items-center text-sm md:text-base font-medium text-black`}
+          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex items-center text-sm md:text-base font-medium text-black`}
           style={{ height: "90px" }}
           onMouseLeave={() => setHoveredIndex(null)}
         >
           {/* Logo and Nav Container */}
-          <div className="flex items-center h-full">
+          <div className="flex flex-1 items-center h-full">
             {/* Logo */}
-            <Link href="/" className="flex items-center h-full pr-16 md:pr-24">
+            <Link href="/" className="flex items-center h-full">
               <Image
                 src="/images/logo_suman.png"
                 alt="회사 로고"
@@ -122,7 +122,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex justify-start space-x-10 lg:space-x-16 tracking-wide">
+            <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide ml-20 md:ml-32">
               {NAV_ITEMS.map((item, index) => (
                 <div
                   key={item.label}
@@ -167,30 +167,33 @@ export default function Header() {
               transition={{ duration: 0.2 }}
               className="w-full bg-white text-black hidden md:block"
             >
-              <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex justify-between">
-                {NAV_ITEMS.map((item, index) => (
-                  <div key={item.label} className="min-w-0">
-                    <h3
-                      className={`text-sm font-bold mb-2 transition-colors duration-200 text-gray-400 ${
-                        hoveredIndex === index ? "text-blue-500" : ""
-                      }`}
-                    >
-                      {item.label}
-                    </h3>
-                    <ul className="space-y-1 text-sm">
-                      {item.submenu.map((sub) => (
-                        <li key={sub.label}>
-                          <Link
-                            href={sub.href}
-                            className="block text-gray-800 hover:text-blue-500 transition-colors duration-200 whitespace-nowrap"
-                          >
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex">
+                <div className="flex-grow-0 ml-20 md:ml-32 flex justify-center space-x-10 lg:space-x-16">
+                  {NAV_ITEMS.map((item, index) => (
+                    <div key={item.label} className="min-w-0">
+                      <h3
+                        className={`text-sm font-bold mb-2 transition-colors duration-200 text-gray-400 ${
+                          hoveredIndex === index ? "text-blue-500" : ""
+                        }`}
+                      >
+                        {item.label}
+                      </h3>
+                      <ul className="space-y-1 text-sm">
+                        {item.submenu.map((sub) => (
+                          <li key={sub.label}>
+                            <Link
+                              href={sub.href}
+                              className="block text-gray-800 hover:text-blue-500 transition-colors duration-200 whitespace-nowrap"
+                            >
+                              {sub.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex-1" />
               </div>
             </motion.div>
           )}
