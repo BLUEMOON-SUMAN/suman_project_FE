@@ -124,48 +124,45 @@ export default function Header() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         onMouseLeave={handleMouseLeave}
       >
-        {/* Main Nav */}
+        {/* Main Nav Container */}
         <div
-          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex items-center text-sm md:text-base font-medium text-black`}
+          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex justify-between items-center text-sm md:text-base font-medium text-black`}
           style={{ height: "90px" }}
         >
-          {/* Logo and Nav Container */}
-          <div className="flex flex-1 items-center h-full">
-            {/* Logo */}
-            <Link href="/" className="flex items-center h-full mr-16">
-              <Image
-                src="/images/logo_suman.png"
-                alt="회사 로고"
-                width={100}
-                height={100}
-                priority
-                className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
-              />
-            </Link>
+          {/* Logo - Menempel di kiri */}
+          <Link href="/" className="flex items-center h-full">
+            <Image
+              src="/images/logo_suman.png"
+              alt="회사 로고"
+              width={100}
+              height={100}
+              priority
+              className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
+            />
+          </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide">
-              {NAV_ITEMS.map((item, index) => (
-                <div
-                  key={item.label}
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  className="relative cursor-pointer h-full flex items-center"
+          {/* Desktop Nav - Pindah ke tengah dengan margin kiri yang lebih besar */}
+          <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide ml-[100px]">
+            {NAV_ITEMS.map((item, index) => (
+              <div
+                key={item.label}
+                onMouseEnter={() => handleMouseEnter(index)}
+                className="relative cursor-pointer h-full flex items-center"
+              >
+                <Link
+                  href={item.href}
+                  className={`hover:font-semibold transition-colors duration-200 ${
+                    isHovered ? "font-semibold" : ""
+                  }`}
                 >
-                  <Link
-                    href={item.href}
-                    className={`hover:font-semibold transition-colors duration-200 ${
-                      isHovered ? "font-semibold" : ""
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                </div>
-              ))}
-            </nav>
-          </div>
+                  {item.label}
+                </Link>
+              </div>
+            ))}
+          </nav>
 
-          {/* Language Switcher */}
-          <div className="hidden md:flex items-center h-full ml-auto">
+          {/* Language Switcher - Menempel di kanan */}
+          <div className="hidden md:flex items-center h-full">
             <LanguageSwitcher />
           </div>
 
@@ -191,11 +188,11 @@ export default function Header() {
               onMouseEnter={handleSubmenuMouseEnter}
             >
               <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex">
-                {/* Empty div to align submenu with logo */}
-                <div className="flex-grow-0" style={{ minWidth: '100px', marginRight: '4rem' }} />
+                {/* Spacer untuk menggeser submenu agar sejajar dengan nav */}
+                <div style={{ minWidth: '100px' }} />
 
                 {/* Submenu items */}
-                <div className="flex flex-1 justify-center space-x-10 lg:space-x-16">
+                <div className="flex flex-1 justify-center space-x-10 lg:space-x-16 ml-[100px]">
                   {NAV_ITEMS.map((item, index) => (
                     <div key={item.label} className="min-w-0">
                       <h3
@@ -220,8 +217,6 @@ export default function Header() {
                     </div>
                   ))}
                 </div>
-                {/* Empty div for spacing on the right */}
-                <div className="ml-auto" />
               </div>
             </motion.div>
           )}

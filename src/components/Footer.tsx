@@ -17,6 +17,10 @@ const menuGroups = {
         { label: "기업 비전", href: "/company/vision" },
         { label: "연혁", href: "/company/history" },
         { label: "조직도", href: "/company/org" },
+      ],
+    },
+    {
+      items : [
         { label: "CI", href: "/company/ci" },
         { label: "오시는 길", href: "/company/location" },
         { label: "인증 현황", href: "/company/certifications" },
