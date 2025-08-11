@@ -101,13 +101,13 @@ export default function Header() {
       <motion.header
         role="navigation"
         aria-label="Main Navigation"
-        className="fixed top-0 left-0 w-full z-50 overflow-hidden shadow-lg"
+        className="fixed top-0 left-0 w-full z-50"
         onMouseLeave={() => setHoveredIndex(null)}
         initial={false}
         animate={{
           y: 0,
           backgroundColor: bgColor,
-          height: hoveredIndex !== null ? 220 : 90, // Increased height to accommodate the submenu
+          height: hoveredIndex !== null ? 200 : 90,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
@@ -132,19 +132,43 @@ export default function Header() {
           <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide">
             {NAV_ITEMS.map((item, index) => (
               <div
-                key={item.label}
-                onMouseEnter={() => setHoveredIndex(index)}
-                className="relative cursor-pointer h-full flex items-center"
-              >
-                <Link
-                  href={item.href}
-                  className={`hover:font-semibold transition-colors duration-200 ${
-                    hoveredIndex === index ? "font-semibold" : ""
-                  } ${textColor}`}
-                >
-                  {item.label}
-                </Link>
-              </div>
+  key={item.label}
+  onMouseEnter={() => setHoveredIndex(index)}
+  onMouseLeave={() => setHoveredIndex(null)}
+  className="relative cursor-pointer"
+>
+  <Link
+    href={item.href}
+    className={`hover:font-semibold transition-colors duration-200 ${textColor}`}
+  >
+    {item.label}
+  </Link>
+
+  <AnimatePresence>
+    {hoveredIndex === index && item.submenu.length > 0 && (
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.2 }}
+        className="absolute left-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md"
+      >
+        <div className="py-2 min-w-[180px]">
+          {item.submenu.map((sub) => (
+            <Link
+              key={sub.label}
+              href={sub.href}
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+            >
+              {sub.label}
+            </Link>
+          ))}
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
+
             ))}
           </nav>
 
@@ -162,45 +186,6 @@ export default function Header() {
             ☰
           </button>
         </div>
-
-        {/* Submenu area */}
-        <AnimatePresence>
-          {hoveredIndex !== null && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="w-full bg-white text-black shadow-md border-t border-gray-200"
-            >
-              <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex justify-between items-start">
-                {NAV_ITEMS.map((item, index) => (
-                  <div key={item.label} className="flex-1 min-w-0">
-                    <h3
-                      className={`text-lg font-bold mb-2 transition-colors duration-200 ${
-                        hoveredIndex === index ? "text-blue-500" : "text-gray-400"
-                      }`}
-                    >
-                      {item.label}
-                    </h3>
-                    <ul className="space-y-1">
-                      {item.submenu.map((sub) => (
-                        <li key={sub.label}>
-                          <Link
-                            href={sub.href}
-                            className="block text-gray-800 hover:text-blue-500 transition-colors duration-200"
-                          >
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Mobile Menu */}
         <AnimatePresence>

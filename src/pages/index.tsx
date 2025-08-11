@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/Headeeer";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
