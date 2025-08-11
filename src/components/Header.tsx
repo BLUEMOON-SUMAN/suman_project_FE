@@ -107,7 +107,7 @@ export default function Header() {
         animate={{
           y: 0,
           backgroundColor: bgColor,
-          height: hoveredIndex !== null ? 130 : 90,
+          height: hoveredIndex !== null ? 200 : 90,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
@@ -167,15 +167,6 @@ export default function Header() {
               className="md:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-6">
-                {/*<Link href="/">
-                  <Image
-                    src="/images/logo_suman.png"
-                    alt="회사 로고"
-                    width={100}
-                    height={100}
-                    className="cursor-pointer"
-                  />
-                </Link>*/}
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-xl"
@@ -217,7 +208,7 @@ export default function Header() {
           )}
         </AnimatePresence>
 
-        {/* Desktop Submenu */}
+        {/* Desktop Submenu (Hanwha-style multi-column) */}
         <AnimatePresence>
           {hoveredIndex !== null && (
             <motion.div
@@ -226,17 +217,30 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25 }}
-              className="hidden md:block w-full border-t border-gray-200 bg-white z-40 shadow-sm"
+              className="hidden md:block w-full border-t border-gray-200 bg-white z-40 shadow-md"
             >
-              <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-4 flex justify-start space-x-6 text-gray-600">
-                {NAV_ITEMS[hoveredIndex].submenu.map((sub) => (
-                  <Link
-                    key={sub.label}
-                    href={sub.href}
-                    className="hover:font-medium transition-colors duration-200"
-                  >
-                    {sub.label}
-                  </Link>
+              <div className="max-w-screen-xl mx-auto grid grid-cols-4 gap-8 px-8 py-6">
+                {NAV_ITEMS.map((item) => (
+                  <div key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="block font-semibold mb-3 hover:text-orange-500"
+                    >
+                      {item.label}
+                    </Link>
+                    <ul className="space-y-2">
+                      {item.submenu.map((sub) => (
+                        <li key={sub.label}>
+                          <Link
+                            href={sub.href}
+                            className="text-gray-600 hover:text-orange-500 text-sm"
+                          >
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
               </div>
             </motion.div>
