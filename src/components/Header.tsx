@@ -124,20 +124,19 @@ export default function Header() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* 메인 메뉴 영역 */}
-        <div className={`w-full mx-auto px-4 md:px-10 lg:px-[120px] h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
-          {/* 로고 */}
-          <div className="flex-none h-full flex items-center">
-            <Link href="/">
-            <Image
-            src="/images/logo_suman.png"
-            alt="회사 로고"
-            width={100}
-            height={100}
-            priority
-            className="cursor-pointer max-h-[40x] sm:max-h-[50px] md:max-h-[60px] w-auto"
-            />
+        <div className="flex-none flex items-center h-full">
+          <Link href="/">
+          <Image
+          src="/images/logo_suman.png"
+          alt="회사 로고"
+          width={168}
+          height={168}
+          priority
+          className="w-auto max-h-[50px] sm:max-h-[60px] md:max-h-[70px] lg:max-h-[80px]"
+          />
           </Link>
-        </div>
+          </div>
+
 
 
           {/* 메인 메뉴 (데스크탑) */}
