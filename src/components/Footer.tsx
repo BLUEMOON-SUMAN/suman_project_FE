@@ -105,7 +105,7 @@ export default function Footer() {
           <div className="flex-none h-full flex items-center">
   <Link href="/">
     <Image
-      src="/images/logo_suman.png"
+      src="/images/logosuman.png"
       alt="회사 로고"
       width={50}
       height={50}
