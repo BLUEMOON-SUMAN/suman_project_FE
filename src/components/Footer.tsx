@@ -102,12 +102,19 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-10">
         {/* 왼쪽: 로고 + 슬로건 */}
         <div className="flex flex-col items-start space-y-3">
-          <Image
-            src="/images/logo_suman.png"
-            alt="logo"
-            width={100}
-            height={100}
-          />
+          <div className="flex-none h-full flex items-center">
+  <Link href="/">
+    <Image
+      src="/images/logo_suman.png"
+      alt="회사 로고"
+      width={168}
+      height={168}
+      priority
+      className="cursor-pointer max-h-[70px] sm:max-h-[84px] md:max-h-[96px] w-auto"
+    />
+  </Link>
+</div>
+
           <p className="text-lg font-semibold leading-tight tracking-wide">
             {lang === "KOR" ? (
               <>
