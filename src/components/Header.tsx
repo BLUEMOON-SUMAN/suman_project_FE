@@ -112,20 +112,8 @@ export default function Header() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* Main Nav */}
-        <div className="max-w-screen-xl mx-auto flex flex-col items-center text-center space-y-4">
-          {/* Logo + SUMAN */}
-          <div className="flex items-center space-x-4">
-            <Image
-            src="/images/logo_suman.png"
-            alt="SUMAN Logo"
-            width={60}
-            height={60}
-            className="h-12 w-auto"
-            />
-            <h1 className="text-3xl font-bold">SUMAN</h1>
-            </div>
-        {/*<div className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
-           Logo 
+        <div className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
+          {/* Logo */}
           <Link href="/" className="flex items-center h-full">
             <Image
               src="/images/logo_suman.png"
@@ -135,7 +123,7 @@ export default function Header() {
               priority
               className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
             />
-          </Link>*/}
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex flex-1 justify-center space-x-8 lg:space-x-16 xl:space-x-24 tracking-wide">
@@ -255,31 +243,7 @@ export default function Header() {
           )}
         </AnimatePresence>
       </motion.header>
-      {/* Hero Section with Logo and Text */}
-<div className="w-full bg-blue-900 text-white py-16 px-4">
-  <div className="max-w-screen-xl mx-auto flex flex-col items-center text-center space-y-4">
-    {/* Logo + SUMAN */}
-    <div className="flex items-center space-x-4">
-      <Image
-        src="/images/logo_suman.png"
-        alt="SUMAN Logo"
-        width={60}
-        height={60}
-        className="h-12 w-auto"
-      />
-      <h1 className="text-3xl font-bold">SUMAN</h1>
-    </div>
-
-    {/* Korean Text */}
-    <div className="text-lg">
-      <p>해당 홈페이지는</p>
-      <p className="text-sm text-gray-200 mt-2">
-        문의하기는 추후 정식 운영될 예정이며 현재는 미운영 중입니다.
-      </p>
-    </div>
-  </div>
-</div>
-
+      
     </AnimatePresence>
   );
 }
