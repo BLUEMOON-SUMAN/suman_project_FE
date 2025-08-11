@@ -1,4 +1,4 @@
-import Header from "@/components/header";
+import Header from "@/components/Header";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
 import Layout from "@/components/Layout";
 import Image from "next/image";

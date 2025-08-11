@@ -1,4 +1,4 @@
-import Header from "@/components/header";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import React, { ReactNode } from "react";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
