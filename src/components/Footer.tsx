@@ -96,14 +96,14 @@ export default function Footer() {
   const popupContent = getPopupContent();
 
   return (
-    <footer className="bg-white text-black text-sm mt-10">
+    <footer className="bg-white text-black text-sm mt-7">
       {/* 상단 레이아웃 */}
 
-      <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between gap-8">
+      <div className="max-w-5xl mx-auto px-2 py-6 flex flex-col md:flex-row justify-between gap-6">
         {/* 왼쪽: 로고 + 슬로건 */}
         <div className="flex flex-col items-start space-y-2">
           <div className="flex-none h-full flex items-center">
-  <Link href="/">
+  {/*<Link href="/">
     <Image
       src="/images/logosuman.png"
       alt="회사 로고"
@@ -112,7 +112,7 @@ export default function Footer() {
       priority
       className="cursor-pointer max-h-[55px] sm:max-h-[69px] md:max-h-[81px] w-auto"
     />
-  </Link>
+  </Link>*/}
 </div>
 
           {/*<p className="text-lg font-semibold leading-tight tracking-wide">
