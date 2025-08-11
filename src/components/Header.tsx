@@ -112,8 +112,20 @@ export default function Header() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* Main Nav */}
-        <div className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
-          {/* Logo */}
+        <div className="max-w-screen-xl mx-auto flex flex-col items-center text-center space-y-4">
+          {/* Logo + SUMAN */}
+          <div className="flex items-center space-x-4">
+            <Image
+            src="/images/logo_suman.png"
+            alt="SUMAN Logo"
+            width={60}
+            height={60}
+            className="h-12 w-auto"
+            />
+            <h1 className="text-3xl font-bold">SUMAN</h1>
+            </div>
+        {/*<div className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
+           Logo 
           <Link href="/" className="flex items-center h-full">
             <Image
               src="/images/logo_suman.png"
@@ -123,7 +135,7 @@ export default function Header() {
               priority
               className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
             />
-          </Link>
+          </Link>*/}
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex flex-1 justify-center space-x-8 lg:space-x-16 xl:space-x-24 tracking-wide">
