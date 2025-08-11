@@ -78,6 +78,7 @@ export default function Header() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openMobileSub, setOpenMobileSub] = useState<number | null>(null);
   const { lang } = useLangStore();
   const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng;
 
@@ -99,13 +100,10 @@ export default function Header() {
   return (
     <AnimatePresence>
       <motion.header
-        role="navigation"
-        aria-label="Main Navigation"
         className="fixed top-0 left-0 w-full z-50"
         onMouseLeave={() => setHoveredIndex(null)}
         initial={false}
         animate={{
-          y: 0,
           backgroundColor: bgColor,
           height: isHovered ? 130 : 90,
         }}
@@ -114,10 +112,10 @@ export default function Header() {
         {/* Main Nav */}
         <div className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
           {/* Logo */}
-          <Link href="/" className="flex items-center h-full ml-[-5px]">
+          <Link href="/" className="flex items-center h-full">
             <Image
               src="/images/logo_suman.png"
-              alt="회사 로고"
+              alt="Logo"
               width={100}
               height={100}
               priority
@@ -147,7 +145,6 @@ export default function Header() {
           <button
             className="md:hidden text-2xl"
             onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open mobile menu"
           >
             ☰
           </button>
@@ -157,49 +154,63 @@ export default function Header() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "100%", opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 shadow-lg z-50 overflow-y-auto"
             >
+              {/* Mobile Header */}
               <div className="flex justify-between items-center mb-6">
                 <Link href="/">
                   <Image
                     src="/images/logo_suman.png"
-                    alt="회사 로고"
+                    alt="Logo"
                     width={100}
                     height={100}
-                    className="cursor-pointer"
                   />
                 </Link>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-xl"
-                  aria-label="Close mobile menu"
                 >
                   ✕
                 </button>
               </div>
-              {NAV_ITEMS.map((item) => (
-                <div key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="block py-1 text-lg font-medium"
-                    onClick={() => setMobileMenuOpen(false)}
+
+              {/* Mobile Nav with Accordion */}
+              {NAV_ITEMS.map((item, index) => (
+                <div key={item.label} className="mb-2">
+                  <button
+                    className="w-full text-left py-2 text-lg font-medium flex justify-between items-center"
+                    onClick={() =>
+                      setOpenMobileSub(openMobileSub === index ? null : index)
+                    }
                   >
                     {item.label}
-                  </Link>
-                  {item.submenu.map((sub) => (
-                    <Link
-                      key={sub.label}
-                      href={sub.href}
-                      className="block pl-2 py-1 text-sm text-gray-700"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {sub.label}
-                    </Link>
-                  ))}
+                    <span>{openMobileSub === index ? "−" : "+"}</span>
+                  </button>
+                  <AnimatePresence>
+                    {openMobileSub === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="pl-4 overflow-hidden"
+                      >
+                        {item.submenu.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className="block py-1 text-sm text-gray-700"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
             </motion.div>
@@ -207,35 +218,42 @@ export default function Header() {
         </AnimatePresence>
 
         {/* Desktop Submenu */}
-<AnimatePresence>
-  {hoveredIndex !== null && (
-    <motion.div
-      key="submenu"
-      initial={{ opacity: 0, y: -5 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -5 }}
-      transition={{ duration: 0.25 }}
-      className="hidden md:block absolute mt-[80px] left-0 w-full z-40"
-    >
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24">
-        <div className="relative flex justify-center">
-          <div className="bg-white shadow-lg border border-gray-200 rounded-md py-3 px-4 min-w-[160px]">
-            {NAV_ITEMS[hoveredIndex].submenu.map((sub) => (
-              <Link
-                key={sub.label}
-                href={sub.href}
-                className="block py-1 text-gray-700 hover:text-black hover:font-medium transition-colors duration-200"
-              >
-                {sub.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
+        <AnimatePresence>
+          {hoveredIndex !== null && (
+            <motion.div
+              key="submenu"
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.25 }}
+              className="hidden md:block absolute mt-[80px] left-0 w-full z-40"
+            >
+              <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24">
+                <div className="relative flex justify-center">
+                  <div
+                    className="absolute"
+                    style={{
+                      left: `calc(${(hoveredIndex + 0.5) * (100 / NAV_ITEMS.length)}%)`,
+                      transform: "translateX(-50%)",
+                    }}
+                  >
+                    <div className="bg-white shadow-lg border border-gray-200 rounded-md py-3 px-4 min-w-[160px]">
+                      {NAV_ITEMS[hoveredIndex].submenu.map((sub) => (
+                        <Link
+                          key={sub.label}
+                          href={sub.href}
+                          className="block py-1 text-gray-700 hover:text-black hover:font-medium transition-colors duration-200"
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.header>
     </AnimatePresence>
   );
