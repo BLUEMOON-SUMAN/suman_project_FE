@@ -3,9 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { useLangStore } from "@/stores/langStore";
+//import LanguageSwitcher from "@/components/LanguageSwitcher";
+//import { useLangStore } from "@/stores/langStore";
 
+// -----------------------------------
+//               Nav_KOR
+// -----------------------------------
 const navItemsKor = [
   {
     label: "회사소개",
@@ -40,6 +43,9 @@ const navItemsKor = [
   },
 ];
 
+// -----------------------------------
+//               Nav_ENG
+// -----------------------------------
 const navItemsEng = [
   {
     label: "Company",
@@ -76,84 +82,96 @@ const navItemsEng = [
 
 export default function Header() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [scrollY, setScrollY] = useState(0);
+  const [scrollDir, setScrollDir] = useState<"up" | "down">("up");
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { lang } = useLangStore();
-  const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng;
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
-  }, [mobileMenuOpen]);
 
   const isHovered = hoveredIndex !== null;
-  const isSolid = scrollY > 0 || isHovered;
-  const bgColor = isSolid ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)";
+  const { lang } = useLangStore();
+  const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng; // LangStore의 값이 KOR이면, Nav_Items의 값은 navItemsKor.
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollDir(currentScrollY > lastScrollY ? "down" : "up");
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+  const isVisible = true; // Always visible
+  const isSolid = true;   // Always white background
+
+  //const isAtTop = lastScrollY === 0;
+  //const isVisible = scrollDir === "up" || isHovered;
+  //const isSolid = isHovered || (!isAtTop && scrollDir === "up");
+
+  const bgColor = isSolid ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0)";
   const textColor = isSolid ? "text-black" : "text-white";
 
   return (
     <AnimatePresence>
-      <motion.header
-        role="navigation"
-        aria-label="Main Navigation"
+      <motion.div
         className="fixed top-0 left-0 w-full z-50"
         onMouseLeave={() => setHoveredIndex(null)}
         initial={false}
         animate={{
-          y: 0,
+          y: isVisible ? 0 : -100,
           backgroundColor: bgColor,
           height: isHovered ? 130 : 90,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        {/* Main Nav */}
-        <div className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
-          {/* Logo */}
-          <Link href="/" className="flex items-center h-full">
+        {/* 메인 메뉴 영역 */}
+        <div className={`w-full mx-auto px-4 md:px-10 lg:px-[120px] h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
+          {/* 로고 */}
+          <div className="flex-none h-full flex items-center">
+            <Link href="/">
             <Image
-              src="/images/logo_suman.png"
-              alt="회사 로고"
-              width={100}
-              height={100}
-              priority
-              className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
+            src="/images/logo_suman.png"
+            alt="회사 로고"
+            width={100}
+            height={100}
+            priority
+            className="cursor-pointer max-h-[40x] sm:max-h-[50px] md:max-h-[60px] w-auto"
             />
           </Link>
+        </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex flex-1 justify-center space-x-8 lg:space-x-16 xl:space-x-24 tracking-wide">
+        
+
+
+          {/* 메인 메뉴 (데스크탑) */}
+          <nav className="hidden md:flex flex-1 justify-center space-x-12 lg:space-x-24 xl:space-x-40 tracking-wide">
             {NAV_ITEMS.map((item, index) => (
               <div
                 key={item.label}
                 onMouseEnter={() => setHoveredIndex(index)}
-                className="hover:font-semibold transition-colors duration-200"
+                className="hover:font-semibold"
               >
                 <Link href={item.href}>{item.label}</Link>
               </div>
             ))}
           </nav>
 
-          {/* Language Switcher */}
-          <div className="hidden md:flex items-center h-full">
-            <LanguageSwitcher />
+          {/* 햄버거 버튼 (모바일) */}
+          <div className="md:hidden">
+            <button
+              className="text-2xl"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              ☰
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-2xl"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open mobile menu"
-          >
-            ☰
-          </button>
+          {/* 언어 변경 */}
+          <div className="hidden md:flex flex-none items-center h-full">
+            <LanguageSwitcher />
+          </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* 모바일 메뉴 */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -161,7 +179,7 @@ export default function Header() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
+              className="md:hidden fixed top-0 right-0 w-[65%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50"
             >
               <div className="flex justify-between items-center mb-6">
                 <Link href="/">
@@ -176,7 +194,6 @@ export default function Header() {
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-xl"
-                  aria-label="Close mobile menu"
                 >
                   ✕
                 </button>
@@ -185,7 +202,7 @@ export default function Header() {
                 <div key={item.label}>
                   <Link
                     href={item.href}
-                    className="block py-1 text-lg font-medium"
+                    className="block py-1 text-lg"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -194,7 +211,7 @@ export default function Header() {
                     <Link
                       key={sub.label}
                       href={sub.href}
-                      className="block pl-2 py-1 text-sm text-gray-700"
+                      className="block pl-1 py-1 text-sm text-gray-700"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {sub.label}
@@ -206,7 +223,7 @@ export default function Header() {
           )}
         </AnimatePresence>
 
-        {/* Desktop Submenu */}
+        {/* 서브 메뉴 (데스크탑 전용) */}
         <AnimatePresence>
           {isHovered && (
             <motion.div
@@ -215,22 +232,22 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25 }}
-              className="hidden md:block w-full border-t border-gray-200 bg-white z-40 shadow-sm"
+              className="hidden md:block w-full border-t border-gray-200 bg-white z-40"
             >
-              <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-4 flex justify-between items-start">
+              <div className="max-w-full mx-auto px-6 md:px-[120px] lg:px-[120px] py-4 flex justify-between items-start">
                 <div className="w-[120px]" />
-                <div className="flex justify-center flex-1 space-x-4 text-gray-600 tracking-wide">
+
+                <div className="flex justify-center flex-1 space-x-0 lg:space-x-4 xl:space-x-19 md:text-sm lg:text-base text-gray-600 tracking-wide">
                   {NAV_ITEMS.map((mainItem) => (
                     <div
                       key={mainItem.label}
                       className="flex flex-col items-start min-w-[150px]"
                     >
-                      
                       {mainItem.submenu.map((sub) => (
                         <Link
                           key={sub.label}
                           href={sub.href}
-                          className="hover:font-medium py-1 transition-colors duration-200"
+                          className="hover:font-medium py-1"
                         >
                           {sub.label}
                         </Link>
@@ -238,12 +255,13 @@ export default function Header() {
                     </div>
                   ))}
                 </div>
+
                 <div className="w-[60px]" />
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.header>
+      </motion.div>
     </AnimatePresence>
   );
 }

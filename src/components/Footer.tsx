@@ -107,8 +107,8 @@ export default function Footer() {
     <Image
       src="/images/logo_suman.png"
       alt="회사 로고"
-      width={168}
-      height={168}
+      width={100}
+      height={100}
       priority
       className="cursor-pointer max-h-[70px] sm:max-h-[84px] md:max-h-[96px] w-auto"
     />
