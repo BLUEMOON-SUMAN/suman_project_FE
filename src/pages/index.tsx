@@ -141,7 +141,7 @@ export default function HomePage({ content }: HomePageProps) {
                 "text-base sm:text-lg lg:text-2xl font-semibold text-white"
               }
             >
-              Vision
+              Core Value
             </p>
             <div className="flex-grow" />
             <Link href="/company/vision">

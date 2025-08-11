@@ -103,44 +103,41 @@ export default function Header() {
       >
         {/* Main Nav */}
         <div
-          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex items-center text-sm md:text-base font-medium text-black`}
+          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex justify-between items-center text-sm md:text-base font-medium text-black`}
           style={{ height: "90px" }}
           onMouseLeave={() => setHoveredIndex(null)}
         >
-          {/* Logo and Nav Container */}
-          <div className="flex flex-1 items-center h-full">
-            {/* Logo */}
-            <Link href="/" className="flex items-center h-full">
-              <Image
-                src="/images/logo_suman.png"
-                alt="회사 로고"
-                width={100}
-                height={100}
-                priority
-                className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
-              />
-            </Link>
+          {/* Logo */}
+          <Link href="/" className="flex items-center h-full">
+            <Image
+              src="/images/logo_suman.png"
+              alt="회사 로고"
+              width={100}
+              height={100}
+              priority
+              className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
+            />
+          </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide ml-20 md:ml-32">
-              {NAV_ITEMS.map((item, index) => (
-                <div
-                  key={item.label}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  className="relative cursor-pointer h-full flex items-center"
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide ml-16">
+            {NAV_ITEMS.map((item, index) => (
+              <div
+                key={item.label}
+                onMouseEnter={() => setHoveredIndex(index)}
+                className="relative cursor-pointer h-full flex items-center"
+              >
+                <Link
+                  href={item.href}
+                  className={`hover:font-semibold transition-colors duration-200 ${
+                    isHovered ? "font-semibold" : ""
+                  }`}
                 >
-                  <Link
-                    href={item.href}
-                    className={`hover:font-semibold transition-colors duration-200 ${
-                      isHovered ? "font-semibold" : ""
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                </div>
-              ))}
-            </nav>
-          </div>
+                  {item.label}
+                </Link>
+              </div>
+            ))}
+          </nav>
 
           {/* Language Switcher */}
           <div className="hidden md:flex items-center h-full">
@@ -168,32 +165,37 @@ export default function Header() {
               className="w-full bg-white text-black hidden md:block"
             >
               <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex">
-                <div className="flex-grow-0 ml-20 md:ml-32 flex justify-center space-x-10 lg:space-x-16">
-                  {NAV_ITEMS.map((item, index) => (
-                    <div key={item.label} className="min-w-0">
-                      <h3
-                        className={`text-sm font-bold mb-2 transition-colors duration-200 text-gray-400 ${
-                          hoveredIndex === index ? "text-blue-500" : ""
-                        }`}
-                      >
-                        {item.label}
-                      </h3>
-                      <ul className="space-y-1 text-sm">
-                        {item.submenu.map((sub) => (
-                          <li key={sub.label}>
-                            <Link
-                              href={sub.href}
-                              className="block text-gray-800 hover:text-blue-500 transition-colors duration-200 whitespace-nowrap"
-                            >
-                              {sub.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                <div className="flex-grow flex justify-between">
+                  {/* Empty div for logo spacing */}
+                  <div className="w-auto flex-grow-0" style={{ width: '100px' }} />
+
+                  {/* Submenu items */}
+                  <div className="flex flex-1 justify-center space-x-10 lg:space-x-16 ml-16">
+                    {NAV_ITEMS.map((item, index) => (
+                      <div key={item.label} className="min-w-0">
+                        <h3
+                          className={`text-sm font-bold mb-2 transition-colors duration-200 text-gray-400 ${
+                            hoveredIndex === index ? "text-blue-500" : ""
+                          }`}
+                        >
+                          {item.label}
+                        </h3>
+                        <ul className="space-y-1 text-sm">
+                          {item.submenu.map((sub) => (
+                            <li key={sub.label}>
+                              <Link
+                                href={sub.href}
+                                className="block text-gray-800 hover:text-blue-500 transition-colors duration-200 whitespace-nowrap"
+                              >
+                                {sub.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex-1" />
               </div>
             </motion.div>
           )}
