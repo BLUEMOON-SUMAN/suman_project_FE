@@ -114,7 +114,7 @@ export default function Header() {
         {/* Main Nav */}
         <div className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
           {/* Logo */}
-          <Link href="/" className="flex items-center h-full">
+          <Link href="/" className="flex items-center h-full ml-[8px]">
             <Image
               src="/images/logo_suman.png"
               alt="회사 로고"
@@ -126,7 +126,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex flex-1 justify-center space-x-8 lg:space-x-16 xl:space-x-24 tracking-wide">
+          <nav className="hidden md:grid flex-1 justify-center space-x-8 lg:space-x-16 xl:space-x-24 tracking-wide">
             {NAV_ITEMS.map((item, index) => (
               <div
                 key={item.label}
@@ -206,44 +206,41 @@ export default function Header() {
           )}
         </AnimatePresence>
 
-        {/* Desktop Submenu */}
-        <AnimatePresence>
-          {isHovered && (
-            <motion.div
-              key="submenu"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-              className="hidden md:block w-full border-t border-gray-200 bg-white z-40 shadow-sm"
-            >
-              <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-4 flex justify-between items-start">
-                <div className="w-[120px]" />
-                <div className="flex justify-center flex-1 space-x-4 text-gray-600 tracking-wide">
-                  {NAV_ITEMS.map((mainItem) => (
-                    <div
-                      key={mainItem.label}
-                      className="flex flex-col items-start min-w-[150px]"
-                    >
-                        {mainItem.submenu.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          href={sub.href}
-                          className="hover:font-medium py-1 transition-colors duration-200"
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                <div className="w-[60px]" />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.header>
-      
-    </AnimatePresence>
+<AnimatePresence>
+  {isHovered !== null && (
+    <motion.div
+      key="submenu"
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.25 }}
+      className="hidden md:block w-full border-t border-gray-200 bg-white z-40 shadow-sm"
+    >
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-4 grid grid-cols-4 gap-8 lg:gap-16 xl:gap-24 text-gray-600 tracking-wide">
+        {NAV_ITEMS.map((mainItem, index) => (
+          <div
+            key={mainItem.label}
+            className={`flex flex-col items-start ${
+              hoveredIndex === index ? "opacity-100" : "opacity-30"
+            } transition-opacity duration-200`}
+          >
+            <span className="font-semibold mb-2">{mainItem.label}</span>
+            {mainItem.submenu.map((sub) => (
+              <Link
+                key={sub.label}
+                href={sub.href}
+                className="hover:font-medium py-1 transition-colors duration-200"
+              >
+                {sub.label}
+              </Link>
+            ))}
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+</motion.header>
+</AnimatePresence>
   );
 }
