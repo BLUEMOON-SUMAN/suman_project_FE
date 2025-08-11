@@ -167,7 +167,7 @@ export default function Header() {
               className="md:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-6">
-                <Link href="/">
+                {/*<Link href="/">
                   <Image
                     src="/images/logo_suman.png"
                     alt="회사 로고"
@@ -175,7 +175,7 @@ export default function Header() {
                     height={100}
                     className="cursor-pointer"
                   />
-                </Link>
+                </Link>*/}
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-xl"
