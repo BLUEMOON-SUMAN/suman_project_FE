@@ -99,16 +99,16 @@ export default function Footer() {
     <footer className="bg-white text-black text-sm mt-10">
       {/* 상단 레이아웃 */}
 
-      <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-10">
+      <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between gap-8">
         {/* 왼쪽: 로고 + 슬로건 */}
-        <div className="flex flex-col items-start space-y-3">
+        <div className="flex flex-col items-start space-y-2">
           <div className="flex-none h-full flex items-center">
   <Link href="/">
     <Image
       src="/images/logo_suman.png"
       alt="회사 로고"
-      width={80}
-      height={80}
+      width={50}
+      height={50}
       priority
       className="cursor-pointer max-h-[55px] sm:max-h-[69px] md:max-h-[81px] w-auto"
     />
