@@ -101,13 +101,13 @@ export default function Header() {
       <motion.header
         role="navigation"
         aria-label="Main Navigation"
-        className="fixed top-0 left-0 w-full z-50 overflow-hidden shadow-lg"
+        className="fixed top-0 left-0 w-full z-50"
         onMouseLeave={() => setHoveredIndex(null)}
         initial={false}
         animate={{
           y: 0,
           backgroundColor: bgColor,
-          height: hoveredIndex !== null ? 220 : 90, // Increased height to accommodate the submenu
+          height: 90, // Keep header height fixed
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
@@ -167,28 +167,28 @@ export default function Header() {
         <AnimatePresence>
           {hoveredIndex !== null && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="w-full bg-white text-black shadow-md border-t border-gray-200"
+              className="absolute top-[90px] left-0 w-full bg-white text-black shadow-md border-t border-gray-200 overflow-hidden hidden md:block"
             >
-              <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex justify-between items-start">
+              <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex justify-start space-x-10 lg:space-x-16">
                 {NAV_ITEMS.map((item, index) => (
-                  <div key={item.label} className="flex-1 min-w-0">
+                  <div key={item.label} className="min-w-0">
                     <h3
-                      className={`text-lg font-bold mb-2 transition-colors duration-200 ${
+                      className={`text-sm font-bold mb-2 transition-colors duration-200 ${
                         hoveredIndex === index ? "text-blue-500" : "text-gray-400"
                       }`}
                     >
                       {item.label}
                     </h3>
-                    <ul className="space-y-1">
+                    <ul className="space-y-1 text-sm">
                       {item.submenu.map((sub) => (
                         <li key={sub.label}>
                           <Link
                             href={sub.href}
-                            className="block text-gray-800 hover:text-blue-500 transition-colors duration-200"
+                            className="block text-gray-800 hover:text-blue-500 transition-colors duration-200 whitespace-nowrap"
                           >
                             {sub.label}
                           </Link>
