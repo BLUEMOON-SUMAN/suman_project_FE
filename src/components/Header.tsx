@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, rgba } from "framer-motion";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLangStore } from "@/stores/langStore";
 
@@ -93,7 +93,7 @@ export default function Header() {
 
   const isHovered = hoveredIndex !== null;
   const isSolid = scrollY > 0 || isHovered;
-  const bgColor = isSolid ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)";
+  //const bgColor = isSolid ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)";
   const textColor = isSolid ? "text-black" : "text-white";
 
   return (
@@ -106,7 +106,7 @@ export default function Header() {
         initial={false}
         animate={{
           y: 0,
-          backgroundColor: bgColor,
+          backgroundColor: "rgba(255,255,255,1)",
           height: isHovered ? 130 : 90,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
