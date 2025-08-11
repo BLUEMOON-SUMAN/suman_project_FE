@@ -78,6 +78,7 @@ export default function Header() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMobileIndex, setExpandedMobileIndex] = useState<number | null>(null);
   const { lang } = useLangStore();
   const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng;
 
@@ -91,8 +92,7 @@ export default function Header() {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
   }, [mobileMenuOpen]);
 
-  const isHovered = hoveredIndex !== null;
-  const isSolid = scrollY > 0 || isHovered;
+  const isSolid = scrollY > 0 || hoveredIndex !== null;
   const bgColor = isSolid ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)";
   const textColor = isSolid ? "text-black" : "text-white";
 
@@ -107,14 +107,17 @@ export default function Header() {
         animate={{
           y: 0,
           backgroundColor: bgColor,
-          height: isHovered ? 130 : 90,
+          height: hoveredIndex !== null ? 130 : 90,
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* Main Nav */}
-        <div className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
+        <div
+          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}
+          style={{ height: "90px" }}
+        >
           {/* Logo */}
-          <Link href="/" className="flex items-center h-full ml-[-5px]">
+          <Link href="/" className="flex items-center h-full">
             <Image
               src="/images/logo_suman.png"
               alt="회사 로고"
@@ -126,12 +129,12 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex flex-1 justify-center space-x-8 lg:space-x-16 xl:space-x-24 tracking-wide">
+          <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide">
             {NAV_ITEMS.map((item, index) => (
               <div
                 key={item.label}
                 onMouseEnter={() => setHoveredIndex(index)}
-                className="hover:font-semibold transition-colors duration-200"
+                className="relative cursor-pointer hover:font-semibold"
               >
                 <Link href={item.href}>{item.label}</Link>
               </div>
@@ -181,25 +184,33 @@ export default function Header() {
                   ✕
                 </button>
               </div>
-              {NAV_ITEMS.map((item) => (
+              {NAV_ITEMS.map((item, index) => (
                 <div key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="block py-1 text-lg font-medium"
-                    onClick={() => setMobileMenuOpen(false)}
+                  <div
+                    className="flex justify-between items-center py-2 text-lg font-medium cursor-pointer"
+                    onClick={() =>
+                      setExpandedMobileIndex(expandedMobileIndex === index ? null : index)
+                    }
                   >
-                    {item.label}
-                  </Link>
-                  {item.submenu.map((sub) => (
-                    <Link
-                      key={sub.label}
-                      href={sub.href}
-                      className="block pl-2 py-1 text-sm text-gray-700"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {sub.label}
+                    <Link href={item.href} onClick={() => setMobileMenuOpen(false)}>
+                      {item.label}
                     </Link>
-                  ))}
+                    {item.submenu.length > 0 && <span>{expandedMobileIndex === index ? "−" : "+"}</span>}
+                  </div>
+                  {expandedMobileIndex === index && (
+                    <div className="pl-4">
+                      {item.submenu.map((sub) => (
+                        <Link
+                          key={sub.label}
+                          href={sub.href}
+                          className="block py-1 text-sm text-gray-700"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </motion.div>
@@ -208,7 +219,7 @@ export default function Header() {
 
         {/* Desktop Submenu */}
         <AnimatePresence>
-          {isHovered && (
+          {hoveredIndex !== null && (
             <motion.div
               key="submenu"
               initial={{ opacity: 0, y: -10 }}
@@ -217,27 +228,16 @@ export default function Header() {
               transition={{ duration: 0.25 }}
               className="hidden md:block w-full border-t border-gray-200 bg-white z-40 shadow-sm"
             >
-              <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-4 flex justify-between items-start">
-                <div className="w-[120px]" />
-                <div className="flex justify-center flex-1 space-x-4 text-gray-600 tracking-wide">
-                  {NAV_ITEMS.map((mainItem) => (
-                    <div
-                      key={mainItem.label}
-                      className="flex flex-col items-start min-w-[150px]"
-                    >
-                        {mainItem.submenu.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          href={sub.href}
-                          className="hover:font-medium py-1 transition-colors duration-200"
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                <div className="w-[60px]" />
+              <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-4 flex justify-start space-x-6 text-gray-600">
+                {NAV_ITEMS[hoveredIndex].submenu.map((sub) => (
+                  <Link
+                    key={sub.label}
+                    href={sub.href}
+                    className="hover:font-medium transition-colors duration-200"
+                  >
+                    {sub.label}
+                  </Link>
+                ))}
               </div>
             </motion.div>
           )}

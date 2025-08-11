@@ -115,7 +115,7 @@ export default function Footer() {
   </Link>
 </div>
 
-          <p className="text-lg font-semibold leading-tight tracking-wide">
+          {/*<p className="text-lg font-semibold leading-tight tracking-wide">
             {lang === "KOR" ? (
               <>
                 패러다임을 바꾸는
@@ -129,7 +129,7 @@ export default function Footer() {
                 Driving Paradigm Shifts in Metal Industries
               </>
             )}
-          </p>
+          </p>*/}
         </div>
 
         {/* 오른쪽: 메뉴 영역 */}
