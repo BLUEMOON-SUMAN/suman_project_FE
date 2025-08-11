@@ -91,8 +91,8 @@ export default function Header() {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
   }, [mobileMenuOpen]);
 
-  const isHovered = hoveredIndex !== null;
-  const isSolid = scrollY > 0 || isHovered;
+  const isVisible = true;
+  const isSolid = true;
   const bgColor = isSolid ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)";
   const textColor = isSolid ? "text-black" : "text-white";
 
@@ -107,8 +107,7 @@ export default function Header() {
         animate={{
           y: 0,
           backgroundColor: bgColor,
-          height: isHovered ? 130 : 90,
-        }}
+          height: 130 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* Main Nav */}
@@ -208,7 +207,7 @@ export default function Header() {
 
         {/* Desktop Submenu */}
         <AnimatePresence>
-          {isHovered && (
+          {(
             <motion.div
               key="submenu"
               initial={{ opacity: 0, y: -10 }}

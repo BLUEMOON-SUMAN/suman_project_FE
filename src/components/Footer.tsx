@@ -110,7 +110,7 @@ export default function Footer() {
       width={100}
       height={100}
       priority
-      className="cursor-pointer max-h-[70px] sm:max-h-[84px] md:max-h-[96px] w-auto"
+      className="cursor-pointer max-h-[60px] sm:max-h-[74px] md:max-h-[86px] w-auto"
     />
   </Link>
 </div>
