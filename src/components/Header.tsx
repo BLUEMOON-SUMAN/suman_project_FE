@@ -243,6 +243,31 @@ export default function Header() {
           )}
         </AnimatePresence>
       </motion.header>
+      {/* Hero Section with Logo and Text */}
+<div className="w-full bg-blue-900 text-white py-16 px-4">
+  <div className="max-w-screen-xl mx-auto flex flex-col items-center text-center space-y-4">
+    {/* Logo + SUMAN */}
+    <div className="flex items-center space-x-4">
+      <Image
+        src="/images/logo_suman.png"
+        alt="SUMAN Logo"
+        width={60}
+        height={60}
+        className="h-12 w-auto"
+      />
+      <h1 className="text-3xl font-bold">SUMAN</h1>
+    </div>
+
+    {/* Korean Text */}
+    <div className="text-lg">
+      <p>해당 홈페이지는</p>
+      <p className="text-sm text-gray-200 mt-2">
+        문의하기는 추후 정식 운영될 예정이며 현재는 미운영 중입니다.
+      </p>
+    </div>
+  </div>
+</div>
+
     </AnimatePresence>
   );
 }
