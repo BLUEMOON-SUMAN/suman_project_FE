@@ -114,7 +114,7 @@ export default function Header() {
         {/* Main Nav */}
         <div className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 h-[70px] md:h-[80px] flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}>
           {/* Logo */}
-          <Link href="/" className="flex items-center h-full ml-[-8px]">
+          <Link href="/" className="flex h-full ml-[-8px]">
             <Image
               src="/images/logo_suman.png"
               alt="회사 로고"
