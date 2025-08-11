@@ -75,7 +75,7 @@ const navItemsEng = [
 ];
 
 export default function Header() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobileIndex, setExpandedMobileIndex] = useState<number | null>(null);
@@ -92,7 +92,7 @@ export default function Header() {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
   }, [mobileMenuOpen]);
 
-  const isSolid = scrollY > 0 || hoveredIndex !== null;
+  const isSolid = scrollY > 0 || isHovered;
   const bgColor = isSolid ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)";
   const textColor = isSolid ? "text-black" : "text-white";
 
@@ -102,12 +102,12 @@ export default function Header() {
         role="navigation"
         aria-label="Main Navigation"
         className="fixed top-0 left-0 w-full z-50"
-        onMouseLeave={() => setHoveredIndex(null)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         initial={false}
         animate={{
           y: 0,
           backgroundColor: bgColor,
-          height: 90, // Keep header height fixed
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
@@ -130,17 +130,14 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide">
-            {NAV_ITEMS.map((item, index) => (
+            {NAV_ITEMS.map((item) => (
               <div
                 key={item.label}
-                onMouseEnter={() => setHoveredIndex(index)}
                 className="relative cursor-pointer h-full flex items-center"
               >
                 <Link
                   href={item.href}
-                  className={`hover:font-semibold transition-colors duration-200 ${
-                    hoveredIndex === index ? "font-semibold" : ""
-                  } ${textColor}`}
+                  className={`hover:font-semibold transition-colors duration-200 ${textColor}`}
                 >
                   {item.label}
                 </Link>
@@ -165,7 +162,7 @@ export default function Header() {
 
         {/* Submenu area */}
         <AnimatePresence>
-          {hoveredIndex !== null && (
+          {isHovered && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
@@ -173,14 +170,10 @@ export default function Header() {
               transition={{ duration: 0.2 }}
               className="absolute top-[90px] left-0 w-full bg-white text-black shadow-md border-t border-gray-200 overflow-hidden hidden md:block"
             >
-              <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex justify-start space-x-10 lg:space-x-16">
+              <div className="w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 flex justify-between items-start">
                 {NAV_ITEMS.map((item, index) => (
                   <div key={item.label} className="min-w-0">
-                    <h3
-                      className={`text-sm font-bold mb-2 transition-colors duration-200 ${
-                        hoveredIndex === index ? "text-blue-500" : "text-gray-400"
-                      }`}
-                    >
+                    <h3 className="text-sm font-bold mb-2 text-black">
                       {item.label}
                     </h3>
                     <ul className="space-y-1 text-sm">
