@@ -293,7 +293,7 @@ export default function HomePage({ content }: HomePageProps) {
             variants={fadeInVariants}
           >
             <p className={`${labelClass} mt-12`}>Service</p>
-            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal -mt-0 lg:mt-5 mb-5">
+            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal mt-5 mb-5">
               고객 맞춤형 장비/제조 서비스를 제공합니다
             </h2>
 
@@ -304,7 +304,7 @@ export default function HomePage({ content }: HomePageProps) {
             </p>
           </motion.div>
 
-          <div className="lg:translate-x-18 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center relative z-10 mt-20 lg:h-[400px]">
+          <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center relative z-10 mt-20 lg:h-[400px]">
             <div className="flex-1 lg:pr-0 text-left mb-12 lg:mb-0 hidden lg:block" />{" "}
               <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-0 relative w-full lg:h-full">
               <motion.div
