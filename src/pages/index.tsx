@@ -87,7 +87,7 @@ export default function HomePage({ content }: HomePageProps) {
             브라우저가 video 태그를 지원하지 않습니다.
           </video>
 
-          <div className="absolute inset-0 flex flex-col justify-center text-white z-10 px-4 md:pl-12 text-center md:text-left items-start">
+          <div className="absolute inset-0 flex flex-col justify-center text-white z-10 px-4 text-left items-center md:items-end md:text-right md:pr-12">
             <motion.h1
               className="text-xl md:text-3xl font-bold mb-3 md:mb-4  tracking-wide"
               initial={{ opacity: 0, y: 20 }}
