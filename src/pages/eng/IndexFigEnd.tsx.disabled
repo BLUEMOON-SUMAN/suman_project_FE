@@ -1,0 +1,398 @@
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { useState } from "react";
+import { motion, AnimatePresence, type Transition } from "framer-motion";
+import Image from "next/image";
+import Head from "next/head";
+import Link from "next/link";
+import { homeContentEng } from "@/data/home";
+import { GetStaticProps } from "next";
+import type { HomePageProps } from "@/types/home";
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      content: homeContentEng,
+    },
+  };
+};
+
+export default function HomePage({ content }: HomePageProps) {
+  const fadeInVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const circleVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <>
+      <Head>
+        <title>SUMAN | 2차전지·반도체 신뢰성 장비 전문 기업</title>
+        <meta
+          name="description"
+          content="수만은 2차전지 생산 장비와 반도체 신뢰성 평가 장비를 개발하는 정밀 제조 기업입니다."
+        />
+        <meta
+          name="keywords"
+          content="수만, 주식회사 수만, SUMAN, suman, 정밀기술, 2차전지 장비, 반도체 신뢰성"
+        />
+        <meta
+          property="og:title"
+          content="(주) 수만 | 정밀 제조 기술의 선두주자"
+        />
+        <meta
+          property="og:description"
+          content="2차전지 생산 장비와 반도체 신뢰성 평가 시스템을 제공하는 정밀 기술 기업, 수만."
+        />
+        <meta
+          property="og:image"
+          content="https://www.suman.co.kr/images/logo_suman.png"
+        />
+        <meta property="og:url" content="https://www.suman.co.kr" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="수만" />
+        <link rel="icon" sizes="16x16" href="/images/logo.ico" />
+      </Head>
+    
+      <Header />
+
+      <main className="pt-20">
+        <section className="relative h-screen">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute w-full h-full object-cover"
+          >
+            <source src="/videos/main_banner_1.mp4" type="video/mp4" />
+            브라우저가 video 태그를 지원하지 않습니다.
+          </video>
+
+          <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-12 xl:px-24 max-w-6xl mx-auto">
+            <motion.h1
+              className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 lg:mb-4 tracking-wide"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            >
+              SUMAN
+            </motion.h1>
+            <motion.h2
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-5 lg:mb-7 leading-tight tracking-wide whitespace-pre-line"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2 }}
+            >
+              {homeContentEng.section1Text.title}
+            </motion.h2>
+            <motion.p
+              className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-300 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4 }}
+            >
+              {homeContentEng.section1Text.subtitle}
+            </motion.p>
+          </div>
+        </section>
+
+        {/* Core Value Section */}
+        <section className="relative w-full min-h-[800px] lg:min-h-[900px] bg-gray-800 text-white flex items-center">
+          {/* Put your background image here */}
+          <Image
+            src={content.section2.bgImage}
+            alt="배경"
+            fill
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          />
+          {/* <img src="/images/section2-bg.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover z-0" /> */}
+
+          <div className="absolute inset-0 bg-black bg-opacity-40 z-10" />
+
+          <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              className="flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-0 mb-16 lg:mb-20"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-white">
+                Core Value
+              </p>
+              <div className="flex-grow" />
+              <link href="/eng/company/vision">
+                <button className="text-sm sm:text-base lg:text-lg bg-gray-600 text-gray-100 rounded-full px-6 py-3 hover:bg-gray-500 transition-colors">
+                  {content.section2.buttonLabel}
+                </button>
+              </link>
+            </motion.div>
+
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
+              <motion.div
+                className="w-full lg:w-[55%] max-w-4xl"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2 }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 lg:mb-7 tracking-wide text-white leading-tight">
+                  {content.section2.title}
+                </h2>
+                <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-white/80 leading-relaxed whitespace-pre-line tracking-wide">
+                  {content.section2.description}
+                </p>
+              </motion.div>
+
+              {/* Square Grid Layout */}
+              <motion.div
+                className="w-full lg:w-[45%] max-w-lg"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+                  {(content.section2.keywords as string[]).map((title, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="aspect-square bg-white/10 border border-white/20 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-all duration-300 p-4 sm:p-6 lg:p-8 flex flex-col justify-center items-center text-center"
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: idx * 0.2,
+                        ease: "easeOut",
+                      }}
+                      viewport={{ once: true, amount: 0.3 }}
+                    >
+                      <p className="font-bold text-lg sm:text-xl lg:text-2xl xl:text-3xl tracking-wide text-white mb-2 lg:mb-3">
+                        {title}
+                      </p>
+                      <p className="text-sm sm:text-base lg:text-lg xl:text-xl tracking-wide text-white/80">
+                        {content.section2.translations?.[idx] ?? ""}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Solutions Section */}
+        <motion.section
+          className="relative z-30 -mt-16 lg:-mt-20 bg-white py-16 lg:py-20 rounded-t-[30px] lg:rounded-t-[60px]"
+          initial={{ opacity: 1, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              className="flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-0 mb-10 lg:mb-16"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-black">
+                Solutions
+              </p>
+              <div className="flex-grow" />
+              <link href="/eng/business/service">
+                <button className="text-sm sm:text-base lg:text-lg bg-gray-100 text-gray-800 rounded-full px-6 py-3 hover:bg-gray-200 transition-colors">
+                  Explore Our Products & Equipment →
+                </button>
+              </link>
+            </motion.div>
+
+            <motion.div
+              className="text-center lg:text-left text-black mb-16 lg:mb-20"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 lg:mb-4 tracking-wide text-black leading-tight">
+                {content.section3.title}
+              </h2>
+              <p className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wide text-black">
+                {content.section3.subtitle}
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              {content.section3.cards.map((card, index) => (
+                <motion.div
+                  key={index}
+                  className="relative w-full h-[200px] sm:h-[250px] lg:h-[400px] xl:h-[500px] overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 ease-out bg-gray-200 flex items-end"
+                  initial={{ x: -50, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
+                  {/* Put your card images here */}
+                  <img src={card.img} alt={card.title} className="absolute inset-0 w-full h-full object-cover" />
+                
+                  <div className="absolute bottom-0 w-full h-2/3 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
+                
+                  <div className="relative z-20 w-full px-3 sm:px-4 lg:px-6 py-3 sm:py-4 lg:py-6 text-white">
+                    <p className="text-xs sm:text-sm lg:text-base xl:text-lg mb-1 sm:mb-2 lg:mb-4 text-gray-300">
+                      {card.subtitle}
+                    </p>
+                    <h3 className="text-sm sm:text-base lg:text-lg xl:text-2xl font-bold mb-1 sm:mb-2 leading-tight">
+                      {card.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-300 leading-relaxed">
+                      {card.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Service Section */}
+        <section className="relative z-30 bg-white px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              className="text-center lg:text-left text-black mb-16 lg:mb-20"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInVariants}
+            >
+              <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-black mb-8 lg:mb-12">
+                Service
+              </p>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-black leading-tight mb-6 lg:mb-8">
+                We provide customized equipment<br className="hidden sm:block" />
+                and manufacturing services<br className="hidden sm:block" />
+                tailored to your needs.
+              </h2>
+              <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-black/80 leading-relaxed max-w-4xl mx-auto lg:mx-0">
+                Suman thoroughly analyzes each customer's specific<br className="hidden lg:block" />
+                requirements to deliver optimized custom equipment,<br className="hidden lg:block" />
+                facilities, and high-quality precision-machined parts.
+              </p>
+            </motion.div>
+
+            {/* Service Circles */}
+            <div className="relative">
+              <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0 lg:relative lg:h-[500px]">
+                {/* Solution Services */}
+                <motion.div
+                  className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 rounded-full flex flex-col justify-end items-center text-center text-white p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden lg:absolute lg:right-8 lg:top-0 bg-gray-600"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={circleVariants}
+                >
+                  {/* Put your service image here */}
+                <img src="/images/main/service/index_solution.jpg" alt="Solution Services" className="absolute inset-0 w-full h-full object-cover rounded-full" />
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent rounded-full z-10" />
+                  <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold pb-4 z-20 relative">
+                    Solution Services
+                  </h3>
+                </motion.div>
+
+                {/* Customized Equipment */}
+                <motion.div
+                  className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 rounded-full flex flex-col justify-end items-center text-center text-white p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-8 bg-gray-700"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={circleVariants}
+                >
+                  {/* Put your equipment image here */}
+                  <img src="/images/main/service/index_equipment.png" alt="Customized Equipment" className="absolute inset-0 w-full h-full object-cover rounded-full" /> 
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent rounded-full z-10" />
+                  <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold pb-4 z-20 relative">
+                    Customized Equipment
+                  </h3>
+                </motion.div>
+
+                {/* Precision-Machined Components */}
+                <motion.div
+                  className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72 rounded-full flex flex-col justify-end items-center text-center text-white p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden lg:absolute lg:left-8 lg:top-12 bg-gray-800"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={circleVariants}
+                >
+                  {/* Put your precision parts image here */}
+                  <img src="/images/main/service/index_parts.png" alt="Precision-Machined Components" className="absolute inset-0 w-full h-full object-cover rounded-full" /> 
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent rounded-full z-10" />
+                  <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold pb-4 z-20 relative">
+                    Precision-Machined Components
+                  </h3>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section className="relative w-full h-32 sm:h-40 lg:h-56 bg-gray-800 flex items-center justify-center">
+          {/* Put your footer banner image here */}
+          <img src={content.footer_banner[0]} alt="footer banner" className="absolute inset-0 w-full h-full object-cover" /> 
+          
+          <div className="absolute inset-0 bg-black bg-opacity-40" />
+          <div className="relative z-10 text-center text-white px-6">
+            <h2 className="text-lg sm:text-xl lg:text-3xl xl:text-4xl font-semibold lg:font-bold mb-4 lg:mb-6 tracking-wide">
+              Contact us
+            </h2>
+            <link href="/support/contact">
+              <button className="border border-gray-300 text-sm sm:text-base lg:text-lg text-white px-6 py-2 lg:px-12 lg:py-3 flex items-center gap-2 hover:bg-white hover:text-black transition-all duration-300 tracking-wide mx-auto">
+                Contact Us{" "}
+                <span className="text-base sm:text-lg lg:text-xl">→</span>
+              </button>
+            </link>
+          </div>
+        </section>
+
+        <section className="relative w-full mt-0">
+          <Image
+            src={content.footer_banner[0]}
+            alt="footer banner"
+            width={1440}
+            height={220}
+            className="w-full object-cover"
+            style={{ aspectRatio: "1440/220" }}
+          />
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6 pointer-events-none transfrom translate-x-20">
+            <h2 className="text-sm md:text-xl lg:text-4xl font-semibold md:font-semibold lg:font-bold mb-2 md:mb-4 lg:mb-7 tracking-wide">
+              Contact us
+            </h2>
+            <Link href="/support/contact">
+              <button className="cursor-pointer pointer-events-auto border border-gray-300 text-xs md:text-xs lg:text-sm text-white px-4 py-1 lg:px-12 lg:py-0.8 flex items-center gap-2 hover:bg-gray-300 hover:text-black transition tracking-wide">
+                Contact Us{" "}
+                <span className="text-xs md:text-sm lg:text-base">→</span>
+              </button>
+            </Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}
+
