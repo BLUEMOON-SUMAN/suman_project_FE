@@ -81,13 +81,13 @@ export default function HomePage({ content }: HomePageProps) {
             muted
             loop
             playsInline
-            className="fixed top-0 left-0 w-full h-screen object-cover z-[-1]"
+            className="absolute w-full h-full object-cover"
           >
             <source src="/videos/main_banner_1.mp4" type="video/mp4" />
             브라우저가 video 태그를 지원하지 않습니다.
           </video>
 
-          <div className="absolute inset-0 flex flex-col justify-center text-white z-10 px-6 md:px-30 text-center md:text-left items-center md:items-start">
+          <div className="absolute inset-0 flex flex-col justify-center text-white z-10 px-4 md:px-12 text-center md:text-left items-center md:items-start">
             <motion.h1
               className="text-xl md:text-3xl font-bold mb-3 md:mb-4  tracking-wide"
               initial={{ opacity: 0, y: 20 }}
