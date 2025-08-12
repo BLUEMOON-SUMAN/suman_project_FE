@@ -305,13 +305,11 @@ export default function HomePage({ content }: HomePageProps) {
           </motion.div>
 
           <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center relative z-10 mt-20 lg:h-[400px]">
-            <div className="flex-1 lg:pr-0 text-left mb-12 lg:mb-0 hidden lg:block" />{" "}
-              <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-0 relative w-full lg:h-full">
+            {/* The first div is not needed as we are centering all items */}
+            {/* <div className="flex-1 lg:pr-0 text-left mb-12 lg:mb-0 hidden lg:block" />{" "} */}
+            <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 relative w-full lg:h-full">
               <motion.div
-                className="relative w-44 h-44 lg:w-64 lg:h-64  aspect-square rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                          mb-8 lg:mb-0
-                          lg:absolute lg:right-10 lg:top-5 lg:-translate-y-1/2 lg:transform-none
-                          overflow-hidden"
+                className="relative w-44 h-44 lg:w-64 lg:h-64 aspect-square rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default mb-8 lg:mb-0 overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -329,12 +327,8 @@ export default function HomePage({ content }: HomePageProps) {
                 </h3>
               </motion.div>
 
-
               <motion.div
-                className=" relative w-44 h-44 lg:w-64 lg:h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           mb-8 lg:mb-0
-                           lg:absolute lg:right-40 lg:-translate-x-1/2 lg:bottom-120 lg:transform-none /* Reset transform for PC */
-                           overflow-hidden"
+                className="relative w-44 h-44 lg:w-64 lg:h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default mb-8 lg:mb-0 overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -353,9 +347,7 @@ export default function HomePage({ content }: HomePageProps) {
               </motion.div>
 
               <motion.div
-                className="relative w-44 h-44 lg:w-64 lg:h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           lg:absolute lg:left-100 lg:bottom-140 bottom-5 lg:transform-none /* Reset transform for PC */
-                           overflow-hidden"
+                className="relative w-44 h-44 lg:w-64 lg:h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
