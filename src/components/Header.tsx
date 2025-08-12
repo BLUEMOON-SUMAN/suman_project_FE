@@ -123,10 +123,10 @@ export default function Header() {
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         onMouseLeave={handleMouseLeave}
-      >
+        >
         {/* Main Nav Container */}
         <div
-        className={`w-full mx-auto max-w-screen-xl px-4 md:px-12 flex justify-between items-center text-sm md:text-base font-medium text-black`}
+        className={`w-full mx-auto max-w-screen-xl px-4 md:pl-2 flex justify-between items-center text-sm md:text-base font-medium text-black`}
         style={{ height: "90px" }}
         >
           {/* Logo - Menempel di kiri */}
@@ -142,7 +142,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav - Pindah ke tengah dengan margin kiri yang lebih besar */}
-          <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide ml-[100px]">
+          <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide ml-24">
             {NAV_ITEMS.map((item, index) => (
               <div
                 key={item.label}
@@ -192,7 +192,7 @@ export default function Header() {
                 <div style={{ minWidth: '100px' }} />
 
                 {/* Submenu items */}
-                <div className="flex flex-1 justify-center space-x-10 lg:space-x-16 ml-[100px]">
+                <div className="flex flex-1 justify-center space-x-10 lg:space-x-16 ml-24">
                   {NAV_ITEMS.map((item, index) => (
                     <div key={item.label} className="min-w-0">
                       <ul className="space-y-1 text-sm">
