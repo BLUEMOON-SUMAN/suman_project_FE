@@ -126,7 +126,7 @@ export default function Header() {
         >
         {/* Main Nav Container */}
         <div
-        className={`w-full mx-auto max-w-screen-xl px-4 md:pl-2 flex justify-between items-center text-sm md:text-base font-medium text-black`}
+        className={`w-full mx-auto max-w-screen-xl px-4 md:pl-5 flex justify-between items-center text-sm md:text-base font-medium text-black`}
         style={{ height: "90px" }}
         >
           {/* Logo - Menempel di kiri */}
