@@ -195,28 +195,21 @@ export default function Header() {
                 <div className="flex flex-1 justify-center space-x-10 lg:space-x-16 ml-[100px]">
                   {NAV_ITEMS.map((item, index) => (
                     <div key={item.label} className="min-w-0">
-                      <h3
-                        className={`text-sm font-bold mb-2 transition-colors duration-200 text-gray-400 ${
-                          hoveredIndex === index ? "text-blue-500" : ""
-                        }`}
-                      >
-                        {item.label}
-                      </h3>
                       <ul className="space-y-1 text-sm">
                         {item.submenu.map((sub) => (
                           <li key={sub.label}>
                             <Link
-                              href={sub.href}
-                              className="block text-gray-800 hover:text-blue-500 transition-colors duration-200 whitespace-nowrap"
+                            href={sub.href}
+                            className="block text-gray-800 hover:text-blue-500 transition-colors duration-200 whitespace-nowrap"
                             >
                               {sub.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
+                              </Link>
+                              </li>
+                            ))}
+                            </ul>
+                            </div>
+                          ))}
+                        </div>
               </div>
             </motion.div>
           )}
