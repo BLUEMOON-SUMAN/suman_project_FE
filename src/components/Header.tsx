@@ -111,7 +111,6 @@ export default function Header() {
         role="navigation"
         aria-label="Main Navigation"
         className="fixed top-0 left-0 w-full z-50 bg-white transition-shadow duration-300 shadow-md"
-        onMouseLeave={() => setHoveredIndex(null)}
       >
         {/* Main Nav Container */}
         <div
@@ -136,6 +135,7 @@ export default function Header() {
               <div
                 key={item.label}
                 onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
                 className="relative h-full flex items-center group cursor-pointer"
               >
                 <Link
@@ -144,6 +144,27 @@ export default function Header() {
                 >
                   {item.label}
                 </Link>
+                <AnimatePresence>
+                  {hoveredIndex === index && item.submenu.length > 0 && (
+                    <motion.div
+                      className="absolute top-[90px] left-0 w-max bg-white text-black py-4 px-6 border-t border-gray-200 shadow-lg flex flex-col space-y-2"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {item.submenu.map((sub) => (
+                        <Link
+                          key={sub.label}
+                          href={sub.href}
+                          className="font-normal text-gray-700 hover:text-blue-600 transition-colors duration-200 whitespace-nowrap"
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </nav>
@@ -160,40 +181,6 @@ export default function Header() {
             ☰
           </button>
         </div>
-
-        {/* Submenu Dropdown for Desktop - Visible on hover */}
-        <AnimatePresence>
-          {hoveredIndex !== null && (
-            <motion.div
-              className="absolute top-[90px] left-0 w-full bg-white text-black py-8 border-t border-gray-200"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex lg:justify-end lg:pr-[10%] space-x-12">
-                {NAV_ITEMS.map((item, index) => (
-                  <div key={item.label} className="flex flex-col space-y-2">
-                    {/* The h3 tag has been removed */}
-                    {item.submenu && item.submenu.length > 0 && (
-                      <div className="flex flex-col space-y-1">
-                        {item.submenu.map((sub) => (
-                          <Link
-                            key={sub.label}
-                            href={sub.href}
-                            className="font-normal text-gray-700 hover:text-blue-600 transition-colors duration-200 whitespace-nowrap"
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Mobile Menu */}
         <AnimatePresence>
