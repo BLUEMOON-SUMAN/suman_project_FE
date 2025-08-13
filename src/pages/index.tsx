@@ -285,7 +285,7 @@ export default function HomePage({ content }: HomePageProps) {
 
         <section className="relative z-30 bg-white px-4 md:px-6">
           <motion.div
-            className="text-left text-black mb-10 max-w-7xl mx-auto md:mx-[120px] text-base sm:text-lg lg:text-2xl font-semibold tracking-wide"
+            className="text-center text-black mb-10 max-w-7xl mx-auto md:mx-[120px] text-base sm:text-lg lg:text-2xl font-semibold tracking-wide"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
