@@ -75,64 +75,23 @@ const navItemsEng = [
 ];
 
 export default function Header() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [expandedMobileIndex, setExpandedMobileIndex] = useState<number | null>(
     null
   );
-  const hideTimeout = useRef<NodeJS.Timeout | null>(null);
   const { lang } = useLangStore();
   const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng;
 
   useEffect(() => {
-    // Client-side check for touch device capabilities
-    const checkTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    setIsTouchDevice(checkTouch);
-
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
-
-    // Cleanup function to reset overflow when the component unmounts
     return () => {
       document.body.style.overflow = "auto";
     };
   }, [mobileMenuOpen]);
 
-  const handleMouseEnter = (index: number) => {
-    if (hideTimeout.current) {
-      clearTimeout(hideTimeout.current);
-      hideTimeout.current = null;
-    }
-    setHoveredIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    hideTimeout.current = setTimeout(() => {
-      setHoveredIndex(null);
-    }, 150);
-  };
-
-  const handleSubmenuMouseEnter = () => {
-    if (hideTimeout.current) {
-      clearTimeout(hideTimeout.current);
-      hideTimeout.current = null;
-    }
-  };
-
-  const handleTouchLinkClick = (e: React.MouseEvent, index: number) => {
-    if (isTouchDevice) {
-      if (hoveredIndex === index) {
-        setHoveredIndex(null);
-      } else {
-        e.preventDefault();
-        setHoveredIndex(index);
-      }
-    }
-  };
-
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
-    setExpandedMobileIndex(null); // Close any expanded submenus
+    setExpandedMobileIndex(null);
   };
 
   return (
@@ -140,7 +99,6 @@ export default function Header() {
       role="navigation"
       aria-label="Main Navigation"
       className="fixed top-0 left-0 w-full z-50 bg-white shadow-md transition-all duration-300"
-      onMouseLeave={!isTouchDevice ? handleMouseLeave : undefined}
     >
       {/* Main Nav Container */}
       <div
@@ -159,63 +117,9 @@ export default function Header() {
           />
         </Link>
 
-        {/* Desktop Nav (hidden below lg) */}
-        <nav className="hidden lg:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide ml-24">
-          {NAV_ITEMS.map((item, index) => (
-            <div
-              key={item.label}
-              onMouseEnter={!isTouchDevice ? () => handleMouseEnter(index) : undefined}
-              onMouseLeave={!isTouchDevice ? handleMouseLeave : undefined}
-              className="relative cursor-pointer h-full flex items-center"
-            >
-              <Link
-                href={item.href}
-                onClick={isTouchDevice ? (e) => handleTouchLinkClick(e, index) : undefined}
-                className={`hover:font-semibold transition-colors duration-200 ${
-                  hoveredIndex === index ? "font-semibold" : ""
-                }`}
-              >
-                {item.label}
-              </Link>
-              {/* Submenu */}
-              <AnimatePresence>
-                {hoveredIndex === index && item.submenu.length > 0 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    onMouseEnter={!isTouchDevice ? handleSubmenuMouseEnter : undefined}
-                    onMouseLeave={!isTouchDevice ? handleMouseLeave : undefined}
-                    className="absolute top-[90px] left-1/2 -translate-x-1/2 w-48 bg-white shadow-lg rounded-b-md py-2 px-4 whitespace-nowrap"
-                  >
-                    <ul className="space-y-1 text-sm">
-                      {item.submenu.map((sub) => (
-                        <li key={sub.label}>
-                          <Link
-                            href={sub.href}
-                            className="block text-gray-800 hover:text-blue-500 transition-colors duration-200"
-                          >
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </nav>
-
-        {/* Language Switcher for Desktop/Tablet */}
-        <div className="hidden lg:flex items-center h-full">
-          <LanguageSwitcher />
-        </div>
-
-        {/* Mobile Menu Button (visible below lg) */}
+        {/* Menu Button (always visible) */}
         <button
-          className="lg:hidden text-2xl"
+          className="text-2xl"
           onClick={() => setMobileMenuOpen(true)}
           aria-label="Open mobile menu"
         >
@@ -223,7 +127,7 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu (visible on screens smaller than lg) */}
+      {/* Mobile Menu (now visible on all screens) */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -231,7 +135,7 @@ export default function Header() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="lg:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
+            className="fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-6">
               <button
