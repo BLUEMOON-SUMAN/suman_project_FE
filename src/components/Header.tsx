@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLangStore } from "@/stores/langStore";
 
+// Korean navigation items
 const navItemsKor = [
   {
     label: "회사소개",
@@ -40,6 +41,7 @@ const navItemsKor = [
   },
 ];
 
+// English navigation items
 const navItemsEng = [
   {
     label: "Company",
@@ -82,6 +84,18 @@ export default function Header() {
   const { lang } = useLangStore();
   const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng;
 
+  // Handles closing the mobile menu when the window is resized to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) { // Check for `lg` breakpoint
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Controls body overflow when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
     return () => {
@@ -100,16 +114,15 @@ export default function Header() {
       aria-label="Main Navigation"
       className="fixed top-0 left-0 w-full z-50 bg-white shadow-md transition-all duration-300"
     >
-      {/* Main Nav Container */}
       <div
         className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex justify-between items-center text-sm lg:text-base font-medium text-black"
         style={{ height: "90px" }}
       >
-        {/* Logo */}
-        <Link href="/" className="flex items-center h-full">
+        {/* Logo - Always Visible */}
+        <Link href={lang === "KOR" ? "/" : "/eng"} className="flex items-center h-full">
           <Image
             src="/images/logo_suman.png"
-            alt="회사 로고"
+            alt="SUMAN CO., Ltd company logo"
             width={100}
             height={100}
             priority
@@ -117,9 +130,46 @@ export default function Header() {
           />
         </Link>
 
-        {/* Menu Button (always visible) */}
+        {/* Desktop Navigation - Visible on large screens and up */}
+        <nav className="hidden lg:flex items-center space-x-8 h-full">
+          {NAV_ITEMS.map((item) => (
+            <div key={item.label} className="relative h-full flex items-center group">
+              <Link
+                href={item.href}
+                className="hover:text-blue-600 transition-colors duration-200"
+              >
+                {item.label}
+              </Link>
+              {item.submenu && item.submenu.length > 0 && (
+                <AnimatePresence>
+                  {/* Submenu Dropdown */}
+                  <motion.div
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-5 w-48 py-2 bg-white rounded-md shadow-lg opacity-0 pointer-events-none transition-all duration-300 group-hover:opacity-100 group-hover:pointer-events-auto"
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 10, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {item.submenu.map((sub) => (
+                      <Link
+                        key={sub.label}
+                        href={sub.href}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
+              )}
+            </div>
+          ))}
+          <LanguageSwitcher />
+        </nav>
+
+        {/* Mobile Burger Menu Button - Hidden on large screens */}
         <button
-          className="text-2xl"
+          className="text-2xl lg:hidden"
           onClick={() => setMobileMenuOpen(true)}
           aria-label="Open mobile menu"
         >
@@ -127,70 +177,70 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu (now visible on all screens) */}
-<AnimatePresence>
-  {mobileMenuOpen && (
-    <motion.div
-      initial={{ x: "100%", opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: "100%", opacity: 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 right-0 w-3/4 sm:w-1/2 md:w-1/3 min-h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
-    >
-      <div className="flex justify-between items-center mb-6">
-        <button
-          onClick={closeMobileMenu}
-          className="text-xl"
-          aria-label="Close mobile menu"
-        >
-          ✕
-        </button>
-        <LanguageSwitcher />
-      </div>
-      {NAV_ITEMS.map((item, index) => (
-        <div key={item.label}>
-          <div
-            className="flex items-center py-2 text-lg font-medium cursor-pointer"
-            onClick={() =>
-              setExpandedMobileIndex(
-                expandedMobileIndex === index ? null : index
-              )
-            }
+      {/* Mobile Menu - Hidden on large screens */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ x: "100%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: "100%", opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed top-0 right-0 w-3/4 sm:w-1/2 min-h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto lg:hidden"
           >
-            <Link href={item.href} onClick={closeMobileMenu} className="flex-grow">
-              {item.label}
-            </Link>
-            {item.submenu.length > 0 && (
-              <span>{expandedMobileIndex === index ? "−" : "+"}</span>
-            )}
-          </div>
-          <AnimatePresence>
-            {expandedMobileIndex === index && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.2 }}
-                className="pl-4 overflow-hidden"
+            <div className="flex justify-between items-center mb-6">
+              <button
+                onClick={closeMobileMenu}
+                className="text-xl"
+                aria-label="Close mobile menu"
               >
-                {item.submenu.map((sub) => (
-                  <Link
-                    key={sub.label}
-                    href={sub.href}
-                    className="block py-1 text-sm text-gray-700"
-                    onClick={closeMobileMenu}
-                  >
-                    {sub.label}
+                ✕
+              </button>
+              <LanguageSwitcher />
+            </div>
+            {NAV_ITEMS.map((item, index) => (
+              <div key={item.label}>
+                <div
+                  className="flex items-center py-2 text-lg font-medium cursor-pointer"
+                  onClick={() =>
+                    setExpandedMobileIndex(
+                      expandedMobileIndex === index ? null : index
+                    )
+                  }
+                >
+                  <Link href={item.href} onClick={closeMobileMenu} className="flex-grow">
+                    {item.label}
                   </Link>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      ))}
-    </motion.div>
-  )}
-</AnimatePresence>
+                  {item.submenu.length > 0 && (
+                    <span>{expandedMobileIndex === index ? "−" : "+"}</span>
+                  )}
+                </div>
+                <AnimatePresence>
+                  {expandedMobileIndex === index && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="pl-4 overflow-hidden"
+                    >
+                      {item.submenu.map((sub) => (
+                        <Link
+                          key={sub.label}
+                          href={sub.href}
+                          className="block py-1 text-sm text-gray-700"
+                          onClick={closeMobileMenu}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
