@@ -118,7 +118,7 @@ export default function Header() {
     >
       {/* Main Nav Container */}
       <div
-        className="w-full mx-auto max-w-screen-xl px-4 md:px-10 flex justify-between items-center text-sm md:text-base font-medium text-black"
+        className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex justify-between items-center text-sm lg:text-base font-medium text-black"
         style={{ height: "90px" }}
       >
         {/* Logo */}
@@ -129,17 +129,17 @@ export default function Header() {
             width={100}
             height={100}
             priority
-            className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
+            className="h-8 sm:h-10 lg:h-12 w-auto cursor-pointer"
           />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide ml-24">
+        <nav className="hidden lg:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide ml-24">
           {NAV_ITEMS.map((item, index) => (
             <div
               key={item.label}
               onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave} // Add onMouseLeave to the parent div
+              onMouseLeave={handleMouseLeave}
               className="relative cursor-pointer h-full flex items-center"
             >
               <Link
@@ -158,7 +158,7 @@ export default function Header() {
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
                   onMouseEnter={handleSubmenuMouseEnter}
-                  onMouseLeave={handleMouseLeave} // Add onMouseLeave to the submenu
+                  onMouseLeave={handleMouseLeave}
                   className="absolute top-[90px] left-1/2 -translate-x-1/2 w-48 bg-white shadow-lg rounded-b-md py-2 px-4 whitespace-nowrap"
                 >
                   <ul className="space-y-1 text-sm">
@@ -180,13 +180,13 @@ export default function Header() {
         </nav>
 
         {/* Language Switcher */}
-        <div className="hidden md:flex items-center h-full">
+        <div className="hidden lg:flex items-center h-full">
           <LanguageSwitcher />
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-2xl"
+          className="lg:hidden text-2xl"
           onClick={() => setMobileMenuOpen(true)}
           aria-label="Open mobile menu"
         >
@@ -202,7 +202,7 @@ export default function Header() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
+            className="lg:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-6">
               <button
