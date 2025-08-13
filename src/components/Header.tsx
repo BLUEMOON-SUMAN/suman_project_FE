@@ -110,21 +110,12 @@ export default function Header() {
       <motion.header
         role="navigation"
         aria-label="Main Navigation"
-        className="fixed top-0 left-0 w-full z-50 transition-colors duration-300"
+        className="fixed top-0 left-0 w-full z-50 bg-white transition-shadow duration-300 shadow-md"
         onMouseLeave={() => setHoveredIndex(null)}
-        initial={false}
-        animate={{
-          backgroundColor: hoveredIndex !== null ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0)",
-          height: hoveredIndex !== null ? 220 : 90,
-          boxShadow: hoveredIndex !== null ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" : "none",
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         {/* Main Nav Container */}
         <div
-          className={`w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex justify-between items-center text-sm lg:text-base font-medium transition-colors duration-300 ${
-            hoveredIndex !== null ? "text-black" : "text-white"
-          }`}
+          className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex justify-between items-center text-sm lg:text-base font-medium text-black"
           style={{ height: "90px" }}
         >
           {/* Logo */}
@@ -149,7 +140,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className={`hover:text-blue-600 transition-colors duration-200 ${hoveredIndex !== null ? "text-black" : "text-white"}`}
+                  className="hover:text-blue-600 transition-colors duration-200"
                 >
                   {item.label}
                 </Link>
@@ -162,9 +153,7 @@ export default function Header() {
 
           {/* Mobile Burger Menu Button - Hidden on large screens */}
           <button
-            className={`text-2xl lg:hidden ${
-              hoveredIndex !== null ? "text-black" : "text-white"
-            }`}
+            className="text-2xl lg:hidden text-black"
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open mobile menu"
           >
