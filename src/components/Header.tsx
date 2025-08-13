@@ -130,7 +130,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation - Visible on large screens and up */}
-          <nav className="hidden lg:flex flex-1 justify-center space-x-8 h-full">
+          <nav className="hidden lg:flex flex-1 justify-center space-x-16 h-full">
             {NAV_ITEMS.map((item, index) => (
               <div
                 key={item.label}
@@ -147,7 +147,7 @@ export default function Header() {
                 <AnimatePresence>
                   {hoveredIndex === index && item.submenu.length > 0 && (
                     <motion.div
-                      className="absolute top-[90px] left-0 w-max bg-white text-black py-4 px-6 border-t border-gray-200 shadow-lg flex flex-col space-y-2"
+                      className="absolute top-[90px] left-1/2 -translate-x-1/2 w-max bg-white text-black py-4 px-6 border-t border-gray-200 shadow-lg flex flex-col space-y-2"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
