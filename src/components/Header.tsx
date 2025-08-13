@@ -135,7 +135,7 @@ export default function Header() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
+            className="fixed top-0 right-0 w-2/3 h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-6">
               <button
@@ -157,12 +157,11 @@ export default function Header() {
                     )
                   }
                 >
-                  {/* The change is here: flex-grow makes the link take up available space */}
                   <Link href={item.href} onClick={closeMobileMenu} className="flex-grow">
                     {item.label}
                   </Link>
                   {item.submenu.length > 0 && (
-                    <span className="ml-4">{expandedMobileIndex === index ? "−" : "+"}</span>
+                    <span>{expandedMobileIndex === index ? "−" : "+"}</span>
                   )}
                 </div>
                 <AnimatePresence>
