@@ -171,10 +171,10 @@ export default function Header() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex space-x-12 justify-center">
+              <div className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex lg:justify-end lg:pr-[10%] space-x-12">
                 {NAV_ITEMS.map((item, index) => (
                   <div key={item.label} className="flex flex-col space-y-2">
-                    <h3 className="font-semibold text-lg mb-2">{item.label}</h3>
+                    {/* The h3 tag has been removed */}
                     {item.submenu && item.submenu.length > 0 && (
                       <div className="flex flex-col space-y-1">
                         {item.submenu.map((sub) => (
