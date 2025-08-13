@@ -150,18 +150,19 @@ export default function Header() {
             {NAV_ITEMS.map((item, index) => (
               <div key={item.label}>
                 <div
-                  className="flex justify-between items-center py-2 text-lg font-medium cursor-pointer"
+                  className="flex items-center py-2 text-lg font-medium cursor-pointer"
                   onClick={() =>
                     setExpandedMobileIndex(
                       expandedMobileIndex === index ? null : index
                     )
                   }
                 >
-                  <Link href={item.href} onClick={closeMobileMenu}>
+                  {/* The change is here: flex-grow makes the link take up available space */}
+                  <Link href={item.href} onClick={closeMobileMenu} className="flex-grow">
                     {item.label}
                   </Link>
                   {item.submenu.length > 0 && (
-                    <span>{expandedMobileIndex === index ? "−" : "+"}</span>
+                    <span className="ml-4">{expandedMobileIndex === index ? "−" : "+"}</span>
                   )}
                 </div>
                 <AnimatePresence>
