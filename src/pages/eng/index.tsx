@@ -44,7 +44,7 @@ export default function HomePage({ content }: HomePageProps) {
   return (
     <>
       <Head>
-        <title>(주) 수만 | 2차전지·반도체 신뢰성 장비 전문 기업</title>
+        <title>SUMAN | 2차전지·반도체 신뢰성 장비 전문 기업</title>
         <meta
           name="description"
           content="수만은 2차전지 생산 장비와 반도체 신뢰성 평가 장비를 개발하는 정밀 제조 기업입니다."
@@ -88,7 +88,7 @@ export default function HomePage({ content }: HomePageProps) {
 
           <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-10 px-4 text-center">
             <motion.h1
-              className="text-xl md:text-3xl font-bold mb-3 md:mb-4 tracking-wide"
+              className="text-xl md:text-3xl font-bold mb-3 md:mb-4  tracking-wide"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
@@ -118,7 +118,7 @@ export default function HomePage({ content }: HomePageProps) {
         </section>
 
         <section
-          className="relative w-full min-h-[900px] bg-cover bg-center text-white px-6"
+          className="relative w-full  min-h-[900px] bg-cover bg-center text-white  px-6"
           style={{ aspectRatio: "1440/400" }}
         >
           <Image
@@ -214,7 +214,7 @@ export default function HomePage({ content }: HomePageProps) {
           >
             <p className={labelClass}>Solutions</p>
             <div className="flex-grow" />
-            <Link href="/eng/business/service">
+            <Link href="eng/business/service">
               <motion.button
                 className={buttonClass}
                 initial={{ opacity: 0, y: 40 }}
@@ -283,30 +283,20 @@ export default function HomePage({ content }: HomePageProps) {
           </div>
         </motion.section>
 
-        <motion.section
-          className="relative z-30 bg-white px-4 md:px-6"
-          initial={{ opacity: 1, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
+        <section className="relative z-30 bg-white px-4 md:px-6">
           <motion.div
-            className="text-left text-black mb-20 max-w-7xl mx-[30px] md:mx-[120px]"
+            className="text-center text-black mb-10 max-w-7xl mx-auto text-base sm:text-lg lg:text-2xl font-semibold tracking-wide"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInVariants}
           >
-            <p className={labelClass}>Service</p>
-            <br />
-            <br />
-            <h2 className="text-5xl md:text-5xl font-bold text-gray-900 leading-tight mb-5">
-              We provide customized equipment<br /> and manufacturing services<br />tailored to your needs.
+            <p className={`${labelClass} mt-12`}>Service</p>
+            <h2 className="text-5xl md:text-5xl font-bold text-gray-900 leading-tight mt-5 mb-5">
+              We provide customized equipment<br />and manufacturing services<br />tailored to your needs.
             </h2>
-            <br />
-            <br />
-            <p className="text-2xl text-gray-700 leading-relaxed mb-8">
-              Suman thoroughly analyzes each customer specific <br />requirements to deliver optimized custom equipment, <br />facilities, and high-quality precision-machined parts.
+            <p className="text-2xl text-gray-700 font-medium leading-relaxed mb-8">
+              Suman thoroughly analyzes each client specific <br />requirements to deliver optimized custom equipment, <br />facilities, and high-quality precision-machined parts.
             </p>
           </motion.div>
 
@@ -319,9 +309,9 @@ export default function HomePage({ content }: HomePageProps) {
               {/* 솔루션 서비스 Circle */}
               <motion.div
                 className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           mb-8 lg:mb-0
-                           lg:absolute lg:right-30 lg:top-5 lg:-translate-y-1/2 lg:transform-none/* Reset transform for PC */
-                           overflow-hidden"
+                         mb-8 lg:mb-0
+                         lg:absolute lg:right-30 lg:top-5 lg:-translate-y-1/2 lg:transform-none/* Reset transform for PC */
+                         overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -335,16 +325,16 @@ export default function HomePage({ content }: HomePageProps) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
                 <h3 className="text-2xl font-semibold pb-5 z-20">
-                  	Solution Services
+                  Solution Services
                 </h3>
               </motion.div>
 
               {/* 맞춤형 장비/설비 Circle */}
               <motion.div
                 className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           mb-8 lg:mb-0
-                           lg:absolute lg:right-60 lg:-translate-x-1/2 lg:bottom-120 lg:transform-none /* Reset transform for PC */
-                           overflow-hidden"
+                         mb-8 lg:mb-0
+                         lg:absolute lg:right-60 lg:-translate-x-1/2 lg:bottom-120 lg:transform-none /* Reset transform for PC */
+                         overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -365,8 +355,8 @@ export default function HomePage({ content }: HomePageProps) {
               {/* 정밀 가공 부품 Circle */}
               <motion.div
                 className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           lg:absolute lg:left-80 lg:bottom-140 lg:transform-none /* Reset transform for PC */
-                           overflow-hidden"
+                         lg:absolute lg:left-80 lg:bottom-140 lg:transform-none /* Reset transform for PC */
+                         overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -385,7 +375,7 @@ export default function HomePage({ content }: HomePageProps) {
               </motion.div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         <section className="relative w-full mt-0">
           <Image
@@ -413,4 +403,3 @@ export default function HomePage({ content }: HomePageProps) {
     </>
   );
 }
-
