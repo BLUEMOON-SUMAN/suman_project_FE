@@ -310,17 +310,15 @@ export default function HomePage({ content }: HomePageProps) {
             </p>
           </motion.div>
 
-          {/* Modified parent container for circles */}
-          <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center relative z-10 mt-20 lg:h-[400px]">
-            {/* The lg:h-[400px] on the parent ensures enough vertical space for PC layout */}
-            <div className="flex-1 lg:pr-0 text-left mb-12 lg:mb-0 hidden lg:block" />{" "}
-            {/* Hidden on mobile */}
-            <div className="flex-1 flex flex-col items-center justify-center gap-8 lg:gap-0 relative w-full lg:h-full">
-              {/* 솔루션 서비스 Circle */}
+          {/* Corrected parent container for circles to match the image layout */}
+          <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center relative z-10 mt-20 md:h-[400px]">
+            <div className="flex-1 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0 relative w-full h-full">
+
+              {/* Solution Services Circle (bottom-left in the Korean layout, top in the English layout) */}
               <motion.div
                 className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           mb-8 lg:mb-0
-                           lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 /* Positioning for PC */
+                           mb-8 md:mb-0
+                           md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2
                            overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
@@ -339,10 +337,10 @@ export default function HomePage({ content }: HomePageProps) {
                 </h3>
               </motion.div>
 
-              {/* 맞춤형 장비/설비 Circle */}
+              {/* Custom Equipment & Facilities Circle (bottom-right in the Korean layout, bottom-left in the English layout) */}
               <motion.div
                 className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           mb-8 lg:mb-0 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 /* Positioning for PC */
+                           mb-8 md:mb-0 md:absolute md:left-0 md:bottom-0
                            overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
@@ -361,10 +359,10 @@ export default function HomePage({ content }: HomePageProps) {
                 </h3>
               </motion.div>
 
-              {/* 정밀 가공 부품 Circle */}
+              {/* Precision-Machined Components Circle (top in the Korean layout, bottom-right in the English layout) */}
               <motion.div
                 className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           lg:absolute lg:left-1/2 lg:bottom-0 lg:transform-none /* Positioning for PC */
+                           md:absolute md:right-0 md:bottom-0
                            overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
