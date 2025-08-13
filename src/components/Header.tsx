@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLangStore } from "@/stores/langStore";
