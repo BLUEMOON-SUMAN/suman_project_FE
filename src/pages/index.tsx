@@ -88,7 +88,7 @@ export default function HomePage({ content }: HomePageProps) {
 
           <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-10 px-4 text-center">
             <motion.h1
-              className="text-xl md:text-3xl font-bold mb-3 md:mb-4  tracking-wide"
+              className="text-xl md:text-3xl font-bold mb-3 md:mb-4 tracking-wide"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
@@ -118,7 +118,7 @@ export default function HomePage({ content }: HomePageProps) {
         </section>
 
         <section
-          className="relative w-full  min-h-[900px] bg-cover bg-center text-white  px-6"
+          className="relative w-full min-h-[900px] bg-cover bg-center text-white px-6"
           style={{ aspectRatio: "1440/400" }}
         >
           <Image
@@ -283,39 +283,30 @@ export default function HomePage({ content }: HomePageProps) {
           </div>
         </motion.section>
 
-        <section className="relative z-30 bg-white px-4 md:px-6 ">
+        <section className="relative z-30 bg-white px-4 md:px-6">
           <motion.div
-            className="text-left text-black mb-20 max-w-7xl mx-[30px] md:mx-[120px] text-base sm:text-lg lg:text-2xl font-semibold tracking-wide"
+            className="text-left text-black mb-10 max-w-7xl mx-auto md:mx-[120px] text-base sm:text-lg lg:text-2xl font-semibold tracking-wide"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInVariants}
           >
             <p className={`${labelClass} mt-12`}>Service</p>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal -mt-20 lg:mt-16 mb-5">
+            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal mt-5 mb-5">
               고객 맞춤형 장비/제조 서비스를 제조합니다
             </h2>
 
-            <p className="text-sm md:text-sm lg:text-xl text-black/80 font-medium leading-relaxed mb-8">
+            <p className="text-sm md:text-base lg:text-xl text-black/80 font-medium leading-relaxed mb-8">
               수만은 고객의 특정한 요구사항을 면밀히 분석하여 최적화된 맞춤형 장비 및 설비, <br />
               최고 품질의 정밀 가공 부품을 제공함으로써 혁신적인 솔루션과 지속적인 기술 지원을 통해<br />
-              제공함으로써 혁신적인 솔루션과 지속적인 기술 지원을 통해 고객 비즈니스의 성공을 이끌어갑니다.
+              고객 비즈니스의 성공을 이끌어갑니다.
             </p>
           </motion.div>
 
-          <div className="lg:translate-x-18 max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-center relative z-10 mt-20 lg:h-[400px]">
-            <div className="flex-1 lg:pr-0 text-left mb-12 lg:mb-0 hidden lg:block" />{" "}
-              <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-0 relative w-full lg:h-full">
+          <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center relative z-10 lg:h-[400px]">
+            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center mb-10">
               <motion.div
-                className="relative w-44 h-44 lg:w-64 lg:h-64  aspect-square rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                          mb-8 lg:mb-0
-                          lg:absolute lg:right-10 lg:top-5 lg:-translate-y-1/2 lg:transform-none
-                          overflow-hidden"
+                className="relative w-44 h-44 lg:w-64 lg:h-64 aspect-square rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -333,12 +324,8 @@ export default function HomePage({ content }: HomePageProps) {
                 </h3>
               </motion.div>
 
-
               <motion.div
-                className=" relative w-44 h-44 lg:w-64 lg:h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           mb-8 lg:mb-0
-                           lg:absolute lg:right-40 lg:-translate-x-1/2 lg:bottom-120 lg:transform-none /* Reset transform for PC */
-                           overflow-hidden"
+                className="relative w-44 h-44 lg:w-64 lg:h-64 aspect-square rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -348,7 +335,7 @@ export default function HomePage({ content }: HomePageProps) {
                   src="/images/main/service/index_equipment.png"
                   alt="맞춤형 장비/설비"
                   fill
-                  className="object-cover "
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
                 <h3 className="sm:text-base md:text-lg lg:text-2xl font-semibold pb-5 z-20">
@@ -357,9 +344,7 @@ export default function HomePage({ content }: HomePageProps) {
               </motion.div>
 
               <motion.div
-                className="relative w-44 h-44 lg:w-64 lg:h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           lg:absolute lg:left-100 lg:bottom-140 bottom-5 lg:transform-none /* Reset transform for PC */
-                           overflow-hidden"
+                className="relative w-44 h-44 lg:w-64 lg:h-64 aspect-square rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
@@ -369,7 +354,7 @@ export default function HomePage({ content }: HomePageProps) {
                   src="/images/main/service/index_parts.png"
                   alt="정밀 가공 부품"
                   fill
-                  className="object-cover "
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
                 <h3 className="sm:text-base md:text-lg lg:text-2xl font-semibold pb-5 z-20">

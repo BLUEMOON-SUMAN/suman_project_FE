@@ -128,70 +128,69 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu (now visible on all screens) */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: "100%", opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 right-0 w-full sm:w-2/3 md:w-1/2 lg:w-1/3 min-h-screen bg-white text-black px-4 py-4 space-y-2 shadow-lg z-50 flex flex-col justify-start"
-            style={{ height: 'auto', maxHeight: '100vh' }}
+<AnimatePresence>
+  {mobileMenuOpen && (
+    <motion.div
+      initial={{ x: "100%", opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: "100%", opacity: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="fixed top-0 right-0 w-3/4 sm:w-1/2 md:w-1/3 min-h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
+    >
+      <div className="flex justify-between items-center mb-6">
+        <button
+          onClick={closeMobileMenu}
+          className="text-xl"
+          aria-label="Close mobile menu"
+        >
+          ✕
+        </button>
+        <LanguageSwitcher />
+      </div>
+      {NAV_ITEMS.map((item, index) => (
+        <div key={item.label}>
+          <div
+            className="flex items-center py-2 text-lg font-medium cursor-pointer"
+            onClick={() =>
+              setExpandedMobileIndex(
+                expandedMobileIndex === index ? null : index
+              )
+            }
           >
-            <div className="flex justify-between items-center mb-6">
-              <button
-                onClick={closeMobileMenu}
-                className="text-xl"
-                aria-label="Close mobile menu"
+            <Link href={item.href} onClick={closeMobileMenu} className="flex-grow">
+              {item.label}
+            </Link>
+            {item.submenu.length > 0 && (
+              <span>{expandedMobileIndex === index ? "−" : "+"}</span>
+            )}
+          </div>
+          <AnimatePresence>
+            {expandedMobileIndex === index && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
+                className="pl-4 overflow-hidden"
               >
-                ✕
-              </button>
-              <LanguageSwitcher />
-            </div>
-            {NAV_ITEMS.map((item, index) => (
-              <div key={item.label}>
-                <div
-                  className="flex items-center py-2 text-lg font-medium cursor-pointer"
-                  onClick={() =>
-                    setExpandedMobileIndex(
-                      expandedMobileIndex === index ? null : index
-                    )
-                  }
-                >
-                  <Link href={item.href} onClick={closeMobileMenu} className="flex-grow">
-                    {item.label}
+                {item.submenu.map((sub) => (
+                  <Link
+                    key={sub.label}
+                    href={sub.href}
+                    className="block py-1 text-sm text-gray-700"
+                    onClick={closeMobileMenu}
+                  >
+                    {sub.label}
                   </Link>
-                  {item.submenu.length > 0 && (
-                    <span>{expandedMobileIndex === index ? "−" : "+"}</span>
-                  )}
-                </div>
-                <AnimatePresence>
-                  {expandedMobileIndex === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="pl-4 overflow-hidden"
-                    >
-                      {item.submenu.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          href={sub.href}
-                          className="block py-1 text-sm text-gray-700"
-                          onClick={closeMobileMenu}
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </motion.div>
+  )}
+</AnimatePresence>
     </motion.header>
   );
 }
