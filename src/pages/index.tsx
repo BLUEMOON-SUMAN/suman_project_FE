@@ -78,7 +78,7 @@ export default function HomePage({ content }: HomePageProps) {
           This is the new, temporary full-screen renewal section.
           When you are ready to show the rest of the site, you can delete this section
           and uncomment the original content below.
-        */}
+        
         <section className="flex items-center justify-center w-full h-screen text-center bg-white p-4">
           <div className="flex flex-col items-center justify-center space-y-4 px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
@@ -91,7 +91,7 @@ export default function HomePage({ content }: HomePageProps) {
               {content.section1Text.subtitle}
             </p>
           </div>
-        </section>
+        </section>*/}
 
         {/* // --- Original Content (Commented Out for Renewal) ---*/}
           <section className="relative h-screen">

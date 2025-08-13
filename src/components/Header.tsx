@@ -75,12 +75,10 @@ const navItemsEng = [
 ];
 
 export default function Header() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobileIndex, setExpandedMobileIndex] = useState<number | null>(
     null
   );
-  const hideTimeout = useRef<NodeJS.Timeout | null>(null);
   const { lang } = useLangStore();
   const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng;
 
@@ -88,33 +86,11 @@ export default function Header() {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
   }, [mobileMenuOpen]);
 
-  const handleMouseEnter = (index: number) => {
-    if (hideTimeout.current) {
-      clearTimeout(hideTimeout.current);
-      hideTimeout.current = null;
-    }
-    setHoveredIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    hideTimeout.current = setTimeout(() => {
-      setHoveredIndex(null);
-    }, 150);
-  };
-
-  const handleSubmenuMouseEnter = () => {
-    if (hideTimeout.current) {
-      clearTimeout(hideTimeout.current);
-      hideTimeout.current = null;
-    }
-  };
-
   return (
     <motion.header
       role="navigation"
       aria-label="Main Navigation"
-      className="fixed top-0 left-0 w-full z-50 bg-white shadow-md transition-all duration-300"
-      onMouseLeave={handleMouseLeave}
+      className="fixed top-0 left-0 w-full z-50 bg-white shadow-md"
     >
       {/* Main Nav Container */}
       <div
@@ -138,42 +114,38 @@ export default function Header() {
           {NAV_ITEMS.map((item, index) => (
             <div
               key={item.label}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave} // Add onMouseLeave to the parent div
-              className="relative cursor-pointer h-full flex items-center"
+              className="relative group cursor-pointer h-full flex items-center"
             >
               <Link
                 href={item.href}
-                className={`hover:font-semibold transition-colors duration-200 ${
-                  hoveredIndex === index ? "font-semibold" : ""
-                }`}
+                className={`hover:font-semibold transition-colors duration-200`}
               >
                 {item.label}
               </Link>
               {/* Submenu */}
-              {hoveredIndex === index && item.submenu.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                  onMouseEnter={handleSubmenuMouseEnter}
-                  onMouseLeave={handleMouseLeave} // Add onMouseLeave to the submenu
-                  className="absolute top-[90px] left-1/2 -translate-x-1/2 w-48 bg-white shadow-lg rounded-b-md py-2 px-4 whitespace-nowrap"
-                >
-                  <ul className="space-y-1 text-sm">
-                    {item.submenu.map((sub) => (
-                      <li key={sub.label}>
-                        <Link
-                          href={sub.href}
-                          className="block text-gray-800 hover:text-blue-500 transition-colors duration-200"
-                        >
-                          {sub.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
+              {item.submenu && item.submenu.length > 0 && (
+                <AnimatePresence>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute hidden group-hover:block top-full left-1/2 -translate-x-1/2 w-48 bg-white shadow-lg rounded-b-md py-2 px-4 whitespace-nowrap"
+                  >
+                    <ul className="space-y-1 text-sm">
+                      {item.submenu.map((sub) => (
+                        <li key={sub.label}>
+                          <Link
+                            href={sub.href}
+                            className="block text-gray-800 hover:text-blue-500 transition-colors duration-200"
+                          >
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </AnimatePresence>
               )}
             </div>
           ))}
