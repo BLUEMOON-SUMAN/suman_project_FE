@@ -378,17 +378,18 @@ export default function HomePage({ content }: HomePageProps) {
             className="w-full object-cover"
             style={{ aspectRatio: "1440/220" }}
           />
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-6 pointer-events-none transfrom translate-x-20">
-            <h2 className="text-sm md:text-xl lg:text-4xl font-semibold md:font-semibold lg:font-bold mb-2 md:mb-4 lg:mb-7 tracking-wide">
-              Contact us
-            </h2>
-            <Link href="/support/contact">
-              <button className="cursor-pointer pointer-events-auto border border-gray-300 text-xs md:text-xs lg:text-sm text-white px-4 py-1 lg:px-12 lg:py-0.8 flex items-center gap-2 hover:bg-gray-300 hover:text-black transition tracking-wide">
-                Contact Us{" "}
-                <span className="text-xs md:text-sm lg:text-base">→</span>
-              </button>
-            </Link>
-          </div>
+<div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4 sm:px-6 pointer-events-none">
+  <h2 className="text-base sm:text-lg md:text-2xl lg:text-4xl font-semibold mb-2 sm:mb-4 lg:mb-7 tracking-wide">
+    Contact us
+  </h2>
+  <Link href="/support/contact">
+    <button className="cursor-pointer pointer-events-auto border border-gray-300 text-sm sm:text-base lg:text-lg text-white px-4 sm:px-8 lg:px-12 py-1 sm:py-2 flex items-center gap-2 hover:bg-gray-300 hover:text-black transition tracking-wide">
+      Contact Us
+      <span className="text-sm sm:text-base lg:text-xl">→</span>
+    </button>
+  </Link>
+</div>
+
         </section>
       </main>
       <Footer />

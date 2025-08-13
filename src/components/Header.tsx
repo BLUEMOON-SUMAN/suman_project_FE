@@ -76,116 +76,134 @@ const navItemsEng = [
 
 export default function Header() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobileIndex, setExpandedMobileIndex] = useState<number | null>(null);
   const { lang } = useLangStore();
   const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng;
 
+  // Closes the mobile menu on large screens
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) { // 'lg' breakpoint
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Prevents body scrolling when the mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [mobileMenuOpen]);
 
-  const isSolid = scrollY > 0 || hoveredIndex !== null;
-  const bgColor = isSolid ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)";
-  const textColor = isSolid ? "text-black" : "text-white";
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+    setExpandedMobileIndex(null);
+  };
 
   return (
     <AnimatePresence>
       <motion.header
         role="navigation"
         aria-label="Main Navigation"
-        className="fixed top-0 left-0 w-full z-50"
+        className="fixed top-0 left-0 w-full z-50 transition-colors duration-300"
         onMouseLeave={() => setHoveredIndex(null)}
         initial={false}
         animate={{
-          y: 0,
-          backgroundColor: bgColor,
-          height: hoveredIndex !== null ? 200 : 90,
+          backgroundColor: hoveredIndex !== null ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0)",
+          height: hoveredIndex !== null ? 220 : 90,
+          boxShadow: hoveredIndex !== null ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" : "none",
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        {/* Main Nav */}
+        {/* Main Nav Container */}
         <div
-          className={`w-full mx-auto max-w-screen-xl px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 flex justify-between items-center text-sm md:text-base font-medium ${textColor}`}
+          className={`w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex justify-between items-center text-sm lg:text-base font-medium transition-colors duration-300 ${
+            hoveredIndex !== null ? "text-black" : "text-white"
+          }`}
           style={{ height: "90px" }}
         >
           {/* Logo */}
           <Link href="/" className="flex items-center h-full">
             <Image
               src="/images/logo_suman.png"
-              alt="회사 로고"
+              alt="SUMAN CO., Ltd company logo"
               width={100}
               height={100}
               priority
-              className="h-8 sm:h-10 md:h-12 w-auto cursor-pointer"
+              className="h-8 sm:h-10 lg:h-12 w-auto cursor-pointer"
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex flex-1 justify-center space-x-10 lg:space-x-16 tracking-wide">
+          {/* Desktop Navigation - Visible on large screens and up */}
+          <nav className="hidden lg:flex flex-1 justify-center space-x-8 h-full">
             {NAV_ITEMS.map((item, index) => (
               <div
-  key={item.label}
-  onMouseEnter={() => setHoveredIndex(index)}
-  onMouseLeave={() => setHoveredIndex(null)}
-  className="relative cursor-pointer"
->
-  <Link
-    href={item.href}
-    className={`hover:font-semibold transition-colors duration-200 ${textColor}`}
-  >
-    {item.label}
-  </Link>
-
-  <AnimatePresence>
-    {hoveredIndex === index && item.submenu.length > 0 && (
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.2 }}
-        className="absolute left-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md"
-      >
-        <div className="py-2 min-w-[180px]">
-          {item.submenu.map((sub) => (
-            <Link
-              key={sub.label}
-              href={sub.href}
-              className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-            >
-              {sub.label}
-            </Link>
-          ))}
-        </div>
-      </motion.div>
-    )}
-  </AnimatePresence>
-</div>
-
+                key={item.label}
+                onMouseEnter={() => setHoveredIndex(index)}
+                className="relative h-full flex items-center group cursor-pointer"
+              >
+                <Link
+                  href={item.href}
+                  className={`hover:text-blue-600 transition-colors duration-200 ${hoveredIndex !== null ? "text-black" : "text-white"}`}
+                >
+                  {item.label}
+                </Link>
+              </div>
             ))}
           </nav>
-
-          {/* Language Switcher */}
-          <div className="hidden md:flex items-center h-full">
+          <div className="hidden lg:flex items-center h-full">
             <LanguageSwitcher />
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Burger Menu Button - Hidden on large screens */}
           <button
-            className="md:hidden text-2xl"
+            className={`text-2xl lg:hidden ${
+              hoveredIndex !== null ? "text-black" : "text-white"
+            }`}
             onClick={() => setMobileMenuOpen(true)}
             aria-label="Open mobile menu"
           >
             ☰
           </button>
         </div>
+
+        {/* Submenu Dropdown for Desktop - Visible on hover */}
+        <AnimatePresence>
+          {hoveredIndex !== null && (
+            <motion.div
+              className="w-full bg-white text-black py-4 transition-all duration-300"
+              initial={{ opacity: 0, y: -20, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: "auto" }}
+              exit={{ opacity: 0, y: -20, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex space-x-8">
+                {NAV_ITEMS.map((item, index) => (
+                  <div key={item.label} className="w-1/4">
+                    {item.submenu && item.submenu.length > 0 && hoveredIndex === index && (
+                      <div className="flex flex-col space-y-2">
+                        {item.submenu.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className="font-normal text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Mobile Menu */}
         <AnimatePresence>
@@ -195,16 +213,17 @@ export default function Header() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
+              className="lg:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-6">
                 <button
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={closeMobileMenu}
                   className="text-xl"
                   aria-label="Close mobile menu"
                 >
                   ✕
                 </button>
+                <LanguageSwitcher />
               </div>
               {NAV_ITEMS.map((item, index) => (
                 <div key={item.label}>
@@ -214,25 +233,33 @@ export default function Header() {
                       setExpandedMobileIndex(expandedMobileIndex === index ? null : index)
                     }
                   >
-                    <Link href={item.href} onClick={() => setMobileMenuOpen(false)}>
+                    <Link href={item.href} onClick={closeMobileMenu}>
                       {item.label}
                     </Link>
                     {item.submenu.length > 0 && <span>{expandedMobileIndex === index ? "−" : "+"}</span>}
                   </div>
-                  {expandedMobileIndex === index && (
-                    <div className="pl-4">
-                      {item.submenu.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          href={sub.href}
-                          className="block py-1 text-sm text-gray-700"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
+                  <AnimatePresence>
+                    {expandedMobileIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="pl-4 overflow-hidden"
+                      >
+                        {item.submenu.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className="block py-1 text-sm text-gray-700"
+                            onClick={closeMobileMenu}
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
             </motion.div>
