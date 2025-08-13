@@ -135,7 +135,7 @@ export default function Header() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 right-0 w-2/3 min-h-screen bg-white text-black px-4 py-4 space-y-2 shadow-lg z-50 flex flex-col justify-start"
+            className="fixed top-0 right-0 w-[30%] min-h-screen bg-white text-black px-4 py-4 space-y-2 shadow-lg z-50 flex flex-col justify-start"
             style={{ height: 'auto', maxHeight: '100vh' }}
 
           >
