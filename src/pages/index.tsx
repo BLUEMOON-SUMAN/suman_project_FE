@@ -94,7 +94,7 @@ export default function HomePage({ content }: HomePageProps) {
               transition={{ duration: 1 }}
               viewport={{ once: true }}
             >
-              
+              {/*SUMAN*/}
             </motion.h1>
             <motion.h2
               className="text-4xl md:text-6xl font-bold mb-5 md:mb-7 leading-snug md:leading-[1.3] tracking-wide whitespace-pre-line"

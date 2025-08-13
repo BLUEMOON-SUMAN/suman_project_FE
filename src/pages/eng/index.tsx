@@ -86,7 +86,7 @@ export default function HomePage({ content }: HomePageProps) {
             브라우저가 video 태그를 지원하지 않습니다.
           </video>
 
-          <div className="absolute inset-0 flex flex-col justify-center text-white z-10 px-6 md:px-24 text-center md:text-left items-center md:items-start">
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-white z-10 px-4 text-center">
             <motion.h1
               className="text-xl md:text-3xl font-bold mb-3 md:mb-4  tracking-wide"
               initial={{ opacity: 0, y: 20 }}
@@ -94,7 +94,7 @@ export default function HomePage({ content }: HomePageProps) {
               transition={{ duration: 1 }}
               viewport={{ once: true }}
             >
-              SUMAN
+              {/*SUMAN*/}
             </motion.h1>
             <motion.h2
               className="text-4xl md:text-6xl font-bold mb-5 md:mb-7 leading-snug md:leading-[1.3] tracking-wide whitespace-pre-line"
@@ -106,7 +106,7 @@ export default function HomePage({ content }: HomePageProps) {
               {content.section1Text.title}
             </motion.h2>
             <motion.p
-              className="text-base md:text-xl text-gray-300 max-w-[90%] md:max-w-3xl"
+              className="text-base md:text-xl text-gray-300 max-w-[90%] md:max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.4 }}
@@ -143,7 +143,7 @@ export default function HomePage({ content }: HomePageProps) {
               Core Value
             </p>
             <div className="flex-grow" />
-            <Link href="eng/company/vision">
+            <Link href="/company/vision">
               <button className="text-sm sm:text-base bg-gray-600 text-gray-100 rounded-full px-4 py-2 hover:bg-gray-300 transition">
                 {content.section2.buttonLabel}
               </button>
