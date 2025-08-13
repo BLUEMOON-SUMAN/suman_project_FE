@@ -114,7 +114,7 @@ export default function Header() {
       >
         {/* Main Nav Container */}
         <div
-          className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex justify-between items-center text-sm lg:text-base font-medium text-black"
+          className="w-full mx-auto max-w-screen-2xl px-4 lg:px-20 flex justify-between items-center text-sm lg:text-base font-medium text-black"
           style={{ height: "90px" }}
         >
           {/* Logo */}
@@ -129,46 +129,46 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation - Visible on large screens and up */}
-          <nav className="hidden lg:flex flex-1 justify-center space-x-16 h-full">
-            {NAV_ITEMS.map((item, index) => (
-              <div
-                key={item.label}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className="relative h-full flex items-center group cursor-pointer"
-              >
-                <Link
-                  href={item.href}
-                  className="hover:text-blue-600 transition-colors duration-200"
+          {/* Desktop Navigation & Language Switcher Container - Visible on large screens and up */}
+          <div className="hidden lg:flex items-center space-x-12 h-full">
+            <nav className="flex items-center space-x-10 h-full">
+              {NAV_ITEMS.map((item, index) => (
+                <div
+                  key={item.label}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  className="relative h-full flex items-center group cursor-pointer"
                 >
-                  {item.label}
-                </Link>
-                <AnimatePresence>
-                  {hoveredIndex === index && item.submenu.length > 0 && (
-                    <motion.div
-                      className="absolute top-[90px] left-1/2 -translate-x-1/2 w-max bg-white text-black py-4 px-6 border-t border-gray-200 shadow-lg flex flex-col space-y-2"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {item.submenu.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          href={sub.href}
-                          className="font-normal text-gray-700 hover:text-blue-600 transition-colors duration-200 whitespace-nowrap"
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </nav>
-          <div className="hidden lg:flex items-center h-full">
+                  <Link
+                    href={item.href}
+                    className="hover:text-blue-600 transition-colors duration-200"
+                  >
+                    {item.label}
+                  </Link>
+                  <AnimatePresence>
+                    {hoveredIndex === index && item.submenu.length > 0 && (
+                      <motion.div
+                        className="absolute top-[90px] left-1/2 -translate-x-1/2 w-max bg-white text-black py-4 px-6 border-t border-gray-200 shadow-lg flex flex-col space-y-2"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {item.submenu.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className="font-normal text-gray-700 hover:text-blue-600 transition-colors duration-200 whitespace-nowrap"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </nav>
             <LanguageSwitcher />
           </div>
 

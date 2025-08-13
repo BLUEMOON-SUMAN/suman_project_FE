@@ -14,11 +14,19 @@ export const historyText = {
     timelineTitle: "About us",
     timeline: [
     {
-        year: "2014",
-        label: "창업 단계",
+        year: "2021 - 현재",
+        label: "성장 단계",
         items: [
-        "⦁  자동차 정밀가공 사업 진출",
-        "(주) 수만 설립 (2014년 4월)"
+        "⦁  변화/구조혁신       신산업분야 가공/장비 및 모듈화 사업 진출",
+        "산업 분야 및 사업분야 확대",
+        "뿌리산업 ➔  2차전지 분야 확대",
+        "부품 정밀가공 ➔  정밀가공, 모듈화 서비스",
+        "벤처기업인증 갱신 (2022년)",
+        "뿌리기업인증 갱신 (2022년)",
+        "소재부품장비 전문기업인증 (2022년)",
+        "구조혁신사업 대상자 선정 (중진공)",
+        "신사옥 이전 (2022년)",
+        "매출 분야 확대 및 매출 200%이상 고성장"
         ]
     },
     {
@@ -36,19 +44,11 @@ export const historyText = {
         ]
     },
     {
-        year: "2021 - 현재",
-        label: "성장 단계",
+        year: "2014",
+        label: "창업 단계",
         items: [
-        "⦁  변화/구조혁신       신산업분야 가공/장비 및 모듈화 사업 진출",
-        "산업 분야 및 사업분야 확대",
-        "뿌리산업 ➔  2차전지 분야 확대",
-        "부품 정밀가공 ➔  정밀가공, 모듈화 서비스",
-        "벤처기업인증 갱신 (2022년)",
-        "뿌리기업인증 갱신 (2022년)",
-        "소재부품장비 전문기업인증 (2022년)",
-        "구조혁신사업 대상자 선정 (중진공)",
-        "신사옥 이전 (2022년)",
-        "매출 분야 확대 및 매출 200%이상 고성장"
+        "⦁  자동차 정밀가공 사업 진출",
+        "(주) 수만 설립 (2014년 4월)"
         ]
     }
     ]
@@ -68,14 +68,7 @@ ENG: {
     staff: "Employees: 40 people (as of 2024)",
     timelineTitle: "About us",
     timeline: [
-    {
-        year: "2014",
-        label: "Foundation Stage",
-        items: [
-        "⦁  Entered automotive precision processing business",
-        "Established SUMAN Co., Ltd. (April 2014)"
-        ]
-    },
+
     {
         year: "2015 - 2020",
         label: "Market Entry Stage",
@@ -90,22 +83,15 @@ ENG: {
         "Component company certification / Clean workplace recognition"
         ]
     },
-    {
-        year: "2021 - Present",
-        label: "Growth Stage",
+    
+            {
+        year: "2014",
+        label: "Foundation Stage",
         items: [
-        "⦁  Transformation/Innovation       Entered new industry processing/equipment/modularization",
-        "Expanded industrial and business sectors",
-        "Root Industry ➔  Expanded to secondary battery field",
-        "Precision parts ➔  Precision processing, modular services",
-        "Renewed venture certification (2022)",
-        "Renewed root company certification (2022)",
-        "Certified as a specialized materials/components/equipment company (2022)",
-        "Selected for structural innovation project (KOSME)",
-        "Relocated to new headquarters (2022)",
-        "Achieved 200%+ sales growth through expanded business fields"
+        "⦁  Entered automotive precision processing business",
+        "Established SUMAN Co., Ltd. (April 2014)"
         ]
-        }
+    }
     ]
 }
 };
