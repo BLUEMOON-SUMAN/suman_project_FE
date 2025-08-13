@@ -165,22 +165,23 @@ export default function Header() {
         <AnimatePresence>
           {hoveredIndex !== null && (
             <motion.div
-              className="w-full bg-white text-black py-4 transition-all duration-300"
-              initial={{ opacity: 0, y: -20, height: 0 }}
-              animate={{ opacity: 1, y: 0, height: "auto" }}
-              exit={{ opacity: 0, y: -20, height: 0 }}
+              className="absolute top-[90px] left-0 w-full bg-white text-black py-8 border-t border-gray-200"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex space-x-8">
+              <div className="w-full mx-auto max-w-screen-xl px-4 lg:px-10 flex space-x-12 justify-center">
                 {NAV_ITEMS.map((item, index) => (
-                  <div key={item.label} className="w-1/4">
-                    {item.submenu && item.submenu.length > 0 && hoveredIndex === index && (
-                      <div className="flex flex-col space-y-2">
+                  <div key={item.label} className="flex flex-col space-y-2">
+                    <h3 className="font-semibold text-lg mb-2">{item.label}</h3>
+                    {item.submenu && item.submenu.length > 0 && (
+                      <div className="flex flex-col space-y-1">
                         {item.submenu.map((sub) => (
                           <Link
                             key={sub.label}
                             href={sub.href}
-                            className="font-normal text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                            className="font-normal text-gray-700 hover:text-blue-600 transition-colors duration-200 whitespace-nowrap"
                           >
                             {sub.label}
                           </Link>
