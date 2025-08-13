@@ -284,14 +284,14 @@ export default function HomePage({ content }: HomePageProps) {
         </motion.section>
 
         <motion.section
-          className="relative z-30 bg-white px-4 md:px-6"
+          className="relative z-30 bg-white px-4 md:px-6 py-20"
           initial={{ opacity: 1, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div
-            className="text-left text-black mb-20 max-w-7xl mx-[30px] md:mx-[120px]"
+            className="text-center text-black mb-20 max-w-7xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
@@ -300,87 +300,76 @@ export default function HomePage({ content }: HomePageProps) {
             <p className={labelClass}>Service</p>
             <br />
             <br />
-            <h2 className="text-5xl md:text-5xl font-bold text-gray-900 leading-tight mb-5">
+            <h2 className="text-5xl md:text-5xl font-bold text-gray-900 leading-tight mb-5 mx-auto max-w-2xl">
               We provide customized equipment<br /> and manufacturing services<br />tailored to your needs.
             </h2>
             <br />
             <br />
-            <p className="text-2xl text-gray-700 leading-relaxed mb-8">
+            <p className="text-2xl text-gray-700 leading-relaxed mb-8 mx-auto max-w-3xl">
               Suman thoroughly analyzes each customer specific <br />requirements to deliver optimized custom equipment, <br />facilities, and high-quality precision-machined parts.
             </p>
           </motion.div>
 
-          {/* Corrected parent container for circles to match the image layout */}
-          <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center relative z-10 mt-20 md:h-[400px]">
-            <div className="flex-1 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0 relative w-full h-full">
+          <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-center gap-10 relative z-10 mt-20">
+            {/* Solution Services Circle */}
+            <motion.div
+              className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={circleVariants}
+            >
+              <Image
+                src="/images/main/service/index_solution.jpg"
+                alt="솔루션 서비스"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
+              <h3 className="text-2xl font-semibold pb-5 z-20">
+                Solution Services
+              </h3>
+            </motion.div>
 
-              {/* Solution Services Circle (bottom-left in the Korean layout, top in the English layout) */}
-              <motion.div
-                className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           mb-8 md:mb-0
-                           md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2
-                           overflow-hidden"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={circleVariants}
-              >
-                <Image
-                  src="/images/main/service/index_solution.jpg"
-                  alt="솔루션 서비스"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
-                <h3 className="text-2xl font-semibold pb-5 z-20">
-                  Solution Services
-                </h3>
-              </motion.div>
+            {/* Custom Equipment & Facilities Circle */}
+            <motion.div
+              className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={circleVariants}
+            >
+              <Image
+                src="/images/main/service/index_equipment.jpg"
+                alt="맞춤형 장비/설비"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
+              <h3 className="text-2xl font-semibold pb-5 z-20">
+                Custom Equipment & Facilities
+              </h3>
+            </motion.div>
 
-              {/* Custom Equipment & Facilities Circle (bottom-right in the Korean layout, bottom-left in the English layout) */}
-              <motion.div
-                className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           mb-8 md:mb-0 md:absolute md:left-0 md:bottom-0
-                           overflow-hidden"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={circleVariants}
-              >
-                <Image
-                  src="/images/main/service/index_equipment.jpg"
-                  alt="맞춤형 장비/설비"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
-                <h3 className="text-2xl font-semibold pb-5 z-20">
-                  Custom Equipment & Facilities
-                </h3>
-              </motion.div>
-
-              {/* Precision-Machined Components Circle (top in the Korean layout, bottom-right in the English layout) */}
-              <motion.div
-                className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default
-                           md:absolute md:right-0 md:bottom-0
-                           overflow-hidden"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={circleVariants}
-              >
-                <Image
-                  src="/images/main/service/index_parts.png"
-                  alt="정밀 가공 부품"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
-                <h3 className="text-2xl font-semibold pb-5 z-20">
-                  Precision-Machined Components
-                </h3>
-              </motion.div>
-            </div>
+            {/* Precision-Machined Components Circle */}
+            <motion.div
+              className="relative w-64 h-64 rounded-full flex flex-col justify-end items-center text-center text-white p-5 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-default overflow-hidden"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={circleVariants}
+            >
+              <Image
+                src="/images/main/service/index_parts.png"
+                alt="정밀 가공 부품"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent rounded-full z-10" />
+              <h3 className="text-2xl font-semibold pb-5 z-20">
+                Precision-Machined Components
+              </h3>
+            </motion.div>
           </div>
         </motion.section>
 
