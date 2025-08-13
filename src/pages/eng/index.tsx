@@ -12,7 +12,7 @@ import type { HomePageProps } from "@/types/home";
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      content: homeContentKor,
+      content: homeContentEng,
     },
   };
 };
