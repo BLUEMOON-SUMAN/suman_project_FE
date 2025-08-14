@@ -31,6 +31,7 @@ const navItemsKor = [
     submenu: [
       { label: "인재상", href: "/careers/philosophy" },
       { label: "채용공고", href: "/careers/notice" },
+      { label: "복리후생", href: "/careers/wellness" },
     ],
   },
   {
@@ -65,12 +66,13 @@ const navItemsEng = [
     submenu: [
       { label: "Talent Philosophy", href: "/eng/careers/philosophy" },
       { label: "Recruit Notice", href: "/eng/careers/notice" },
+      { label: "Wellness", href: "/eng/careers/wellness" },
     ],
   },
   {
     label: "Support",
     href: "/eng/support/contact",
-    submenu: [{ label: "Contact Us", href: "/eng/support/contact" }],
+    submenu: [{ label: "Contact Us", href: "/eng/support/contact" },],
   },
 ];
 
