@@ -105,7 +105,7 @@ export default function HistoryPage() {
               </linearGradient>
             </defs>
             <motion.path
-              d="M 150 250 L 600 50" // Changed to a straight line for a cleaner look, starting from bottom left and going to top right
+              d="M 150 250 C 250 200, 350 150, 450 50" // Adjusted for a smoother curve, starting from bottom left and going to top right
               stroke="url(#arrow-gradient)"
               strokeWidth="6"
               fill="none"
@@ -114,7 +114,7 @@ export default function HistoryPage() {
               transition={{ duration: 2.5, ease: "easeInOut" }}
             />
             <motion.path
-              d="M 600 50 L 585 75 L 615 75 Z" // Arrow head adjusted to point straight up from the end of the line
+              d="M 450 50 L 435 80 L 465 80 Z" // Arrow head adjusted to point straight up from the end of the line
               fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
