@@ -105,7 +105,7 @@ export default function HistoryPage() {
               </linearGradient>
             </defs>
             <motion.path
-              d="M 350 250 C 300 200, 300 100, 350 50" // A dramatic upward curve
+              d="M 150 250 C 250 200, 450 100, 550 50" // Adjusted for a smoother, more gradual upward curve
               stroke="url(#arrow-gradient)"
               strokeWidth="6"
               fill="none"
@@ -114,7 +114,7 @@ export default function HistoryPage() {
               transition={{ duration: 2.5, ease: "easeInOut" }}
             />
             <motion.path
-              d="M 350 50 L 335 80 L 365 80 Z" // Arrow head pointing up
+              d="M 550 50 L 540 75 L 560 75 Z" // Arrow head adjusted to point along the new curve
               fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
