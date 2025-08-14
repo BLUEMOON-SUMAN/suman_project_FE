@@ -94,7 +94,7 @@ export const visionCoreValue = {
 
 export const visionRndText = {
     KOR: {
-    title: "R&D",
+    title: "OPEN INNOVATION",
     subtitle: "끊임없는 연구개발과 스마트 공정 혁신을 통해\n제조 효율의 새로운 기준을 만들어갑니다",
     leftBox1Title: "R&D 기획",
     leftBox1Desc: "PJT 운영 및 R&D 사업화 전략수립",
