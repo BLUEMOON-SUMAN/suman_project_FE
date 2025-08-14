@@ -131,7 +131,7 @@ export default function Header() {
 
           {/* Desktop Navigation Container - Centered */}
           <div className="hidden lg:flex flex-grow justify-center items-center h-full">
-            <nav className="flex items-center space-x-10 h-full">
+            <nav className="flex items-center space-x-16 h-full">
               {NAV_ITEMS.map((item, index) => (
                 <div
                   key={item.label}
@@ -141,7 +141,7 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
-                    className="hover:text-blue-600 transition-colors duration-200"
+                    className="lg:text-lg font-bold hover:text-blue-600 transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
