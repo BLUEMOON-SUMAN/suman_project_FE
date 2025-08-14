@@ -129,8 +129,8 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation & Language Switcher Container - Visible on large screens and up */}
-          <div className="hidden lg:flex items-center space-x-12 h-full">
+          {/* Desktop Navigation Container - Centered */}
+          <div className="hidden lg:flex flex-grow justify-center items-center h-full">
             <nav className="flex items-center space-x-10 h-full">
               {NAV_ITEMS.map((item, index) => (
                 <div
@@ -169,6 +169,10 @@ export default function Header() {
                 </div>
               ))}
             </nav>
+          </div>
+
+          {/* Language Switcher Container */}
+          <div className="hidden lg:flex items-center h-full">
             <LanguageSwitcher />
           </div>
 
