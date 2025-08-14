@@ -105,7 +105,7 @@ export default function HistoryPage() {
               </linearGradient>
             </defs>
             <motion.path
-              d="M 150 250 C 300 150, 400 100, 450 50" // Adjusted for a steeper, more pronounced upward curve
+              d="M 150 250 Q 300 150, 500 50" // Changed to a quadratic Bezier curve for a smoother arc, starting from bottom left and going to top right
               stroke="url(#arrow-gradient)"
               strokeWidth="6"
               fill="none"
@@ -114,7 +114,7 @@ export default function HistoryPage() {
               transition={{ duration: 2.5, ease: "easeInOut" }}
             />
             <motion.path
-              d="M 450 50 L 435 80 L 465 80 Z" // Arrow head adjusted to point straight up
+              d="M 500 50 L 485 80 L 515 80 Z" // Arrow head adjusted to point straight up
               fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -190,7 +190,7 @@ export default function HistoryPage() {
                   ))}
                 </motion.div>
 
-                {/* 점들 */}
+                {/* Titik-titik */}
                 <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />
                 <motion.div className="absolute left-0 top-[22%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
                 <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />
