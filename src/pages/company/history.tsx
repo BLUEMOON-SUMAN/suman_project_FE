@@ -105,20 +105,20 @@ export default function HistoryPage() {
               </linearGradient>
             </defs>
             <motion.path
-              d="M 150 250 Q 500 50, 600 100" // Adjusted for a more extreme curve
+              d="M 350 250 C 300 200, 300 100, 350 50" // A dramatic upward curve
               stroke="url(#arrow-gradient)"
               strokeWidth="6"
               fill="none"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
-              transition={{ duration: 2.5, ease: "easeInOut" }} // Increased duration for smoother animation
+              transition={{ duration: 2.5, ease: "easeInOut" }}
             />
             <motion.path
-              d="M 608 85 L 607 107 L 587 99 Z" // Adjusted arrow head to match the new curve
+              d="M 350 50 L 335 80 L 365 80 Z" // Arrow head pointing up
               fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2.3, duration: 0.1 }} // Adjusted delay
+              transition={{ delay: 2.3, duration: 0.1 }}
             />
           </svg>
         </section>
