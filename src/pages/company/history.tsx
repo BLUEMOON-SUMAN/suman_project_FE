@@ -105,7 +105,7 @@ export default function HistoryPage() {
               </linearGradient>
             </defs>
             <motion.path
-              d="M 150 233 Q 460 243, 666 249"
+              d="M 150 233 Q 460 243, 666 138"
               stroke="url(#arrow-gradient)"
               strokeWidth="6"
               fill="none"
