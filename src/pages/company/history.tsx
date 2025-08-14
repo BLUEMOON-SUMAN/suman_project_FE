@@ -92,57 +92,35 @@ export default function HistoryPage() {
               <p>{content.staff}</p>
             </motion.div>
           </div>
-<svg
-  className="absolute inset-0 mx-auto my-auto z-20 opacity-80 pointer-events-none"
-  viewBox="0 0 700 300"
-  preserveAspectRatio="xMidYMid meet"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <defs>
-    <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stopColor="white" stopOpacity="0" />
-      <stop offset="100%" stopColor="white" stopOpacity="1" />
-    </linearGradient>
-  </defs>
-
-  {/* Tapered path */}
-  <motion.path
-    d="M150 233 Q460 243, 666 138"
-    stroke="url(#arrow-gradient)"
-    strokeWidth="6"
-    strokeLinecap="round"
-    fill="none"
-    initial={{ pathLength: 0 }}
-    animate={{ pathLength: 1 }}
-    transition={{ duration: 2, ease: "easeInOut" }}
-    style={{ vectorEffect: "non-scaling-stroke" }}
-  />
-
-  {/* Overlay thick path to fake increasing width */}
-  <motion.path
-    d="M150 233 Q460 243, 666 138"
-    stroke="url(#arrow-gradient)"
-    strokeWidth="0"
-    fill="none"
-  >
-    <animate
-      attributeName="stroke-width"
-      values="2;8"
-      dur="2s"
-      fill="freeze"
-    />
-  </motion.path>
-
-  {/* Arrowhead */}
-  <motion.path
-    d="M563 123 L562 145 L542 137 Z"
-    fill="white"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 1.8, duration: 0.1 }}
-  />
-</svg>
-
+          <svg
+            className="absolute inset-0 mx-auto my-auto z-20 opacity-80 pointer-events-none"
+            viewBox="0 0 700 300"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="white" stopOpacity="0" />
+                <stop offset="100%" stopColor="white" stopOpacity="1" />
+              </linearGradient>
+            </defs>
+            <motion.path
+              d="M 150 233 Q 460 243, 666 138"
+              stroke="url(#arrow-gradient)"
+              strokeWidth="6"
+              fill="none"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+            />
+            <motion.path
+              d="M 563 123 L 562 145 L 542 137 Z"
+              fill="white"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.8, duration: 0.1 }}
+            />
+          </svg>
         </section>
 
         <div className="content-wrapper">
