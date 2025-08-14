@@ -131,7 +131,7 @@ export default function Header() {
 
           {/* Desktop Navigation Container - Centered */}
           <div className="hidden lg:flex flex-grow justify-center items-center h-full">
-            <nav className="flex items-center space-x-20 h-full">
+            <nav className="flex items-center space-x-24 h-full">
               {NAV_ITEMS.map((item, index) => (
                 <div
                   key={item.label}
