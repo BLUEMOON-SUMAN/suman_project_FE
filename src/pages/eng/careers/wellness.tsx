@@ -1,2 +1,2 @@
-import NoticePage from "@/pages/careers/notice";
-export default NoticePage;
+import WellnessPage from "@/pages/careers/wellnessMain";
+export default WellnessPage;
