@@ -143,7 +143,7 @@ export default function HistoryPage() {
                   transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
-                
+
                 <motion.div
                   className="timeline-container relative"
                   variants={staggerContainerVariants}
