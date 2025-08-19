@@ -107,7 +107,7 @@ export default function HistoryPage() {
             </defs>
             <motion.path
               d="M 150 250 Q 550 150, 600 50"
-              stroke="url(#arrow-gradient)"
+              stroke="red"
               strokeWidth="6"
               fill="none"
               initial={{ pathLength: 0 }}
@@ -116,7 +116,7 @@ export default function HistoryPage() {
             />
             <motion.path
               d="M 563 123 L 562 145 L 542 137 Z"
-              fill="white"
+              fill="red"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.1 }}
@@ -154,6 +154,13 @@ export default function HistoryPage() {
                   {reversedTimeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-16 mb-10 relative">
+                        <motion.div
+                          className="absolute left-0 top-[-8px] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 z-20"
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.5, delay: 0.5 + index * 0.2, ease: "easeOut" }}
+                          viewport={{ once: true }}
+                        />
                         <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
                           <h3 className="timeline-year text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 -translate-x-full">
                             {entry.year}
@@ -192,11 +199,6 @@ export default function HistoryPage() {
                     </motion.div>
                   ))}
                 </motion.div>
-
-                {/* The dots */}
-                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[22%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />
               </div>
             </div>
           </section>
