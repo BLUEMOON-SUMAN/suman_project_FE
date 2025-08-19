@@ -1,5 +1,7 @@
+// src/data/wellnessData.ts
+import * as LucideIcons from "lucide-react";
+
 // --- Icon Mapping ---
-// Map descriptive keys to their corresponding Lucide icons.
 export const iconMap = {
   dormitory: 'Home',
   commuterBus: 'BusFront',
@@ -13,24 +15,49 @@ export const iconMap = {
   anniversary: 'Gift',
   congratulations: 'HeartHandshake',
   alumni: 'Handshake',
-};
+} as const;
 
-// --- Wellness Data ---
-// The data for the entire application, separated by language.
-export const wellnessData = {
+export type IconKey = keyof typeof iconMap;
+
+// --- Wellness Data Interfaces ---
+export interface WellnessItem {
+  title: string;
+  description: string;
+  iconKey: IconKey;
+}
+
+export interface WellnessSection {
+  key: string;
+  title: string;
+  subtitle: string;
+  heroImage: string;
+  items: WellnessItem[];
+}
+
+export interface WellnessData {
+  hero: {
+    title: string;
+    subtitle: string;
+    path: string;
+    heroImage: string;
+  };
+  sections: WellnessSection[];
+}
+
+export const wellnessContent: Record<string, WellnessData> = {
   KOR: {
     hero: {
       title: "복리후생",
       subtitle: "일과 생활의 균형, 즐거운 일터를 만들기 위하여 다양한 복지제도를 시행 중입니다",
       path: "회사소개 > 복리후생",
-      heroImage: "https://placehold.co/1920x400/1e40af/ffffff?text=Wellness+and+Benefits",
+      heroImage: "/images/sub_banner/business_hero.png",
     },
     sections: [
       {
         key: "office-life",
         title: "Office Life",
         subtitle: "회사생활",
-        heroImage: "https://placehold.co/1920x400/155e75/ffffff?text=Office+Life",
+        heroImage: "/images/business/product/service_battery.png",
         items: [
           { title: "기숙사 운영", description: "원거리 거주지 지원", iconKey: "dormitory" },
           { title: "통근버스 운영", description: "오산, 동탄", iconKey: "commuterBus" },
@@ -42,24 +69,12 @@ export const wellnessData = {
         key: "leisure-culture-health",
         title: "Leisure / Culture / Health",
         subtitle: "여가 / 문화 / 건강",
-        heroImage: "https://placehold.co/1920x400/065f46/ffffff?text=Leisure+Culture+Health",
+        heroImage: "/images/business/product/service_elec.png",
         items: [
           { title: "휴양시설 운영", description: "제주도, 강원도 등", iconKey: "resort" },
           { title: "동호회 지원", description: "활동비 지원", iconKey: "club" },
           { title: "건강검진", description: "연1회 검진 가입", iconKey: "health" },
           { title: "단체보험", description: "단체 상해보험 가입", iconKey: "insurance" },
-        ],
-      },
-      {
-        key: "additional",
-        title: "Additional",
-        subtitle: "기타",
-        heroImage: "https://placehold.co/1920x400/9b2c2c/ffffff?text=Additional",
-        items: [
-          { title: "포상제도", description: "우수사원 포상/장기근속자 포상", iconKey: "award" },
-          { title: "기념일 선물", description: "명절, 생일, 행사 등", iconKey: "anniversary" },
-          { title: "경조사", description: "경조금/경조휴가", iconKey: "congratulations" },
-          { title: "사우회", description: "경조금", iconKey: "alumni" },
         ],
       },
     ],
@@ -69,14 +84,14 @@ export const wellnessData = {
       title: "EMPLOYEE WELLNESS",
       subtitle: "To create a balance between work and life, we are implementing various welfare programs.",
       path: "About Us > Employee Wellness",
-      heroImage: "https://placehold.co/1920x400/1e40af/ffffff?text=Wellness+and+Benefits",
+      heroImage: "/images/sub_banner/business_hero.png",
     },
     sections: [
       {
         key: "office-life",
         title: "Office Life",
         subtitle: "Office Life",
-        heroImage: "https://placehold.co/1920x400/155e75/ffffff?text=Office+Life",
+        heroImage: "/images/business/product/service_battery.png",
         items: [
           { title: "Dormitory Operation", description: "Support for long-distance residents", iconKey: "dormitory" },
           { title: "Commuter Bus Operation", description: "Osan, Dongtan", iconKey: "commuterBus" },
@@ -88,24 +103,12 @@ export const wellnessData = {
         key: "leisure-culture-health",
         title: "Leisure / Culture / Health",
         subtitle: "Leisure / Culture / Health",
-        heroImage: "https://placehold.co/1920x400/065f46/ffffff?text=Leisure+Culture+Health",
+        heroImage: "/images/business/product/service_elec.png",
         items: [
           { title: "Resort Facilities Operation", description: "Jeju Island, Gangwon-do, etc.", iconKey: "resort" },
           { title: "Club Support", description: "Support for activity expenses", iconKey: "club" },
           { title: "Health Checkups", description: "Annual health checkup subscription", iconKey: "health" },
           { title: "Group Insurance", description: "Group injury insurance subscription", iconKey: "insurance" },
-        ],
-      },
-      {
-        key: "additional",
-        title: "Additional",
-        subtitle: "Additional",
-        heroImage: "https://placehold.co/1920x400/9b2c2c/ffffff?text=Additional",
-        items: [
-          { title: "Award System", description: "Awards for excellent employees/long-term employees", iconKey: "award" },
-          { title: "Anniversary Gifts", description: "Holidays, birthdays, events, etc.", iconKey: "anniversary" },
-          { title: "Congratulatory and Condolence Affairs", description: "Congratulatory/condolence money and leave", iconKey: "congratulations" },
-          { title: "Alumni Association", description: "Condolence money", iconKey: "alumni" },
         ],
       },
     ],
