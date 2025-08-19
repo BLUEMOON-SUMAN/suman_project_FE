@@ -46,18 +46,19 @@ export default function ServicePage() {
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "기술소개 | 수만" : "Technology | SUMAN"}</title>
+        <title>{lang === "KOR" ? "제품 기술 소개 | 수만" : "Production Technology | SUMAN"}</title>
       </Head>
       <Layout>
         <HeroSection
-          title={lang === "KOR" ? "기술 소개" : "Technology"}
+          title={lang === "KOR" ? "제품 기술 소개" : "Production Technology"}
           subtitle="SUMAN"
           backgroundImage="/images/sub_banner/business_hero.png"
         />
 
         <BreadcrumbSection
-          path={lang === "KOR" ? "사업분야 > 기술소개" : "Business > Technology"}
+          path={lang === "KOR" ? "사업분야 > 제품소개" : "Business > Production Technology"}
         />
+        
 
         {/* 4. Products Section */}
         <motion.div
