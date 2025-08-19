@@ -136,7 +136,7 @@ export default function HistoryPage() {
                 {content.timelineTitle}
               </motion.h2>
               <div className="max-w-5xl mx-auto relative pl-26 md:pl-36">
-                {/* The vertical dashed line is now placed inside the list to ensure dynamic height */}
+                {/* The vertical line is now a standalone element to cover the entire container */}
                 <motion.div
                   className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
                   initial={{ opacity: 0, height: 0 }}
