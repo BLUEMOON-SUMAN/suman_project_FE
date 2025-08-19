@@ -59,7 +59,7 @@ export const wellnessContent: Record<string, WellnessData> = {
         key: "office-life",
         title: "Office Life",
         subtitle: "회사생활",
-        heroImage: "/images/business/product/service_battery.png",
+        heroImage: "/images/business/product/life_bg.png",
         items: [
           { title: "기숙사", description: "원거리 거주자 지원", iconKey: "dormitory" },
           { title: "식사제공", description: "점심식사 제공", iconKey: "utensils" },
@@ -81,7 +81,7 @@ export const wellnessContent: Record<string, WellnessData> = {
         key: "office-life",
         title: "Office Life",
         subtitle: "Office Life",
-        heroImage: "/images/business/product/service_battery.png",
+        heroImage: "/images/business/product/life_bg.png",
         items: [
           { title: "Dormitory", description: "Support for long-distance residents", iconKey: "dormitory" },
           { title: "Meal Provision", description: "Lunch meal provided", iconKey: "utensils" },
