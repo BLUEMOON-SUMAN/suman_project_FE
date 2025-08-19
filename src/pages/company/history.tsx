@@ -191,10 +191,10 @@ export default function HistoryPage() {
                 </motion.div>
 
                 {/* 점들 */}
-                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />                
+
+                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />                             
                 <motion.div className="absolute left-0 top-[22%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />                
-                <motion.div className="absolute left-0 top-[22%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
+                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />                   
               </div>
             </div>
           </section>
