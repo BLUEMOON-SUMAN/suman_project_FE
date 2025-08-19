@@ -98,9 +98,15 @@ export default function HistoryPage() {
             preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
           >
+            <defs>
+              <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="white" stopOpacity="0" />
+                <stop offset="100%" stopColor="white" stopOpacity="1" />
+              </linearGradient>
+            </defs>
             <motion.path
               d="M 150 233 Q 460 243, 555 138"
-              stroke="#D43737"
+              stroke="url(#arrow-gradient)"
               strokeWidth="6"
               fill="none"
               initial={{ pathLength: 0 }}
@@ -109,7 +115,7 @@ export default function HistoryPage() {
             />
             <motion.path
               d="M 563 123 L 562 145 L 542 137 Z"
-              fill="#D43737"
+              fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.1 }}
@@ -169,15 +175,13 @@ export default function HistoryPage() {
                           }}
                           viewport={{ once: true }}
                         >
-                          <p
-                            className={`text-lg font-semibold tracking-wide ${
-                              item.includes("⦁")
-                                ? "text-black font-bold"
-                                : item.includes("➔")
-                                ? "text-[#8C8C8C] text-base"
-                                : "text-[#4C4C4C]"
-                            }`}
-                          >
+                          <p className={`text-lg font-semibold tracking-wide ${
+                            item.includes("⦁")
+                              ? "text-black font-bold"
+                              : item.includes("➔")
+                              ? "text-[#8C8C8C] text-base"
+                              : "text-[#4C4C4C]"
+                          }`}>
                             {item}
                           </p>
                         </motion.div>
@@ -187,9 +191,10 @@ export default function HistoryPage() {
                 </motion.div>
 
                 {/* 점들 */}
-                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} /> 
+                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />                
                 <motion.div className="absolute left-0 top-[22%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} /> 
+                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />                
+
               </div>
             </div>
           </section>
