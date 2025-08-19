@@ -190,8 +190,8 @@ export default function VisionPage() {
               </div>
               <div className="w-full flex justify-center relative mt-12">
                 <svg
-                  width="628.2px"
-                  height="540px"
+                  width="100%"
+                  height="850px"
                   viewBox="0 0 1047 900"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -207,17 +207,17 @@ export default function VisionPage() {
                       >
                         <image
                           href={`/images/company/vision/vision_arrow${3 - idx}.png`}
-                          x={idx === 0 ? "-3.6" : idx === 1 ? "47.4" : "291.6"}
-                          y={idx === 0 ? "101.4" : idx === 1 ? "299.4" : "0"}
-                          width={idx === 0 ? "162" : idx === 1 ? "282" : "346.8"}
-                          height={idx === 0 ? "252" : idx === 1 ? "249" : "496.2"}
+                          x={idx === 0 ? "-6" : idx === 1 ? "79" : "486"}
+                          y={idx === 0 ? "169" : idx === 1 ? "499" : "0"}
+                          width={idx === 0 ? "270" : idx === 1 ? "470" : "578"}
+                          height={idx === 0 ? "420" : idx === 1 ? "415" : "827"}
                           className="transition-all duration-300 group-hover:opacity-70 group-hover:scale-[1.02] filter brightness-50"
                         />
                         <text
-                          x={idx === 0 ? "66" : idx === 1 ? "186" : "450"}
-                          y={idx === 0 ? "210" : idx === 1 ? "390" : "240"}
+                          x={idx === 0 ? "110" : idx === 1 ? "310" : "750"}
+                          y={idx === 0 ? "350" : idx === 1 ? "650" : "400"}
                           fill="white"
-                          fontSize={idx === 2 ? "42" : idx === 1 ? "36" : "30"}
+                          fontSize={idx === 2 ? "70" : idx === 1 ? "60" : "50"}
                           fontWeight="bold"
                           textAnchor="middle"
                           className="transition-all duration-300 group-hover:fill-gray-200"
@@ -225,27 +225,27 @@ export default function VisionPage() {
                           {milestone.year}
                         </text>
                         <ArrowSVG
-                          x={idx === 0 ? 30 : idx === 1 ? 141 : 396}
-                          y={(idx === 0 ? 228 : idx === 1 ? 408 : 258) - 6}
+                          x={idx === 0 ? 50 : idx === 1 ? 235 : 660}
+                          y={(idx === 0 ? 380 : idx === 1 ? 680 : 430) - 10}
                           className={`transition-opacity duration-300 ${
                             hoveredSection === milestone.year
                               ? "opacity-0"
                               : "opacity-100"
                           }`}
-                          arrowLength={idx === 0 ? 78 : idx === 1 ? 96 : 114}
+                          arrowLength={idx === 0 ? 130 : idx === 1 ? 160 : 190}
                         />
                         <foreignObject
-                          x={idx === 0 ? "0" : idx === 1 ? "126" : "390"}
-                          y={idx === 0 ? "228" : idx === 1 ? "402" : "252"}
-                          width="138"
-                          height="48"
+                          x={idx === 0 ? "0" : idx === 1 ? "210" : "650"}
+                          y={idx === 0 ? "380" : idx === 1 ? "670" : "420"}
+                          width="230"
+                          height="80"
                           className={`transition-opacity duration-300 ${
                             hoveredSection === milestone.year
                               ? "opacity-100"
                               : "opacity-0"
                           }`}
                         >
-                          <div className="text-sm text-center text-white whitespace-pre-line">
+                          <div className="text-xl text-center text-white whitespace-pre-line">
                             {milestone.text}
                           </div>
                         </foreignObject>
@@ -375,7 +375,7 @@ export default function VisionPage() {
                 >
                   <mask
                     id={`mask0_${lang}`}
-                    style={{ maskType: "alpha" }}
+                    style={{ maskType: "alpha" }} // Corrected line: Removed trailing comma if any, and ensured comment is outside the style object if present.
                     maskUnits="userSpaceOnUse"
                     x="0"
                     y="0"
