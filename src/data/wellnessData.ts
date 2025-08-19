@@ -52,7 +52,7 @@ export const wellnessContent: Record<string, WellnessData> = {
       title: "복리후생",
       subtitle: "일과 생활의 균형, 즐거운 일터를 만들기 위하여 다양한 복지제도를 시행 중입니다",
       path: "회사소개 > 복리후생",
-      heroImage: "/images/sub_banner/business_hero.png",
+      heroImage: "/images/wellness/well_bg.png",
     },
     sections: [
       {
@@ -67,18 +67,6 @@ export const wellnessContent: Record<string, WellnessData> = {
           { title: "상여금", description: "명절 상여 지급", iconKey: "award" },
         ],
       },
-      {
-        key: "leisure-culture-health",
-        title: "Leisure / Culture / Health",
-        subtitle: "여가 / 문화 / 건강",
-        heroImage: "/images/business/product/service_elec.png",
-        items: [
-          { title: "휴양시설 운영", description: "제주도, 강원도 등", iconKey: "resort" },
-          { title: "동호회 지원", description: "활동비 지원", iconKey: "club" },
-          { title: "건강검진", description: "연1회 검진 가입", iconKey: "health" },
-          { title: "단체보험", description: "단체 상해보험 가입", iconKey: "insurance" },
-        ],
-      },
     ],
   },
   ENG: {
@@ -86,7 +74,7 @@ export const wellnessContent: Record<string, WellnessData> = {
       title: "EMPLOYEE WELLNESS",
       subtitle: "To create a balance between work and life, we are implementing various welfare programs.",
       path: "About Us > Employee Wellness",
-      heroImage: "/images/sub_banner/business_hero.png",
+      heroImage: "/images/wellness/well_bg.png",
     },
     sections: [
       {
@@ -99,18 +87,6 @@ export const wellnessContent: Record<string, WellnessData> = {
           { title: "Meal Provision", description: "Lunch meal provided", iconKey: "utensils" },
           { title: "Recreation Facilities", description: "Gym, lounges, showers", iconKey: "dumbbell" },
           { title: "Bonus", description: "Holiday bonus provided", iconKey: "award" },
-        ],
-      },
-      {
-        key: "leisure-culture-health",
-        title: "Leisure / Culture / Health",
-        subtitle: "Leisure / Culture / Health",
-        heroImage: "/images/business/product/service_elec.png",
-        items: [
-          { title: "Resort Facilities Operation", description: "Jeju Island, Gangwon-do, etc.", iconKey: "resort" },
-          { title: "Club Support", description: "Support for activity expenses", iconKey: "club" },
-          { title: "Health Checkups", description: "Annual health checkup subscription", iconKey: "health" },
-          { title: "Group Insurance", description: "Group injury insurance subscription", iconKey: "insurance" },
         ],
       },
     ],
