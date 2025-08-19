@@ -93,13 +93,9 @@ export default function HistoryPage() {
               <p>{content.staff}</p>
             </motion.div>
           </div>
-          {/* This SVG is being stretched vertically because the parent container is too tall.
-              To fix it, we should adjust the viewBox or the container's height. 
-              The most reliable method is to adjust the viewBox and path to match the
-              desired look, regardless of the container's height. */}
           <svg
             className="absolute inset-0 mx-auto my-auto z-20 opacity-80 pointer-events-none"
-            viewBox="0 0 700 300" // A viewBox with a different aspect ratio might work better, e.g., "0 0 700 400"
+            viewBox="0 0 700 400"
             preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -109,19 +105,17 @@ export default function HistoryPage() {
                 <stop offset="100%" stopColor="white" stopOpacity="1" />
               </linearGradient>
             </defs>
-            {/* The main path for the curved line. Coordinates are adjusted to prevent vertical stretching. */}
             <motion.path
-              d="M 150 250 Q 550 150, 600 50" // The 'Q' command (Quadratic Bézier curve) defines the curve.
+              d="M 100 350 Q 550 100, 650 50"
               stroke="white"
-              strokeWidth="6"
+              strokeWidth="8"
               fill="none"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 2, ease: "easeInOut" }}
             />
-            {/* The arrow head. Coordinates are adjusted to match the end of the new path. */}
             <motion.path
-              d="M 600 50 L 580 60 L 590 35 Z" // The coordinates must be in sync with the line's end point.
+              d="M 650 50 L 635 65 L 640 40 Z"
               fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -161,12 +155,14 @@ export default function HistoryPage() {
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-16 mb-10 relative">
                         <motion.div
-                          className="absolute left-0 top-[-8px] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 z-20"
+                          className="absolute left-0 top-[-8px] w-12 h-12 rounded-full border-[2px] border-[#0f172a] ml-32 z-20 flex items-center justify-center"
                           initial={{ opacity: 0, scale: 0.5 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.5, delay: 0.5 + index * 0.2, ease: "easeOut" }}
                           viewport={{ once: true }}
-                        />
+                        >
+                          <div className="w-4 h-4 rounded-full bg-[#0f172a]"></div>
+                        </motion.div>
                         <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
                           <h3 className="timeline-year text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 -translate-x-full">
                             {entry.year}
