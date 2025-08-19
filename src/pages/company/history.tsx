@@ -136,14 +136,6 @@ export default function HistoryPage() {
                 {content.timelineTitle}
               </motion.h2>
               <div className="max-w-5xl mx-auto relative pl-26 md:pl-36">
-
-                <motion.div
-                  className="timeline-container relative"
-                  variants={staggerContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                >
                 <motion.div
                   className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
                   initial={{ opacity: 0, height: 0 }}
@@ -151,6 +143,13 @@ export default function HistoryPage() {
                   transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
+                <motion.div
+                  className="timeline-container relative"
+                  variants={staggerContainerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                >
                   {content.timeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-16 mb-10 relative">
