@@ -70,7 +70,7 @@ const navItemsEng = [
     submenu: [
       { label: "Talent Philosophy", href: "/eng/careers/philosophy" },
       { label: "Recruit Notice", href: "/eng/careers/notice" },
-      { label: "Wellness", href: "/eng/careers/wellness" },
+      { label: "Wellness", href: "/eng/careers/wellnessMain" },
     ],
   },
   {

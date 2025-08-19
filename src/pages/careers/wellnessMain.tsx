@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import * as LucideIcons from "lucide-react";
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { useLangStore } from "@/stores/langStore";
 import Image from "next/image";
+import Head from "next/head";
+
 
 // --- Icon Mapping ---
 const iconMap = {
@@ -20,7 +23,7 @@ const iconMap = {
   anniversary: 'Gift',
   congratulations: 'HeartHandshake',
   alumni: 'Handshake',
-} as const; // 'as const' makes the keys explicitly typed as their string literals
+} as const;
 
 // Define a type for the icon keys to use in other types
 type IconKey = keyof typeof iconMap;
@@ -83,18 +86,6 @@ const wellnessData: Record<string, WellnessData> = {
           { title: "단체보험", description: "단체 상해보험 가입", iconKey: "insurance" },
         ],
       },
-      {
-        key: "additional",
-        title: "Additional",
-        subtitle: "기타",
-        heroImage: "https://placehold.co/1920x400/9b2c2c/ffffff?text=Additional",
-        items: [
-          { title: "포상제도", description: "우수사원 포상/장기근속자 포상", iconKey: "award" },
-          { title: "기념일 선물", description: "명절, 생일, 행사 등", iconKey: "anniversary" },
-          { title: "경조사", description: "경조금/경조휴가", iconKey: "congratulations" },
-          { title: "사우회", description: "경조금", iconKey: "alumni" },
-        ],
-      },
     ],
   },
   ENG: {
@@ -129,31 +120,13 @@ const wellnessData: Record<string, WellnessData> = {
           { title: "Group Insurance", description: "Group injury insurance subscription", iconKey: "insurance" },
         ],
       },
-      {
-        key: "additional",
-        title: "Additional",
-        subtitle: "Additional",
-        heroImage: "https://placehold.co/1920x400/9b2c2c/ffffff?text=Additional",
-        items: [
-          { title: "Award System", description: "Awards for excellent employees/long-term employees", iconKey: "award" },
-          { title: "Anniversary Gifts", description: "Holidays, birthdays, events, etc.", iconKey: "anniversary" },
-          { title: "Congratulatory and Condolence Affairs", description: "Congratulatory/condolence money and leave", iconKey: "congratulations" },
-          { title: "Alumni Association", description: "Condolence money", iconKey: "alumni" },
-        ],
-      },
     ],
   },
 };
 
 // --- Wellness Card Component ---
-// --- Wellness Card Component ---
 const WellnessCard = ({ item }: { item: WellnessItem }) => {
-  // Get the name of the icon from your custom map
   const iconName = iconMap[item.iconKey];
-
-  // Look up the component in LucideIcons. The key is guaranteed to be a string,
-  // but TypeScript doesn't know for certain it's a valid Lucide component.
-  // We use a type assertion to force the type.
   const IconComponent = LucideIcons[iconName as keyof typeof LucideIcons] as React.ComponentType<{ className?: string }>;
 
   return (
@@ -162,11 +135,6 @@ const WellnessCard = ({ item }: { item: WellnessItem }) => {
       className="p-6 bg-white rounded-xl shadow-lg border border-gray-100 flex flex-col items-center text-center"
     >
       <div className="w-20 h-20 mb-4 bg-gray-100 rounded-full flex items-center justify-center text-blue-500">
-        {/*
-          We render the component only if it exists.
-          Now TypeScript knows that IconComponent is a valid React component
-          because of the explicit type casting above.
-        */}
         {IconComponent && <IconComponent className="w-12 h-12" />}
       </div>
       <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
@@ -197,7 +165,7 @@ const WellnessPage = () => {
               <Image
                 src={section.heroImage}
                 alt={section.title}
-                fill // Use 'fill' to make the image fill the parent container
+                fill
                 className="w-full h-full object-cover object-center brightness-75"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
