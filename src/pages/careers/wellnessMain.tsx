@@ -16,8 +16,22 @@ const WellnessCard = ({ item }: { item: WellnessItem }) => {
   const iconName = iconMap[item.iconKey];
   const IconComponent = LucideIcons[iconName as keyof typeof LucideIcons] as React.ComponentType<{ className?: string }>;
 
+  // A more robust check to handle missing icons gracefully
   if (!IconComponent) {
-    return null;
+    // Return a fallback UI instead of null to maintain layout
+    return (
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        className="p-6 bg-white rounded-xl shadow-lg border border-gray-100 flex flex-col items-center text-center"
+      >
+        <div className="w-20 h-20 mb-4 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">
+          <LucideIcons.Image className="w-12 h-12" />
+        </div>
+        <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+        <p className="text-sm text-gray-500">{item.description}</p>
+        <p className="text-xs text-red-500 mt-2">Error: Icon not found</p>
+      </motion.div>
+    );
   }
 
   return (
