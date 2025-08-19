@@ -4,14 +4,16 @@ import * as LucideIcons from "lucide-react";
 // --- Icon Mapping ---
 export const iconMap = {
   dormitory: 'Home',
+  utensils: 'Utensils', // New icon key for "식사제공"
+  lounge: 'Coffee',
+  dumbbell: 'Dumbbell', // New icon key for "헬스장"
+  award: 'Award',
   commuterBus: 'BusFront',
   carpool: 'Car',
-  lounge: 'Coffee',
   resort: 'Tent',
   club: 'Users',
   health: 'HeartPulse',
   insurance: 'ShieldPlus',
-  award: 'Award',
   anniversary: 'Gift',
   congratulations: 'HeartHandshake',
   alumni: 'Handshake',
@@ -59,10 +61,10 @@ export const wellnessContent: Record<string, WellnessData> = {
         subtitle: "회사생활",
         heroImage: "/images/business/product/service_battery.png",
         items: [
-          { title: "기숙사 운영", description: "원거리 거주지 지원", iconKey: "dormitory" },
-          { title: "통근버스 운영", description: "오산, 동탄", iconKey: "commuterBus" },
-          { title: "카풀제도", description: "카풀 이용직원 지원금 지급", iconKey: "carpool" },
-          { title: "휴게실 운영", description: "안마기, 휴게실, 샤워실", iconKey: "lounge" },
+          { title: "기숙사", description: "원거리 거주자 지원", iconKey: "dormitory" },
+          { title: "식사제공", description: "점심식사 제공", iconKey: "utensils" },
+          { title: "휴게시설", description: "헬스장, 휴게실, 샤워실", iconKey: "dumbbell" },
+          { title: "상여금", description: "명절 상여 지급", iconKey: "award" },
         ],
       },
       {
@@ -93,10 +95,10 @@ export const wellnessContent: Record<string, WellnessData> = {
         subtitle: "Office Life",
         heroImage: "/images/business/product/service_battery.png",
         items: [
-          { title: "Dormitory Operation", description: "Support for long-distance residents", iconKey: "dormitory" },
-          { title: "Commuter Bus Operation", description: "Osan, Dongtan", iconKey: "commuterBus" },
-          { title: "Carpooling System", description: "Subsidy for carpool employees", iconKey: "carpool" },
-          { title: "Lounge Operation", description: "Massage chairs, lounges, showers", iconKey: "lounge" },
+          { title: "Dormitory", description: "Support for long-distance residents", iconKey: "dormitory" },
+          { title: "Meal Provision", description: "Lunch meal provided", iconKey: "utensils" },
+          { title: "Recreation Facilities", description: "Gym, lounges, showers", iconKey: "dumbbell" },
+          { title: "Bonus", description: "Holiday bonus provided", iconKey: "award" },
         ],
       },
       {
