@@ -66,16 +66,12 @@ export default function WellnessPage() {
         />
         <BreadcrumbSection path={currentData.hero.path} />
 
-        <motion.div
-          className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden"
-          initial={{ y: 200, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } as Transition }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
+        {/* This main div no longer has an animation, its content is visible from the start */}
+        <div className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden">
           <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain" style={{ backgroundImage: "url('/images/business/layer2.png')" }}></div>
           
           <div className="max-w-7xl mx-auto relative z-10">
-            {currentData.sections.map((section) => (
+            {currentData.sections.map((section, sectionIndex) => (
               <div key={section.key} className="mb-20">
                 <div className="relative h-64 overflow-hidden mb-12 rounded-lg shadow-lg">
                   <Image
@@ -90,29 +86,42 @@ export default function WellnessPage() {
                   </div>
                 </div>
 
-                <motion.div
-                  className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto"
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-                  }}
-                >
-                  {section.items.map((item: WellnessItem, idx) => (
-                    <motion.div
-                      key={idx}
-                      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                    >
-                      <WellnessCard item={item} />
-                    </motion.div>
-                  ))}
-                </motion.div>
+                {/* Conditionally render the grid with or without animation based on section index */}
+                {sectionIndex === 0 ? (
+                  // First section: no animation on the grid
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    {section.items.map((item: WellnessItem, idx) => (
+                      <div key={idx}>
+                        <WellnessCard item={item} />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  // Subsequent sections: animation on the grid
+                  <motion.div
+                    className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+                    }}
+                  >
+                    {section.items.map((item: WellnessItem, idx) => (
+                      <motion.div
+                        key={idx}
+                        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                      >
+                        <WellnessCard item={item} />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )}
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </Layout>
     </>
   );
