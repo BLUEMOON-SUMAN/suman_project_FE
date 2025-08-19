@@ -123,17 +123,17 @@ export default function ServicePage() {
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "제품 기술 소개 | 수만" : "Production Technology | SUMAN"}</title>
+        <title>{lang === "KOR" ? "제품 설계 소개 | 수만" : "Introduction to Product Design | SUMAN"}</title>
       </Head>
       <Layout>
         <HeroSection
-          title={lang === "KOR" ? "제품 기술 소개" : "Production Technology"}
+          title={lang === "KOR" ? "제품 설계 소개" : "Introduction to Product Design"}
           subtitle="SUMAN"
           backgroundImage="/images/sub_banner/business_hero.png"
         />
 
         <BreadcrumbSection
-          path={lang === "KOR" ? "사업분야 > 제품소개" : "Business > Production Technology"}
+          path={lang === "KOR" ? "사업분야 > 제품 솔계소개" : "Business > Introduction to Product Design"}
         />
         
         {/* 4. Products Section */}
