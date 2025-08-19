@@ -42,35 +42,7 @@ export const serviceContent = {
       { name: "투영기", image: "/images/business/equipment/equip12.png" },
       { name: "계측기", image: "/images/business/equipment/equip1.png" },
     ],
-    // product 영역
-    productCategories: [
-      {
-        label:"Secondary Battery",
-        name: "이차전지",
-        subtitle: "정밀 부품 / 모듈 설계",
-        image: "/images/business/product/service_battery.png",
-      },
-      {
-        label:"Electrical & Electronics",
-        name: "전기·전자",
-        subtitle: "정밀 부품 / 모듈 설계기술",
-        image: "/images/business/product/service_elec.png",
-      },
-      {
-        label: "Semiconductor",
-        name: "반도체",
-        subtitle: "정밀 부품 / 모듈 설계 / 자동화 기술 통합",
-        image: "/images/business/product/service_semi.png",
-      },
-      {
-        label: "Mobility",
-        name: "자동차",
-        subtitle: "정밀 가공 기술",
-        image: "/images/business/product/service_mob.png",
-      },
-    ],
-    footerText:
-      "고정밀 부품 / 모듈 설계 / 맞춤형 설비제작기술 / 고정밀 가공기술 / 모듈 제작 기술 / 솔루션 서비스 기술 융합",
+
   },
 
   // ----------------------------------------------
@@ -126,33 +98,7 @@ export const serviceContent = {
       },
       { name: "Measuring Instrument", image: "/images/business/equipment/equip1.png" },
     ],
-    productCategories: [
-      {
-        label: "Secondary Battery",
-        name: "Battery",
-        subtitle: "Precision Parts / Module Design",
-        image: "/images/business/product/service_battery.png",
-      },
-      {
-        label: "Electrical & Electronics",
-        name: "Electronics",
-        subtitle: "Precision Parts / Module Design Technology",
-        image: "/images/business/product/service_elec.png",
-      },
-      {
-        label: "Semiconductor",
-        name: "Semiconductor",
-        subtitle: "Precision Module Design / Automation",
-        image: "/images/business/product/service_semi.png",
-      },
-      {
-        label: "Mobility",
-        name: "Mobility",
-        subtitle: "Precision Machining",
-        image: "/images/business/product/service_mob.png",
-      },
-    ],
-    footerText:
-      "Integration of Precision Parts / Module Design / Custom Equipment Manufacturing / Precision Machining / Solution Services",
+
+
   },
 };

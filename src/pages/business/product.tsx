@@ -4,14 +4,14 @@ import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { motion, type Transition } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { serviceContent } from "@/data/service";
+import { serviceContent } from "@/data/product";
 import { useLangStore } from "@/stores/langStore";
 import Head from "next/head";
 
 export default function ServicePage() {
   const [showAllEquipment, setShowAllEquipment] = useState(false);
   const { lang } = useLangStore();
-  const { equipmentList, measurementEquipmentList, productCategories, footerText } =
+  const { productCategories, footerText } =
     serviceContent[lang];
   const section = serviceContent[lang].sectionList?.[0];
 

@@ -33,7 +33,7 @@ const navItemsKor = [
     submenu: [
       { label: "인재상", href: "/careers/philosophy" },
       { label: "채용공고", href: "/careers/notice" },
-      { label: "복리후생", href: "/careers/wellness" },
+      { label: "복리후생", href: "/careers/wellnessMain" },
     ],
   },
   {
