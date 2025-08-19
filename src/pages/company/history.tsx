@@ -136,6 +136,7 @@ export default function HistoryPage() {
                 {content.timelineTitle}
               </motion.h2>
               <div className="max-w-5xl mx-auto relative pl-26 md:pl-36">
+                {/* The vertical dashed line is now placed inside the list to ensure dynamic height */}
                 <motion.div
                   className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
                   initial={{ opacity: 0, height: 0 }}
@@ -154,7 +155,7 @@ export default function HistoryPage() {
                   {content.timeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-16 mb-10 relative">
-                        {/* New dynamic dot for each timeline entry */}
+                        {/* Dot is now placed and styled relative to each entry */}
                         <div className="absolute top-[18px] left-[150px] -translate-x-1/2 -translate-y-1/2 z-10">
                           <motion.div
                             className="w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200"
@@ -164,7 +165,7 @@ export default function HistoryPage() {
                             viewport={{ once: true }}
                           />
                         </div>
-                        {/* Year text, unchanged */}
+                        {/* Year text, correctly positioned relative to the dot */}
                         <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
                           <h3 className="timeline-year text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 -translate-x-full">
                             {entry.year}
@@ -203,7 +204,6 @@ export default function HistoryPage() {
                   ))}
                 </motion.div>
 
-                {/* The old static dots are now removed to prevent the visual error */}
               </div>
             </div>
           </section>
