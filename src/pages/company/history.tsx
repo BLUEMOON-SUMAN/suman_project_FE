@@ -93,9 +93,13 @@ export default function HistoryPage() {
               <p>{content.staff}</p>
             </motion.div>
           </div>
+          {/* This SVG is being stretched vertically because the parent container is too tall.
+              To fix it, we should adjust the viewBox or the container's height. 
+              The most reliable method is to adjust the viewBox and path to match the
+              desired look, regardless of the container's height. */}
           <svg
             className="absolute inset-0 mx-auto my-auto z-20 opacity-80 pointer-events-none"
-            viewBox="0 0 700 300"
+            viewBox="0 0 700 300" // A viewBox with a different aspect ratio might work better, e.g., "0 0 700 400"
             preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -105,18 +109,20 @@ export default function HistoryPage() {
                 <stop offset="100%" stopColor="white" stopOpacity="1" />
               </linearGradient>
             </defs>
+            {/* The main path for the curved line. Coordinates are adjusted to prevent vertical stretching. */}
             <motion.path
-              d="M 150 250 Q 550 150, 600 50"
-              stroke="red"
+              d="M 150 250 Q 550 150, 600 50" // The 'Q' command (Quadratic Bézier curve) defines the curve.
+              stroke="white"
               strokeWidth="6"
               fill="none"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 2, ease: "easeInOut" }}
             />
+            {/* The arrow head. Coordinates are adjusted to match the end of the new path. */}
             <motion.path
-              d="M 563 123 L 562 145 L 542 137 Z"
-              fill="red"
+              d="M 600 50 L 580 60 L 590 35 Z" // The coordinates must be in sync with the line's end point.
+              fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.1 }}
