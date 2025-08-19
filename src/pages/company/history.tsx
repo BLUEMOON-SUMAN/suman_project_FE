@@ -95,7 +95,7 @@ export default function HistoryPage() {
           </div>
           <svg
             className="absolute inset-0 mx-auto my-auto z-20 opacity-80 pointer-events-none"
-            viewBox="0 0 700 300"
+            viewBox="0 0 700 400"
             preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -106,23 +106,22 @@ export default function HistoryPage() {
               </linearGradient>
             </defs>
             <motion.path
-              d="M 150 250 Q 550 150, 600 50"
-              stroke="red"
-              strokeWidth="6"
+              d="M 100 350 Q 550 100, 650 50"
+              stroke="white"
+              strokeWidth="8"
               fill="none"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 2, ease: "easeInOut" }}
             />
             <motion.path
-              d="M 563 123 L 562 145 L 542 137 Z"
-              fill="red"
+              d="M 650 50 L 635 65 L 640 40 Z"
+              fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.1 }}
             />
           </svg>
-          
         </section>
 
         <div className="content-wrapper">
@@ -156,12 +155,14 @@ export default function HistoryPage() {
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-16 mb-10 relative">
                         <motion.div
-                          className="absolute left-0 top-[-8px] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 z-20"
+                          className="absolute left-0 top-[-8px] w-12 h-12 rounded-full border-[2px] border-[#0f172a] ml-32 z-20 flex items-center justify-center"
                           initial={{ opacity: 0, scale: 0.5 }}
                           whileInView={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.5, delay: 0.5 + index * 0.2, ease: "easeOut" }}
                           viewport={{ once: true }}
-                        />
+                        >
+                          <div className="w-4 h-4 rounded-full bg-[#0f172a]"></div>
+                        </motion.div>
                         <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
                           <h3 className="timeline-year text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 -translate-x-full">
                             {entry.year}
