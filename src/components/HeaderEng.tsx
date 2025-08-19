@@ -24,7 +24,8 @@ const navItemsEng = [
   {
     label: "Business",
     href: "/eng/business/service",
-    submenu: [{ label: "Production", href: "/eng/business/service" }],
+    submenu: [{ label: "Technology", href: "/eng/business/service" },
+      { label: "Product", href: "/eng/business/product" }],
   },
   {
     label: "Careers",
