@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import { motion, type Transition } from "framer-motion";
+import React from "react";
 import * as LucideIcons from "lucide-react";
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
@@ -7,7 +7,6 @@ import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { useLangStore } from "@/stores/langStore";
 import Image from "next/image";
 import Head from "next/head";
-
 
 // --- Icon Mapping ---
 const iconMap = {
@@ -149,55 +148,70 @@ const WellnessPage = () => {
   const currentData = wellnessData[lang] || wellnessData.KOR;
 
   return (
-    <Layout>
-      <HeroSection
-        title={currentData.hero.title}
-        subtitle={currentData.hero.subtitle}
-        backgroundImage={currentData.hero.heroImage}
-      />
-      <BreadcrumbSection path={currentData.hero.path} />
+    <>
+      <Head>
+        <title>{lang === "KOR" ? "복리후생 | 수만" : "Employee Wellness | SUMAN"}</title>
+      </Head>
+      <Layout>
+        <HeroSection
+          title={currentData.hero.title}
+          subtitle={currentData.hero.subtitle}
+          backgroundImage={currentData.hero.heroImage}
+        />
+        <BreadcrumbSection path={currentData.hero.path} />
 
-      <div className="content-wrapper bg-gray-50 py-20 px-4 md:px-8">
-        {currentData.sections.map((section) => (
-          <div key={section.key} className="mb-20">
-            {/* Section Hero */}
-            <div className="relative h-64 overflow-hidden mb-12 rounded-lg shadow-lg">
-              <Image
-                src={section.heroImage}
-                alt={section.title}
-                fill
-                className="w-full h-full object-cover object-center brightness-75"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-                <h2 className="text-2xl md:text-3xl font-extrabold mb-2">{section.title}</h2>
-                <p className="text-lg font-light">{section.subtitle}</p>
-              </div>
-            </div>
+        {/* This is the section with the same header style as products.tsx */}
+        <motion.div
+          className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden"
+          initial={{ y: 200, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } as Transition }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain" style={{ backgroundImage: "url('/images/business/layer2.png')" }}></div>
+          
+          <div className="max-w-7xl mx-auto relative z-10">
+            {currentData.sections.map((section) => (
+              <div key={section.key} className="mb-20">
+                {/* Section Hero */}
+                <div className="relative h-64 overflow-hidden mb-12 rounded-lg shadow-lg">
+                  <Image
+                    src={section.heroImage}
+                    alt={section.title}
+                    fill
+                    className="w-full h-full object-cover object-center brightness-75"
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
+                    <h2 className="text-2xl md:text-3xl font-extrabold mb-2">{section.title}</h2>
+                    <p className="text-lg font-light">{section.subtitle}</p>
+                  </div>
+                </div>
 
-            {/* Items Grid */}
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-              }}
-            >
-              {section.items.map((item, idx) => (
+                {/* Items Grid */}
                 <motion.div
-                  key={idx}
-                  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                  className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+                  }}
                 >
-                  <WellnessCard item={item} />
+                  {section.items.map((item, idx) => (
+                    <motion.div
+                      key={idx}
+                      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                    >
+                      <WellnessCard item={item} />
+                    </motion.div>
+                  ))}
                 </motion.div>
-              ))}
-            </motion.div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </Layout>
+        </motion.div>
+      </Layout>
+    </>
   );
 };
 
