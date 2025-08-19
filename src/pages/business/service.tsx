@@ -192,50 +192,6 @@ export default function ServicePage() {
             )}
           </div>
         </div>
-
-        {/* 3. Process Section */}
-        <motion.div
-          className="bg-white py-20 px-4 md:px-8 text-black rounded-[60px] mt-[-220px] relative z-10 pb-[250px]"
-          initial={{ y: 300, opacity: 1 }}
-          whileInView={{ y: 0, transition: { duration: 0.8, ease: "easeOut" } }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mt-10 mb-10">
-              Process
-            </h2>
-            <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3]">
-              {section?.process}
-              <br />
-              {section?.processsub}
-            </p>
-
-            <div className="mt-16 flex flex-col items-center">
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full mt-14">
-                {section?.processSteps.map((label, index) => (
-                  <>
-                    <div key={index} className="flex flex-col items-center text-center">
-                      <div className="w-24 h-24 relative mb-4">
-                        <Image
-                          src={processImages[index]}
-                          alt={label}
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                      <p className="text-lg font-semibold">{label}</p>
-                    </div>
-                    {index < section.processSteps.length - 1 && (
-                      <div className="hidden lg:flex items-center justify-center">
-                        <span className="text-4xl text-gray-400">→</span>
-                      </div>
-                    )}
-                  </>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </Layout>
     </>
   );
