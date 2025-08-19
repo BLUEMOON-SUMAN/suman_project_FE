@@ -4,93 +4,16 @@ import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { motion, type Transition } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-// import { serviceContent } from "@/data/product"; // This line is likely the source of the issue.
+import { serviceContent } from "@/data/product";
 import { useLangStore } from "@/stores/langStore";
 import Head from "next/head";
-
-// --- Mock Data Structure (REPLACE THIS WITH YOUR ACTUAL DATA) ---
-const serviceContent = {
-  KOR: {
-    productCategories: [
-      {
-        label: "Secondary Battery",
-        name: "이차전지",
-        subtitle: "전기자동차 배터리 팩용 부품 및 제어시스템",
-        image: "https://placehold.co/400x300/1e40af/ffffff?text=Battery",
-      },
-      {
-        label: "Electrical & Electronics",
-        name: "전기전자 부품",
-        subtitle: "전자기기용 핵심 부품 개발",
-        image: "https://placehold.co/400x300/155e75/ffffff?text=Electronics",
-      },
-      {
-        label: "Semiconductor",
-        name: "반도체",
-        subtitle: "차세대 반도체 공정 장비용 부품",
-        image: "https://placehold.co/400x300/065f46/ffffff?text=Semiconductor",
-      },
-      {
-        label: "Mobility",
-        name: "모빌리티",
-        subtitle: "첨단 모빌리티 시스템용 부품",
-        image: "https://placehold.co/400x300/9b2c2c/ffffff?text=Mobility",
-      },
-    ],
-    sectionList: [
-      {
-        production2: "정밀 부품, 모듈, 자동화 장비까지",
-        production2sub: "미래 산업에 필요한 핵심 솔루션을 제조합니다",
-      },
-    ],
-    footerText: "기술과 미래를 연결하는 선두기업, 수만",
-  },
-  ENG: {
-    productCategories: [
-      {
-        label: "Secondary Battery",
-        name: "Secondary Battery",
-        subtitle: "Components and control systems for electric vehicle battery packs",
-        image: "https://placehold.co/400x300/1e40af/ffffff?text=Battery",
-      },
-      {
-        label: "Electrical & Electronics",
-        name: "Electrical & Electronics",
-        subtitle: "Development of core components for electronic devices",
-        image: "https://placehold.co/400x300/155e75/ffffff?text=Electronics",
-      },
-      {
-        label: "Semiconductor",
-        name: "Semiconductor",
-        subtitle: "Components for next-generation semiconductor process equipment",
-        image: "https://placehold.co/400x300/065f46/ffffff?text=Semiconductor",
-      },
-      {
-        label: "Mobility",
-        name: "Mobility",
-        subtitle: "Components for advanced mobility systems",
-        image: "https://placehold.co/400x300/9b2c2c/ffffff?text=Mobility",
-      },
-    ],
-    sectionList: [
-      {
-        production2: "From precision parts and modules to automated equipment",
-        production2sub: "We manufacture core solutions required for future industries",
-      },
-    ],
-    footerText: "A leading company connecting technology with the future, SUMAN",
-  },
-};
-// --- End of Mock Data ---
-
 
 export default function ServicePage() {
   const [showAllEquipment, setShowAllEquipment] = useState(false);
   const { lang } = useLangStore();
-  
-  // Destructure serviceContent directly from your imported data
-  const { productCategories, footerText, sectionList } = serviceContent[lang];
-  const section = sectionList?.[0];
+  const { productCategories, footerText } =
+    serviceContent[lang];
+  const section = serviceContent[lang].sectionList?.[0];
 
   const processImages = [
     "/images/business/process/service_design.png",
@@ -123,21 +46,21 @@ export default function ServicePage() {
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "제품 설계 소개 | 수만" : "Introduction to Product Design | SUMAN"}</title>
+        <title>{lang === "KOR" ? "제품 설계 소개 " : "Introduction to Product Design "}</title>
       </Head>
       <Layout>
         <HeroSection
           title={lang === "KOR" ? "제품 설계 소개" : "Introduction to Product Design"}
-          subtitle="SUMAN"
           backgroundImage="/images/sub_banner/business_hero.png"
         />
 
         <BreadcrumbSection
-          path={lang === "KOR" ? "사업분야 > 제품 솔계소개" : "Business > Introduction to Product Design"}
+          path={lang === "KOR" ? "사업분야 > 제품소개" : "Business > Product Design"}
         />
-        
+
         {/* 4. Products Section */}
-        {section && ( // This check ensures the section only renders if data is available
+        {/* The conditional check `section &&` ensures the entire section renders only if the data exists. */}
+        {section && (
           <motion.div
             className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden"
             initial={{ y: 200, opacity: 0 }}
@@ -184,7 +107,7 @@ export default function ServicePage() {
                         </span>
                       )}
                       <h3 className="tracking-wide text-2xl font-semibold text-white mb-1 mt-5 transition-colors duration-300 group-hover:text-black">
-                          {product.name}
+                        {product.name}
                       </h3>
                       <p className="tracking-wide font-light text-[#CACACA] text-sm mb-7 transition-colors duration-300 group-hover:text-gray-700">
                         {product.subtitle}
