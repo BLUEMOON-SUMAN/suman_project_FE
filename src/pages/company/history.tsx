@@ -8,7 +8,8 @@ import { historyText } from "@/data/history";
 
 export default function HistoryPage() {
   const { lang } = useLangStore();
-  const content = historyText[lang];
+  const content = historyText?.[lang] ?? { timeline: [] };
+  const reversedTimeline = [...content.timeline].reverse();
 
   const fadeInRiseVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -150,7 +151,7 @@ export default function HistoryPage() {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
                 >
-                  {content.timeline.map((entry, index) => (
+                  {reversedTimeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-16 mb-10 relative">
                         <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
@@ -175,13 +176,15 @@ export default function HistoryPage() {
                           }}
                           viewport={{ once: true }}
                         >
-                          <p className={`text-lg font-semibold tracking-wide ${
-                            item.includes("⦁")
-                              ? "text-black font-bold"
-                              : item.includes("➔")
-                              ? "text-[#8C8C8C] text-base"
-                              : "text-[#4C4C4C]"
-                          }`}>
+                          <p
+                            className={`text-lg font-semibold tracking-wide ${
+                              item.includes("⦁")
+                                ? "text-black font-bold"
+                                : item.includes("➔")
+                                ? "text-[#8C8C8C] text-base"
+                                : "text-[#4C4C4C]"
+                            }`}
+                          >
                             {item}
                           </p>
                         </motion.div>
@@ -190,11 +193,10 @@ export default function HistoryPage() {
                   ))}
                 </motion.div>
 
-                {/* 점들 */}
-                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />                
+                {/* The dots */}
+                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />
                 <motion.div className="absolute left-0 top-[22%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />                
-
+                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />
               </div>
             </div>
           </section>
