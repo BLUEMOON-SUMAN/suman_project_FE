@@ -136,13 +136,7 @@ export default function HistoryPage() {
                 {content.timelineTitle}
               </motion.h2>
               <div className="max-w-5xl mx-auto relative pl-26 md:pl-36">
-                <motion.div
-                  className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
-                  initial={{ opacity: 0, height: 0 }}
-                  whileInView={{ opacity: 1, height: "100%" }}
-                  transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                />
+
                 <motion.div
                   className="timeline-container relative"
                   variants={staggerContainerVariants}
@@ -150,6 +144,13 @@ export default function HistoryPage() {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
                 >
+                <motion.div
+                  className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
+                  initial={{ opacity: 0, height: 0 }}
+                  whileInView={{ opacity: 1, height: "100%" }}
+                  transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                />
                   {content.timeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-16 mb-10 relative">
@@ -191,10 +192,10 @@ export default function HistoryPage() {
                 </motion.div>
 
                 {/* 점들 */}
-
-                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />                             
+                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />                
                 <motion.div className="absolute left-0 top-[22%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />                   
+                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />                
+
               </div>
             </div>
           </section>
