@@ -143,6 +143,7 @@ export default function HistoryPage() {
                   transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
+                
                 <motion.div
                   className="timeline-container relative"
                   variants={staggerContainerVariants}
@@ -153,11 +154,23 @@ export default function HistoryPage() {
                   {content.timeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-16 mb-10 relative">
+                        {/* New dynamic dot for each timeline entry */}
+                        <div className="absolute top-[18px] left-[150px] -translate-x-1/2 -translate-y-1/2 z-10">
+                          <motion.div
+                            className="w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200"
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+                            viewport={{ once: true }}
+                          />
+                        </div>
+                        {/* Year text, unchanged */}
                         <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
                           <h3 className="timeline-year text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 -translate-x-full">
                             {entry.year}
                           </h3>
                         </div>
+                        {/* Label box, unchanged */}
                         <div className="bg-gray-100 p-6 rounded-[30px] w-full ml-[60px] md:ml-[100px]">
                           <p className="text-2xl font-bold text-black tracking-wide ml-4">{entry.label}</p>
                         </div>
@@ -190,11 +203,7 @@ export default function HistoryPage() {
                   ))}
                 </motion.div>
 
-                {/* 점들 */}
-                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />                
-                <motion.div className="absolute left-0 top-[22%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />                
-
+                {/* The old static dots are now removed to prevent the visual error */}
               </div>
             </div>
           </section>
