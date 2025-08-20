@@ -157,36 +157,48 @@ export default function TalentPage() {
               viewport={{ once: true, amount: 0.3 }}
               variants={staggerContainerVariants}
             >
-              {/* Top row with 3 cards */}
-              <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 w-full">
-                {traits.slice(0, 3).map((trait) => (
-                  <motion.div
-                    key={trait.key}
-                    className="w-full max-w-xs sm:max-w-sm md:max-w-md"
-                    variants={itemRiseVariants}
-                  >
-                    <TalentCard
-                      traitData={{ title: trait.title, desc: trait.desc }}
-                      bgImage={trait.bgImage}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-              
-              {/* Bottom row with 2 cards centered */}
-              <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 w-full">
-                {traits.slice(3, 5).map((trait) => (
-                  <motion.div
-                    key={trait.key}
-                    className="w-full max-w-xs sm:max-w-sm md:max-w-md"
-                    variants={itemRiseVariants}
-                  >
-                    <TalentCard
-                      traitData={{ title: trait.title, desc: trait.desc }}
-                      bgImage={trait.bgImage}
-                    />
-                  </motion.div>
-                ))}
+              {/* Container for all cards */}
+              <div className="w-full max-w-6xl mx-auto">
+                {/* Top row with 3 cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 mb-8 sm:mb-10 md:mb-12">
+                  {traits.slice(0, 3).map((trait) => (
+                    <motion.div
+                      key={trait.key}
+                      className="flex justify-center"
+                      variants={itemRiseVariants}
+                    >
+                      <TalentCard
+                        traitData={{ title: trait.title, desc: trait.desc }}
+                        bgImage={trait.bgImage}
+                        className="w-full"
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+                
+                {/* Bottom row with 2 cards centered */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+                  {/* Empty space on the left */}
+                  <div className="hidden md:block"></div>
+                  
+                  {/* Two cards in the middle */}
+                  {traits.slice(3, 5).map((trait) => (
+                    <motion.div
+                      key={trait.key}
+                      className="flex justify-center"
+                      variants={itemRiseVariants}
+                    >
+                      <TalentCard
+                        traitData={{ title: trait.title, desc: trait.desc }}
+                        bgImage={trait.bgImage}
+                        className="w-full"
+                      />
+                    </motion.div>
+                  ))}
+                  
+                  {/* Empty space on the right */}
+                  <div className="hidden md:block"></div>
+                </div>
               </div>
             </motion.div>
           </div>
