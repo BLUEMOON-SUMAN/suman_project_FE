@@ -135,7 +135,7 @@ export default function HistoryPage() {
                 
                 {/* Dot kedua di samping 2015 - 2020 */}
                 <motion.div 
-                  className="absolute left-[150px] top-[47.5%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
+                  className="absolute left-[150px] top-[47.3%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }}
