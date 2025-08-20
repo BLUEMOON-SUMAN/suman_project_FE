@@ -20,7 +20,7 @@ function TalentCard({
     <motion.div
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative flex flex-col justify-end min-h-[360px] rounded-2xl overflow-hidden shadow-xl group"
+      className="relative flex flex-col justify-end min-h-[300px] rounded-2xl overflow-hidden shadow-xl group"
     >
       {/* Background Image */}
       <Image
@@ -156,38 +156,15 @@ export default function TalentPage() {
               </div>
             </div>
 
-            {/* Card Grid */}
+            {/* Combined Card Grid */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5 md:gap-4 lg:gap-4"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-4 lg:gap-4 mx-auto md:max-w-6xl"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={staggerContainerVariants}
             >
-              {/* Top 3 cards */}
-              {traits.slice(0, 3).map((trait) => (
-                <motion.div
-                  key={trait.key}
-                  className="col-span-1"
-                  variants={itemRiseVariants}
-                >
-                  <TalentCard
-                    traitData={{ title: trait.title, desc: trait.desc }}
-                    bgImage={trait.bgImage}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-            
-            {/* Bottom 2 cards (centered) */}
-            <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-4 lg:gap-4 mt-5 md:w-2/3 lg:w-2/3 mx-auto"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={staggerContainerVariants}
-            >
-              {traits.slice(3, 5).map((trait) => (
+              {traits.map((trait) => (
                 <motion.div
                   key={trait.key}
                   className="col-span-1"
