@@ -7,18 +7,21 @@ import { useState } from "react";
 import { serviceContent } from "@/data/service";
 import { useLangStore } from "@/stores/langStore";
 import Head from "next/head";
-interface sectionList {
-  title: string;
-  subtitle: string;
-}
 
 export default function ServicePage() {
   const [showAllEquipment, setShowAllEquipment] = useState(false);
   const { lang } = useLangStore();
-  const { equipmentList, measurementEquipmentList } =
+  const { equipmentList, measurementEquipmentList} =
     serviceContent[lang];
-  const allEquipment = [...equipmentList, ...measurementEquipmentList];
   const section = serviceContent[lang].sectionList?.[0];
+
+  const processImages = [
+    "/images/business/process/service_design.png",
+    "/images/business/process/service_order.png",
+    "/images/business/process/service_product.png",
+    "/images/business/process/service_test.png",
+    "/images/business/process/service_deliver.png",
+  ];
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.9 },
@@ -43,21 +46,24 @@ export default function ServicePage() {
   return (
     <>
       <Head>
-        <title>기술소개 | 수만</title>
+        <title>{lang === "KOR" ? "기술소개 | 수만" : "Technology | SUMAN"}</title>
       </Head>
       <Layout>
         <HeroSection
-          title="기술 소개"
+          title={lang === "KOR" ? "기술 소개" : "Technology"}
           subtitle="SUMAN"
-          backgroundImage="/images/business_hero.png"
+          backgroundImage="/images/sub_banner/business_hero.png"
         />
 
-        <BreadcrumbSection path="사업분야 > 기술소개" />
+        <BreadcrumbSection
+          path={lang === "KOR" ? "사업분야 > 기술소개" : "Business > Technology"}
+        />
 
-        <div className="bg-white py-20 px-4 md:px-8 flex justify-center items-center">
-          <div className="max-w-7xl mx-auto w-full">
+        {/* 1. Main Equipment Section */}
+        <div className="bg-white py-20">
+          <div className="max-w-7xl mx-auto">
             <motion.h2
-              className="text-4xl font-bold mb-4 text-gray-800 text-left"
+              className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-10"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
@@ -66,7 +72,7 @@ export default function ServicePage() {
               Main Equipment
             </motion.h2>
             <motion.p
-              className="text-xl text-left text-gray-600"
+              className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3]"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
@@ -79,85 +85,106 @@ export default function ServicePage() {
           </div>
         </div>
 
-        <div className="bg-gray-800 pt-20 pb-[250px] relative z-0 px-4 md:px-8 flex justify-center items-center">
-          <div className="max-w-7xl mx-auto w-full">
+        {/* 2. 생산가공 / 측정장비 Section */}
+        <div className="relative z-0 bg-[#000B24] pt-20 pb-60">
+          <div className="absolute inset-0 pointer-events-none">
+            <Image
+              src="/images/business/layer.png"
+              alt="배경 이미지"
+              fill
+              style={{ objectFit: "cover", objectPosition: "top" }}
+              priority
+            />
+          </div>
+
+          <div className="max-w-7xl mx-auto ">
             <motion.div
-              className={`transition-all duration-500 ease-in-out ${
+              className={`relative transition-all duration-500 ease-in-out ${
                 showAllEquipment
                   ? "max-h-[5000px] overflow-visible"
-                  : "max-h-[400px] overflow-hidden"
+                  : "max-h-[530px] overflow-hidden"
               }`}
             >
-              <h3 className="text-2xl font-semibold text-white mb-8">
+              {/* 생산가공 / 조립 */}
+              <motion.button
+                className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-16"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={leftAlignTextVariants}
+              >
                 {section?.production}
-              </h3>
+              </motion.button>
+
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 {equipmentList.map((equipment, index) => (
                   <motion.div
                     key={`prod-${index}`}
-                    className="bg-gray-700 rounded-lg overflow-hidden shadow-md flex flex-col items-center justify-center p-4"
+                    className="relative bg-white/10 rounded-lg whitespace-pre-line overflow-hidden shadow-lg w-full h-50 p-2 border-2 border-gray-400/10"
                     variants={itemVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: true, amount: 0.3 }}
                   >
-                    {equipment.image && (
-                      <div className="w-full h-24 relative mb-2">
+                    <div className="w-full h-28 relative mb-2">
+                      {equipment.image && (
                         <Image
                           src={equipment.image}
                           alt={equipment.name}
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded"
+                          fill
+                          style={{ objectFit: "cover" }}
+                          className="rounded-[10px]"
                         />
-                      </div>
-                    )}
-                    <p className="text-md font-medium text-white text-center">
-                      {equipment.name}
-                    </p>
+                      )}
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full h-1/3 bg-[#434343]/30 text-center py-2 flex items-center justify-center border border-gray-500/10 ">
+                      <p className="text-base font-medium text-white text-center">
+                        {equipment.name}
+                      </p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
 
-              <h3 className="text-2xl font-semibold text-white mt-12 mb-8">
+              {/* 신뢰성 (측정 / 분석) */}
+              <button className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-16 mt-28">
                 {section?.measurement}
-              </h3>
+              </button>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                {" "}
                 {measurementEquipmentList.map((equipment, index) => (
                   <motion.div
                     key={`meas-${index}`}
-                    className="bg-gray-700 rounded-lg overflow-hidden shadow-md flex flex-col items-center justify-center p-4"
+                    className="relative bg-white/10 rounded-lg whitespace-pre-line overflow-hidden shadow-lg w-full h-50 p-2 border-2 border-gray-400/10"
                     variants={itemVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: true, amount: 0.3 }}
                   >
-                    {equipment.image && (
-                      <div className="w-full h-24 relative mb-2">
-                        {" "}
+                    <div className="w-full h-28 relative mb-2">
+                      {equipment.image && (
                         <Image
                           src={equipment.image}
                           alt={equipment.name}
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded"
+                          fill
+                          className="object-cover rounded-[10px]"
                         />
-                      </div>
-                    )}
-                    <p className="text-md font-medium text-white text-center">
-                      {equipment.name}
-                    </p>
+                      )}
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full h-1/3 bg-[#434343]/30 text-center py-2 flex items-center justify-center border border-gray-500/10 ">
+                      <p className="text-base font-medium text-white text-center">
+                        {equipment.name}
+                      </p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {allEquipment.length > initialDisplayCount && (
-              <div className="mt-8 text-right">
+            {equipmentList.length + measurementEquipmentList.length > initialDisplayCount && (
+              <div className="mt-10 mb-10 text-right">
                 <button
                   onClick={() => setShowAllEquipment(!showAllEquipment)}
-                  className="text-blue-400 hover:text-blue-300 font-semibold cursor-pointer"
+                  className="text-lg text-gray-200 hover:text-white font-md cursor-pointer"
                 >
                   {showAllEquipment ? "간략히 보기" : "전체 설비 보기"} →
                 </button>
@@ -166,125 +193,47 @@ export default function ServicePage() {
           </div>
         </div>
 
+        {/* 3. Process Section */}
         <motion.div
-          className="bg-white py-20 px-4 md:px-8 text-black rounded-t-xl mt-[-200px] relative z-10 pb-[250px] flex justify-center items-center"
+          className="bg-white py-20 px-4 md:px-8 text-black rounded-[60px] mt-[-220px] relative z-10 pb-[250px]"
           initial={{ y: 300, opacity: 1 }}
           whileInView={{ y: 0, transition: { duration: 0.8, ease: "easeOut" } }}
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="max-w-7xl mx-auto w-full">
-            {" "}
-            <h2 className="text-4xl font-bold mb-4">Process</h2>
-            <p className="text-lg mb-8 leading-relaxed">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mt-10 mb-10">
+              Process
+            </h2>
+            <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3]">
               {section?.process}
               <br />
               {section?.processsub}
             </p>
+
             <div className="mt-16 flex flex-col items-center">
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 relative mb-4">
-                    <Image
-                      src="/images/service_design.png"
-                      alt="컨셉 및 개발 / 가공설계"
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                  <p className="text-lg font-semibold">
-                    컨셉 및 개발 / 가공설계
-                  </p>
-                </div>
-                <div className="hidden lg:flex items-center justify-center">
-                  <span className="text-4xl text-gray-400">→</span>
-                </div>
-
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 relative mb-4">
-                    <Image
-                      src="/images/service_order.png"
-                      alt="발주 (소재/부품)"
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                  <p className="text-lg font-semibold">
-                    발주
-                    <br />
-                    (소재/부품)
-                  </p>
-                </div>
-                <div className="hidden lg:flex items-center justify-center">
-                  <span className="text-4xl text-gray-400">→</span>
-                </div>
-
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 relative mb-4">
-                    <Image
-                      src="/images/service_product.png"
-                      alt="가공/제작"
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                  <p className="text-lg font-semibold">가공/제작</p>
-                </div>
-                <div className="hidden lg:flex items-center justify-center">
-                  <span className="text-4xl text-gray-400">→</span>
-                </div>
-
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 relative mb-4">
-                    <Image
-                      src="/images/service_test.png"
-                      alt="최종검사"
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                  <p className="text-lg font-semibold">최종검사</p>
-                </div>
-                <div className="hidden lg:flex items-center justify-center">
-                  <span className="text-4xl text-gray-400">→</span>
-                </div>
-
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-24 h-24 relative mb-4">
-                    <Image
-                      src="/images/service_deliver.png"
-                      alt="납품 및 피드백"
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                  <p className="text-lg font-semibold">납품 및 피드백</p>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 w-full mt-14">
+                {section?.processSteps.map((label, index) => (
+                  <>
+                    <div key={index} className="flex flex-col items-center text-center">
+                      <div className="w-24 h-24 relative mb-4">
+                        <Image
+                          src={processImages[index]}
+                          alt={label}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                      <p className="text-lg font-semibold">{label}</p>
+                    </div>
+                    {index < section.processSteps.length - 1 && (
+                      <div className="hidden lg:flex items-center justify-center">
+                        <span className="text-4xl text-gray-400">→</span>
+                      </div>
+                    )}
+                  </>
+                ))}
               </div>
             </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="bg-gray-800 py-20 px-4 md:px-8 text-white rounded-t-xl mt-[-200px] relative z-20 overflow-hidden flex justify-center items-center" // overflow-hidden 추가
-          initial={{ y: 200, opacity: 0 }}
-          whileInView={{
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.8, ease: "easeOut" },
-          }}
-          viewport={{ once: true, amount: 0.1 }}
-        >
-          <div className="absolute inset-0"></div>
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url('/images/service_product_bg.png')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            <div className="absolute inset-0 bg-gray-800 opacity-90"></div>{" "}
           </div>
         </motion.div>
       </Layout>
