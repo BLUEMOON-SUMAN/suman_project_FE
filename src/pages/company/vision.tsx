@@ -190,14 +190,14 @@ export default function VisionPage() {
               </div>
               <div className="w-full flex justify-center relative mt-8 md:mt-12">
                 {/* Updated SVG container with responsive sizing */}
-                <div className="w-full max-w-4xl mx-auto aspect-video relative">
+                <div className="w-full max-w-5xl mx-auto aspect-video relative">
                   <svg
                     width="100%"
                     height="100%"
                     viewBox="0 0 1047 900"
                     preserveAspectRatio="xMidYMid meet"
                     className="vision-infographic-svg"
-                    style={{ transform: 'scale(0.8)' }} // 20% smaller
+                    style={{ transform: 'scale(0.9)' }} // Changed from 0.8 to 0.9 (10% bigger)
                   >
                     {isClient &&
                       milestones.map((milestone, idx) => (
