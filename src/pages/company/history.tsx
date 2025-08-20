@@ -100,22 +100,29 @@ export default function HistoryPage() {
           >
             <defs>
               <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="white" stopOpacity="0" />
-                <stop offset="100%" stopColor="white" stopOpacity="1" />
+                <stop offset="0%" stopColor="#ff0000" stopOpacity="0.7" />
+                <stop offset="100%" stopColor="#ff0000" stopOpacity="1" />
+              </linearGradient>
+              <linearGradient id="arrowhead-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#ff3333" />
+                <stop offset="100%" stopColor="#cc0000" />
               </linearGradient>
             </defs>
             <motion.path
               d="M 150 233 Q 460 243, 555 138"
               stroke="url(#arrow-gradient)"
               strokeWidth="6"
+              strokeLinecap="round"
               fill="none"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 2, ease: "easeInOut" }}
             />
             <motion.path
-              d="M 563 123 L 562 145 L 542 137 Z"
-              fill="white"
+              d="M 555 138 L 540 128 L 540 148 Z"
+              fill="url(#arrowhead-gradient)"
+              stroke="#cc0000"
+              strokeWidth="2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.1 }}
