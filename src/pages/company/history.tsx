@@ -191,9 +191,9 @@ export default function HistoryPage() {
                   viewport={{ once: true }}
                 />
                 
-                {/* Dot ketiga di samping 2014 */}
+                {/* Dot ketiga di samping 2014 - moved 10% lower */}
                 <motion.div 
-                  className="absolute left-[150px] top-[70%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
+                  className="absolute left-[150px] top-[80%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}

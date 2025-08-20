@@ -20,7 +20,7 @@ function TalentCard({
     <motion.div
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative flex flex-col justify-end min-h-[400px] rounded-2xl overflow-hidden shadow-xl group"
+      className="relative flex flex-col justify-end min-h-[360px] rounded-2xl overflow-hidden shadow-xl group"
     >
       {/* Background Image */}
       <Image
@@ -158,7 +158,7 @@ export default function TalentPage() {
 
             {/* Card Grid */}
             <motion.div
-              className="grid grid-cols-12 gap-6"
+              className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5 md:gap-4 lg:gap-4"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
@@ -168,7 +168,7 @@ export default function TalentPage() {
               {traits.slice(0, 3).map((trait) => (
                 <motion.div
                   key={trait.key}
-                  className="col-span-12 md:col-span-4"
+                  className="col-span-1"
                   variants={itemRiseVariants}
                 >
                   <TalentCard
@@ -179,24 +179,18 @@ export default function TalentPage() {
               ))}
 
               {/* Bottom 2 cards (centered) */}
-              <motion.div
-                className="col-span-12 md:col-start-3 md:col-span-4"
-                variants={itemRiseVariants}
-              >
-                <TalentCard
-                  traitData={{ title: traits[3].title, desc: traits[3].desc }}
-                  bgImage={traits[3].bgImage}
-                />
-              </motion.div>
-              <motion.div
-                className="col-span-12 md:col-span-4"
-                variants={itemRiseVariants}
-              >
-                <TalentCard
-                  traitData={{ title: traits[4].title, desc: traits[4].desc }}
-                  bgImage={traits[4].bgImage}
-                />
-              </motion.div>
+              {traits.slice(3, 5).map((trait) => (
+                <motion.div
+                  key={trait.key}
+                  className="col-span-1"
+                  variants={itemRiseVariants}
+                >
+                  <TalentCard
+                    traitData={{ title: trait.title, desc: trait.desc }}
+                    bgImage={trait.bgImage}
+                  />
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>
