@@ -166,17 +166,17 @@ export default function VisionPage() {
 
         {/* Vision Section */}
         <motion.section
-          className="vision-section bg-white py-20 px-4 md:px-8"
+          className="vision-section bg-white py-12 md:py-20 px-4 md:px-8"
           variants={fadeInRiseVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-16 text-left tracking-wide">
+            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-8 md:mb-16 text-left tracking-wide">
               Vision
             </h2>
-            <div className="vision-neo-area mt-12 flex flex-col items-center">
+            <div className="vision-neo-area mt-8 md:mt-12 flex flex-col items-center">
               <div className="w-full text-left">
                 <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-gray-800 mb-2">
                   {main.topLabel}
@@ -188,77 +188,80 @@ export default function VisionPage() {
                   {main.blackTitle}
                 </h3>
               </div>
-              <div className="w-full flex justify-center relative mt-12">
-                <svg
-                  width="100%"
-                  height="850px"
-                  viewBox="0 0 1047 900"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="vision-infographic-svg"
-                >
-                  {isClient &&
-                    milestones.map((milestone, idx) => (
-                      <g
-                        key={milestone.year}
-                        className="group cursor-pointer"
-                        onMouseEnter={() => setHoveredSection(milestone.year)}
-                        onMouseLeave={() => setHoveredSection(null)}
-                      >
-                        <image
-                          href={`/images/company/vision/vision_arrow${3 - idx}.png`}
-                          x={idx === 0 ? "-6" : idx === 1 ? "79" : "486"}
-                          y={idx === 0 ? "169" : idx === 1 ? "499" : "0"}
-                          width={idx === 0 ? "270" : idx === 1 ? "470" : "578"}
-                          height={idx === 0 ? "420" : idx === 1 ? "415" : "827"}
-                          className="transition-all duration-300 group-hover:opacity-70 group-hover:scale-[1.02] filter brightness-50"
-                        />
-                        <text
-                          x={idx === 0 ? "110" : idx === 1 ? "310" : "750"}
-                          y={idx === 0 ? "350" : idx === 1 ? "650" : "400"}
-                          fill="white"
-                          fontSize={idx === 2 ? "70" : idx === 1 ? "60" : "50"}
-                          fontWeight="bold"
-                          textAnchor="middle"
-                          className="transition-all duration-300 group-hover:fill-gray-200"
+              <div className="w-full flex justify-center relative mt-8 md:mt-12">
+                {/* Updated SVG container with responsive sizing */}
+                <div className="w-full max-w-4xl mx-auto aspect-video relative">
+                  <svg
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 1047 900"
+                    preserveAspectRatio="xMidYMid meet"
+                    className="vision-infographic-svg"
+                    style={{ transform: 'scale(0.8)' }} // 20% smaller
+                  >
+                    {isClient &&
+                      milestones.map((milestone, idx) => (
+                        <g
+                          key={milestone.year}
+                          className="group cursor-pointer"
+                          onMouseEnter={() => setHoveredSection(milestone.year)}
+                          onMouseLeave={() => setHoveredSection(null)}
                         >
-                          {milestone.year}
-                        </text>
-                        <ArrowSVG
-                          x={idx === 0 ? 50 : idx === 1 ? 235 : 660}
-                          y={(idx === 0 ? 380 : idx === 1 ? 680 : 430) - 10}
-                          className={`transition-opacity duration-300 ${
-                            hoveredSection === milestone.year
-                              ? "opacity-0"
-                              : "opacity-100"
-                          }`}
-                          arrowLength={idx === 0 ? 130 : idx === 1 ? 160 : 190}
-                        />
-                        <foreignObject
-                          x={idx === 0 ? "0" : idx === 1 ? "210" : "650"}
-                          y={idx === 0 ? "380" : idx === 1 ? "670" : "420"}
-                          width="230"
-                          height="80"
-                          className={`transition-opacity duration-300 ${
-                            hoveredSection === milestone.year
-                              ? "opacity-100"
-                              : "opacity-0"
-                          }`}
-                        >
-                          <div className="text-xl text-center text-white whitespace-pre-line">
-                            {milestone.text}
-                          </div>
-                        </foreignObject>
-                      </g>
-                    ))}
-                </svg>
+                          <image
+                            href={`/images/company/vision/vision_arrow${3 - idx}.png`}
+                            x={idx === 0 ? "-6" : idx === 1 ? "79" : "486"}
+                            y={idx === 0 ? "169" : idx === 1 ? "499" : "0"}
+                            width={idx === 0 ? "270" : idx === 1 ? "470" : "578"}
+                            height={idx === 0 ? "420" : idx === 1 ? "415" : "827"}
+                            className="transition-all duration-300 group-hover:opacity-70 group-hover:scale-[1.02] filter brightness-50"
+                          />
+                          <text
+                            x={idx === 0 ? "110" : idx === 1 ? "310" : "750"}
+                            y={idx === 0 ? "350" : idx === 1 ? "650" : "400"}
+                            fill="white"
+                            fontSize={idx === 2 ? "70" : idx === 1 ? "60" : "50"}
+                            fontWeight="bold"
+                            textAnchor="middle"
+                            className="transition-all duration-300 group-hover:fill-gray-200"
+                          >
+                            {milestone.year}
+                          </text>
+                          <ArrowSVG
+                            x={idx === 0 ? 50 : idx === 1 ? 235 : 660}
+                            y={(idx === 0 ? 380 : idx === 1 ? 680 : 430) - 10}
+                            className={`transition-opacity duration-300 ${
+                              hoveredSection === milestone.year
+                                ? "opacity-0"
+                                : "opacity-100"
+                            }`}
+                            arrowLength={idx === 0 ? 130 : idx === 1 ? 160 : 190}
+                          />
+                          <foreignObject
+                            x={idx === 0 ? "0" : idx === 1 ? "210" : "650"}
+                            y={idx === 0 ? "380" : idx === 1 ? "670" : "420"}
+                            width="230"
+                            height="80"
+                            className={`transition-opacity duration-300 ${
+                              hoveredSection === milestone.year
+                                ? "opacity-100"
+                                : "opacity-0"
+                            }`}
+                          >
+                            <div className="text-xl text-center text-white whitespace-pre-line">
+                              {milestone.text}
+                            </div>
+                          </foreignObject>
+                        </g>
+                      ))}
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
         </motion.section>
 
         {/* Core Value Section */}
-        <section className="core-value-section bg-white py-20 px-4 md:px-8">
+        <section className="core-value-section bg-white py-12 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-4 text-left tracking-wide">
               Core Value
@@ -273,7 +276,7 @@ export default function VisionPage() {
             <br />
             <br />
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-4 gap-x-12 gap-y-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 lg:gap-x-12 gap-y-8"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -282,7 +285,7 @@ export default function VisionPage() {
               {coreValues.map((value, idx) => (
                 <motion.div
                   key={idx}
-                  className="relative flex flex-col justify-end p-4 shadow-md overflow-hidden hover:scale-105 transition-transform duration-300 ease-out min-h-[380px]"
+                  className="relative flex flex-col justify-end p-4 shadow-md overflow-hidden hover:scale-105 transition-transform duration-300 ease-out min-h-[320px] md:min-h-[380px]"
                   variants={itemRiseVariants}
                   style={{
                     backgroundImage: `url(/images/company/vision/vision_${
@@ -301,12 +304,12 @@ export default function VisionPage() {
                         "polygon(30px 0%, 100% 0%, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0% 100%, 0% 30px)",
                     }}
                   ></div>
-                  <div className="relative text-white flex flex-col flex-grow justify-start pt-60">
+                  <div className="relative text-white flex flex-col flex-grow justify-start pt-48 md:pt-60">
                     {" "}
-                    <h3 className="text-[25px] font-semibold mb-2">
+                    <h3 className="text-[20px] md:text-[25px] font-semibold mb-2">
                       {value.title}
                     </h3>
-                    <p className="text-[15px] whitespace-pre-line">
+                    <p className="text-[13px] md:text-[15px] whitespace-pre-line">
                       {value.desc}
                     </p>
                   </div>
@@ -318,7 +321,7 @@ export default function VisionPage() {
 
         {/* R&D Section */}
         <motion.section
-          className="rnd-section bg-[#010104] text-white py-20 px-4 md:px-8 rounded-t-3xl overflow-hidden relative"
+          className="rnd-section bg-[#010104] text-white py-12 md:py-20 px-4 md:px-8 rounded-t-3xl overflow-hidden relative"
           variants={rndSectionRiseVariants}
           initial="hidden"
           whileInView="visible"
@@ -331,33 +334,33 @@ export default function VisionPage() {
           }}
         >
           <div className="max-w-7xl mx-auto relative z-10">
-            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-white mb-18 text-left tracking-wide ">
+            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-white mb-12 md:mb-18 text-left tracking-wide ">
               {rnd.title}
             </h2>
-            <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-12 text-left whitespace-pre-line tracking-wide">
+            <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-8 md:mb-12 text-left whitespace-pre-line tracking-wide">
               {rnd.subtitle}
             </p>
-            <div className="rnd-content flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="rnd-content flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
               <div className="md:w-1/2 flex flex-col items-end pr-0">
                 <motion.div
-                  className="bg-white/40 rounded-4xl p-3 mb-4 w-72 h-23 backdrop-blur-sm"
+                  className="bg-white/40 rounded-4xl p-3 mb-4 w-full max-w-72 h-20 md:h-23 backdrop-blur-sm"
                   variants={rndBoxLeftInVariants}
                 >
-                  <p className="text-[25px] text-white font-semibold mb-2 flex items-center justify-center">
+                  <p className="text-[20px] md:text-[25px] text-white font-semibold mb-2 flex items-center justify-center">
                     {rnd.leftBox1Title}
                   </p>
-                  <p className="text-[15px] text-white flex items-center justify-center">
+                  <p className="text-[13px] md:text-[15px] text-white flex items-center justify-center">
                     {rnd.leftBox1Desc}
                   </p>
                 </motion.div>
                 <motion.div
-                  className="bg-white/40 rounded-4xl p-3 mb-4 w-72 h-23 backdrop-blur-sm"
+                  className="bg-white/40 rounded-4xl p-3 mb-4 w-full max-w-72 h-20 md:h-23 backdrop-blur-sm"
                   variants={rndBoxLeftInVariants}
                 >
-                  <p className="text-[25px] text-white font-semibold mb-2 flex items-center justify-center">
+                  <p className="text-[20px] md:text-[25px] text-white font-semibold mb-2 flex items-center justify-center">
                     {rnd.leftBox2Title}
                   </p>
-                  <p className="text-[15px] text-white flex items-center justify-center">
+                  <p className="text-[13px] md:text-[15px] text-white flex items-center justify-center">
                     {rnd.leftBox2Desc}
                   </p>
                 </motion.div>
@@ -375,7 +378,7 @@ export default function VisionPage() {
                 >
                   <mask
                     id={`mask0_${lang}`}
-                    style={{ maskType: "alpha" }} // Corrected line: Removed trailing comma if any, and ensured comment is outside the style object if present.
+                    style={{ maskType: "alpha" }}
                     maskUnits="userSpaceOnUse"
                     x="0"
                     y="0"
@@ -413,18 +416,18 @@ export default function VisionPage() {
               </motion.div>
               <div className="md:w-1/2 flex flex-col justify-center pl-0">
                 <motion.div
-                  className="relative w-full h-[400px] bg-cover bg-center rounded-lg overflow-hidden"
+                  className="relative w-full h-[300px] md:h-[400px] bg-cover bg-center rounded-lg overflow-hidden"
                   style={{ backgroundImage: 'url("/images/company/vision/vision_dev.png")' }}
                   variants={rndBoxRightInVariants}
                 >
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/100 via-[79%] to-transparent p-4">
-                    <p className="text-gray-300 text-[15px] mb-1">
+                    <p className="text-gray-300 text-[13px] md:text-[15px] mb-1">
                       {rnd.rightBoxTop}
                     </p>
-                    <p className="text-[25px] font-semibold">
+                    <p className="text-[20px] md:text-[25px] font-semibold">
                       {rnd.rightBoxTitle}
                     </p>
-                    <p className="text-[20px] text-gray-300">
+                    <p className="text-[16px] md:text-[20px] text-gray-300">
                       {rnd.rightBoxDesc}
                     </p>
                   </div>
