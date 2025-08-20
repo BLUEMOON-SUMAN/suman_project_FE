@@ -90,27 +90,5 @@ export const serviceContent = {
       },
       { name: "Microscope", image: "/images/mct.png" },
     ],
-    productCategories: [
-      {
-        name: "Battery",
-        subtitle: "Precision Parts / Module Design",
-        image: "/images/service_battery.png",
-      },
-      {
-        name: "Electronics",
-        subtitle: "Precision Parts / Module Design Technology",
-        image: "/images/service_electric.png",
-      },
-      {
-        name: "Semiconductor",
-        subtitle: "Precision Module Design / Automation",
-        image: "/images/service_semiconductor.png",
-      },
-      {
-        name: "Mobility",
-        subtitle: "Precision Machining",
-        image: "/images/service_mobility.png",
-      },
-    ],
   },
 };

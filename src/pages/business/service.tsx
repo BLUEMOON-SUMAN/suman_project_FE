@@ -286,29 +286,6 @@ export default function ServicePage() {
           >
             <div className="absolute inset-0 bg-gray-800 opacity-90"></div>{" "}
           </div>
-          <div className="max-w-7xl mx-auto relative z-10 w-full">
-            {" "}
-            <h2 className="text-4xl font-bold mb-4">Products</h2>
-            <p className="text-lg mb-12 leading-relaxed">
-              {section?.production2}
-              <br />
-              {section?.production2sub}
-            </p>
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={{
-                visible: {
-                  transition: {
-                    staggerChildren: 0.1,
-                  },
-                },
-              }}
-            >
-            </motion.div>
-          </div>{" "}
         </motion.div>
       </Layout>
     </>
