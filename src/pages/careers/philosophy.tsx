@@ -12,15 +12,17 @@ import Link from "next/link";
 function TalentCard({
   traitData,
   bgImage,
+  className = "",
 }: {
   traitData: { title: string; desc: string };
   bgImage: string;
+  className?: string;
 }) {
   return (
     <motion.div
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative flex flex-col justify-end aspect-square rounded-2xl overflow-hidden shadow-xl group w-full max-w-sm sm:max-w-md mx-auto"
+      className={`relative flex flex-col justify-end aspect-square rounded-2xl overflow-hidden shadow-xl group ${className}`}
     >
       {/* Background Image */}
       <Image
@@ -155,13 +157,12 @@ export default function TalentPage() {
               viewport={{ once: true, amount: 0.3 }}
               variants={staggerContainerVariants}
             >
-              {/* Grid container for all cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8 md:gap-10 w-full max-w-7xl mx-auto">
-                {/* First 3 cards - will show in appropriate columns based on screen size */}
+              {/* Top row with 3 cards */}
+              <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 w-full">
                 {traits.slice(0, 3).map((trait) => (
                   <motion.div
                     key={trait.key}
-                    className="w-full flex justify-center"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md"
                     variants={itemRiseVariants}
                   >
                     <TalentCard
@@ -170,12 +171,14 @@ export default function TalentPage() {
                     />
                   </motion.div>
                 ))}
-                
-                {/* Last 2 cards - will span appropriately on different screens */}
+              </div>
+              
+              {/* Bottom row with 2 cards centered */}
+              <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 w-full">
                 {traits.slice(3, 5).map((trait) => (
                   <motion.div
                     key={trait.key}
-                    className="w-full flex justify-center sm:col-span-1 lg:col-span-1 xl:col-span-1"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md"
                     variants={itemRiseVariants}
                   >
                     <TalentCard
