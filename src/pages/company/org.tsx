@@ -41,8 +41,8 @@ export default function OrgPage() {
               <Image
                 src="/images/company/organization/organization_suman.png"
                 alt="조직도"
-                width={1200}
-                height={800}
+                width={1000}
+                height={600}
                 layout="responsive"
                 objectFit="contain"
                 className="w-full h-auto"
