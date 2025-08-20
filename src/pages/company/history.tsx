@@ -93,36 +93,47 @@ export default function HistoryPage() {
             </motion.div>
           </div>
           <svg
-            className="absolute inset-0 mx-auto my-auto z-20 opacity-80 pointer-events-none"
+            className="absolute inset-0 mx-auto my-auto z-20 opacity-95 pointer-events-none"
             viewBox="0 0 700 300"
             preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
+            style={{ top: '-50px' }} // Menaikkan posisi panah
           >
             <defs>
               <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ff0000" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="#ff0000" stopOpacity="1" />
+                <stop offset="0%" stopColor="#ff3333" stopOpacity="0.9" />
+                <stop offset="50%" stopColor="#ff0000" stopOpacity="1" />
+                <stop offset="100%" stopColor="#cc0000" stopOpacity="0.9" />
               </linearGradient>
               <linearGradient id="arrowhead-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#ff3333" />
                 <stop offset="100%" stopColor="#cc0000" />
               </linearGradient>
+              {/* Filter untuk efek glow */}
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
             </defs>
+            {/* Path panah yang diperbaiki - lebih curam dan lebih tinggi */}
             <motion.path
-              d="M 150 233 Q 460 243, 555 138"
+              d="M 150 250 Q 350 150, 555 100" // Koordinat diubah untuk kurva yang lebih tajam dan lebih tinggi
               stroke="url(#arrow-gradient)"
-              strokeWidth="6"
+              strokeWidth="8" // Stroke lebih tebal
               strokeLinecap="round"
               fill="none"
+              filter="url(#glow)" // Menambahkan efek glow
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 2, ease: "easeInOut" }}
             />
+            {/* Arrowhead yang lebih besar dan tajam */}
             <motion.path
-              d="M 555 138 L 540 128 L 540 148 Z"
+              d="M 555 100 L 540 85 L 545 100 L 540 115 Z" // Arrowhead yang lebih besar dan tajam
               fill="url(#arrowhead-gradient)"
               stroke="#cc0000"
               strokeWidth="2"
+              filter="url(#glow)" // Menambahkan efek glow
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.1 }}
