@@ -20,7 +20,7 @@ function TalentCard({
     <motion.div
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative flex flex-col justify-end aspect-square rounded-2xl overflow-hidden shadow-xl group w-full max-w-md mx-auto"
+      className="relative flex flex-col justify-end aspect-square rounded-2xl overflow-hidden shadow-xl group w-full max-w-sm sm:max-w-md mx-auto"
     >
       {/* Background Image */}
       <Image
@@ -34,11 +34,11 @@ function TalentCard({
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10"></div>
 
       {/* Text Content */}
-      <div className="relative z-20 p-5 text-white">
-        <h3 className="text-xl md:text-2xl font-bold mb-2 whitespace-pre-line drop-shadow-md">
+      <div className="relative z-20 p-4 sm:p-5 text-white">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 whitespace-pre-line drop-shadow-md">
           {traitData.title}
         </h3>
-        <p className="text-xs md:text-sm whitespace-pre-line leading-relaxed text-white/90 drop-shadow-sm">
+        <p className="text-xs sm:text-sm whitespace-pre-line leading-relaxed text-white/90 drop-shadow-sm">
           {traitData.desc}
         </p>
       </div>
@@ -147,7 +147,7 @@ export default function TalentPage() {
               </div>
             </div>
 
-            {/* Card Grid Layout - 3 on top, 2 centered below */}
+            {/* Card Grid Layout - All 5 cards with consistent sizing */}
             <motion.div
               className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12"
               initial="hidden"
@@ -155,8 +155,9 @@ export default function TalentPage() {
               viewport={{ once: true, amount: 0.3 }}
               variants={staggerContainerVariants}
             >
-              {/* Top row - 3 cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 w-full max-w-6xl mx-auto">
+              {/* Grid container for all cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8 md:gap-10 w-full max-w-7xl mx-auto">
+                {/* First 3 cards - will show in appropriate columns based on screen size */}
                 {traits.slice(0, 3).map((trait) => (
                   <motion.div
                     key={trait.key}
@@ -169,14 +170,12 @@ export default function TalentPage() {
                     />
                   </motion.div>
                 ))}
-              </div>
-
-              {/* Bottom row - 2 cards centered */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 w-full max-w-6xl mx-auto">
+                
+                {/* Last 2 cards - will span appropriately on different screens */}
                 {traits.slice(3, 5).map((trait) => (
                   <motion.div
                     key={trait.key}
-                    className="w-full flex justify-center"
+                    className="w-full flex justify-center sm:col-span-1 lg:col-span-1 xl:col-span-1"
                     variants={itemRiseVariants}
                   >
                     <TalentCard
