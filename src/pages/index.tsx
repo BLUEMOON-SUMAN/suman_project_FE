@@ -247,7 +247,7 @@ export default function HomePage({ content }: HomePageProps) {
               {content.section3.cards.map((card, index) => (
                 <motion.div
                   key={index}
-                  className="relative w-full h-[150px] md:h-[200px] lg:h-[550px] overflow-hidden rounded-xl shadow-md hover:scale-105 transition-transform duration-300 ease-out"
+                  className="relative w-full h-[130px] md:h-[180px] lg:h-[530px] overflow-hidden rounded-xl shadow-md hover:scale-105 transition-transform duration-300 ease-out"
                   initial={{ x: -100, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
