@@ -1,4 +1,3 @@
-// history.tsx
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
@@ -102,35 +101,7 @@ export default function HistoryPage() {
               <p>{content.staff}</p>
             </motion.div>
           </div>
-          <svg
-            className="absolute inset-0 mx-auto my-auto z-20 opacity-80 pointer-events-none"
-            viewBox="0 0 700 300"
-            preserveAspectRatio="xMidYMid meet"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="white" stopOpacity="0" />
-                <stop offset="100%" stopColor="white" stopOpacity="1" />
-              </linearGradient>
-            </defs>
-            <motion.path
-              d="M 150 233 Q 460 243, 555 138"
-              stroke="url(#arrow-gradient)"
-              strokeWidth="6"
-              fill="none"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, ease: "easeInOut" }}
-            />
-            <motion.path
-              d="M 563 123 L 562 145 L 542 137 Z"
-              fill="white"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.8, duration: 0.1 }}
-            />
-          </svg>
+          {/* Arrow section has been completely removed */}
         </section>
 
         <div className="content-wrapper">
@@ -153,6 +124,34 @@ export default function HistoryPage() {
                   transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
+                
+                {/* Dot pertama di samping 2021 - 현재 */}
+                <motion.div 
+                  className="absolute left-[150px] top-[12%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                />
+                
+                {/* Dot kedua di samping 2015 - 2020 */}
+                <motion.div 
+                  className="absolute left-[150px] top-[38%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                />
+                
+                {/* Dot ketiga di samping 2014 */}
+                <motion.div 
+                  className="absolute left-[150px] top-[70%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                />
+                
                 <motion.div
                   className="timeline-container relative"
                   variants={staggerContainerVariants}
@@ -188,9 +187,6 @@ export default function HistoryPage() {
                     </motion.div>
                   ))}
                 </motion.div>
-                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[22%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[61%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />
               </div>
             </div>
           </section>
