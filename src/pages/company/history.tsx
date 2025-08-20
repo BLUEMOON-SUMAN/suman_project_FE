@@ -147,10 +147,10 @@ export default function HistoryPage() {
         </section>
 
         <div className="content-wrapper">
-          <section className="main-history-timeline py-28 px-4 md:px-8 bg-white">
-            <div className="max-w-7xl mx-auto text-left">
+          <section className="main-history-timeline py-20 px-4 md:px-8 bg-white">
+            <div className="max-w-6xl mx-auto text-left">
               <motion.h2
-                className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-28"
+                className="text-2xl md:text-3xl font-semibold text-black mb-16 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
@@ -158,13 +158,14 @@ export default function HistoryPage() {
               >
                 {content.timelineTitle}
               </motion.h2>
-              <div className="max-w-5xl mx-auto relative">
-                {/* Vertical timeline line - positioned absolutely */}
+              
+              <div className="relative">
+                {/* Vertical timeline line */}
                 <motion.div
-                  className="absolute left-4 md:left-6 lg:left-8 xl:left-10 top-12 h-full border-l-2 border-dashed border-gray-300"
+                  className="absolute left-4 md:left-6 top-8 h-[90%] border-l-2 border-dashed border-gray-400"
                   initial={{ opacity: 0, height: 0 }}
-                  whileInView={{ opacity: 1, height: "100%" }}
-                  transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
+                  whileInView={{ opacity: 1, height: "90%" }}
+                  transition={{ duration: 1.0, delay: 0.5, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
 
@@ -176,19 +177,23 @@ export default function HistoryPage() {
                   viewport={{ once: true, amount: 0.3 }}
                 >
                   {content.timeline.map((entry, index) => (
-                    <motion.div key={index} variants={fadeInRiseVariants} className="relative">
-                      <div className="timeline-entry mt-16 mb-10 flex flex-col md:flex-row">
-                        {/* Year section - fixed width for alignment */}
-                        <div className="w-24 md:w-32 lg:w-40 flex-shrink-0 mb-4 md:mb-0">
-                          <h3 className="timeline-year text-3xl md:text-4xl font-bold text-black">
+                    <motion.div 
+                      key={index} 
+                      variants={fadeInRiseVariants} 
+                      className="relative mb-12 last:mb-0"
+                    >
+                      <div className="flex items-start">
+                        {/* Year section */}
+                        <div className="w-20 md:w-24 flex-shrink-0">
+                          <h3 className="text-2xl md:text-3xl font-bold text-black">
                             {entry.year}
                           </h3>
                         </div>
                         
-                        {/* Dot connector - aligned with the vertical line */}
-                        <div className="absolute left-4 md:left-6 lg:left-8 xl:left-10 top-9 transform -translate-x-1/2 z-10">
+                        {/* Dot connector */}
+                        <div className="absolute left-4 md:left-6 top-2.5 transform -translate-x-1/2 z-10">
                           <motion.div
-                            className="w-8 h-8 bg-[#0f172a] rounded-full border-8 border-gray-200"
+                            className="w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-md"
                             initial={{ opacity: 0, scale: 0.5 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
@@ -197,35 +202,35 @@ export default function HistoryPage() {
                         </div>
 
                         {/* Content section */}
-                        <div className="flex-1 ml-8 md:ml-12 lg:ml-16">
+                        <div className="flex-1 ml-10 md:ml-12">
                           {/* Label box */}
-                          <div className="bg-gray-100 p-6 rounded-[30px]">
-                            <p className="text-xl md:text-2xl font-bold text-black tracking-wide">
+                          <div className="bg-blue-50 p-4 md:p-5 rounded-xl border border-blue-100 shadow-sm mb-3">
+                            <p className="text-lg md:text-xl font-bold text-blue-800">
                               {entry.label}
                             </p>
                           </div>
                           
                           {/* Timeline items */}
-                          <div className="mt-4">
+                          <div className="space-y-2 pl-2">
                             {entry.items.map((item, idx) => (
                               <motion.div
                                 key={idx}
-                                className="timeline-item mb-3"
-                                initial={{ opacity: 0, x: -30, y: -10 }}
-                                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                                className="timeline-item"
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
                                 transition={{
-                                  duration: 0.25,
+                                  duration: 0.3,
                                   delay: idx * 0.05,
                                   ease: "easeOut",
                                 }}
                                 viewport={{ once: true }}
                               >
-                                <p className={`text-base md:text-lg font-semibold tracking-wide ${
-                                  item.includes("⦁")
-                                    ? "text-black font-bold"
+                                <p className={`text-sm md:text-base ${
+                                  item.includes("⦁") || item.startsWith("-")
+                                    ? "text-gray-800 font-medium"
                                     : item.includes("➔")
-                                    ? "text-[#8C8C8C]"
-                                    : "text-[#4C4C4C]"
+                                    ? "text-gray-600"
+                                    : "text-gray-700"
                                 }`}>
                                   {item}
                                 </p>
