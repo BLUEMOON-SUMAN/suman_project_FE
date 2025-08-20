@@ -149,7 +149,7 @@ export default function TalentPage() {
               </div>
             </div>
 
-            {/* Card Grid Layout - Modified for responsiveness and left shift */}
+            {/* Card Grid Layout - Modified for left shift and responsiveness */}
             <motion.div
               className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12 w-full"
               initial="hidden"
@@ -176,17 +176,17 @@ export default function TalentPage() {
                   ))}
                 </div>
                 
-                {/* Bottom row with 2 cards shifted 30% to the left */}
+                {/* Bottom row with 2 cards shifted 20% to the left */}
                 <div className="relative w-full">
-                  <div className="grid grid-cols-1 md:grid-cols-5 gap-6 sm:gap-8 md:gap-10">
-                    {/* Empty space on the left - 1 column */}
-                    <div className="hidden md:block"></div>
+                  <div className="grid grid-cols-1 md:grid-cols-10 gap-6 sm:gap-8 md:gap-10">
+                    {/* Empty space on the left - 2 columns */}
+                    <div className="hidden md:block md:col-span-2"></div>
                     
-                    {/* Two cards starting from column 2, spanning 2 columns each */}
+                    {/* Two cards starting from column 3, spanning 3 columns each */}
                     {traits.slice(3, 5).map((trait, index) => (
                       <motion.div
                         key={trait.key}
-                        className="flex justify-center md:col-span-2"
+                        className="flex justify-center md:col-span-3"
                         variants={itemRiseVariants}
                       >
                         <TalentCard
@@ -197,7 +197,7 @@ export default function TalentPage() {
                       </motion.div>
                     ))}
                     
-                    {/* Empty space on the right - 2 columns to complete 5-column grid */}
+                    {/* Empty space on the right - 2 columns to complete 10-column grid */}
                     <div className="hidden md:block md:col-span-2"></div>
                   </div>
                 </div>
