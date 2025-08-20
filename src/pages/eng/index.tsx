@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/HeaderEng";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
@@ -75,7 +75,6 @@ export default function HomePage({ content }: HomePageProps) {
 
       <main>
         <section className="relative h-screen">
-          {/* The video element is already fully responsive with h-full and w-full object-cover. */}
           <video
             autoPlay
             muted
@@ -119,10 +118,9 @@ export default function HomePage({ content }: HomePageProps) {
         </section>
 
         <section
-          className="relative w-full min-h-[900px] bg-cover bg-center text-white px-6"
+          className="relative w-full  min-h-[900px] bg-cover bg-center text-white  px-6"
           style={{ aspectRatio: "1440/400" }}
         >
-          {/* Image is fully responsive, using fill to cover the parent container. */}
           <Image
             src={content.section2.bgImage}
             alt="배경"
@@ -245,12 +243,11 @@ export default function HomePage({ content }: HomePageProps) {
           </motion.div>
 
           <div className="w-full px-[60px] md:px-[120px] lg:px-[160px]">
-            {/* The grid layout and card heights are responsive. */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-10">
               {content.section3.cards.map((card, index) => (
                 <motion.div
                   key={index}
-                  className="relative w-full h-[120px] md:h-[160px] lg:h-[400px] overflow-hidden rounded-xl shadow-md hover:scale-105 transition-transform duration-300 ease-out"
+                  className="relative w-full h-[150px] md:h-[200px] lg:h-[550px] overflow-hidden rounded-xl shadow-md hover:scale-105 transition-transform duration-300 ease-out"
                   initial={{ x: -100, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -373,26 +370,26 @@ export default function HomePage({ content }: HomePageProps) {
         </motion.section>
 
         <section className="relative w-full mt-0">
-          {/* MODIFIED: The Image tag now uses the fill prop and a parent with a responsive aspect ratio to ensure it adapts gracefully to all screen sizes without a fixed height or width. */}
-          <div className="relative w-full" style={{ aspectRatio: "1440/220" }}>
-            <Image
-              src={content.footer_banner[0]}
-              alt="footer banner"
-              fill
-              className="w-full object-cover"
-            />
-          </div>
+          <Image
+            src={content.footer_banner[0]}
+            alt="footer banner"
+            width={1440}
+            height={220}
+            className="w-full object-cover"
+            style={{ aspectRatio: "1440/220" }}
+          />
           <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4 sm:px-6 pointer-events-none">
             <h2 className="text-base sm:text-lg md:text-2xl lg:text-4xl font-semibold mb-2 sm:mb-4 lg:mb-7 tracking-wide">
               Contact us
-            </h2>
-            <Link href="/support/contact">
+              </h2>
+              <Link href="/support/contact">
               <button className="cursor-pointer pointer-events-auto border border-gray-300 text-sm sm:text-base lg:text-lg text-white px-4 sm:px-8 lg:px-12 py-1 sm:py-2 flex items-center gap-2 hover:bg-gray-300 hover:text-black transition tracking-wide">
                 Contact Us
                 <span className="text-sm sm:text-base lg:text-xl">→</span>
-              </button>
-            </Link>
-          </div>
+    </button>
+  </Link>
+</div>
+
         </section>
       </main>
       <Footer />
