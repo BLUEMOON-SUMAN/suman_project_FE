@@ -92,58 +92,7 @@ export default function HistoryPage() {
               <p>{content.staff}</p>
             </motion.div>
           </div>
-          <svg
-            className="absolute inset-0 mx-auto my-auto z-20 opacity-95 pointer-events-none"
-            viewBox="0 0 700 300"
-            preserveAspectRatio="xMidYMid meet"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ top: '-50px' }}
-          >
-            <defs>
-              {/* Gradient untuk panah putih */}
-              <linearGradient id="white-arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#ffffff" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#ffffff" stopOpacity="0.8" />
-              </linearGradient>
-              <linearGradient id="white-arrowhead-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="100%" stopColor="#f0f0f0" />
-              </linearGradient>
-              {/* Filter untuk efek glow putih */}
-              <filter id="white-glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-              {/* Shadow untuk membuat panah lebih terlihat di background gelap */}
-              <filter id="white-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="1" dy="1" stdDeviation="2" floodColor="#000000" floodOpacity="0.5"/>
-              </filter>
-            </defs>
-            {/* Path panah putih */}
-            <motion.path
-              d="M 150 250 Q 350 150, 555 100"
-              stroke="url(#white-arrow-gradient)"
-              strokeWidth="8"
-              strokeLinecap="round"
-              fill="none"
-              filter="url(#white-shadow)" // Menambahkan shadow untuk kontras
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, ease: "easeInOut" }}
-            />
-            {/* Arrowhead putih */}
-            <motion.path
-              d="M 555 100 L 540 85 L 545 100 L 540 115 Z"
-              fill="url(#white-arrowhead-gradient)"
-              stroke="#f0f0f0"
-              strokeWidth="2"
-              filter="url(#white-shadow)" // Menambahkan shadow untuk kontras
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.8, duration: 0.1 }}
-            />
-          </svg>
+          {/* Arrow section has been completely removed */}
         </section>
 
         <div className="content-wrapper">
