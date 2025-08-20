@@ -149,43 +149,41 @@ export default function TalentPage() {
               </div>
             </div>
 
-            {/* Card Grid Layout - 3 cards on top, 2 cards below */}
+            {/* Card Grid Layout - All 5 cards with consistent sizing */}
             <motion.div
-              className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12"
+              className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12 w-full"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={staggerContainerVariants}
             >
               {/* Top row with 3 cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 w-full max-w-6xl mx-auto">
+              <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 w-full">
                 {traits.slice(0, 3).map((trait) => (
                   <motion.div
                     key={trait.key}
-                    className="flex justify-center"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md"
                     variants={itemRiseVariants}
                   >
                     <TalentCard
                       traitData={{ title: trait.title, desc: trait.desc }}
                       bgImage={trait.bgImage}
-                      className="w-full max-w-xs sm:max-w-sm md:max-w-md"
                     />
                   </motion.div>
                 ))}
               </div>
               
               {/* Bottom row with 2 cards centered */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 w-full max-w-4xl mx-auto">
+              <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 w-full">
                 {traits.slice(3, 5).map((trait) => (
                   <motion.div
                     key={trait.key}
-                    className="flex justify-center"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md"
                     variants={itemRiseVariants}
                   >
                     <TalentCard
                       traitData={{ title: trait.title, desc: trait.desc }}
                       bgImage={trait.bgImage}
-                      className="w-full max-w-xs sm:max-w-sm md:max-w-md"
                     />
                   </motion.div>
                 ))}
