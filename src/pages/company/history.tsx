@@ -101,7 +101,52 @@ export default function HistoryPage() {
               <p>{content.staff}</p>
             </motion.div>
           </div>
-          {/* Arrow section has been completely removed */}
+          <svg
+            className="absolute inset-0 z-20"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1000 700"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <motion.path
+              d="M200 600 Q 500 500, 650 350 T 800 150 T 820 100"
+              fill="none"
+              stroke="#FFFFFF"
+              strokeWidth="5"
+              strokeLinecap="round"
+              variants={{
+                hidden: { pathLength: 0, opacity: 0 },
+                visible: {
+                  pathLength: 1,
+                  opacity: 1,
+                  transition: {
+                    pathLength: { duration: 2, ease: "easeInOut" },
+                    opacity: { duration: 0.5, ease: "easeOut" },
+                  },
+                },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.8 }}
+            />
+            <motion.g
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{
+                hidden: { opacity: 0, x: 20 },
+                visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 1.8 } },
+              }}
+              className="transform"
+            >
+              <path
+                d="M820 100 L810 85 M820 100 L835 110"
+                fill="none"
+                stroke="#FFFFFF"
+                strokeWidth="5"
+                strokeLinecap="round"
+              />
+            </motion.g>
+          </svg>
         </section>
 
         <div className="content-wrapper">
