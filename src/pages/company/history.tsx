@@ -62,7 +62,7 @@ export default function HistoryPage() {
           >
             <div className="absolute inset-0 bg-[#020c23]/85 z-10" />
             <motion.div
-              initial={{ opacity: 0, y: 50 }
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
               viewport={{ once: true }}
