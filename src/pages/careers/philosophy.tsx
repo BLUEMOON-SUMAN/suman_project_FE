@@ -172,7 +172,7 @@ export default function TalentPage() {
               </div>
 
               {/* Bottom row - 2 cards centered */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 w-full max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 w-full max-w-6xl mx-auto">
                 {traits.slice(3, 5).map((trait) => (
                   <motion.div
                     key={trait.key}
