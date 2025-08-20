@@ -149,7 +149,7 @@ export default function TalentPage() {
               </div>
             </div>
 
-            {/* Card Grid Layout - Modified for left shift and responsiveness */}
+            {/* Card Grid Layout - Modified for consistent card sizes and left shift */}
             <motion.div
               className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12 w-full"
               initial="hidden"
@@ -159,7 +159,7 @@ export default function TalentPage() {
             >
               {/* Container for all cards */}
               <div className="w-full max-w-6xl mx-auto">
-                {/* Top row with 3 cards */}
+                {/* Top row with 3 cards - All same size */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 mb-8 sm:mb-10 md:mb-12">
                   {traits.slice(0, 3).map((trait) => (
                     <motion.div
@@ -170,35 +170,28 @@ export default function TalentPage() {
                       <TalentCard
                         traitData={{ title: trait.title, desc: trait.desc }}
                         bgImage={trait.bgImage}
-                        className="w-full"
+                        className="w-full max-w-[380px]"
                       />
                     </motion.div>
                   ))}
                 </div>
                 
-                {/* Bottom row with 2 cards shifted 20% to the left */}
-                <div className="relative w-full">
-                  <div className="grid grid-cols-1 md:grid-cols-10 gap-6 sm:gap-8 md:gap-10">
-                    {/* Empty space on the left - 2 columns */}
-                    <div className="hidden md:block md:col-span-2"></div>
-                    
-                    {/* Two cards starting from column 3, spanning 3 columns each */}
-                    {traits.slice(3, 5).map((trait, index) => (
+                {/* Bottom row with 2 cards shifted 20% to the left - Same size as top cards */}
+                <div className="relative w-full flex justify-center md:justify-start">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 w-full max-w-[800px] md:ml-[-10%]">
+                    {traits.slice(3, 5).map((trait) => (
                       <motion.div
                         key={trait.key}
-                        className="flex justify-center md:col-span-3"
+                        className="flex justify-center"
                         variants={itemRiseVariants}
                       >
                         <TalentCard
                           traitData={{ title: trait.title, desc: trait.desc }}
                           bgImage={trait.bgImage}
-                          className="w-full"
+                          className="w-full max-w-[380px]"
                         />
                       </motion.div>
                     ))}
-                    
-                    {/* Empty space on the right - 2 columns to complete 10-column grid */}
-                    <div className="hidden md:block md:col-span-2"></div>
                   </div>
                 </div>
               </div>
