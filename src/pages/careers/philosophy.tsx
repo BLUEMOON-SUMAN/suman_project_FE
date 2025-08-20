@@ -20,7 +20,7 @@ function TalentCard({
     <motion.div
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="relative flex flex-col justify-end aspect-square rounded-2xl overflow-hidden shadow-xl group"
+      className="relative flex flex-col justify-end aspect-square rounded-2xl overflow-hidden shadow-xl group w-full max-w-md mx-auto"
     >
       {/* Background Image */}
       <Image
@@ -83,71 +83,62 @@ export default function TalentPage() {
   return (
     <>
       <Head>
-        <title>인재상 | 수만</title>
+        <title>{lang === "KOR" ? "인재상 | 수만" : "Talent Philosophy | SUMAN"}</title>
+        <meta name="description" content={lang === "KOR" ? "수만의 인재상과 핵심 가치를 확인해보세요" : "Discover SUMAN's talent philosophy and core values"} />
       </Head>
       <Layout>
         <HeroSection
-          title="인재상"
-          subtitle="Our Talent"
+          title={lang === "KOR" ? "인재상" : "Talent Philosophy"}
+          subtitle={lang === "KOR" ? "우리의 인재상" : "Our Talent Values"}
           backgroundImage="/images/sub_banner/careers_hero.png"
         />
 
-        <BreadcrumbSection path="인재 채용 > 인재상" />
+        <BreadcrumbSection path={lang === "KOR" ? "인재 채용 > 인재상" : "Careers > Talent Philosophy"} />
 
-        <div className="content-wrapper py-16 px-4 md:px-6 bg-white">
+        <div className="content-wrapper py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-14 w-full max-w-7xl">
+            <div className="text-center mb-12 sm:mb-16 md:mb-20 w-full">
               <div
-                className={`group relative max-w-6xl w-full mx-auto px-4 sm:px-6 md:px-10 py-10 md:py-14 bg-white`}
-                style={{
-                  background: 'white',
-                  border: 'white'
-                }}
+                className={`group relative max-w-4xl w-full mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12 bg-white rounded-2xl shadow-lg`}
               >
-                {/* Background decorative elements */}
-                <div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-2xl">
-                  <div className="absolute -top-40 -right-40 w-80 h-80"></div>
-                  <div className="absolute -bottom-40 -left-40 w-80 h-80"></div>
-                </div>
-
                 <div className="relative z-10">
-                  <div className="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-4 md:mb-6 shadow-lg">
-                    <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-4 sm:mb-5 md:mb-6 shadow-lg">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
 
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent leading-tight">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 md:mb-5 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent leading-tight">
                     {currentText.title}
                   </h2>
                   
-                  <div className="w-16 md:w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-4 md:mb-6"></div>
+                  <div className="w-12 sm:w-14 md:w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-3 sm:mb-4 md:mb-5"></div>
                   
-                  <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-600 max-w-4xl mx-auto font-light px-2 sm:px-0">
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-600 max-w-3xl mx-auto font-light px-2 sm:px-0">
                     {currentText.desc}
                   </p>
 
                   {/* Interactive elements */}
-                  <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-8 md:mt-10">
-                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 md:gap-5 mt-6 sm:mt-7 md:mt-8">
+                    <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500">
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full animate-pulse"></div>
                       <span>{currentText.state}</span>
                     </div>
-                    <div className="hidden sm:block w-px h-6 bg-gray-200"></div>
-                    <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="hidden sm:block w-px h-4 sm:h-5 bg-gray-200"></div>
+                    <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500">
+                      <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                       <span>{currentText.position}</span>
                     </div>
                   </div>
-                  <div className="mt-8 md:mt-10">
+                  <div className="mt-6 sm:mt-7 md:mt-8">
                     <Link
                       href="/careers/notice"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 md:px-7 md:py-3 bg-gray-900 text-white text-sm md:text-base font-semibold rounded-full hover:bg-gray-800 transition-colors duration-200"
+                      className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 py-1.5 sm:py-2 md:py-2.5 bg-gray-900 text-white text-xs sm:text-sm md:text-base font-semibold rounded-full hover:bg-gray-800 transition-colors duration-200"
                     >
                       <span>{lang === 'KOR' ? '지원하기' : 'Apply Now'}</span>
-                      <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                       </svg>
                     </Link>
@@ -158,18 +149,18 @@ export default function TalentPage() {
 
             {/* Card Grid Layout - 3 on top, 2 centered below */}
             <motion.div
-              className="flex flex-col items-center gap-6 md:gap-8"
+              className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={staggerContainerVariants}
             >
               {/* Top row - 3 cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8 w-full max-w-6xl">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 w-full max-w-6xl mx-auto">
                 {traits.slice(0, 3).map((trait) => (
                   <motion.div
                     key={trait.key}
-                    className="w-full"
+                    className="w-full flex justify-center"
                     variants={itemRiseVariants}
                   >
                     <TalentCard
@@ -181,12 +172,11 @@ export default function TalentPage() {
               </div>
 
               {/* Bottom row - 2 cards centered */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8 w-full max-w-6xl">
-                {/* On mobile: 2 cards take full width */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 w-full max-w-4xl mx-auto">
                 {traits.slice(3, 5).map((trait) => (
                   <motion.div
                     key={trait.key}
-                    className="w-full sm:col-span-1 lg:col-start-2"
+                    className="w-full flex justify-center"
                     variants={itemRiseVariants}
                   >
                     <TalentCard
@@ -199,7 +189,7 @@ export default function TalentPage() {
             </motion.div>
           </div>
         </div>
-        <hr className="my-8 border-gray-200 w-full" />
+        <hr className="my-8 sm:my-10 md:my-12 border-gray-200 w-full" />
       </Layout>
     </>
   );
