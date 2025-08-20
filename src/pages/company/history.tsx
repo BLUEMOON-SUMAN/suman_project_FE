@@ -54,7 +54,7 @@ export default function HistoryPage() {
         <BreadcrumbSection path={content.breadcrumb} />
 
         {/* Hero Content Section */}
-        <section className="relative w-full h-[350px] sm:h-[450px] md:h-[550px] lg:h-[650px]">
+        <section className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px]">
           <div
             className="absolute inset-0 bg-cover z-0"
             style={{
@@ -93,7 +93,7 @@ export default function HistoryPage() {
               </ul>
             </motion.div>
             <motion.div
-              className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 xl:top-auto xl:bottom-10 xl:right-10 z-20 text-right text-xs sm:text-sm text-gray-300 drop-shadow-md space-y-1"
+              className="absolute bottom-4 right-4 sm:bottom-5 sm:right-5 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 xl:bottom-10 xl:right-10 z-20 text-right text-xs sm:text-sm text-gray-300 drop-shadow-md space-y-1"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
@@ -161,22 +161,22 @@ export default function HistoryPage() {
                 </motion.div>
               </div>
 
-              {/* Desktop Timeline (with vertical line) - Moved 20% to the right */}
-              <div className="hidden lg:block max-w-5xl mx-auto relative pl-32 md:pl-40 lg:pl-48">
-                {/* Vertical timeline line - Moved 20% to the right */}
+              {/* Desktop Timeline (with vertical line) */}
+              <div className="hidden lg:block max-w-5xl mx-auto relative pl-24 md:pl-32 lg:pl-40">
+                {/* Vertical timeline line */}
                 <motion.div
-                  className="absolute left-24 md:left-28 lg:left-32 top-4 h-[calc(100%-2rem)] border-l-2 border-dashed border-gray-300"
+                  className="absolute left-16 md:left-20 lg:left-24 top-4 h-[calc(100%-2rem)] border-l-2 border-dashed border-gray-300"
                   initial={{ opacity: 0, height: 0 }}
                   whileInView={{ opacity: 1, height: "calc(100% - 2rem)" }}
                   transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
                 
-                {/* Timeline dots - Moved 20% to the right */}
+                {/* Timeline dots */}
                 {[0, 1, 2].map((position) => (
                   <motion.div 
                     key={position}
-                    className="absolute left-24 md:left-28 lg:left-32 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg transform -translate-x-1/2 z-10"
+                    className="absolute left-16 md:left-20 lg:left-24 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg transform -translate-x-1/2 z-10"
                     style={{
                       top: position === 0 ? '4%' : position === 1 ? '50%' : '96%'
                     }}
@@ -197,12 +197,12 @@ export default function HistoryPage() {
                   {content.timeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="flex items-start">
-                        <div className="flex-shrink-0 w-40 md:w-48">
-                          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 bg-white pr-6">
+                        <div className="flex-shrink-0 w-32 md:w-40">
+                          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 bg-white pr-4">
                             {entry.year}
                           </h3>
                         </div>
-                        <div className="flex-grow bg-gradient-to-r from-gray-50 to-white p-6 rounded-2xl shadow-md border border-gray-100 ml-8">
+                        <div className="flex-grow bg-gradient-to-r from-gray-50 to-white p-6 rounded-2xl shadow-md border border-gray-100 ml-6">
                           <p className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
                             {entry.label}
                           </p>
