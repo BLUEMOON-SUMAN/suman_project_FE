@@ -100,37 +100,45 @@ export default function HistoryPage() {
             style={{ top: '-50px' }}
           >
             <defs>
-              <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ff3333" stopOpacity="0.9" />
-                <stop offset="50%" stopColor="#ff0000" stopOpacity="1" />
-                <stop offset="100%" stopColor="#cc0000" stopOpacity="0.9" />
+              {/* Gradient untuk panah putih */}
+              <linearGradient id="white-arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#ffffff" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#ffffff" stopOpacity="0.8" />
               </linearGradient>
-              <linearGradient id="arrowhead-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ff3333" />
-                <stop offset="100%" stopColor="#cc0000" />
+              <linearGradient id="white-arrowhead-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="100%" stopColor="#f0f0f0" />
               </linearGradient>
-              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="4" result="blur" />
+              {/* Filter untuk efek glow putih */}
+              <filter id="white-glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
+              {/* Shadow untuk membuat panah lebih terlihat di background gelap */}
+              <filter id="white-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="1" dy="1" stdDeviation="2" floodColor="#000000" floodOpacity="0.5"/>
+              </filter>
             </defs>
+            {/* Path panah putih */}
             <motion.path
               d="M 150 250 Q 350 150, 555 100"
-              stroke="url(#arrow-gradient)"
+              stroke="url(#white-arrow-gradient)"
               strokeWidth="8"
               strokeLinecap="round"
               fill="none"
-              filter="url(#glow)"
+              filter="url(#white-shadow)" // Menambahkan shadow untuk kontras
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 2, ease: "easeInOut" }}
             />
+            {/* Arrowhead putih */}
             <motion.path
               d="M 555 100 L 540 85 L 545 100 L 540 115 Z"
-              fill="url(#arrowhead-gradient)"
-              stroke="#cc0000"
+              fill="url(#white-arrowhead-gradient)"
+              stroke="#f0f0f0"
               strokeWidth="2"
-              filter="url(#glow)"
+              filter="url(#white-shadow)" // Menambahkan shadow untuk kontras
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.1 }}
