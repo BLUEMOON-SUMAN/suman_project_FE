@@ -97,7 +97,7 @@ export default function HistoryPage() {
             viewBox="0 0 700 300"
             preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ top: '-50px' }} // Menaikkan posisi panah
+            style={{ top: '-50px' }}
           >
             <defs>
               <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -109,31 +109,28 @@ export default function HistoryPage() {
                 <stop offset="0%" stopColor="#ff3333" />
                 <stop offset="100%" stopColor="#cc0000" />
               </linearGradient>
-              {/* Filter untuk efek glow */}
               <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="4" result="blur" />
                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
               </filter>
             </defs>
-            {/* Path panah yang diperbaiki - lebih curam dan lebih tinggi */}
             <motion.path
-              d="M 150 250 Q 350 150, 555 100" // Koordinat diubah untuk kurva yang lebih tajam dan lebih tinggi
+              d="M 150 250 Q 350 150, 555 100"
               stroke="url(#arrow-gradient)"
-              strokeWidth="8" // Stroke lebih tebal
+              strokeWidth="8"
               strokeLinecap="round"
               fill="none"
-              filter="url(#glow)" // Menambahkan efek glow
+              filter="url(#glow)"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
               transition={{ duration: 2, ease: "easeInOut" }}
             />
-            {/* Arrowhead yang lebih besar dan tajam */}
             <motion.path
-              d="M 555 100 L 540 85 L 545 100 L 540 115 Z" // Arrowhead yang lebih besar dan tajam
+              d="M 555 100 L 540 85 L 545 100 L 540 115 Z"
               fill="url(#arrowhead-gradient)"
               stroke="#cc0000"
               strokeWidth="2"
-              filter="url(#glow)" // Menambahkan efek glow
+              filter="url(#glow)"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.1 }}
@@ -153,10 +150,10 @@ export default function HistoryPage() {
               >
                 {content.timelineTitle}
               </motion.h2>
-              <div className="max-w-5xl mx-auto relative pl-26 md:pl-36">
-                {/* The vertical line is now a standalone element to cover the entire container */}
+              <div className="max-w-5xl mx-auto relative">
+                {/* Vertical timeline line - positioned absolutely */}
                 <motion.div
-                  className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
+                  className="absolute left-4 md:left-6 lg:left-8 xl:left-10 top-12 h-full border-l-2 border-dashed border-gray-300"
                   initial={{ opacity: 0, height: 0 }}
                   whileInView={{ opacity: 1, height: "100%" }}
                   transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
@@ -171,57 +168,67 @@ export default function HistoryPage() {
                   viewport={{ once: true, amount: 0.3 }}
                 >
                   {content.timeline.map((entry, index) => (
-                    <motion.div key={index} variants={fadeInRiseVariants}>
-                      <div className="timeline-entry mt-16 mb-10 relative">
-                        {/* Dot is now placed and styled relative to each entry */}
-                        <div className="absolute top-[18px] left-[150px] -translate-x-1/2 -translate-y-1/2 z-10">
+                    <motion.div key={index} variants={fadeInRiseVariants} className="relative">
+                      <div className="timeline-entry mt-16 mb-10 flex flex-col md:flex-row">
+                        {/* Year section - fixed width for alignment */}
+                        <div className="w-24 md:w-32 lg:w-40 flex-shrink-0 mb-4 md:mb-0">
+                          <h3 className="timeline-year text-3xl md:text-4xl font-bold text-black">
+                            {entry.year}
+                          </h3>
+                        </div>
+                        
+                        {/* Dot connector - aligned with the vertical line */}
+                        <div className="absolute left-4 md:left-6 lg:left-8 xl:left-10 top-9 transform -translate-x-1/2 z-10">
                           <motion.div
-                            className="w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200"
+                            className="w-8 h-8 bg-[#0f172a] rounded-full border-8 border-gray-200"
                             initial={{ opacity: 0, scale: 0.5 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
                             viewport={{ once: true }}
                           />
                         </div>
-                        {/* Year text, correctly positioned relative to the dot */}
-                        <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
-                          <h3 className="timeline-year text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 -translate-x-full">
-                            {entry.year}
-                          </h3>
-                        </div>
-                        {/* Label box, unchanged */}
-                        <div className="bg-gray-100 p-6 rounded-[30px] w-full ml-[60px] md:ml-[100px]">
-                          <p className="text-2xl font-bold text-black tracking-wide ml-4">{entry.label}</p>
+
+                        {/* Content section */}
+                        <div className="flex-1 ml-8 md:ml-12 lg:ml-16">
+                          {/* Label box */}
+                          <div className="bg-gray-100 p-6 rounded-[30px]">
+                            <p className="text-xl md:text-2xl font-bold text-black tracking-wide">
+                              {entry.label}
+                            </p>
+                          </div>
+                          
+                          {/* Timeline items */}
+                          <div className="mt-4">
+                            {entry.items.map((item, idx) => (
+                              <motion.div
+                                key={idx}
+                                className="timeline-item mb-3"
+                                initial={{ opacity: 0, x: -30, y: -10 }}
+                                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                                transition={{
+                                  duration: 0.25,
+                                  delay: idx * 0.05,
+                                  ease: "easeOut",
+                                }}
+                                viewport={{ once: true }}
+                              >
+                                <p className={`text-base md:text-lg font-semibold tracking-wide ${
+                                  item.includes("⦁")
+                                    ? "text-black font-bold"
+                                    : item.includes("➔")
+                                    ? "text-[#8C8C8C]"
+                                    : "text-[#4C4C4C]"
+                                }`}>
+                                  {item}
+                                </p>
+                              </motion.div>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                      {entry.items.map((item, idx) => (
-                        <motion.div
-                          key={idx}
-                          className="timeline-item mb-3 relative ml-[90px] md:ml-[155px]"
-                          initial={{ opacity: 0, x: -30, y: -10 }}
-                          whileInView={{ opacity: 1, x: 0, y: 0 }}
-                          transition={{
-                            duration: 0.25,
-                            delay: idx * 0.05,
-                            ease: "easeOut",
-                          }}
-                          viewport={{ once: true }}
-                        >
-                          <p className={`text-lg font-semibold tracking-wide ${
-                            item.includes("⦁")
-                              ? "text-black font-bold"
-                              : item.includes("➔")
-                              ? "text-[#8C8C8C] text-base"
-                              : "text-[#4C4C4C]"
-                          }`}>
-                            {item}
-                          </p>
-                        </motion.div>
-                      ))}
                     </motion.div>
                   ))}
                 </motion.div>
-
               </div>
             </div>
           </section>
