@@ -6,6 +6,26 @@ import Head from "next/head";
 import { useLangStore } from "@/stores/langStore";
 import { historyText } from "@/data/history";
 
+// Arrow Component
+const ArrowIcon = () => (
+  <svg 
+    width="60" 
+    height="60" 
+    viewBox="0 0 60 60" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+    className="drop-shadow-lg"
+  >
+    <path 
+      d="M30 10V50M30 50L40 40M30 50L20 40" 
+      stroke="#0f172a" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export default function HistoryPage() {
   const { lang } = useLangStore();
   const content = historyText[lang];
@@ -100,8 +120,36 @@ export default function HistoryPage() {
               <p>{content.sales}</p>
               <p>{content.staff}</p>
             </motion.div>
+            
+            {/* Arrow Section */}
+            <motion.div
+              className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.8, 
+                ease: "easeOut",
+                delay: 0.5
+              }}
+              viewport={{ once: true }}
+            >
+              <div className="flex flex-col items-center">
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <ArrowIcon />
+                </motion.div>
+                <p className="text-white text-sm mt-2 font-light tracking-wide">
+                  {lang === "KOR" ? "아래로 스크롤" : "Scroll Down"}
+                </p>
+              </div>
+            </motion.div>
           </div>
-          {/* Arrow section has been completely removed */}
         </section>
 
         <div className="content-wrapper">
