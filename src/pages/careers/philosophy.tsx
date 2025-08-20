@@ -165,7 +165,7 @@ export default function TalentPage() {
               variants={staggerContainerVariants}
             >
               {/* Top row - 3 cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 w-full max-w-6xl">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8 w-full max-w-6xl">
                 {traits.slice(0, 3).map((trait) => (
                   <motion.div
                     key={trait.key}
@@ -181,15 +181,12 @@ export default function TalentPage() {
               </div>
 
               {/* Bottom row - 2 cards centered */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 w-full max-w-6xl">
-                {/* Empty space on left */}
-                <div className="hidden md:block"></div>
-                
-                {/* Center two cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-8 w-full max-w-6xl">
+                {/* On mobile: 2 cards take full width */}
                 {traits.slice(3, 5).map((trait) => (
                   <motion.div
                     key={trait.key}
-                    className="w-full"
+                    className="w-full sm:col-span-1 lg:col-start-2"
                     variants={itemRiseVariants}
                   >
                     <TalentCard
@@ -198,9 +195,6 @@ export default function TalentPage() {
                     />
                   </motion.div>
                 ))}
-                
-                {/* Empty space on right */}
-                <div className="hidden md:block"></div>
               </div>
             </motion.div>
           </div>

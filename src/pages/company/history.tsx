@@ -46,13 +46,13 @@ export default function HistoryPage() {
       </Head>
       <Layout>
         <HeroSection
-          title={<span className="text-5xl font-bold tracking-wide">{content.title}</span>}
-          subtitle={<span className="text-xl font-bold tracking-wide px-2">{content.subtitle}</span>}
+          title={<span className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">{content.title}</span>}
+          subtitle={<span className="text-base sm:text-lg md:text-xl font-bold tracking-wide px-2">{content.subtitle}</span>}
           backgroundImage="/images/sub_banner/company_banner.png"
         />
         <BreadcrumbSection path={content.breadcrumb} />
 
-        <section className="relative w-full h-[700px]">
+        <section className="relative w-full h-[500px] sm:h-[600px] md:h-[700px]">
           <div
             className="absolute inset-0 bg-cover z-0"
             style={{
@@ -66,16 +66,16 @@ export default function HistoryPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="relative z-20 max-w-7xl mx-auto px-4 md:px-8 lg:px-8 xl:px-0 py-24 text-white"
+              className="relative z-20 max-w-7xl mx-auto px-4 md:px-8 lg:px-8 xl:px-0 py-12 sm:py-16 md:py-24 text-white"
             >
-              <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-3 tracking-wide whitespace-pre-line">
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 tracking-wide whitespace-pre-line">
                 {content.summaryTitle}
               </h2>
-              <ul className="text-xl flex-col items-start space-y-6 mt-7 tracking-wide">
+              <ul className="text-base sm:text-lg md:text-xl flex-col items-start space-y-4 sm:space-y-6 mt-4 sm:mt-7 tracking-wide">
                 {content.bulletList.map((text, index) => (
                   <motion.li
                     key={index}
-                    className="relative w-fit bg-white/15 text-white font-medium py-3.5 px-6 rounded-full z-10"
+                    className="relative w-fit bg-white/15 text-white font-medium py-2 sm:py-3 md:py-3.5 px-4 sm:px-5 md:px-6 rounded-full z-10 text-sm sm:text-base md:text-lg"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
@@ -91,7 +91,7 @@ export default function HistoryPage() {
               </ul>
             </motion.div>
             <motion.div
-              className="absolute top-[620px] right-[360px] z-20 text-right text-sm text-gray-400 drop-shadow-md space-y-1"
+              className="absolute bottom-6 right-4 sm:right-8 md:top-[620px] md:right-[360px] z-20 text-right text-xs sm:text-sm text-gray-400 drop-shadow-md space-y-1"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
@@ -104,10 +104,10 @@ export default function HistoryPage() {
         </section>
 
         <div className="content-wrapper">
-          <section className="main-history-timeline py-28 px-4 md:px-8 bg-white">
+          <section className="main-history-timeline py-16 sm:py-20 md:py-28 px-4 md:px-8 bg-white">
             <div className="max-w-7xl mx-auto text-left">
               <motion.h2
-                className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-28"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-black mb-16 sm:mb-20 md:mb-28"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
@@ -115,36 +115,35 @@ export default function HistoryPage() {
               >
                 {content.timelineTitle}
               </motion.h2>
-              <div className="max-w-5xl mx-auto relative pl-26 md:pl-36">
+              <div className="max-w-5xl mx-auto relative pl-4 sm:pl-8 md:pl-12 lg:pl-20 xl:pl-36">
+                {/* Timeline line */}
                 <motion.div
-                  className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
+                  className="absolute left-4 sm:left-6 md:left-8 lg:left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
                   initial={{ opacity: 0, height: 0 }}
                   whileInView={{ opacity: 1, height: "100%" }}
                   transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
                 
-                {/* Dot pertama di samping 2021 - 현재 */}
+                {/* Timeline dots */}
                 <motion.div 
-                  className="absolute left-[150px] top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
+                  className="absolute left-4 sm:left-6 md:left-8 lg:left-[150px] top-[1%] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-[#0f172a] rounded-full border-4 sm:border-6 md:border-8 lg:border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
                 
-                {/* Dot kedua di samping 2015 - 2020 */}
                 <motion.div 
-                  className="absolute left-[150px] top-[47.3%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
+                  className="absolute left-4 sm:left-6 md:left-8 lg:left-[150px] top-[47.3%] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-[#0f172a] rounded-full border-4 sm:border-6 md:border-8 lg:border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
                 
-                {/* Dot ketiga di samping 2014 - moved 10% lower to 90% */}
                 <motion.div 
-                  className="absolute left-[150px] top-[86%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
+                  className="absolute left-4 sm:left-6 md:left-8 lg:left-[150px] top-[86%] w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-[#0f172a] rounded-full border-4 sm:border-6 md:border-8 lg:border-[12px] border-gray-200 transform -translate-x-1/2 z-10"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
@@ -160,24 +159,24 @@ export default function HistoryPage() {
                 >
                   {content.timeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
-                      <div className="timeline-entry mt-16 mb-10 relative">
-                        <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
-                          <h3 className="timeline-year text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 -translate-x-full">
+                      <div className="timeline-entry mt-12 sm:mt-14 md:mt-16 mb-8 sm:mb-10 relative">
+                        <div className="flex items-center absolute -left-2 sm:-left-4 top-[18px] ml-[-12px] sm:ml-[-18px] md:ml-[-24px]">
+                          <h3 className="timeline-year text-xl sm:text-2xl md:text-3xl font-bold text-black bg-white pr-2 sm:pr-3 md:pr-4 z-10 -translate-x-full">
                             {entry.year}
                           </h3>
                         </div>
-                        <div className="bg-gray-100 p-6 rounded-[30px] w-full ml-[60px] md:ml-[100px]">
-                          <p className="text-2xl font-bold text-black tracking-wide ml-4">{entry.label}</p>
+                        <div className="bg-gray-100 p-4 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl w-full ml-[40px] sm:ml-[50px] md:ml-[60px] lg:ml-[80px] xl:ml-[100px]">
+                          <p className="text-lg sm:text-xl md:text-2xl font-bold text-black tracking-wide ml-2 sm:ml-3 md:ml-4">{entry.label}</p>
                         </div>
                       </div>
                       {entry.items.map((item, idx) => (
                         <motion.div
                           key={idx}
-                          className={`timeline-item mb-3 relative ml-[90px] md:ml-[155px]`}
+                          className={`timeline-item mb-3 relative ml-[50px] sm:ml-[60px] md:ml-[70px] lg:ml-[90px] xl:ml-[155px]`}
                           variants={timelineItemVariants}
                         >
                           <p
-                            className={`text-lg font-semibold tracking-wide ${item.includes("⦁") ? "text-black font-bold" : item.includes("➔") ? "text-[#8C8C8C] text-base" : "text-[#4C4C4C]"}`}
+                            className={`text-sm sm:text-base md:text-lg font-semibold tracking-wide ${item.includes("⦁") ? "text-black font-bold" : item.includes("➔") ? "text-[#8C8C8C] text-xs sm:text-sm md:text-base" : "text-[#4C4C4C]"}`}
                           >
                             {item}
                           </p>

@@ -124,7 +124,7 @@ export default function Header() {
           style={{ height: "90px" }}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center h-full mr-[10%]">
+          <Link href="/" className="flex items-center h-full mr-auto lg:mr-0">
             <Image
               src="/images/logo_suman.png"
               alt="SUMAN CO., Ltd company logo"
@@ -137,7 +137,7 @@ export default function Header() {
 
           {/* Desktop Navigation Container - Centered */}
           <div className="hidden lg:flex flex-grow justify-center items-center h-full">
-            <nav className="flex items-center space-x-28 h-full">
+            <nav className="flex items-center gap-12 xl:gap-20 h-full">
               {NAV_ITEMS.map((item, index) => (
                 <div
                   key={item.label}
@@ -177,19 +177,22 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* Language Switcher Container */}
+          {/* Language Switcher and Burger Button Container for Mobile */}
+          <div className="flex items-center gap-4 lg:hidden">
+            <LanguageSwitcher />
+            <button
+              className="text-2xl text-black"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open mobile menu"
+            >
+              ☰
+            </button>
+          </div>
+          
+          {/* Language Switcher for Desktop */}
           <div className="hidden lg:flex items-center h-full">
             <LanguageSwitcher />
           </div>
-
-          {/* Mobile Burger Menu Button - Hidden on large screens */}
-          <button
-            className="text-2xl lg:hidden text-black"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open mobile menu"
-          >
-            ☰
-          </button>
         </div>
 
         {/* Mobile Menu */}
@@ -200,9 +203,9 @@ export default function Header() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
+              className="lg:hidden fixed top-0 right-0 w-[80%] max-w-sm h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
             >
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-end items-center mb-6">
                 <button
                   onClick={closeMobileMenu}
                   className="text-xl"
@@ -210,7 +213,6 @@ export default function Header() {
                 >
                   ✕
                 </button>
-                <LanguageSwitcher />
               </div>
               {NAV_ITEMS.map((item, index) => (
                 <div key={item.label}>
@@ -223,7 +225,11 @@ export default function Header() {
                     <Link href={item.href} onClick={closeMobileMenu}>
                       {item.label}
                     </Link>
-                    {item.submenu.length > 0 && <span>{expandedMobileIndex === index ? "−" : "+"}</span>}
+                    {item.submenu.length > 0 && (
+                      <span className="text-gray-500 transition-transform duration-200 transform">
+                        {expandedMobileIndex === index ? "−" : "+"}
+                      </span>
+                    )}
                   </div>
                   <AnimatePresence>
                     {expandedMobileIndex === index && (
