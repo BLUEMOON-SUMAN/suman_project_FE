@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
-import BreadcrumbSection from "@/components/BreadcrumbSection"; // Added import
+import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { motion, type Transition } from "framer-motion";
 import Image from "next/image";
 import { Herotext, traits as traitData } from "@/data/philosophy";
@@ -177,8 +177,16 @@ export default function TalentPage() {
                   />
                 </motion.div>
               ))}
-
-              {/* Bottom 2 cards (centered) */}
+            </motion.div>
+            
+            {/* Bottom 2 cards (centered) */}
+            <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 md:gap-4 lg:gap-4 mt-5 md:w-2/3 lg:w-2/3 mx-auto"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={staggerContainerVariants}
+            >
               {traits.slice(3, 5).map((trait) => (
                 <motion.div
                   key={trait.key}
