@@ -156,18 +156,40 @@ export default function TalentPage() {
               </div>
             </div>
 
-            {/* Combined Card Grid */}
+            {/* Top row of 3 cards */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-4 lg:gap-4 mx-auto md:max-w-6xl"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-4 lg:gap-4 mx-auto md:max-w-6xl mb-5"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={staggerContainerVariants}
             >
-              {traits.map((trait) => (
+              {traits.slice(0, 3).map((trait) => (
                 <motion.div
                   key={trait.key}
                   className="col-span-1"
+                  variants={itemRiseVariants}
+                >
+                  <TalentCard
+                    traitData={{ title: trait.title, desc: trait.desc }}
+                    bgImage={trait.bgImage}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Bottom row of 2 cards */}
+            <motion.div
+              className="flex flex-col md:flex-row justify-center items-center gap-5 md:gap-4 lg:gap-4 mx-auto md:max-w-6xl"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={staggerContainerVariants}
+            >
+              {traits.slice(3, 5).map((trait) => (
+                <motion.div
+                  key={trait.key}
+                  className="w-full md:w-1/2"
                   variants={itemRiseVariants}
                 >
                   <TalentCard
