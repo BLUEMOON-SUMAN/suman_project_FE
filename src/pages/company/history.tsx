@@ -147,19 +147,19 @@ export default function HistoryPage() {
                 </motion.div>
               </div>
 
-              {/* Desktop Timeline (with line) */}
-              <div className="hidden lg:block max-w-4xl mx-auto relative pl-16 md:pl-24 lg:pl-32">
+              {/* Desktop Timeline (with line) - Moved 10% to the right */}
+              <div className="hidden lg:block max-w-4xl mx-auto relative pl-20 md:pl-28 lg:pl-36">
                 <motion.div
-                  className="absolute left-8 md:left-12 lg:left-16 top-10 h-full border-l-2 border-dashed border-gray-300"
+                  className="absolute left-12 md:left-16 lg:left-20 top-10 h-full border-l-2 border-dashed border-gray-300"
                   initial={{ opacity: 0, height: 0 }}
                   whileInView={{ opacity: 1, height: "100%" }}
                   transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
                 
-                {/* Timeline dots */}
+                {/* Timeline dots - Moved 10% to the right */}
                 <motion.div 
-                  className="absolute left-8 md:left-12 lg:left-16 top-[1%] w-8 h-8 md:w-10 md:h-10 bg-[#0f172a] rounded-full border-6 md:border-8 border-gray-200 transform -translate-x-1/2 z-10"
+                  className="absolute left-12 md:left-16 lg:left-20 top-[1%] w-8 h-8 md:w-10 md:h-10 bg-[#0f172a] rounded-full border-6 md:border-8 border-gray-200 transform -translate-x-1/2 z-10"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
@@ -167,7 +167,7 @@ export default function HistoryPage() {
                 />
                 
                 <motion.div 
-                  className="absolute left-8 md:left-12 lg:left-16 top-[47.3%] w-8 h-8 md:w-10 md:h-10 bg-[#0f172a] rounded-full border-6 md:border-8 border-gray-200 transform -translate-x-1/2 z-10"
+                  className="absolute left-12 md:left-16 lg:left-20 top-[47.3%] w-8 h-8 md:w-10 md:h-10 bg-[#0f172a] rounded-full border-6 md:border-8 border-gray-200 transform -translate-x-1/2 z-10"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }}
@@ -175,7 +175,7 @@ export default function HistoryPage() {
                 />
                 
                 <motion.div 
-                  className="absolute left-8 md:left-12 lg:left-16 top-[86%] w-8 h-8 md:w-10 md:h-10 bg-[#0f172a] rounded-full border-6 md:border-8 border-gray-200 transform -translate-x-1/2 z-10"
+                  className="absolute left-12 md:left-16 lg:left-20 top-[86%] w-8 h-8 md:w-10 md:h-10 bg-[#0f172a] rounded-full border-6 md:border-8 border-gray-200 transform -translate-x-1/2 z-10"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
@@ -192,19 +192,19 @@ export default function HistoryPage() {
                   {content.timeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-12 md:mt-14 mb-8 md:mb-10 relative">
-                        <div className="flex items-center absolute -left-4 top-[18px] ml-[-20px]">
-                          <h3 className="timeline-year text-2xl md:text-3xl font-bold text-black bg-white pr-3 md:pr-4 z-10 -translate-x-full">
+                        <div className="flex items-center absolute -left-6 top-[18px] ml-[-24px]">
+                          <h3 className="timeline-year text-2xl md:text-3xl font-bold text-black bg-white pr-4 md:pr-5 z-10 -translate-x-full">
                             {entry.year}
                           </h3>
                         </div>
-                        <div className="bg-gray-100 p-5 md:p-6 rounded-2xl md:rounded-3xl w-full ml-[60px] md:ml-[80px]">
-                          <p className="text-xl md:text-2xl font-bold text-black tracking-wide ml-3 md:ml-4">{entry.label}</p>
+                        <div className="bg-gray-100 p-5 md:p-6 rounded-2xl md:rounded-3xl w-full ml-[70px] md:ml-[90px]">
+                          <p className="text-xl md:text-2xl font-bold text-black tracking-wide ml-4 md:ml-5">{entry.label}</p>
                         </div>
                       </div>
                       {entry.items.map((item, idx) => (
                         <motion.div
                           key={idx}
-                          className={`timeline-item mb-3 relative ml-[80px] md:ml-[100px]`}
+                          className={`timeline-item mb-3 relative ml-[90px] md:ml-[110px]`}
                           variants={timelineItemVariants}
                         >
                           <p
