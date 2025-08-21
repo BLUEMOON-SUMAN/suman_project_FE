@@ -1,10 +1,10 @@
-import Header from "@/components/Header";
-import BreadcrumbSection from "@/components/BreadcrumbSection";
 import Layout from "@/components/Layout";
+import HeroSection from "@/components/HeroSection";
+import BreadcrumbSection from "@/components/BreadcrumbSection";
 import Image from "next/image";
 import Head from "next/head";
 import { motion, type Transition } from "framer-motion";
-import HeroSection from "@/components/HeroSection";
+import { useLangStore } from "@/stores/langStore";
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -12,21 +12,43 @@ const fadeIn = {
 };
 
 export default function OrgPage() {
+  const { lang } = useLangStore();
+  
+  // Define content based on language
+  const content = {
+    KOR: {
+      title: "조직도",
+      subtitle: "Organization Chart",
+      breadcrumb: "회사소개 > 조직도",
+      image: "/images/company/organization/organization_suman_korean.png",
+      alt: "조직도",
+      pageTitle: "조직도 | 수만"
+    },
+    ENG: {
+      title: "Organization Chart",
+      subtitle: "조직도",
+      breadcrumb: "Company > Organization",
+      image: "/images/company/organization/organization_suman_english.png",
+      alt: "Organization Chart",
+      pageTitle: "Organization | SUMAN"
+    }
+  };
+
+  const currentContent = content[lang];
+
   return (
     <Layout>
       <Head>
-        <title>조직도 | 수만</title>
+        <title>{currentContent.pageTitle}</title>
       </Head>
 
-      <Header />
-
       <HeroSection
-        title="조직도"
-        subtitle="Organization Chart"
+        title={currentContent.title}
+        subtitle={currentContent.subtitle}
         backgroundImage="/images/sub_banner/company_banner.png"
       />
 
-      <BreadcrumbSection path="회사소개 > 조직도" />
+      <BreadcrumbSection path={currentContent.breadcrumb} />
 
       <main className="content-wrapper py-20 px-4 md:px-8 bg-white flex justify-center items-center">
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
@@ -39,13 +61,14 @@ export default function OrgPage() {
           >
             <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
               <Image
-                src="/images/company/organization/organization_suman.png"
-                alt="조직도"
+                src={currentContent.image}
+                alt={currentContent.alt}
                 width={1000}
                 height={600}
                 layout="responsive"
                 objectFit="contain"
                 className="w-full h-auto"
+                priority
               />
             </div>
           </motion.div>
