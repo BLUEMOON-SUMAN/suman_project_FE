@@ -43,7 +43,9 @@ export default function HistoryPage() {
         />
         <BreadcrumbSection path={content.breadcrumb} />
 
-        <section className="relative w-full overflow-hidden">
+        {/* Hapus position absolute dari sini dan atur ulang layout */}
+        <section className="relative w-full overflow-hidden flex flex-col md:flex-row items-start justify-between">
+          {/* Latar belakang tetap absolute */}
           <div
             className="absolute inset-0 bg-cover bg-center z-0"
             style={{
@@ -53,6 +55,7 @@ export default function HistoryPage() {
           >
             <div className="absolute inset-0 bg-[#020c23]/85 z-10" />
           </div>
+          
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -82,16 +85,20 @@ export default function HistoryPage() {
               ))}
           </ul>
           </motion.div>
-          <motion.div
-            className="absolute bottom-4 right-4 z-20 text-right text-xs md:text-sm text-gray-400 drop-shadow-md space-y-1 md:bottom-auto md:top-[620px] md:right-[360px]"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <p>{content.sales}</p>
-            <p>{content.staff}</p>
-          </motion.div>
+          
+          {/* Container baru untuk teks sales/staff. Diubah dari absolute menjadi bagian dari aliran Flexbox */}
+          <div className="relative z-20 w-full md:w-auto px-4 py-8 md:py-24 md:mr-8 md:text-right text-white">
+            <motion.div
+              className="text-xs md:text-sm text-gray-400 drop-shadow-md space-y-1"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <p>{content.sales}</p>
+              <p>{content.staff}</p>
+            </motion.div>
+          </div>
         </section>
 
         <div className="content-wrapper">
@@ -109,7 +116,7 @@ export default function HistoryPage() {
               <div className="max-w-5xl mx-auto relative pl-0 md:pl-26 lg:pl-36">
                 {/* Garis vertikal timeline */}
                 <motion.div
-                  className="absolute left-[20%] top-12 h-full border-l-2 border-dashed border-gray-300 hidden md:block"
+                  className="absolute left-[30%] top-12 h-full border-l-2 border-dashed border-gray-300 hidden md:block"
                   initial={{ opacity: 0, height: 0 }}
                   whileInView={{ opacity: 1, height: "100%" }}
                   transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
@@ -126,19 +133,19 @@ export default function HistoryPage() {
                   {content.timeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-10 md:mt-16 mb-6 md:mb-10 relative">
-                        <div className="flex items-center absolute left-[20%] top-[18px] ml-[-20px] md:left-[20%] md:top-[18px] md:ml-[-20px] lg:ml-[-20px]">
+                        <div className="flex items-center absolute left-[30%] top-[18px] ml-[-20px] md:left-[30%] md:top-[18px] md:ml-[-20px] lg:ml-[-20px]">
                           <h3 className="timeline-year text-2xl md:text-3xl font-bold text-black bg-white pr-2 md:pr-4 z-10 -translate-x-full md:pr-4 md:z-10 md:-translate-x-full">
                             {entry.year}
                           </h3>
                         </div>
-                        <div className="bg-gray-100 p-4 md:p-6 rounded-[20px] md:rounded-[30px] w-full ml-0 md:ml-[110px] lg:ml-[150px]">
+                        <div className="bg-gray-100 p-4 md:p-6 rounded-[20px] md:rounded-[30px] w-full ml-0 md:ml-[160px] lg:ml-[200px]">
                           <p className="text-lg md:text-xl lg:text-2xl font-bold text-black tracking-wide ml-0 md:ml-4">{entry.label}</p>
                         </div>
                       </div>
                       {entry.items.map((item, idx) => (
                         <motion.div
                           key={idx}
-                          className="timeline-item mb-3 relative ml-0 md:ml-[140px] lg:ml-[205px]"
+                          className="timeline-item mb-3 relative ml-0 md:ml-[190px] lg:ml-[255px]"
                           initial={{ opacity: 0, x: -30, y: -10 }}
                           whileInView={{ opacity: 1, x: 0, y: 0 }}
                           transition={{
@@ -164,9 +171,9 @@ export default function HistoryPage() {
                 </motion.div>
 
                 {/* Titik-titik pada timeline */}
-                <motion.div className="absolute left-[20%] top-[1%] w-8 h-8 md:w-12 md:h-12 bg-[#0f172a] rounded-full border-[8px] md:border-[12px] border-gray-200 ml-[-16px] md:ml-[-24px]" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-[20%] top-[47.3%] w-8 h-8 md:w-12 md:h-12 bg-[#0f172a] rounded-full border-[8px] md:border-[12px] border-gray-200 ml-[-16px] md:ml-[-24px]" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-[20%] top-[86%] w-8 h-8 md:w-12 md:h-12 bg-[#0f172a] rounded-full border-[8px] md:border-[12px] border-gray-200 ml-[-16px] md:ml-[-24px]" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />
+                <motion.div className="absolute left-[30%] top-[1%] w-8 h-8 md:w-12 md:h-12 bg-[#0f172a] rounded-full border-[8px] md:border-[12px] border-gray-200 ml-[-16px] md:ml-[-24px]" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />
+                <motion.div className="absolute left-[30%] top-[47.3%] w-8 h-8 md:w-12 md:h-12 bg-[#0f172a] rounded-full border-[8px] md:border-[12px] border-gray-200 ml-[-16px] md:ml-[-24px]" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
+                <motion.div className="absolute left-[30%] top-[86%] w-8 h-8 md:w-12 md:h-12 bg-[#0f172a] rounded-full border-[8px] md:border-[12px] border-gray-200 ml-[-16px] md:ml-[-24px]" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />
               </div>
             </div>
           </section>
