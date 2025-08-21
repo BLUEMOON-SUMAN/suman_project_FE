@@ -31,13 +31,13 @@ export default function OrgPage() {
       <main className="content-wrapper py-20 px-4 md:px-8 bg-white flex justify-center items-center">
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
           <motion.div
-            className="w-full max-w-8xl" // Changed from max-w-4xl to max-w-7xl
+            className="w-full"
             variants={fadeIn}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="relative w-full h-auto overflow-hidden rounded-lg">
+            <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
               <Image
                 src="/images/company/organization/organization_suman.png"
                 alt="조직도"
