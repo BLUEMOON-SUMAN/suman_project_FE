@@ -22,7 +22,8 @@ function TalentCard({
     <motion.div
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`relative flex flex-col justify-end aspect-square rounded-2xl overflow-hidden shadow-xl group h-full ${className}`}
+      className={`relative flex flex-col justify-end rounded-2xl overflow-hidden shadow-xl group ${className}`}
+      style={{ aspectRatio: '1/1' }}
     >
       {/* Background Image */}
       <Image
@@ -149,28 +150,30 @@ export default function TalentPage() {
               </div>
             </div>
 
-            {/* Combined, simplified Card Grid Layout */}
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 items-stretch"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={staggerContainerVariants}
-            >
-              {traits.map((trait) => (
-                <motion.div
-                  key={trait.key}
-                  className="flex justify-center"
-                  variants={itemRiseVariants}
-                >
-                  <TalentCard
-                    traitData={{ title: trait.title, desc: trait.desc }}
-                    bgImage={trait.bgImage}
-                    className="w-full"
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
+            {/* Improved Card Grid Layout */}
+            <div className="w-full max-w-6xl mx-auto">
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={staggerContainerVariants}
+              >
+                {traits.map((trait) => (
+                  <motion.div
+                    key={trait.key}
+                    className="flex justify-center"
+                    variants={itemRiseVariants}
+                  >
+                    <TalentCard
+                      traitData={{ title: trait.title, desc: trait.desc }}
+                      bgImage={trait.bgImage}
+                      className="w-full max-w-xs sm:max-w-none"
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </div>
         </div>
         <hr className="my-8 sm:my-10 md:my-12 border-gray-200 w-full" />
