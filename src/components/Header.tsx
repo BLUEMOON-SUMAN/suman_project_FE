@@ -13,7 +13,7 @@ const navItemsKor = [
     submenu: [
       { label: "CEO 인사말", href: "/company/ceo" },
       { label: "기업 비전", href: "/company/vision" },
-      { label: "Vision", href: "/eng/company/vision2" },
+      { label: "Vision", href: "/company/vision2" },
       { label: "연혁", href: "/company/history" },
       { label: "조직도", href: "/company/org" },
       { label: "CI", href: "/company/ci" },
