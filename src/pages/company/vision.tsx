@@ -19,6 +19,7 @@ export default function VisionPage() {
   const hero = visionHeroText[lang];
   const main = visionMainText[lang];
   const milestones = visionMilestones[lang];
+  const strategy = visionStrategyText[lang]; // strategy 변수 추가
   const coreValues = visionCoreValue[lang];
   const rnd = visionRndText[lang];
 
@@ -88,7 +89,7 @@ export default function VisionPage() {
     visible: {
       opacity: 1,
       x: 0,
-      backgroundColor: "rgba(0, 0, 0, 0.7)",
+      backgroundColor: "rgва(0, 0, 0, 0.7)",
       transition: {
         duration: 0.4,
         ease: "easeOut",
@@ -260,53 +261,57 @@ export default function VisionPage() {
             </div>
           </div>
         </motion.section>
-      {/* New Strategy Section */}
-      <motion.section
-        className="strategy-section bg-gradient-to-br from-slate-50 to-blue-50 py-16 px-4 md:px-8"
-        variants={fadeInRiseVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-semibold text-black mb-4 text-left tracking-wide">
-            {strategy.subtitle}
-          </h2>
-          <p className="text-lg text-gray-600 mb-12">{strategy.title}</p>
 
-          {/* NEO 2024 Header */}
-          <div className="text-center mb-16">
-            <h3 className="text-6xl font-bold text-blue-600 mb-6">{strategy.neoTitle}</h3>
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-blue-100 max-w-4xl mx-auto">
-              <p className="text-xl text-gray-800 whitespace-pre-line leading-relaxed">
-                {strategy.mainGoal}
-              </p>
+        {/* New Strategy Section */}
+        <motion.section
+          className="strategy-section bg-gradient-to-br from-slate-50 to-blue-50 py-16 px-4 md:px-8"
+          variants={fadeInRiseVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-semibold text-black mb-4 text-left tracking-wide">
+              {strategy.subtitle}
+            </h2>
+            <p className="text-lg text-gray-600 mb-12">{strategy.title}</p>
+
+            {/* NEO 2024 Header */}
+            <div className="text-center mb-16">
+              <h3 className="text-6xl font-bold text-blue-600 mb-6">{strategy.neoTitle}</h3>
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-blue-100 max-w-4xl mx-auto">
+                <p className="text-xl text-gray-800 whitespace-pre-line leading-relaxed">
+                  {strategy.mainGoal}
+                </p>
+              </div>
             </div>
-          </div>
 
-          {/* Strategic Points */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            {strategy.strategicPoints.map((point, idx) => (
-              <motion.div
-                key={idx}
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-100"
-                variants={itemRiseVariants}
-              >
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-white font-bold">{idx + 1}</span>
+            {/* Strategic Points */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {strategy.strategicPoints.map((point, idx) => (
+                <motion.div
+                  key={idx}
+                  className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-100"
+                  variants={itemRiseVariants}
+                >
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <span className="text-white font-bold">{idx + 1}</span>
+                    </div>
+                    <p className="text-gray-800 whitespace-pre-line">{point}</p>
                   </div>
-                  <p className="text-gray-800 whitespace-pre-line">{point}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </motion.section>
+
         {/* Core Value Section */}
         <section className="core-value-section bg-white py-12 md:py-20 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
@@ -352,7 +357,6 @@ export default function VisionPage() {
                     }}
                   ></div>
                   <div className="relative text-white flex flex-col flex-grow justify-start pt-48 md:pt-60">
-                    {" "}
                     <h3 className="text-[20px] md:text-[25px] font-semibold mb-2">
                       {value.title}
                     </h3>
