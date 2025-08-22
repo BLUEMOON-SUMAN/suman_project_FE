@@ -46,7 +46,7 @@ const RecruitmentBoard: React.FC = () => {
             <div className="flex flex-col bg-[#0A1633] rounded-xl p-6 md:p-8 text-white min-h-[220px]">
               <div className="flex-grow">
                 <h3 className="text-lg font-semibold mb-2">
-                  {lang === "KOR" ? "Saramin 공고 지원" : "Apply via Saramin"}
+                  {lang === "KOR" ? "Saramin" : "Saramin"}
                 </h3>
                 <p className="text-sm text-gray-300 mb-6">
                   {lang === "KOR" ? "지금 바로 지원해 보세요" : "Apply now"}
@@ -79,7 +79,7 @@ const RecruitmentBoard: React.FC = () => {
             <div className="flex flex-col bg-[#0A1633] rounded-xl p-6 md:p-8 text-white min-h-[220px]">
               <div className="flex-grow">
                 <h3 className="text-lg font-semibold mb-2">
-                  {lang === "KOR" ? "JOB KOREA 공고 지원" : "Apply via JOB KOREA"}
+                  {lang === "KOR" ? "JOB KOREA" : "JOB KOREA"}
                 </h3>
                 <p className="text-sm text-gray-300 mb-6">
                   {lang === "KOR" ? "지금 바로 지원해 보세요" : "Apply now"}
@@ -112,7 +112,7 @@ const RecruitmentBoard: React.FC = () => {
             <div className="flex flex-col bg-[#0A1633] rounded-xl p-6 md:p-8 text-white min-h-[220px]">
               <div className="flex-grow">
                 <h3 className="text-lg font-semibold mb-2">
-                  {lang === "KOR" ? "고용24 공고 지원" : "Apply via Work24"}
+                  {lang === "KOR" ? "고용24" : "Work24"}
                 </h3>
                 <p className="text-sm text-gray-300 mb-6">
                   {lang === "KOR" ? "지금 바로 지원해 보세요" : "Apply now"}
