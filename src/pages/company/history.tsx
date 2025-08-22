@@ -115,7 +115,7 @@ export default function HistoryPage() {
               transition={{ duration: 2, ease: "easeInOut" }}
             />
             <motion.path
-              d="M 565 33 L 560 53 L 550 47 Z"
+              d="M 566 31 L 561 54 L 549 46 Z"
               fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

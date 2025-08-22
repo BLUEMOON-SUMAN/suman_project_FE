@@ -26,7 +26,7 @@ export const visionMilestones = {
     KOR: [
     {
         year: "2024",
-        text: "제2시험센터 구축\n반도체 정밀가공분야 진입",
+        text: "이차전지 시험센터 구축\n반도체 정밀가공분야 진입",
     },
     {
         year: "2026",
