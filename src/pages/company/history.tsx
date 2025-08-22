@@ -2,203 +2,420 @@ import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { motion, type Transition } from "framer-motion";
-import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import { serviceContent } from "@/data/service";
 import { useLangStore } from "@/stores/langStore";
-import { historyText } from "@/data/history";
+import Head from "next/head";
+// Import the required icons from Lucide React
+import { 
+  Users, 
+  FileText, 
+  XCircle, 
+  Settings, 
+  Package, 
+  ArrowLeft, 
+  Truck, 
+  RotateCcw 
+} from "lucide-react";
 
-export default function HistoryPage() {
+export default function ServicePage() {
+  const [showAllEquipment, setShowAllEquipment] = useState(false);
   const { lang } = useLangStore();
-  const content = historyText[lang];
+  const { equipmentList, measurementEquipmentList} =
+    serviceContent[lang];
+  const section = serviceContent[lang].sectionList?.[0];
 
-  const fadeInRiseVariants = {
-    hidden: { opacity: 0, y: 50 },
+  const processImages = [
+    "/images/business/process/service_design.png",
+    "/images/business/process/service_order.png",
+    "/images/business/process/service_product.png",
+    "/images/business/process/service_test.png",
+    "/images/business/process/service_deliver.png",
+  ];
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" } as Transition,
+    },
+  };
+
+  const leftAlignTextVariants = {
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: "easeOut" } as Transition,
+      transition: { duration: 0.8, ease: "easeOut" } as Transition,
     },
   };
 
-  const staggerContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  const initialDisplayCount = 10;
 
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "연혁 | 수만" : "History | SUMAN"}</title>
+        <title>{lang === "KOR" ? "기술소개 | 수만" : "Technology | SUMAN"}</title>
       </Head>
       <Layout>
         <HeroSection
-          title={<span className="text-5xl font-bold tracking-wide">{content.title}</span>}
-          subtitle={<span className="text-xl font-bold tracking-wide px-2">{content.subtitle}</span>}
-          backgroundImage="/images/sub_banner/company_banner.png"
+          title={lang === "KOR" ? "기술 소개" : "Technology"}
+          subtitle="SUMAN"
+          backgroundImage="/images/sub_banner/business_hero.png"
         />
-        <BreadcrumbSection path={content.breadcrumb} />
 
-        <section className="relative w-full h-[700px]">
-          <div
-            className="absolute inset-0 bg-cover z-0"
-            style={{
-              backgroundImage: "url('/images/company/history/history_suman.png')",
-              backgroundPosition: "center 70%",
-            }}
-          >
-            <div className="absolute inset-0 bg-[#020c23]/85 z-10" />
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              viewport={{ once: true }}
-              className="relative z-20 max-w-7xl mx-auto px-4 md:px-8 lg:px-8 xl:px-0 py-24 text-white"
+        <BreadcrumbSection
+          path={lang === "KOR" ? "사업분야 > 기술소개" : "Business > Technology"}
+        />
+
+        {/* 1. Main Equipment Section */}
+        <div className="bg-white py-12 md:py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <motion.h2
+              className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-6 md:mb-10"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={leftAlignTextVariants}
             >
-              <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-3 tracking-wide whitespace-pre-line">
-                {content.summaryTitle}
-              </h2>
-              <ul className="text-xl flex-col items-start space-y-6 mt-7 tracking-wide">
-                {content.bulletList.map((text, index) => (
-                  <motion.li
-                    key={index}
-                    className="relative w-fit bg-white/15 text-white font-medium py-3.5 px-6 rounded-full z-10"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.5 + index * 0.2,
-                      ease: "easeOut",
-                    }}
-                    viewport={{ once: true }}
-                  >
-                    {text}
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-            <motion.div
-              className="absolute top-[620px] right-[360px] z-20 text-right text-sm text-gray-400 drop-shadow-md space-y-1"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              viewport={{ once: true }}
+              Main Equipment
+            </motion.h2>
+            <motion.p
+              className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3]"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={leftAlignTextVariants}
             >
-              <p>{content.sales}</p>
-              <p>{content.staff}</p>
-            </motion.div>
+              {section?.maintitle}
+              <br />
+              {section?.mainsubtitle}
+            </motion.p>
           </div>
-          <svg
-            className="absolute inset-0 mx-auto my-auto z-20 opacity-80 pointer-events-none"
-            viewBox="0 0 700 300"
-            preserveAspectRatio="xMidYMid meet"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="white" stopOpacity="0" />
-                <stop offset="100%" stopColor="white" stopOpacity="1" />
-              </linearGradient>
-            </defs>
-            <motion.path
-              d="M 150 233 Q 460 243, 555 138"
-              stroke="url(#arrow-gradient)"
-              strokeWidth="6"
-              fill="none"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, ease: "easeInOut" }}
-            />
-            <motion.path
-              d="M 563 123 L 562 145 L 542 137 Z"
-              fill="white"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.8, duration: 0.1 }}
-            />
-          </svg>
-        </section>
+        </div>
 
-        <div className="content-wrapper">
-          <section className="main-history-timeline py-28 px-4 md:px-8 bg-white">
-            <div className="max-w-7xl mx-auto text-left">
-              <motion.h2
-                className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-28"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+        {/* 2. 생산가공 / 측정장비 Section */}
+        <div className="relative z-0 bg-[#000B24] pt-12 md:pt-20 pb-40 md:pb-60 px-4">
+          <div className="absolute inset-0 pointer-events-none">
+            <Image
+              src="/images/business/layer.png"
+              alt="배경 이미지"
+              fill
+              style={{ objectFit: "cover", objectPosition: "top" }}
+              priority
+            />
+          </div>
+
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              className={`relative transition-all duration-500 ease-in-out ${
+                showAllEquipment
+                  ? "max-h-[5000px] overflow-visible"
+                  : "max-h-[530px] overflow-hidden"
+              }`}
+            >
+              {/* 생산가공 / 조립 */}
+              <motion.button
+                className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16"
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
+                variants={leftAlignTextVariants}
               >
-                {content.timelineTitle}
-              </motion.h2>
-              <div className="max-w-5xl mx-auto relative pl-26 md:pl-36">
-                <motion.div
-                  className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
-                  initial={{ opacity: 0, height: 0 }}
-                  whileInView={{ opacity: 1, height: "100%" }}
-                  transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                />
-                <motion.div
-                  className="timeline-container relative"
-                  variants={staggerContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  {content.timeline.map((entry, index) => (
-                    <motion.div key={index} variants={fadeInRiseVariants}>
-                      <div className="timeline-entry mt-16 mb-10 relative">
-                        <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
-                          <h3 className="timeline-year text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 -translate-x-full">
-                            {entry.year}
-                          </h3>
-                        </div>
-                        <div className="bg-gray-100 p-6 rounded-[30px] w-full ml-[60px] md:ml-[100px]">
-                          <p className="text-2xl font-bold text-black tracking-wide ml-4">{entry.label}</p>
-                        </div>
-                      </div>
-                      {entry.items.map((item, idx) => (
-                        <motion.div
-                          key={idx}
-                          className="timeline-item mb-3 relative ml-[90px] md:ml-[155px]"
-                          initial={{ opacity: 0, x: -30, y: -10 }}
-                          whileInView={{ opacity: 1, x: 0, y: 0 }}
-                          transition={{
-                            duration: 0.25,
-                            delay: idx * 0.05,
-                            ease: "easeOut",
-                          }}
-                          viewport={{ once: true }}
-                        >
-                          <p className={`text-lg font-semibold tracking-wide ${
-                            item.includes("⦁")
-                              ? "text-black font-bold"
-                              : item.includes("➔")
-                              ? "text-[#8C8C8C] text-base"
-                              : "text-[#4C4C4C]"
-                          }`}>
-                            {item}
-                          </p>
-                        </motion.div>
-                      ))}
-                    </motion.div>
-                  ))}
-                </motion.div>
+                {section?.production}
+              </motion.button>
 
-                {/* 점들 */}
-                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[47.3%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[86%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                {equipmentList.map((equipment, index) => (
+                  <motion.div
+                    key={`prod-${index}`}
+                    className="relative bg-white/10 rounded-lg whitespace-pre-line overflow-hidden shadow-lg w-full h-40 md:h-50 p-2 border-2 border-gray-400/10"
+                    variants={itemVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                  >
+                    <div className="w-full h-20 md:h-28 relative mb-2">
+                      {equipment.image && (
+                        <Image
+                          src={equipment.image}
+                          alt={equipment.name}
+                          fill
+                          style={{ objectFit: "cover" }}
+                          className="rounded-[10px]"
+                        />
+                      )}
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full h-1/3 bg-[#434343]/30 text-center py-1 md:py-2 flex items-center justify-center border border-gray-500/10">
+                      <p className="text-xs md:text-base font-medium text-white text-center">
+                        {equipment.name}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* 신뢰성 (측정 / 분석) */}
+              <button className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16 mt-16 md:mt-28">
+                {section?.measurement}
+              </button>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                {measurementEquipmentList.map((equipment, index) => (
+                  <motion.div
+                    key={`meas-${index}`}
+                    className="relative bg-white/10 rounded-lg whitespace-pre-line overflow-hidden shadow-lg w-full h-40 md:h-50 p-2 border-2 border-gray-400/10"
+                    variants={itemVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                  >
+                    <div className="w-full h-20 md:h-28 relative mb-2">
+                      {equipment.image && (
+                        <Image
+                          src={equipment.image}
+                          alt={equipment.name}
+                          fill
+                          className="object-cover rounded-[10px]"
+                        />
+                      )}
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full h-1/3 bg-[#434343]/30 text-center py-1 md:py-2 flex items-center justify-center border border-gray-500/10">
+                      <p className="text-xs md:text-base font-medium text-white text-center">
+                        {equipment.name}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {equipmentList.length + measurementEquipmentList.length > initialDisplayCount && (
+              <div className="mt-8 md:mt-10 mb-8 md:mb-10 text-right">
+                <button
+                  onClick={() => setShowAllEquipment(!showAllEquipment)}
+                  className="text-base md:text-lg text-gray-200 hover:text-white font-md cursor-pointer"
+                >
+                  {showAllEquipment ? "간략히 보기" : "전체 설비 보기"} →
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Process Section - Simplified Flowchart */}
+        <div className="bg-white py-12 md:py-20 px-4 md:px-8 text-black rounded-t-[40px] md:rounded-[60px] mt-[-180px] md:mt-[-220px] relative z-10 pb-[60px] md:pb-[100px]">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mt-6 md:mt-10 mb-6 md:mb-10">
+              Process
+            </h2>
+            <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3] mb-10 md:mb-16">
+              체계적인 생산 프로세스
+              <br />
+              품질 보증 시스템
+            </p>
+
+            {/* Simplified Manufacturing Process Flowchart */}
+            <div className="relative mt-12 md:mt-20">
+              {/* Vertical Process Flow */}
+              <div className="flex flex-col items-center space-y-8">
+                
+                {/* Customer */}
+                <div className="bg-[#000B24] text-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg w-full max-w-md text-center">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="bg-white/20 rounded-full p-2">
+                      <Users className="w-5 h-5 md:w-6 md:h-6" />
+                    </div>
+                    <span className="text-base md:text-lg font-semibold">Customer</span>
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
+
+                {/* Concept Design with D/R Decision */}
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 w-full max-w-4xl">
+                  <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full md:w-2/3 text-center">
+                    <div className="flex items-center justify-center gap-3">
+                      <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
+                        <FileText className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
+                      </div>
+                      <div>
+                        <div className="text-base md:text-lg font-semibold text-[#000B24]">Concept 설계</div>
+                        <div className="text-xs md:text-sm text-gray-600">Initial Design</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* D/R Decision Box */}
+                  <div className="bg-[#000B24] text-white rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-lg w-full md:w-1/3 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="font-semibold text-sm md:text-base">D/R</span>
+                    </div>
+                    {/* NG Arrow */}
+                    <div className="mt-2 flex items-center justify-center gap-2 bg-red-50 px-2 md:px-3 py-1 rounded-full">
+                      <XCircle className="w-3 h-3 md:w-4 md:h-4 text-red-500" />
+                      <span className="text-red-600 font-medium text-xs md:text-sm">NG</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
+
+                {/* Development Design with Review Approval */}
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 w-full max-w-4xl">
+                  <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full md:w-2/3 text-center">
+                    <div className="flex items-center justify-center gap-3">
+                      <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
+                        <Settings className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
+                      </div>
+                      <div>
+                        <div className="text-base md:text-lg font-semibold text-[#000B24]">개발/가공 설계</div>
+                        <div className="text-xs md:text-sm text-gray-600">Development Design</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Review Approval Decision Box */}
+                  <div className="bg-[#000B24] text-white rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-lg w-full md:w-1/3 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="font-semibold text-sm md:text-base">검토 승인</span>
+                    </div>
+                    {/* NG Arrow */}
+                    <div className="mt-2 flex items-center justify-center gap-2 bg-red-50 px-2 md:px-3 py-1 rounded-full">
+                      <XCircle className="w-3 h-3 md:w-4 md:h-4 text-red-500" />
+                      <span className="text-red-600 font-medium text-xs md:text-sm">NG</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
+
+                {/* Material Ordering with Incoming Inspection */}
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 w-full max-w-4xl">
+                  {/* Partner Company */}
+                  <div className="bg-[#000B24] text-white rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-lg w-full md:w-1/3 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="flex items-center gap-2">
+                        <div className="bg-white/20 rounded-full p-1 md:p-2">
+                          <Package className="w-4 h-4 md:w-5 md:h-5" />
+                        </div>
+                        <span className="text-sm md:font-semibold">협력사</span>
+                      </div>
+                      {/* NG Arrow */}
+                      <div className="mt-2 flex items-center justify-center gap-2 bg-red-50 px-2 md:px-3 py-1 rounded-full">
+                        <ArrowLeft className="w-3 h-3 md:w-4 md:h-4 text-red-500" />
+                        <span className="text-red-600 font-medium text-xs md:text-sm">NG</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full md:w-2/3 text-center">
+                    <div className="flex items-center justify-center gap-3">
+                      <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
+                        <Package className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
+                      </div>
+                      <div>
+                        <div className="text-base md:text-lg font-semibold text-[#000B24]">발주(소재/부품)</div>
+                        <div className="text-xs md:text-sm text-gray-600">Material Ordering</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Incoming Inspection Decision Box */}
+                  <div className="bg-[#000B24] text-white rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-lg w-full md:w-1/3 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="font-semibold text-sm md:text-base">수입 검사</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
+
+                {/* Manufacturing */}
+                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
+                      <Settings className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
+                    </div>
+                    <div>
+                      <div className="text-base md:text-lg font-semibold text-[#000B24]">가공/제작</div>
+                      <div className="text-xs md:text-sm text-gray-600">Manufacturing</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
+
+                {/* Final Inspection */}
+                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
+                      <Package className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
+                    </div>
+                    <div>
+                      <div className="text-base md:text-lg font-semibold text-[#000B24]">출하 및 조립/측정 검사</div>
+                      <div className="text-xs md:text-sm text-gray-600">Final Inspection</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
+
+                {/* Packaging */}
+                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
+                      <Package className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
+                    </div>
+                    <div>
+                      <div className="text-base md:text-lg font-semibold text-[#000B24]">포장</div>
+                      <div className="text-xs md:text-sm text-gray-600">Packaging</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
+
+                {/* Customer Delivery */}
+                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
+                      <Truck className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
+                    </div>
+                    <div>
+                      <div className="text-base md:text-lg font-semibold text-[#000B24]">고객사 납품</div>
+                      <div className="text-xs md:text-sm text-gray-600">Customer Delivery</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
+
+                {/* Feedback Loop */}
+                <div className="bg-[#000B24] text-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg w-full max-w-md text-center">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="bg-white/20 rounded-full p-2">
+                      <RotateCcw className="w-5 h-5 md:w-6 md:h-6" />
+                    </div>
+                    <div>
+                      <div className="text-base md:text-lg font-semibold">Re-Order 개선/반영</div>
+                      <div className="text-xs md:text-sm opacity-90">Continuous Improvement</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </section>
+          </div>
         </div>
-        <hr className="my-8 border-gray-200" />
       </Layout>
     </>
   );
