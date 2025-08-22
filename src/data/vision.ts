@@ -52,6 +52,50 @@ export const visionMilestones = {
     },
     ],
 };
+export const visionStrategyText = {
+  KOR: {
+    title: "발전 방향 및 중장기 경영 전략",
+    subtitle: "Development Strategy",
+    neoTitle: "NEO '24 5th 6015",
+    mainGoal: "새롭게 도약하고 성장하는 일년 2024년\n5년후 매출액 600억원, 순이익 150억을 달성하는\n\"확신(Confidence)\"의 \"종합 솔루션 서비스 회사\"로 성장",
+    strategicPoints: [
+      "2차시험센터/반도체정밀가공진입(24)",
+      "2차전지모듈/장비, 모빌리티 진입(26)", 
+      "매출 600억/순이익 150억 달성(28)"
+    ],
+    coreValues: ["즐겁게 (Enjoy)", "새롭게 (Neo)", "지혜롭게 (Intensely)", "빠르게 (Fastly)"],
+    bizModelTitle: "Biz Model",
+    bizModelSubtitle: "\"확신(Confidence)\"의 \"종합 솔루션 서비스\"를 제공하는 \"신뢰의 강한 기업\"",
+    openInnovation: "OPEN INNOVATION",
+    businessAreas: {
+      development: "R&BD 조기사업화\n/ 차세대 성장동력 확보",
+      manufacturing: "제조부품/개발부문\nITEM 조기 정착\n/ Mass Product 안정화",
+      partnerships: "신사업Biz / R&D\n신사업 발굴/ITEM PJT化\nR&BD Base / 차별화",
+      sectors: ["자동차\n(정밀부품가공)", "이차전지\n(부품/모듈서비스/\n제조/신뢰성검비)", "반도체/전기전자\n(부품/솔루션서비\n스/빛출력서비)", "차세대 성장\n기술 / 제품"]
+    }
+  },
+  ENG: {
+    title: "Development Direction & Mid-to-Long Term Management Strategy",
+    subtitle: "Development Strategy", 
+    neoTitle: "NEO '24 5th 6015",
+    mainGoal: "A year of new leaps and growth in 2024\nAchieving revenue of 60 billion won and net profit of 15 billion won in 5 years\nGrowing into a \"Confidence\"-based \"Total Solution Service Company\"",
+    strategicPoints: [
+      "2nd Test Center/Semiconductor Precision Processing Entry (24)",
+      "Secondary Battery Module/Equipment, Mobility Entry (26)",
+      "Achieving Revenue 60B/Net Profit 15B (28)"
+    ],
+    coreValues: ["Enjoy", "Neo", "Intensely", "Fastly"],
+    bizModelTitle: "Business Model",
+    bizModelSubtitle: "\"Reliable Strong Company\" providing \"Confidence\"-based \"Total Solution Services\"",
+    openInnovation: "OPEN INNOVATION",
+    businessAreas: {
+      development: "Early R&BD Commercialization\n/ Securing Next-Generation Growth Engines",
+      manufacturing: "Manufacturing Components/Development Division\nEarly ITEM Settlement\n/ Mass Product Stabilization", 
+      partnerships: "New Business Biz / R&D\nNew Business Development/ITEM PJT\nR&BD Base / Differentiation",
+      sectors: ["Automotive\n(Precision Parts Processing)", "Secondary Battery\n(Components/Module Services/\nManufacturing/Reliability Testing)", "Semiconductor/Electronics\n(Components/Solution Services/\nOptical Output Services)", "Next-Generation Growth\nTechnology / Products"]
+    }
+  },
+};
 
 export const visionCoreValue = {
     KOR: [
