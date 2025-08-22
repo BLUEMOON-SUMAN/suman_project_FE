@@ -59,7 +59,6 @@ export default function ServicePage() {
         />
 
         {/* 4. Products Section */}
-        {/* The conditional check `section &&` ensures the entire section renders only if the data exists. */}
         {section && (
           <motion.div
             className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden"
@@ -129,6 +128,53 @@ export default function ServicePage() {
             </div>
           </motion.div>
         )}
+        
+        {/* Footer Section */}
+        <footer className="bg-gray-900 text-white py-8 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-0">
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold mb-4">SUMAM Co., Ltd.</h3>
+                <p className="text-sm text-gray-300 mb-2">
+                  Address: 105, Mungyeongtao-ro TYboro-gil, Daedeok-gu, Daejeon, Republic of Korea
+                </p>
+                <p className="text-sm text-gray-300 mb-2">Biz Reg No.: 318-81-00161</p>
+              </div>
+              
+              <div className="flex-1">
+                <div className="flex flex-col sm:flex-row gap-4 md:gap-8 mb-4">
+                  <div>
+                    <p className="text-sm text-gray-300 mb-1">
+                      <span className="font-medium">Tel:</span> +82-42-934-1517
+                    </p>
+                    <p className="text-sm text-gray-300">
+                      <span className="font-medium">Fax:</span> +82-42-934-1516
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-300">
+                      <span className="font-medium">Email:</span> sumam20140419@sumam.co.kr
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-t border-gray-700 mt-6 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-xs text-gray-400">
+                &copy; {new Date().getFullYear()} SUMAM Co., Ltd. All rights reserved.
+              </p>
+              <div className="flex gap-6">
+                <a href="#" className="text-xs text-gray-400 hover:text-white transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#" className="text-xs text-gray-400 hover:text-white transition-colors">
+                  Email Collection Refusal
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
       </Layout>
     </>
   );
