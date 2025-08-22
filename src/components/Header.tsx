@@ -13,6 +13,7 @@ const navItemsKor = [
     submenu: [
       { label: "CEO 인사말", href: "/company/ceo" },
       { label: "기업 비전", href: "/company/vision" },
+      { label: "Vision", href: "/eng/company/vision2" },
       { label: "연혁", href: "/company/history" },
       { label: "조직도", href: "/company/org" },
       { label: "CI", href: "/company/ci" },
@@ -50,11 +51,13 @@ const navItemsEng = [
     submenu: [
       { label: "CEO Message", href: "/eng/company/ceo" },
       { label: "Vision", href: "/eng/company/vision" },
+      { label: "Vision", href: "/eng/company/vision2" },
       { label: "History", href: "/eng/company/history" },
       { label: "Organization", href: "/eng/company/org" },
       { label: "CI", href: "/eng/company/ci" },
       { label: "Location", href: "/eng/company/location" },
       { label: "Certifications", href: "/eng/company/certifications" },
+      
     ],
   },
   {
