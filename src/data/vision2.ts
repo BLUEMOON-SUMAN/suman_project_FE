@@ -18,7 +18,7 @@ export const visionStrategyText = {
       "매출 600억/순이익 150억 달성(28)",
     ],
     coreValues: ["즐겁게 (Enjoy)", "새롭게 (Neo)", "지혜롭게 (Intensely)", "빠르게 (Fastly)"],
-    bizModelTitle: "Biz Model",
+    bizModelTitle: "Business Model",
     bizModelSubtitle:
       "\"확신(Confidence)\"의 \"종합 솔루션 서비스\"를 제공하는 \"신뢰의 강한 기업\"",
     openInnovation: "OPEN INNOVATION",
