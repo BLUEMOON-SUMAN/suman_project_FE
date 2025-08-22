@@ -123,17 +123,15 @@ export default function Vision2Page() {
       <Head>
         <title>{lang === "KOR" ? "비전 | 수만" : "Vision | SUMAN"}</title>
       </Head>
-
       <Layout>
-        {/* Simple language toggle button */}
-        <div className="fixed right-4 top-20 z-40">
-          <button
-            onClick={() => setLang((prev) => (prev === "KOR" ? "ENG" : "KOR"))}
-            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow hover:bg-slate-50"
-          >
-            {lang === "KOR" ? "English" : "한국어"}
-          </button>
-        </div>
+        <HeroSection
+          title={hero.title}
+          subtitle={hero.subtitle}
+          backgroundImage="/images/sub_banner/company_banner.png"
+        />
+        <BreadcrumbSection
+          path={lang === "KOR" ? "회사소개 > 기업 비전" : "Company > Vision"}
+        />
 
         <main className="min-h-screen bg-white text-slate-900">
           <HeroSection
