@@ -23,7 +23,7 @@ function TalentCard({
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={`relative flex flex-col justify-end rounded-2xl overflow-hidden shadow-xl group ${className}`}
-      style={{ aspectRatio: '1/1', width: '115%' }}
+      style={{ aspectRatio: '1/1' }}
     >
       <Image
         src={bgImage}
@@ -177,21 +177,25 @@ export default function TalentPage() {
               </div>
             </div>
 
-            {/* Improved Card Grid Layout */}
+            {/* Improved Card Grid Layout - 15% bigger and responsive */}
             <div className="w-full max-w-6xl mx-auto">
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8 justify-items-center"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 sm:gap-6 md:gap-7 justify-items-center"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={staggerContainerVariants}
               >
                 {traits.map((trait) => (
-                  <motion.div key={trait.key} className="flex justify-center w-full" variants={itemRiseVariants}>
+                  <motion.div 
+                    key={trait.key} 
+                    className="flex justify-center w-full"
+                    variants={itemRiseVariants}
+                  >
                     <TalentCard
                       traitData={{ title: trait.title, desc: trait.desc }}
                       bgImage={trait.bgImage}
-                      className="w-full sm:w-[220px] md:w-[260px] xl:w-[280px]"
+                      className="w-full max-w-[280px] sm:max-w-[300px] md:max-w-[320px] xl:max-w-[340px]"
                     />
                   </motion.div>
                 ))}
