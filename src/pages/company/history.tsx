@@ -105,7 +105,7 @@ export default function HistoryPage() {
               </linearGradient>
             </defs>
             <motion.path
-              d="M 150 233 Q 460 243, 555 138"
+              d="M 150 233 Q 460 0, 555 50"
               stroke="url(#arrow-gradient)"
               strokeWidth="6"
               fill="none"
@@ -114,7 +114,7 @@ export default function HistoryPage() {
               transition={{ duration: 2, ease: "easeInOut" }}
             />
             <motion.path
-              d="M 563 123 L 562 145 L 542 137 Z"
+              d="M 563 35 L 562 57 L 542 49 Z"
               fill="white"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
