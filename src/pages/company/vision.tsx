@@ -19,7 +19,7 @@ export default function VisionPage() {
   const hero = visionHeroText[lang];
   const main = visionMainText[lang];
   const milestones = visionMilestones[lang];
-  const strategy = visionStrategyText[lang]; // strategy 변수 추가
+  const strategy = visionStrategyText[lang];
   const coreValues = visionCoreValue[lang];
   const rnd = visionRndText[lang];
 
@@ -89,7 +89,7 @@ export default function VisionPage() {
     visible: {
       opacity: 1,
       x: 0,
-      backgroundColor: "rgва(0, 0, 0, 0.7)",
+      backgroundColor: "rgba(0, 0, 0, 0.7)",
       transition: {
         duration: 0.4,
         ease: "easeOut",
@@ -183,7 +183,7 @@ export default function VisionPage() {
                 <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-gray-800 mb-2">
                   {main.topLabel}
                 </p>
-                <h3 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-blue-600 mb-2">
+                <h3 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-navy-600 mb-2">
                   {main.blueTitle}
                 </h3>
                 <h3 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-gray-800 mb-2">
@@ -199,7 +199,7 @@ export default function VisionPage() {
                     viewBox="0 0 1047 900"
                     preserveAspectRatio="xMidYMid meet"
                     className="vision-infographic-svg"
-                    style={{ transform: 'scale(0.9)' }} // Changed from 0.8 to 0.9 (10% bigger)
+                    style={{ transform: 'scale(0.9)' }}
                   >
                     {isClient &&
                       milestones.map((milestone, idx) => (
@@ -264,7 +264,7 @@ export default function VisionPage() {
 
         {/* New Strategy Section */}
         <motion.section
-          className="strategy-section bg-gradient-to-br from-slate-50 to-blue-50 py-16 px-4 md:px-8"
+          className="strategy-section bg-gradient-to-br from-slate-50 to-navy-50 py-16 px-4 md:px-8"
           variants={fadeInRiseVariants}
           initial="hidden"
           whileInView="visible"
@@ -278,8 +278,8 @@ export default function VisionPage() {
 
             {/* NEO 2024 Header */}
             <div className="text-center mb-16">
-              <h3 className="text-6xl font-bold text-blue-600 mb-6">{strategy.neoTitle}</h3>
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-blue-100 max-w-4xl mx-auto">
+              <h3 className="text-6xl font-bold text-navy-600 mb-6">{strategy.neoTitle}</h3>
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-navy-100 max-w-4xl mx-auto">
                 <p className="text-xl text-gray-800 whitespace-pre-line leading-relaxed">
                   {strategy.mainGoal}
                 </p>
@@ -301,7 +301,7 @@ export default function VisionPage() {
                   variants={itemRiseVariants}
                 >
                   <div className="text-center">
-                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 bg-navy-600 rounded-full flex items-center justify-center mx-auto mb-4">
                       <span className="text-white font-bold">{idx + 1}</span>
                     </div>
                     <p className="text-gray-800 whitespace-pre-line">{point}</p>
@@ -309,6 +309,43 @@ export default function VisionPage() {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Business Areas Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div className="bg-navy-50 rounded-xl p-6 border border-navy-200">
+                <h5 className="text-lg font-semibold text-navy-800 mb-3">R&BD / Development</h5>
+                <p className="text-gray-700 whitespace-pre-line text-sm">
+                  {strategy.businessAreas.development}
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                <h5 className="text-lg font-semibold text-gray-800 mb-3">Manufacturing</h5>
+                <p className="text-gray-700 whitespace-pre-line text-sm">
+                  {strategy.businessAreas.manufacturing}
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-navy-600 rounded-xl p-6 text-white mb-8">
+              <h5 className="text-lg font-semibold mb-3">Partnerships & Innovation</h5>
+              <p className="whitespace-pre-line text-sm">
+                {strategy.businessAreas.partnerships}
+              </p>
+            </div>
+
+            {/* Business Sectors */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {strategy.businessAreas.sectors.map((sector, idx) => (
+                <div
+                  key={idx}
+                  className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg p-4 text-center shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <p className="text-sm text-gray-800 whitespace-pre-line font-medium">
+                    {sector}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.section>
 

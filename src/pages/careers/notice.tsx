@@ -26,8 +26,8 @@ const RecruitmentBoard: React.FC = () => {
       {/* -------------------------------------------------------- */}
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-gray-800 mb-8">
-            {lang === "KOR" ? <>지원하기</> : <>Apply for a Job</>}
+          <h2 className="text-xl font-bold text-gray-800 mb-5 align-center title">
+            {lang === "KOR" ? <>채용공고</> : <>Recruit Notice</>}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
   {/* 사람인 카드 */}
