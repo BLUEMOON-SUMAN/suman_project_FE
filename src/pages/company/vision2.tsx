@@ -204,29 +204,64 @@ export default function Vision2Page() {
             </div>
           </motion.section>
 
-          {/* CORE VALUES */}
-          <section className="py-12 md:py-16 px-4 md:px-8 bg-white">
-            <div className="max-w-6xl mx-auto">
-              <h3 className="text-2xl md:text-3xl font-semibold mb-8">
-                {lang === "KOR" ? "핵심 가치" : "Core Values"}
-              </h3>
-              <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {coreValues.map((cv: { title: string; desc: string }, idx: number) => (
-                  <motion.div key={idx} className="rounded-xl p-5 border shadow-sm" variants={itemVariants}>
-                    <h4 className="text-lg md:text-xl font-semibold mb-2">{cv.title}</h4>
-                    <p className="text-sm whitespace-pre-line opacity-80">{cv.desc}</p>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </section>
-
+        {/* Core Value Section */}
+        <section className="core-value-section bg-white py-12 md:py-20 px-4 md:px-8">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-4 text-left tracking-wide">
+              Core Value
+            </h2>
+            <br />
+            <br />
+            <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-gray-800 mb-2 whitespace-pre-line">
+              {lang === "KOR"
+                ? "끊임없이 변화하는 시대\n우리는 유연함과 전문성으로 대응합니다"
+                : "In a Constantly Changing Era\nWe Respond with Agility and Expertise"}
+            </p>
+            <br />
+            <br />
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 lg:gap-x-12 gap-y-8"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {coreValues.map((value, idx) => (
+                <motion.div
+                  key={idx}
+                  className="relative flex flex-col justify-end p-4 shadow-md overflow-hidden hover:scale-105 transition-transform duration-300 ease-out min-h-[320px] md:min-h-[380px]"
+                  variants={itemRiseVariants}
+                  style={{
+                    backgroundImage: `url(/images/company/vision/vision_${
+                      ["Flex", "pro", "tek", "rnbd"][idx]
+                    }.png)`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    clipPath:
+                      "polygon(30px 0%, 100% 0%, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0% 100%, 0% 30px)",
+                  }}
+                >
+                  <div
+                    className="absolute inset-0 bg-black opacity-40"
+                    style={{
+                      clipPath:
+                        "polygon(30px 0%, 100% 0%, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0% 100%, 0% 30px)",
+                    }}
+                  ></div>
+                  <div className="relative text-white flex flex-col flex-grow justify-start pt-48 md:pt-60">
+                    {" "}
+                    <h3 className="text-[20px] md:text-[25px] font-semibold mb-2">
+                      {value.title}
+                    </h3>
+                    <p className="text-[13px] md:text-[15px] whitespace-pre-line">
+                      {value.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
           {/* BIZ MODEL */}
           <section className="py-12 md:py-16 px-4 md:px-8 bg-slate-50">
             <div className="max-w-6xl mx-auto">

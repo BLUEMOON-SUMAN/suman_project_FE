@@ -64,8 +64,8 @@ ENG: {
     "Expanded into automotive / electronics precision processing / equipment sectors",
     "Entered the automotive precision processing business"
     ],
-    sales: "Sales: 7.7 billion KRW (as of 2023)",
-    staff: "Employees: 40 people (as of 2024)",
+    sales: "Sales: 8.7 billion KRW (as of 2024)",
+    staff: "Employees: 45 people (as of 2024)",
     timelineTitle: "About us",
     timeline: [
 
