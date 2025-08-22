@@ -202,13 +202,6 @@ export default function CertificationsPage() {
               variants={fadeInVariants}
               viewport={{ once: true }}
             >
-              {!showMore && (
-                <p className="text-sm lg:text-base text-gray-400 tracking-wide">
-                  {lang === "KOR"
-                    ? "위 내용은 2023년 12월 31일 기준입니다."
-                    : "As of December 31, 2023."}
-                </p>
-              )}
             </motion.div>
           </div>
         </section>
