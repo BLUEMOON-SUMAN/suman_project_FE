@@ -23,20 +23,15 @@ function TalentCard({
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={`relative flex flex-col justify-end rounded-2xl overflow-hidden shadow-xl group ${className}`}
-      style={{ aspectRatio: '1/1' }}
+      style={{ aspectRatio: '1/1', width: '115%' }}
     >
-      {/* Background Image */}
       <Image
         src={bgImage}
         alt={traitData.title}
         fill
         className="object-cover object-center absolute inset-0 z-0 transition-transform duration-500 group-hover:scale-105 brightness-110 contrast-110"
       />
-
-      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10"></div>
-
-      {/* Text Content */}
       <div className="relative z-20 p-4 sm:p-5 text-white">
         <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 whitespace-pre-line drop-shadow-md">
           {traitData.title}
@@ -87,7 +82,14 @@ export default function TalentPage() {
     <>
       <Head>
         <title>{lang === "KOR" ? "인재상 | 수만" : "Talent Philosophy | SUMAN"}</title>
-        <meta name="description" content={lang === "KOR" ? "수만의 인재상과 핵심 가치를 확인해보세요" : "Discover SUMAN's talent philosophy and core values"} />
+        <meta
+          name="description"
+          content={
+            lang === "KOR"
+              ? "수만의 인재상과 핵심 가치를 확인해보세요"
+              : "Discover SUMAN's talent philosophy and core values"
+          }
+        />
       </Head>
       <Layout>
         <HeroSection
@@ -96,18 +98,28 @@ export default function TalentPage() {
           backgroundImage="/images/sub_banner/careers_hero.png"
         />
 
-        <BreadcrumbSection path={lang === "KOR" ? "인재 채용 > 인재상" : "Careers > Talent Philosophy"} />
+        <BreadcrumbSection
+          path={lang === "KOR" ? "인재 채용 > 인재상" : "Careers > Talent Philosophy"}
+        />
 
         <div className="content-wrapper py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16 md:mb-20 w-full">
-              <div
-                className={`group relative max-w-4xl w-full mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12 bg-white rounded-2xl shadow-lg`}
-              >
+              <div className="group relative max-w-4xl w-full mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12 bg-white rounded-2xl shadow-lg">
                 <div className="relative z-10">
                   <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl mb-4 sm:mb-5 md:mb-6 shadow-lg">
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <svg
+                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
                     </svg>
                   </div>
 
@@ -129,8 +141,18 @@ export default function TalentPage() {
                     </div>
                     <div className="hidden sm:block w-px h-4 sm:h-5 bg-gray-200"></div>
                     <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-500">
-                      <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      <svg
+                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
                       </svg>
                       <span>{currentText.position}</span>
                     </div>
@@ -140,8 +162,13 @@ export default function TalentPage() {
                       href="/careers/notice"
                       className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 py-1.5 sm:py-2 md:py-2.5 bg-gray-900 text-white text-xs sm:text-sm md:text-base font-semibold rounded-full hover:bg-gray-800 transition-colors duration-200"
                     >
-                      <span>{lang === 'KOR' ? '지원하기' : 'Apply Now'}</span>
-                      <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span>{lang === "KOR" ? "지원하기" : "Apply Now"}</span>
+                      <svg
+                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                       </svg>
                     </Link>
@@ -153,22 +180,18 @@ export default function TalentPage() {
             {/* Improved Card Grid Layout */}
             <div className="w-full max-w-6xl mx-auto">
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8 justify-items-center"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={staggerContainerVariants}
               >
                 {traits.map((trait) => (
-                  <motion.div
-                    key={trait.key}
-                    className="flex justify-center"
-                    variants={itemRiseVariants}
-                  >
+                  <motion.div key={trait.key} className="flex justify-center w-full" variants={itemRiseVariants}>
                     <TalentCard
                       traitData={{ title: trait.title, desc: trait.desc }}
                       bgImage={trait.bgImage}
-                      className="w-full max-w-xs sm:max-w-none"
+                      className="w-full sm:w-[220px] md:w-[260px] xl:w-[280px]"
                     />
                   </motion.div>
                 ))}
