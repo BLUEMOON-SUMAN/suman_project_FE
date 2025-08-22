@@ -194,15 +194,6 @@ export default function CertificationsPage() {
                 </motion.div>
               )}
             </AnimatePresence>
-
-            <motion.div
-              className="w-full flex flex-col items-end gap-2 mt-6"
-              initial="hidden"
-              whileInView="visible"
-              variants={fadeInVariants}
-              viewport={{ once: true }}
-            >
-            </motion.div>
           </div>
         </section>
         <hr className="my-8 border-gray-200 w-full" />
