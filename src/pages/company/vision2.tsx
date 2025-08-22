@@ -1,3 +1,5 @@
+"use client";
+
 import Head from "next/head";
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
@@ -137,6 +139,7 @@ export default function Vision2Page() {
             subtitle={hero.subtitle}
             backgroundImage="/images/sub_banner/company_banner.png"
           />
+          <BreadcrumbSection path={lang === "KOR" ? "회사소개 > 기업 비전" : "Company > Vision"} />
 
           {/* STRATEGY */}
           <motion.section
@@ -199,6 +202,29 @@ export default function Vision2Page() {
             </div>
           </motion.section>
 
+          {/* CORE VALUES */}
+          <section className="py-12 md:py-16 px-4 md:px-8 bg-white">
+            <div className="max-w-6xl mx-auto">
+              <h3 className="text-2xl md:text-3xl font-semibold mb-8">
+                {lang === "KOR" ? "핵심 가치" : "Core Values"}
+              </h3>
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {coreValues.map((cv: { title: string; desc: string }, idx: number) => (
+                  <motion.div key={idx} className="rounded-xl p-5 border shadow-sm" variants={itemVariants}>
+                    <h4 className="text-lg md:text-xl font-semibold mb-2">{cv.title}</h4>
+                    <p className="text-sm whitespace-pre-line opacity-80">{cv.desc}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
           {/* BIZ MODEL */}
           <section className="py-12 md:py-16 px-4 md:px-8 bg-slate-50">
             <div className="max-w-6xl mx-auto">
@@ -235,6 +261,135 @@ export default function Vision2Page() {
               </div>
             </div>
           </section>
+
+          {/* Secondary Core Value section with images (kept from your code) */}
+          <section className="core-value-section bg-white py-12 md:py-20 px-4 md:px-8">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-black mb-4 text-left tracking-wide">
+                Core Value
+              </h2>
+              <br />
+              <br />
+              <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-gray-800 mb-2 whitespace-pre-line">
+                {lang === "KOR"
+                  ? "끊임없이 변화하는 시대\n우리는 유연함과 전문성으로 대응합니다"
+                  : "In a Constantly Changing Era\nWe Respond with Agility and Expertise"}
+              </p>
+              <br />
+              <br />
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 lg:gap-x-12 gap-y-8"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                {coreValues.map((value, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="relative flex flex-col justify-end p-4 shadow-md overflow-hidden hover:scale-105 transition-transform duration-300 ease-out min-h-[320px] md:min-h-[380px]"
+                    variants={itemRiseVariants}
+                    style={{
+                      backgroundImage: `url(/images/company/vision/vision_${["Flex", "pro", "tek", "rnbd"][idx]}.png)`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      clipPath:
+                        "polygon(30px 0%, 100% 0%, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0% 100%, 0% 30px)",
+                    }}
+                  >
+                    <div
+                      className="absolute inset-0 bg-black opacity-40"
+                      style={{
+                        clipPath:
+                          "polygon(30px 0%, 100% 0%, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0% 100%, 0% 30px)",
+                      }}
+                    />
+                    <div className="relative text-white flex flex-col flex-grow justify-start pt-48 md:pt-60">
+                      <h3 className="text-[20px] md:text-[25px] font-semibold mb-2">{value.title}</h3>
+                      <p className="text-[13px] md:text-[15px] whitespace-pre-line">{value.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* R&D */}
+          <motion.section
+            className="rnd-section bg-[#010104] text-white py-12 md:py-20 px-4 md:px-8 rounded-t-3xl overflow-hidden relative"
+            variants={rndSectionRiseVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+            style={{
+              backgroundImage: 'url("/images/company/vision/vision_R&D_bg.png")',
+              backgroundSize: "cover",
+              backgroundPosition: "center 245px",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div className="max-w-7xl mx-auto relative z-10">
+              <h2 className="text-base sm:text-lg lg:text-2xl font-semibold text-white mb-12 md:mb-18 text-left tracking-wide ">
+                {rnd.title}
+              </h2>
+              <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-8 md:mb-12 text-left whitespace-pre-line tracking-wide">
+                {rnd.subtitle}
+              </p>
+              <div className="rnd-content flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+                <div className="md:w-1/2 flex flex-col items-end pr-0">
+                  <motion.div className="bg-white/40 rounded-4xl p-3 mb-4 w-full max-w-72 h-20 md:h-23 backdrop-blur-sm" variants={rndBoxLeftInVariants}>
+                    <p className="text-[20px] md:text-[25px] text-white font-semibold mb-2 flex items-center justify-center">
+                      {rnd.leftBox1Title}
+                    </p>
+                    <p className="text-[13px] md:text-[15px] text-white flex items-center justify-center">
+                      {rnd.leftBox1Desc}
+                    </p>
+                  </motion.div>
+                  <motion.div className="bg-white/40 rounded-4xl p-3 mb-4 w-full max-w-72 h-20 md:h-23 backdrop-blur-sm" variants={rndBoxLeftInVariants}>
+                    <p className="text-[20px] md:text-[25px] text-white font-semibold mb-2 flex items-center justify-center">
+                      {rnd.leftBox2Title}
+                    </p>
+                    <p className="text-[13px] md:text-[15px] text-white flex items-center justify-center">
+                      {rnd.leftBox2Desc}
+                    </p>
+                  </motion.div>
+                </div>
+                <motion.div className="hidden md:flex flex-col justify-center items-center h-full" variants={processLineVariants}>
+                  <svg width="188" height="71" viewBox="0 0 188 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id={`mask0_${lang}`} style={{ maskType: "alpha" } as any} maskUnits="userSpaceOnUse" x="0" y="0" width="188" height="71">
+                      <rect width="20" height="71" fill="black" />
+                      <rect x="42" width="20" height="71" fill="black" />
+                      <rect x="84" width="20" height="71" fill="black" />
+                      <rect x="126" width="20" height="71" fill="black" />
+                      <rect x="168" width="20" height="71" fill="black" />
+                    </mask>
+                    <g mask={`url(#mask0_${lang})`}>
+                      <rect x="-23" width="226" height="71" fill={`url(#paint0_linear_${lang})`} />
+                    </g>
+                    <defs>
+                      <linearGradient id={`paint0_linear_${lang}`} x1="-23" y1="35.5" x2="203" y2="35.5" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="white" stopOpacity="0" />
+                        <stop offset="1" stopColor="white" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </motion.div>
+                <div className="md:w-1/2 flex flex-col justify-center pl-0">
+                  <motion.div
+                    className="relative w-full h-[300px] md:h-[400px] bg-cover bg-center rounded-lg overflow-hidden"
+                    style={{ backgroundImage: 'url("/images/company/vision/vision_dev.png")' }}
+                    variants={rndBoxRightInVariants}
+                  >
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/100 via-[79%] to-transparent p-4">
+                      <p className="text-gray-300 text-[13px] md:text-[15px] mb-1">{rnd.rightBoxTop}</p>
+                      <p className="text-[20px] md:text-[25px] font-semibold">{rnd.rightBoxTitle}</p>
+                      <p className="text-[16px] md:text-[20px] text-gray-300">{rnd.rightBoxDesc}</p>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </motion.section>
         </main>
       </Layout>
     </>
