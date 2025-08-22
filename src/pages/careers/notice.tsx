@@ -94,71 +94,9 @@ const RecruitmentBoard: React.FC = () => {
       {/* -------------------------------------------------------- */}
       {/*                      채용 공고 섹션                        */}
       {/* -------------------------------------------------------- */}
-      <div className="min-h-screen bg-white py-10">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">
-              {lang === "KOR" ? <>채용공고</> : <>Job Posting</>}
-            </h1>
 
-            <div className="w-16 h-1 bg-blue-600 mx-auto"></div>
-          </div>
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-            <table className="w-full">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700 w-10">
-                    번호
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-700 w-10">
-                    제목
-                  </th>
-                  <th className="px-6 py-4 text-center text-sm font-medium text-gray-700 w-24">
-                    작성자
-                  </th>
-                  <th className="px-6 py-4 text-center text-sm font-medium text-gray-700 w-32">
-                    작성일
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {recruitments.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={6}
-                      className="px-6 py-12 text-center text-gray-500"
-                    >
-                      등록된 채용공고가 없습니다.
-                    </td>
-                  </tr>
-                ) : (
-                  recruitments.map((recruitment, index) => (
-                    <tr key={recruitment.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 text-sm text-gray-900">
-                        {recruitments.length - index}
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center">
-                          <button
-                            onClick={() => setSelected(recruitment)}
-                            className="text-blue-600 hover:text-blue-800 text-sm font-medium hover:underline"
-                          >
-                            {recruitment.title}
-                          </button>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-900">
-                        관리자
-                      </td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-900">
-                        {formatDate(recruitment.posted_date)}
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
+          
+          
 
           {/* -------------------------------------------------------- */}
           {/*                      채용 안내 섹션                        */}
@@ -284,7 +222,7 @@ const RecruitmentBoard: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        
 
         {/* 팝업(모달) 영역 */}
         {selected && (
@@ -310,7 +248,7 @@ const RecruitmentBoard: React.FC = () => {
             </div>
           </div>
         )}
-      </div>
+    
       <hr className="my-8 border-gray-200 w-full" />
     </Layout>
   );
