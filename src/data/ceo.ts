@@ -13,11 +13,11 @@ export const ceoText = {
   ENG: {
     greetingBlue: "SUMAN.",
     greetingBlack: ",",
-    greetingBlack2: "Welcome, dear customers,",
+    greetingBlack2: "Welcome customers,",
     intro: "Hello.",
     body: [
       "Suman Group is a precision manufacturing company that designs and manufactures parts, modules, and equipment for the automotive, electronics, and battery industries.",
-      "We have continuously supplied trustworthy products through innovation and quality control,"
+      "We have continuously supplied trustworthy products through innovation and quality control,",
       "and we continue to grow sustainably with flexible and honest technology.",
       "We will continue to be a reliable partner in your success.",
       "We ask for your continued interest and support."
