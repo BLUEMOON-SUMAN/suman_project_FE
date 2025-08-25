@@ -60,21 +60,21 @@ export default function CeoPage() {
       <BreadcrumbSection path="회사소개 > CEO 인사말" />
 
       {/* CEO 인사말 섹션 */}
-      <main className="content-wrapper py-20 px-4 md:px-8 bg-white flex justify-center items-center">
-        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-start space-y-10 md:space-y-0 md:space-x-12">
-          {/* 인사말 내용과 서명 섹션을 하나의 motion.div로 묶음 */}
+      <main className="content-wrapper py-16 px-4 sm:px-6 lg:px-8 bg-white flex justify-center">
+        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-start gap-12">
+          {/* 인사말 내용 */}
           <motion.div
-            className="ceo-text-column md:w-[48%] text-gray-700 leading-relaxed"
-            variants={slideInLeft} // 상위 요소의 애니메이션 사용
+            className="md:w-1/2 text-gray-700 leading-relaxed space-y-6"
+            variants={slideInLeft}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-snug">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-snug">
               {lang === "KOR" ? (
                 <>
-                  <span className="text-blue-600 font-bold tracking-wide">주식회사 수만</span>
-                  <span className="text-black font-bold tracking-wide"></span>
+                  <span className="text-blue-600 font-bold tracking-wide">SUMAN</span>
+                  <span className="text-black font-bold tracking-wide">을</span>
                   <br />
                   <span className="text-black font-bold tracking-wide">
                     찾아주신 고객 여러분, 반갑습니다.
@@ -85,12 +85,12 @@ export default function CeoPage() {
                   <span className="text-blue-600 font-bold tracking-wide">SUMAN</span>
                   <br />
                   <span className="text-black font-bold tracking-wide">
-                    Welcome,
+                    Welcome, dear customers,
                   </span>
                 </>
               )}
             </h2>
-                        <p className="text-base sm:text-lg tracking-wide leading-relaxed">{intro}</p>
+            <p className="text-base sm:text-lg tracking-wide leading-relaxed">{intro}</p>
             {body.map((paragraph, idx) => (
               <p key={idx} className="text-base sm:text-lg tracking-wide leading-relaxed">
                 {paragraph}
@@ -102,10 +102,10 @@ export default function CeoPage() {
             </div>
           </motion.div>
 
-          {/*Ceo 인사말과 Ceo이미지 사이 회색 실선 */}
+          {/* 구분선 */}
           <div className="hidden md:block w-px bg-gray-200 self-stretch" />
 
-          {/* 이미지 플레이스홀더 */}
+          {/* CEO 이미지 */}
           <motion.div
             className="md:w-1/2 flex items-center justify-center"
             variants={slideInRight}
@@ -113,22 +113,13 @@ export default function CeoPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div
-              className="placeholder-image w-full flex items-center justify-center text-blue-500 font-bold text-2xl"
-              style={{
-                height: "auto",
-                maxHeight: "550px",
-                overflow: "hidden",
-              }}
-            >
-              <Image
-                src="/images/company/ceo/ceo.jpeg"
-                alt="SUMAN CEO"
-                className="w-full h-auto max-w-md md:max-w-full rounded-xl shadow-lg object-cover"
-                width={700}
-                height={500}
-              />
-            </div>
+            <Image
+              src="/images/company/ceo/ceo.jpeg"
+              alt="SUMAN CEO"
+              className="w-full h-auto max-w-md md:max-w-full rounded-xl shadow-lg object-cover"
+              width={700}
+              height={500}
+            />
           </motion.div>
         </div>
       </main>
