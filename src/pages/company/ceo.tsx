@@ -90,28 +90,24 @@ export default function CeoPage() {
                 </>
               )}
             </h2>
-            <p className="mb-4 text-lg tracking-wide leading-[2]">{intro}</p>
-            <p className="mb-4 text-lg whitespace-pre-line tracking-wide leading-[1.7]">{body}</p>
-            <p className="mb-4 text-lg tracking-wide leading-[2]">{closing}</p>
-            {/* 서명 영역 - 이제 별도의 motion.div가 아님 */}
-            <div className="signature-area text-lg  text-gray-800 mt-14 tracking-wide">
-              (주) 수만 대표이사 <strong className="ml-4"> 임태형</strong>{" "}
-              {/* <Image
-                src="/images/signature.png"
-                alt="대표이사 서명"
-                className="w-40 h-auto inline-block align-middle ml-2"
-                width={100}
-                height={100}
-              /> */}
+                        <p className="text-base sm:text-lg tracking-wide leading-relaxed">{intro}</p>
+            {body.map((paragraph, idx) => (
+              <p key={idx} className="text-base sm:text-lg tracking-wide leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+            <p className="text-base sm:text-lg tracking-wide leading-relaxed">{closing}</p>
+            <div className="signature-area mt-10 text-base sm:text-lg text-gray-800">
+              (주) 수만 대표이사 <strong className="ml-4"> 임태형</strong>
             </div>
           </motion.div>
 
           {/*Ceo 인사말과 Ceo이미지 사이 회색 실선 */}
-          <div className="hidden md:block w-px min-h-[700px] bg-gray-200 self-stretch mr-8" />
+          <div className="hidden md:block w-px bg-gray-200 self-stretch" />
 
           {/* 이미지 플레이스홀더 */}
           <motion.div
-            className="ceo-image-column md:w-[48%] flex items-center justify-center"
+            className="md:w-1/2 flex items-center justify-center"
             variants={slideInRight}
             initial="hidden"
             whileInView="visible"
@@ -128,7 +124,7 @@ export default function CeoPage() {
               <Image
                 src="/images/company/ceo/ceo.jpeg"
                 alt="SUMAN CEO"
-                className="w-full h-full object-cover"
+                className="w-full h-auto max-w-md md:max-w-full rounded-xl shadow-lg object-cover"
                 width={700}
                 height={500}
               />
