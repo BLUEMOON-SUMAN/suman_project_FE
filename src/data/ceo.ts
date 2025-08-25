@@ -16,11 +16,9 @@ export const ceoText = {
     greetingBlack: ",",//
     greetingBlack2: "Welcome, dear customers,",//
     intro: "Hello.",
-    body: `Suman Group is a precision manufacturing company that designs and manufactures parts,
-modules, and equipment for the automotive, electronics, and battery industries.
-We have continuously supplied trustworthy products through innovation and quality control,
-and we continue to grow sustainably with flexible and honest technology.
-We will continue to be a reliable partner in your success.
+    body: `Suman Group is a precision manufacturing company that designs and manufactures parts, modules, and equipment for the automotive, 
+electronics, and battery industries. We have continuously supplied trustworthy products through innovation and quality control, and we continue 
+to grow sustainably with flexible and honest technology. We will continue to be a reliable partner in your success.
 We ask for your continued interest and support.`,
     closing: "Thank you.",
     // sign: "CEO Taehyung Lim, SUMAN Group", 생략

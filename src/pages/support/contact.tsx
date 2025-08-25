@@ -21,10 +21,10 @@ export default function InquiryFormPage() {
   };
 
   const contactInfo = [
-    { label: lang === "KOR" ? "이름    " : "Name", value: "" },
-    { label: lang === "KOR" ? "소속    " : "Affiliation", value: "" },
-    { label: lang === "KOR" ? "연락처  " : "Phone", value: "" },
-    { label: "E-mail ", value: "" },
+    { label: lang === "KOR" ? "이름" : "Name", value: "" },
+    { label: lang === "KOR" ? "소속" : "Affiliation", value: "" },
+    { label: lang === "KOR" ? "연락처" : "Phone", value: "" },
+    { label: "E-mail", value: "" },
     { label: lang === "KOR" ? "문의부서" : "Department", value: "" },
     { label: lang === "KOR" ? "문의내용" : "Inquiry Content", value: "" },
   ];

@@ -73,8 +73,8 @@ export default function CeoPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-snug">
               {lang === "KOR" ? (
                 <>
-                  <span className="text-blue-600 font-bold tracking-wide">SUMAN</span>
-                  <span className="text-black font-bold tracking-wide">을</span>
+                  <span className="text-blue-600 font-bold tracking-wide">주식회사 수만</span>
+                  <span className="text-black font-bold tracking-wide"></span>
                   <br />
                   <span className="text-black font-bold tracking-wide">
                     찾아주신 고객 여러분, 반갑습니다.
@@ -85,7 +85,7 @@ export default function CeoPage() {
                   <span className="text-blue-600 font-bold tracking-wide">SUMAN</span>
                   <br />
                   <span className="text-black font-bold tracking-wide">
-                    Welcome, dear customers,
+                    Welcome,
                   </span>
                 </>
               )}
