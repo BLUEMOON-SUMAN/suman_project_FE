@@ -113,13 +113,22 @@ export default function CeoPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <Image
-              src="/images/company/ceo/ceo.jpeg"
-              alt="SUMAN CEO"
-              className="w-full h-auto max-w-md md:max-w-full rounded-xl shadow-lg object-cover"
-              width={700}
-              height={500}
-            />
+            <div
+              className="placeholder-image w-full flex items-center justify-center text-blue-500 font-bold text-2xl"
+              style={{
+                height: "auto",
+                maxHeight: "550px",
+                overflow: "hidden",
+              }}
+            >
+              <Image
+                src="/images/company/ceo/ceo.jpeg"
+                alt="SUMAN CEO"
+                className="w-full h-full object-cover"
+                width={700}
+                height={500}
+              />
+            </div>
           </motion.div>
         </div>
       </main>

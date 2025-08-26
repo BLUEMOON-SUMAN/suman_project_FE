@@ -68,7 +68,7 @@ export default function WellnessPage() {
 
         {/* This main div no longer has an animation, its content is visible from the start */}
         <div className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain" style={{ backgroundImage: "url('/images/business/layer2.png')" }}></div>
+          <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain"></div>
           
           <div className="max-w-7xl mx-auto relative z-10">
             {currentData.sections.map((section, sectionIndex) => (

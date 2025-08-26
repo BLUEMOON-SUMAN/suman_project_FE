@@ -68,13 +68,13 @@ export const traits = {
 
 export const Herotext = {
   KOR: {
-    title: "(주)수만그룹은 이런 인재를 찾습니다.",
+    title: "수만은 이런 인재를 찾습니다.",
     desc: "도전과 혁신을 통해 끊임없이 성장하며,\n고객과 사회에 기여하는 열정적인 인재를 기다립니다.",
     state: "채용 진행중",
     position: "다양한 포지션",
   },
   ENG: {
-    title: "Suman Group is looking for such talents",
+    title: "Suman is looking for such talents",
     desc: "We are looking for passionate talents who continuously grow through challenges and innovations and contribute to our customers and society.",
     state: "Now Hiring",
     position: "Various Positions",

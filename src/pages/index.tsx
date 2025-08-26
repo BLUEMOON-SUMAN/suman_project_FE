@@ -292,7 +292,7 @@ export default function HomePage({ content }: HomePageProps) {
             variants={fadeInVariants}
           >
             <p className={`${labelClass} mt-12`}>Service</p>
-            <h2 className="text-7xl md:text-6xl font-bold mb-5 md:mb-7 leading-snug md:leading-[1.3] tracking-wide whitespace-pre-line">
+            <h2 className="mt-5 mb-5 text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal">
               고객 맞춤형 장비/제조 서비스를 제조합니다
             </h2>
 
