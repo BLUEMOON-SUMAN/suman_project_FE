@@ -292,13 +292,13 @@ export default function HomePage({ content }: HomePageProps) {
             variants={fadeInVariants}
           >
             <p className={`${labelClass} mt-12`}>Service</p>
-            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal mt-5 mb-5">
+            <h2 className="mt-5 mb-5 text-xl md:text-2xl lg:text-4xl font-bold tracking-wide text-black leading-normal">
               고객 맞춤형 장비/제조 서비스를 제조합니다
             </h2>
 
-            <p className="text-sm md:text-base lg:text-xl text-black/80 font-medium leading-relaxed mb-8">
-              수만은 고객의 특정한 요구사항을 면밀히 분석하여 최적화된 맞춤형 장비 및 설비, <br />
-              최고 품질의 정밀 가공 부품을 제공함으로써 혁신적인 솔루션과 지속적인 기술 지원을 통해<br />
+            <p className="mb-8 text-sm md:text-base lg:text-xl text-black/80 font-medium leading-relaxed">
+              수만은 고객의 특정한 요구사항을 면밀히 분석하여 최적화된 맞춤형 장비 및 설비,
+              최고 품질의 정밀 가공 부품을 제공함으로써 혁신적인 솔루션과 지속적인 기술 지원을 통해
               고객 비즈니스의 성공을 이끌어갑니다.
             </p>
           </motion.div>
