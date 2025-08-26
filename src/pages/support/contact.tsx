@@ -69,22 +69,35 @@ export default function HistoryPage() {
                   </p>
                 </div>
 
-                {/* UPDATED: Changed flex to grid for aligning colons */}
+                {/* ========================= UPDATED (align ":" perfectly) ========================= */}
+                {/* 1) Gunakan flex satu baris per item supaya kolom punya lebar sama di semua baris
+                    2) Label diberi lebar tetap (responsif) -> semua baris punya start yg sama
+                    3) Kolom ":" diberi lebar 1ch + text-center -> titik dua selalu di kolom yang sama
+                    4) items-baseline menjaga baseline huruf dan ":" sejajar rapi */}
                 <div className="space-y-6 mb-10">
                   {contactInfo.map((item, index) => (
                     <div
                       key={index}
-                      className="grid grid-cols-[auto_1ch_1fr] border-b border-gray-200 pb-4"
+                      className="flex items-baseline border-b border-gray-200 pb-4"
                     >
-                      <div className="font-semibold text-gray-800 text-lg">
+                      {/* Label column (fixed width, responsive) */}
+                      <div className="shrink-0 w-28 sm:w-40 md:w-56 lg:w-64 font-semibold text-gray-800 text-lg whitespace-nowrap">
                         {item.label}
                       </div>
-                      <div className="text-blue-500">:</div>
-                      <div className="text-gray-600">{item.value}</div>
+
+                      {/* Colon column (exactly 1 character width) */}
+                      <div className="w-[1ch] text-blue-500 text-lg font-semibold text-center">
+                        :
+                      </div>
+
+                      {/* Value column */}
+                      <div className="flex-1 min-h-[1.75rem] text-gray-600">
+                        {item.value}
+                      </div>
                     </div>
                   ))}
                 </div>
-                {/* UPDATED END */}
+                {/* ======================= END UPDATED ======================= */}
 
                 <div className="text-center mt-12">
                   <a

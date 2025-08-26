@@ -29,7 +29,6 @@ export default function HistoryPage() {
       },
     },
   };
-  
 
   return (
     <>
@@ -44,7 +43,7 @@ export default function HistoryPage() {
         />
         <BreadcrumbSection path={content.breadcrumb} />
 
-        <section className="relative w-full h-[700px]">
+        <section className="relative w-full h-[560px] md:h-[700px]">
           <div
             className="absolute inset-0 bg-cover z-0"
             style={{
@@ -83,7 +82,7 @@ export default function HistoryPage() {
               </ul>
             </motion.div>
             <motion.div
-              className="absolute top-[620px] right-[360px] z-20 text-right text-sm text-gray-400 drop-shadow-md space-y-1"
+              className="absolute top-[520px] right-4 sm:top-[620px] sm:right-[360px] z-20 text-right text-sm text-gray-400 drop-shadow-md space-y-1"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
@@ -94,7 +93,7 @@ export default function HistoryPage() {
             </motion.div>
           </div>
           <svg
-            className="absolute inset-0 mx-auto my-auto z-20 opacity-80 pointer-events-none"
+            className="absolute inset-0 w-full h-full mx-auto my-auto z-20 opacity-80 pointer-events-none"
             viewBox="0 0 700 300"
             preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
@@ -136,9 +135,9 @@ export default function HistoryPage() {
               >
                 {content.timelineTitle}
               </motion.h2>
-              <div className="max-w-5xl mx-auto relative pl-26 md:pl-36">
+              <div className="max-w-5xl mx-auto relative pl-6 sm:pl-26 md:pl-36">
                 <motion.div
-                  className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300"
+                  className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300 hidden sm:block"
                   initial={{ opacity: 0, height: 0 }}
                   whileInView={{ opacity: 1, height: "100%" }}
                   transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
@@ -154,19 +153,19 @@ export default function HistoryPage() {
                   {content.timeline.map((entry, index) => (
                     <motion.div key={index} variants={fadeInRiseVariants}>
                       <div className="timeline-entry mt-16 mb-10 relative">
-                        <div className="flex items-center absolute -left-2 top-[18px] ml-[-24px]">
-                          <h3 className="timeline-year text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 -translate-x-full">
+                        <div className="flex items-center sm:absolute sm:-left-2 sm:top-[18px] sm:ml-[-24px] mb-4 sm:mb-0">
+                          <h3 className="timeline-year text-xl sm:text-3xl md:text-3xl font-bold text-black bg-white pr-4 z-10 sm:-translate-x-full">
                             {entry.year}
                           </h3>
                         </div>
-                        <div className="bg-gray-100 p-6 rounded-[30px] w-full ml-[60px] md:ml-[100px]">
+                        <div className="bg-gray-100 p-6 rounded-[30px] w-full sm:ml-[60px] md:ml-[100px]">
                           <p className="text-2xl font-bold text-black tracking-wide ml-4">{entry.label}</p>
                         </div>
                       </div>
                       {entry.items.map((item, idx) => (
                         <motion.div
                           key={idx}
-                          className="timeline-item mb-3 relative ml-[90px] md:ml-[155px]"
+                          className="timeline-item mb-3 relative ml-[20px] sm:ml-[90px] md:ml-[155px]"
                           initial={{ opacity: 0, x: -30, y: -10 }}
                           whileInView={{ opacity: 1, x: 0, y: 0 }}
                           transition={{
@@ -176,13 +175,15 @@ export default function HistoryPage() {
                           }}
                           viewport={{ once: true }}
                         >
-                          <p className={`text-lg font-semibold tracking-wide ${
-                            item.includes("⦁")
-                              ? "text-black font-bold"
-                              : item.includes("➔")
-                              ? "text-[#8C8C8C] text-base"
-                              : "text-[#4C4C4C]"
-                          }`}>
+                          <p
+                            className={`text-lg font-semibold tracking-wide ${
+                              item.includes("⦁")
+                                ? "text-black font-bold"
+                                : item.includes("➔")
+                                ? "text-[#8C8C8C] text-base"
+                                : "text-[#4C4C4C]"
+                            }`}
+                          >
                             {item}
                           </p>
                         </motion.div>
@@ -192,9 +193,9 @@ export default function HistoryPage() {
                 </motion.div>
 
                 {/* 점들 */}
-                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[47.3%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
-                <motion.div className="absolute left-0 top-[86%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />
+                <motion.div className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 hidden sm:block" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }} viewport={{ once: true }} />
+                <motion.div className="absolute left-0 top-[47.3%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 hidden sm:block" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }} viewport={{ once: true }} />
+                <motion.div className="absolute left-0 top-[86%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 hidden sm:block" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }} viewport={{ once: true }} />
               </div>
             </div>
           </section>

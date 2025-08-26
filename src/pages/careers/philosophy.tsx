@@ -177,8 +177,8 @@ export default function TalentPage() {
               </div>
             </div>
 
-            {/* Improved Card Grid Layout - 15% bigger and responsive */}
-            <div className="w-full max-w-6xl mx-auto">
+            {/* Enlarged card grid for better visibility across devices */}
+            <div className="w-full max-w-7xl mx-auto">
               <motion.div
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 sm:gap-6 md:gap-7 justify-items-center"
                 initial="hidden"
@@ -195,7 +195,7 @@ export default function TalentPage() {
                     <TalentCard
                       traitData={{ title: trait.title, desc: trait.desc }}
                       bgImage={trait.bgImage}
-                      className="w-full max-w-[280px] sm:max-w-[300px] md:max-w-[320px] xl:max-w-[340px]"
+                      className="w-full max-w-[308px] sm:max-w-[330px] md:max-w-[352px] xl:max-w-[374px]"
                     />
                   </motion.div>
                 ))}
