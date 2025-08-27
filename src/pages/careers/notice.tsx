@@ -83,7 +83,7 @@ const RecruitmentBoard: React.FC = () => {
 
 const RecruitmentNotice: React.FC = () => {
   const lang = useLangStore((state) => state.lang) || "KOR";
-  const fileName = "순천향대학교_SCH특수아동교육연구소_행정지원인력_채용공고.pdf";
+  const fileName = "SUMAN PLC제어 부문 신입 및 경력직 채용 공고문.docx";
 
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -122,8 +122,8 @@ const RecruitmentNotice: React.FC = () => {
               </div>
               <div className="text-lg font-medium group-hover:underline decoration-navy-500 decoration-2 underline-offset-4">
                 {lang === "KOR"
-                  ? "[채용공고] 순천향대학교 SCH특수아동교육연구소 행정지원인력 채용 공고"
-                  : "[Recruitment Notice] Soonchunhyang University SCH Special Education Research Institute Administrative Support Staff Recruitment"}
+                  ? "SUMAN PLC제어 부문 신입 및 경력직 채용 공고문"
+                  : "SUMAN PLC Control New & Experienced Recruitment Notice"}
               </div>
             </button>
           </div>
