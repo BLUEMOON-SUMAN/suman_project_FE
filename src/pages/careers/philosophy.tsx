@@ -203,7 +203,7 @@ export default function TalentPage() {
             </div>
           </div>
         </div>
-        <hr className="my-8 sm:my-10 md:my-12 border-gray-200 w-full" />
+        <hr className="my-6 border-gray-200 w-full" />
       </Layout>
     </>
   );

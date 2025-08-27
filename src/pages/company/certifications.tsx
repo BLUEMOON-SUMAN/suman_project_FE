@@ -196,7 +196,7 @@ export default function CertificationsPage() {
             </AnimatePresence>
           </div>
         </section>
-        <hr className="my-8 border-gray-200 w-full" />
+        <hr className="my-6 border-gray-200 w-full" />
       </Layout>
     </>
   );

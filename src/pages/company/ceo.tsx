@@ -132,7 +132,7 @@ export default function CeoPage() {
           </motion.div>
         </div>
       </main>
-      <hr className="my-8 border-gray-200 w-full" />
+      <hr className="my-6 border-gray-200 w-full" />
     </Layout>
   );
 }

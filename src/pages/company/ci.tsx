@@ -151,8 +151,7 @@ export default function OrgPage() {
         </div>
       </main>
 
-      <hr className="my-10
-       border-gray-200 w-full" />
+      <hr className="my-6 border-gray-200 w-full" />                                                        
     </Layout>
   );
 }

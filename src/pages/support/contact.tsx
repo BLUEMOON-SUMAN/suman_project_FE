@@ -126,7 +126,6 @@ export default function HistoryPage() {
             </motion.div>
           </div>
         </div>
-
         <hr className="my-8 border-gray-200 w-full" />
       </Layout>
     </>

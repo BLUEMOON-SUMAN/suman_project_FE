@@ -54,10 +54,11 @@ const RecruitmentBoard: React.FC = () => {
             </div>
           </div>
         </section>
+        <hr className="my-3 border-navy-200 w-full" />
         {/* ✅ Download Link Section RIGHT AFTER 3 Cards */}
         <RecruitmentDownloadBanner />
       </div>
-      <hr className="my-8 border-gray-200 w-full" />
+      <hr className="my-6 border-gray-200 w-full" />
     </Layout>
   );
 };
@@ -68,17 +69,17 @@ const RecruitmentDownloadBanner: React.FC = () => {
 
   const label =
     lang === "KOR"
-      ? "[채용공고]PLC 제어 부문 신입 및 경력직 채용 공고문"
-      : "[Recruitment Notice] Entry-Level & Experienced Hiring – PLC Control Division";
+      ? " [채용공고]PLC 제어 부문 신입 및 경력직 채용 공고문 2025.00.00"
+      : " [Recruitment Notice] Entry-Level & Experienced Hiring PLC Control Division 2025.00.00";
 
   return (
-    <section className="bg-white mt-4 px-4">
+    <section className="bg-white mt-1 px-4">
       <div className="max-w-7xl mx-auto">
         <ul className="space-y-3">
           <li className="flex items-start gap-2">
             <span className="mt-[6px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
             <a
-              href="/downloads/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
+              href="/images/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
               download
               className="text-[#1D3762] text-[18px] hover:underline"
             >

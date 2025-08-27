@@ -362,6 +362,7 @@ export default function ServicePage() {
             </div>
           </div>
         </div>
+        <hr className="my-6 border-gray-200 w-full" />
       </Layout>
     </>
   );
