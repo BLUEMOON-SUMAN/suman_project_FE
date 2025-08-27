@@ -29,9 +29,6 @@ const RecruitmentBoard: React.FC = () => {
         }
       />
 
-      {/* ✅ RecruitmentNotice moved here — still inside <Layout> */}
-      <RecruitmentNotice />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Static Notice */}
         <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-12">
@@ -77,6 +74,9 @@ const RecruitmentBoard: React.FC = () => {
 
         <hr className="my-8 border-gray-200 w-full" />
       </div>
+
+      {/* ✅ RecruitmentNotice appears after the 3 cards */}
+      <RecruitmentNotice />
     </Layout>
   );
 };
@@ -95,46 +95,26 @@ const RecruitmentNotice: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
-      <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-navy-100">
-        <div className="bg-gradient-to-r from-navy-600 to-navy-700 px-8 py-6">
-          <h1 className="text-2xl font-semibold text-white text-center">
-            {lang === "KOR" ? "대학공지" : "University Notice"}
-          </h1>
-        </div>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-20">
+      <div className="border border-gray-300">
+        <div className="px-4 py-6 text-center">
+          {/* Title */}
+          <h2 className="text-sm font-medium text-gray-800 mb-2">
+            {lang === "KOR" ? "채용공고 다운로드" : "Download Recruitment Notice"}
+          </h2>
 
-        <div className="p-8">
-          <div className="w-20 h-1 bg-gradient-to-r from-navy-500 to-navy-600 mx-auto mb-8 rounded-full" />
+          {/* Navy underline */}
+          <div className="w-full h-[1px] bg-[#1D3762] mb-4" />
 
-          <div className="text-center">
-            <button
-              onClick={handleDownload}
-              className="group inline-block text-navy-700 hover:text-navy-900 transition-all duration-300 cursor-pointer p-4 rounded-lg hover:bg-navy-50 border-2 border-transparent hover:border-navy-200"
-            >
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <div className="w-2 h-2 bg-navy-500 rounded-full group-hover:animate-pulse" />
-                <span className="text-sm font-medium text-navy-500 uppercase tracking-wide">
-                  {lang === "KOR"
-                    ? "채용공고 다운로드"
-                    : "Download Recruitment Notice"}
-                </span>
-                <div className="w-2 h-2 bg-navy-500 rounded-full group-hover:animate-pulse" />
-              </div>
-              <div className="text-lg font-medium group-hover:underline decoration-navy-500 decoration-2 underline-offset-4">
-                {lang === "KOR"
-                  ? "SUMAN PLC제어 부문 신입 및 경력직 채용 공고문"
-                  : "SUMAN PLC Control New & Experienced Recruitment Notice"}
-              </div>
-            </button>
-          </div>
-
-          <div className="mt-8 flex justify-center">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 bg-navy-300 rounded-full" />
-              <div className="w-3 h-3 bg-navy-500 rounded-full" />
-              <div className="w-3 h-3 bg-navy-700 rounded-full" />
-            </div>
-          </div>
+          {/* Bold file title */}
+          <button
+            onClick={handleDownload}
+            className="text-base font-semibold text-gray-900 hover:underline"
+          >
+            {lang === "KOR"
+              ? "[채용공고] 순천향대학교 SCH특수아동교육연구소 행정지원인력 채용 공고"
+              : "[Recruitment] Soonchunhyang University SCH Special Education Research Institute Recruitment"}
+          </button>
         </div>
       </div>
     </div>
