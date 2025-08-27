@@ -54,7 +54,7 @@ const RecruitmentBoard: React.FC = () => {
             </div>
           </div>
         </section>
-        <hr className="my-3 border-navy-200 w-full" />
+        <hr className="my-12 border-navy-200 w-full" />
         {/* ✅ Download Link Section RIGHT AFTER 3 Cards */}
         <RecruitmentDownloadBanner />
       </div>

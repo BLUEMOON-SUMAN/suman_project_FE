@@ -122,7 +122,6 @@ export default function WellnessPage() {
             ))}
           </div>
         </div>
-        <hr className="my-6 border-gray-200 w-full" />
       </Layout>
     </>
   );
