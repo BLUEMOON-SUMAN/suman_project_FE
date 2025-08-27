@@ -57,9 +57,8 @@ const RecruitmentBoard: React.FC = () => {
 
         {/* ✅ Download Link Section RIGHT AFTER 3 Cards */}
         <RecruitmentDownloadBanner />
-
-        <hr className="my-10 border-gray-200 w-full" />
       </div>
+      <hr className="my-8 border-gray-200 w-full" />
     </Layout>
   );
 };
@@ -74,7 +73,7 @@ const RecruitmentDownloadBanner: React.FC = () => {
       : "[Recruitment Notice] Entry-Level & Experienced Hiring – PLC Control Division";
 
   return (
-    <section className="bg-white pt-6 pb-2 px-4">
+    <section className="bg-white pt-6 pb-2 px-4 my-[20%]">
       <div className="max-w-7xl mx-auto">
         <ul className="space-y-3">
           <li className="flex items-start gap-2">
@@ -82,7 +81,7 @@ const RecruitmentDownloadBanner: React.FC = () => {
             <a
               href="/downloads/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
               download
-              className="text-[#1D3762] text-[15px] hover:underline"
+              className="text-[#1D3762] text-[17px] hover:underline"
             >
               {label}
             </a>
