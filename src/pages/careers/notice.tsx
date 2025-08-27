@@ -67,28 +67,21 @@ const RecruitmentBoard: React.FC = () => {
 // 📄 Recruitment Download Banner Section
 const RecruitmentDownloadBanner: React.FC = () => {
   return (
-    <section className="bg-white py-6 px-4">
-      <div className="max-w-4xl mx-auto">
-        <ul className="space-y-3 pl-5">
-          <li className="list-disc text-[#1D3762] text-[15px] font-medium">
+    <section className="bg-white pt-6 pb-2 px-4">
+      <div className="max-w-7xl mx-auto">
+        <ul className="space-y-3">
+          <li className="flex items-start gap-2">
+            {/* Blue circle like your screenshot */}
+            <span className="mt-[6px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
+            {/* Downloadable link */}
             <a
-              href="/public/images/careers/philosophy/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
+              href="/images/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
               download
-              className="hover:underline"
+              className="text-[#1D3762] text-[15px] hover:underline"
             >
               [채용공고]PLC 제어 부문 신입 및 경력직 채용 공고문
             </a>
           </li>
-          {/* Add more downloadable items below if needed */}
-          {/* <li className="list-disc text-[#1D3762] text-[15px] font-medium">
-            <a
-              href="/downloads/순천향대학교 채용공고.docx"
-              download
-              className="hover:underline"
-            >
-              [채용공고]순천향대학교 채용공고
-            </a>
-          </li> */}
         </ul>
       </div>
     </section>
