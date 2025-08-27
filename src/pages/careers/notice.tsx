@@ -73,7 +73,7 @@ const RecruitmentDownloadBanner: React.FC = () => {
       : " [Recruitment Notice] Entry-Level & Experienced Hiring PLC Control Division 2025.00.00";
 
   return (
-    <section className="bg-white mt-1 px-4">
+    <section className="bg-white mt-2 px-4">
       <div className="max-w-7xl mx-auto">
         <ul className="space-y-3">
           <li className="flex items-start gap-2">
