@@ -28,10 +28,12 @@ const RecruitmentBoard: React.FC = () => {
             : "Recruitment > Recruit Notice"
         }
       />
-      {/* ✅ Recruitment Notice Banner (full width + downloadable) */}
-      <RecruitmentNotice />
+
+      {/* 🔽 Download Banner */}
+      <RecruitmentDownloadBanner />
+
+      {/* 🔽 Platform Cards */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 3 Job Platform Cards */}
         <section className="py-16 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-center">
@@ -56,16 +58,44 @@ const RecruitmentBoard: React.FC = () => {
           </div>
         </section>
 
-        {/* Divider */}
         <hr className="my-8 border-gray-200 w-full" />
       </div>
-
-
     </Layout>
   );
 };
 
-// 💡 Recruitment Card Component
+// 📄 Recruitment Download Banner Section
+const RecruitmentDownloadBanner: React.FC = () => {
+  return (
+    <section className="bg-white py-6 px-4">
+      <div className="max-w-4xl mx-auto">
+        <ul className="space-y-3 pl-5">
+          <li className="list-disc text-[#1D3762] text-[15px] font-medium">
+            <a
+              href="/public/images/careers/philosophy/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
+              download
+              className="hover:underline"
+            >
+              [채용공고]PLC 제어 부문 신입 및 경력직 채용 공고문
+            </a>
+          </li>
+          {/* Add more downloadable items below if needed */}
+          {/* <li className="list-disc text-[#1D3762] text-[15px] font-medium">
+            <a
+              href="/downloads/순천향대학교 채용공고.docx"
+              download
+              className="hover:underline"
+            >
+              [채용공고]순천향대학교 채용공고
+            </a>
+          </li> */}
+        </ul>
+      </div>
+    </section>
+  );
+};
+
+// 💼 Recruitment Platform Card Component
 const RecruitmentCard: React.FC<{
   title: string;
   link: string;
@@ -103,36 +133,6 @@ const RecruitmentCard: React.FC<{
         </svg>
       </Link>
     </div>
-  );
-};
-
-// 📎 Download Banner Component
-const RecruitmentNotice: React.FC = () => {
-  const lang = useLangStore((state) => state.lang) || "KOR";
-
-  return (
-    <section className="w-full bg-white py-16 px-4">
-      <div className="max-w-none border-t border-gray-300 mx-auto">
-        <div className="w-full bg-white border border-gray-200 shadow-sm text-center py-10">
-          <h2 className="text-base md:text-lg font-semibold text-gray-700 tracking-wide mb-4">
-            {lang === "KOR" ? "채용공고 다운로드" : "Download Recruitment Notice"}
-          </h2>
-
-          {/* Full-width underline */}
-          <div className="w-full border-t-2 border-[#1D3762] mb-6 mx-auto" />
-
-          <a
-            href="\public\images\careers\philosophy\PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
-            download="PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
-            className="text-2xl md:text-3xl font-bold text-[#1D3762] hover:underline transition duration-150"
-          >
-            {lang === "KOR"
-              ? "[채용공고]PLC제어 부문 신입 및 경력직 채용 공고문"
-              : "[Recruitment Notice] PLC Control Division Entry and Experienced Recruitment Notice"}
-          </a>
-        </div>
-      </div>
-    </section>
   );
 };
 
