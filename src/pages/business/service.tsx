@@ -39,18 +39,12 @@ export default function ServicePage() {
 };
     const content = {
     KOR: {
-      title: "조직도",
-      subtitle: "Organization Chart",
-      breadcrumb: "회사소개 > 조직도",
-      image: "/images/company/organization/organization_suman_korean.png",
+      image: "/images/business/process/gambarKorean.png",
       alt: "조직도",
       pageTitle: "조직도 | 수만"
     },
     ENG: {
-      title: "Organization Chart",
-      subtitle: "조직도",
-      breadcrumb: "Company > Organization",
-      image: "/images/company/organization/organization_suman_english.png",
+      image: "/images/business/process/gambarEng.png",
       alt: "Organization Chart",
       pageTitle: "Organization | SUMAN"
     }
