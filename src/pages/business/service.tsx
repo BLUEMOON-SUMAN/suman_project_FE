@@ -33,6 +33,28 @@ export default function ServicePage() {
     "/images/business/process/service_test.png",
     "/images/business/process/service_deliver.png",
   ];
+  const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } as Transition },
+};
+    const content = {
+    KOR: {
+      title: "조직도",
+      subtitle: "Organization Chart",
+      breadcrumb: "회사소개 > 조직도",
+      image: "/images/company/organization/organization_suman_korean.png",
+      alt: "조직도",
+      pageTitle: "조직도 | 수만"
+    },
+    ENG: {
+      title: "Organization Chart",
+      subtitle: "조직도",
+      breadcrumb: "Company > Organization",
+      image: "/images/company/organization/organization_suman_english.png",
+      alt: "Organization Chart",
+      pageTitle: "Organization | SUMAN"
+    }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.9 },
@@ -53,7 +75,7 @@ export default function ServicePage() {
   };
 
   const initialDisplayCount = 10;
-
+  const currentContent = content[lang];
   return (
     <>
       <Head>
@@ -203,7 +225,31 @@ export default function ServicePage() {
             )}
           </div>
         </div>
-
+        {/* 3. Process Section */}
+        <div className="content-wrapper py-20 px-4 md:px-8 bg-white flex justify-center items-center">
+        <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
+          <motion.div
+            className="w-full"
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
+              <Image
+                src={currentContent.image}
+                alt={currentContent.alt}
+                width={1200}
+                height={800}
+                layout="responsive"
+                objectFit="contain"
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </motion.div>
+        </div>
+        </div>
         {/* Process Section - Simplified Flowchart */}
         <div className="bg-white py-12 md:py-20 px-4 md:px-8 text-black rounded-t-[40px] md:rounded-[60px] mt-[-180px] md:mt-[-220px] relative z-10 pb-[60px] md:pb-[100px]">
           <div className="max-w-7xl mx-auto">
