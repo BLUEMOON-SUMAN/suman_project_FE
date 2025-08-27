@@ -28,7 +28,8 @@ const RecruitmentBoard: React.FC = () => {
             : "Recruitment > Recruit Notice"
         }
       />
-
+      {/* ✅ Recruitment Notice Banner (full width + downloadable) */}
+      <RecruitmentNotice />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 3 Job Platform Cards */}
         <section className="py-16 md:py-20 bg-white">
@@ -59,8 +60,7 @@ const RecruitmentBoard: React.FC = () => {
         <hr className="my-8 border-gray-200 w-full" />
       </div>
 
-      {/* ✅ Recruitment Notice Banner (full width + downloadable) */}
-      <RecruitmentNotice />
+
     </Layout>
   );
 };
@@ -122,13 +122,13 @@ const RecruitmentNotice: React.FC = () => {
           <div className="w-full border-t-2 border-[#1D3762] mb-6 mx-auto" />
 
           <a
-            href="/files/sch_recruit_notice.docx"
-            download="순천향대학교 채용공고.docx"
+            href="\public\images\careers\philosophy\PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
+            download="PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
             className="text-2xl md:text-3xl font-bold text-[#1D3762] hover:underline transition duration-150"
           >
             {lang === "KOR"
-              ? "[채용공고] 순천향대학교 SCH특수아동교육연구소 행정지원인력 채용 공고"
-              : "[Recruitment Notice] Soonchunhyang University SCH Special Education Research Institute Administrative Support Staff Recruitment"}
+              ? "[채용공고]PLC제어 부문 신입 및 경력직 채용 공고문"
+              : "[Recruitment Notice] PLC Control Division Entry and Experienced Recruitment Notice"}
           </a>
         </div>
       </div>
