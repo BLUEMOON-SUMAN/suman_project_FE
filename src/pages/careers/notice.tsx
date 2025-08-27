@@ -30,24 +30,7 @@ const RecruitmentBoard: React.FC = () => {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Static Notice */}
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-12">
-          <h3 className="text-lg font-semibold text-gray-700 mb-4">
-            {lang === "KOR" ? "공지사항" : "Notice Board"}
-          </h3>
-          <div className="flex justify-end mt-4">
-            <a
-              href="/images/careers/philosophy/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
-              download="SUMAN PLC제어 부문 신입 및 경력직 채용 공고문.docx"
-              className="text-sm sm:text-base font-medium bg-white text-black px-3 py-0.3 rounded-full border-2 border-gray-300 
-                hover:bg-gray-300 hover:text-black transition duration-200 tracking-wide"
-            >
-              RECRUITMENT NOTICE ↓
-            </a>
-          </div>
-        </div>
-
-        {/* Job Platform Cards */}
+        {/* 3 Job Platform Cards */}
         <section className="py-16 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-center">
@@ -72,55 +55,17 @@ const RecruitmentBoard: React.FC = () => {
           </div>
         </section>
 
+        {/* Divider */}
         <hr className="my-8 border-gray-200 w-full" />
       </div>
 
-      {/* ✅ RecruitmentNotice appears after the 3 cards */}
+      {/* ✅ Recruitment Notice Banner (full width + downloadable) */}
       <RecruitmentNotice />
     </Layout>
   );
 };
 
-const RecruitmentNotice: React.FC = () => {
-  const lang = useLangStore((state) => state.lang) || "KOR";
-  const fileName = "SUMAN PLC제어 부문 신입 및 경력직 채용 공고문.docx";
-
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = "#";
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-20">
-      <div className="border border-gray-300">
-        <div className="px-4 py-6 text-center">
-          {/* Title */}
-          <h2 className="text-sm font-medium text-gray-800 mb-2">
-            {lang === "KOR" ? "채용공고 다운로드" : "Download Recruitment Notice"}
-          </h2>
-
-          {/* Navy underline */}
-          <div className="w-full h-[1px] bg-[#1D3762] mb-4" />
-
-          {/* Bold file title */}
-          <button
-            onClick={handleDownload}
-            className="text-base font-semibold text-gray-900 hover:underline"
-          >
-            {lang === "KOR"
-              ? "[채용공고] 순천향대학교 SCH특수아동교육연구소 행정지원인력 채용 공고"
-              : "[Recruitment] Soonchunhyang University SCH Special Education Research Institute Recruitment"}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
+// 💡 Recruitment Card Component
 const RecruitmentCard: React.FC<{
   title: string;
   link: string;
@@ -158,6 +103,36 @@ const RecruitmentCard: React.FC<{
         </svg>
       </Link>
     </div>
+  );
+};
+
+// 📎 Download Banner Component
+const RecruitmentNotice: React.FC = () => {
+  const lang = useLangStore((state) => state.lang) || "KOR";
+
+  return (
+    <section className="w-full bg-white py-16 px-4">
+      <div className="max-w-none border-t border-gray-300 mx-auto">
+        <div className="w-full bg-white border border-gray-200 shadow-sm text-center py-10">
+          <h2 className="text-base md:text-lg font-semibold text-gray-700 tracking-wide mb-4">
+            {lang === "KOR" ? "채용공고 다운로드" : "Download Recruitment Notice"}
+          </h2>
+
+          {/* Full-width underline */}
+          <div className="w-full border-t-2 border-[#1D3762] mb-6 mx-auto" />
+
+          <a
+            href="/files/sch_recruit_notice.docx"
+            download="순천향대학교 채용공고.docx"
+            className="text-2xl md:text-3xl font-bold text-[#1D3762] hover:underline transition duration-150"
+          >
+            {lang === "KOR"
+              ? "[채용공고] 순천향대학교 SCH특수아동교육연구소 행정지원인력 채용 공고"
+              : "[Recruitment Notice] Soonchunhyang University SCH Special Education Research Institute Administrative Support Staff Recruitment"}
+          </a>
+        </div>
+      </div>
+    </section>
   );
 };
 
