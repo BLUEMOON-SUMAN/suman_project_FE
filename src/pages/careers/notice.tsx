@@ -29,9 +29,6 @@ const RecruitmentBoard: React.FC = () => {
         }
       />
 
-      {/* 🔽 Download Banner */}
-      <RecruitmentDownloadBanner />
-
       {/* 🔽 Platform Cards */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section className="py-16 md:py-20 bg-white">
@@ -57,8 +54,10 @@ const RecruitmentBoard: React.FC = () => {
             </div>
           </div>
         </section>
+        <RecruitmentDownloadBanner />
 
-        <hr className="my-8 border-gray-200 w-full" />
+      <hr className="my-10
+       border-gray-200 w-full" />
       </div>
     </Layout>
   );
