@@ -249,6 +249,7 @@ export default function Vision2Page() {
             </div>
           </section>
         </main>
+        <hr className="my-8 border-gray-200 w-full" />
       </Layout>
     </>
   );

@@ -33,18 +33,17 @@ export default function HistoryPage() {
     <>
       <Head>
         <title>
-          {lang === "KOR" ? "회사 연혁 | 수만" : "Company History | SUMAN"}
+          {lang === "KOR" ? "문의하기 | 수만" : "Contact Us | SUMAN"}
         </title>
       </Head>
       <Layout>
         <HeroSection
-          title={lang === "KOR" ? "회사 연혁" : "Company History"}
-          subtitle={lang === "KOR" ? "History" : "Our Journey"}
+          title={lang === "KOR" ? "문의하기" : "Contact Us"}
           backgroundImage="/images/sub_banner/support_banner.png"
         />
 
         <BreadcrumbSection
-          path={lang === "KOR" ? "회사소개 > 연혁" : "About > History"}
+          path={lang === "KOR" ? "고객지원 > 문의하기" : "Support > Contact Us"}
         />
 
         <div className="content-wrapper py-12 md:py-20 px-4 md:px-8 bg-white">

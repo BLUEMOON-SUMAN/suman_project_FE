@@ -1,3 +1,4 @@
+// pages/.../ServicePage.tsx
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
@@ -7,32 +8,16 @@ import { useState } from "react";
 import { serviceContent } from "@/data/service";
 import { useLangStore } from "@/stores/langStore";
 import Head from "next/head";
-// Import the required icons from Lucide React
-import { 
-  Users, 
-  FileText, 
-  XCircle, 
-  Settings, 
-  Package, 
-  ArrowLeft, 
-  Truck, 
-  RotateCcw 
-} from "lucide-react";
+
+// REMOVED: Lucide icons import (Users, FileText, XCircle, Settings, Package, ArrowLeft, Truck, RotateCcw)
 
 export default function ServicePage() {
   const [showAllEquipment, setShowAllEquipment] = useState(false);
   const { lang } = useLangStore();
-  const { equipmentList, measurementEquipmentList} =
-    serviceContent[lang];
+  const { equipmentList, measurementEquipmentList } = serviceContent[lang];
   const section = serviceContent[lang].sectionList?.[0];
 
-  const processImages = [
-    "/images/business/process/service_design.png",
-    "/images/business/process/service_order.png",
-    "/images/business/process/service_product.png",
-    "/images/business/process/service_test.png",
-    "/images/business/process/service_deliver.png",
-  ];
+  // REMOVED: const processImages = [ ... ];
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.9 },
@@ -53,6 +38,12 @@ export default function ServicePage() {
   };
 
   const initialDisplayCount = 10;
+
+  // ADDED: path gambar yang berubah sesuai bahasa
+  const processIllustrationSrc =
+    lang === "KOR"
+      ? "/images/business/process/gambarKorean.png"
+      : "/images/business/process/gambarEng.png";
 
   return (
     <>
@@ -161,6 +152,32 @@ export default function ServicePage() {
               <button className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16 mt-16 md:mt-28">
                 {section?.measurement}
               </button>
+
+              {/* ADDED: Gambar khusus bahasa di bawah "신뢰성 (측정 / 분석)" */}
+              <motion.div
+                className="w-full mb-8 md:mb-12"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={leftAlignTextVariants}
+              >
+                <div className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-white/5">
+                  <Image
+                    src={processIllustrationSrc}
+                    alt={
+                      lang === "KOR"
+                        ? "측정/분석 섹션 일러스트"
+                        : "Measurement/Analysis section illustration"
+                    }
+                    width={1400} // ADDED
+                    height={800}  // ADDED
+                    className="w-full h-auto object-contain"
+                    priority
+                  />
+                </div>
+              </motion.div>
+              {/* END ADDED */}
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 {measurementEquipmentList.map((equipment, index) => (
                   <motion.div
@@ -191,11 +208,12 @@ export default function ServicePage() {
               </div>
             </motion.div>
 
-            {equipmentList.length + measurementEquipmentList.length > initialDisplayCount && (
+            {equipmentList.length + measurementEquipmentList.length >
+              initialDisplayCount && (
               <div className="mt-8 md:mt-10 mb-8 md:mb-10 text-right">
                 <button
                   onClick={() => setShowAllEquipment(!showAllEquipment)}
-                  className="text-base md:text-lg text-gray-200 hover:text-white font-md cursor-pointer"
+                  className="text-base md:text-lg text-gray-2 00 hover:text-white font-md cursor-pointer"
                 >
                   {showAllEquipment ? "간략히 보기" : "전체 설비 보기"} →
                 </button>
@@ -204,164 +222,9 @@ export default function ServicePage() {
           </div>
         </div>
 
-        {/* Process Section - Simplified Flowchart */}
-        <div className="bg-white py-12 md:py-20 px-4 md:px-8 text-black rounded-t-[40px] md:rounded-[60px] mt-[-180px] md:mt-[-220px] relative z-10 pb-[60px] md:pb-[100px]">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mt-6 md:mt-10 mb-6 md:mb-10">
-              Process
-            </h2>
-            <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3] mb-10 md:mb-16">
-              체계적인 생산 프로세스
-              <br />
-              품질 보증 시스템
-            </p>
+        {/* REMOVED: Process Section - Simplified Flowchart (entire block) */}
 
-            {/* Simplified Manufacturing Process Flowchart */}
-            <div className="relative mt-12 md:mt-20">
-              {/* Vertical Process Flow */}
-              <div className="flex flex-col items-center space-y-8">
-                
-                {/* Customer */}
-                <div className="bg-[#000B24] text-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg w-full max-w-md text-center">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="bg-white/20 rounded-full p-2">
-                      <Users className="w-5 h-5 md:w-6 md:h-6" />
-                    </div>
-                    <span className="text-base md:text-lg font-semibold">Customer</span>
-                  </div>
-                </div>
-
-                {/* Connecting Line */}
-                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
-
-                {/* Concept Design */}
-                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
-                      <FileText className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
-                    </div>
-                    <div>
-                      <div className="text-base md:text-lg font-semibold text-[#000B24]">Concept 설계</div>
-                      <div className="text-xs md:text-sm text-gray-600">Initial Design</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Connecting Line */}
-                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
-
-                {/* Development Design */}
-                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
-                      <Settings className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
-                    </div>
-                    <div>
-                      <div className="text-base md:text-lg font-semibold text-[#000B24]">개발/가공 설계</div>
-                      <div className="text-xs md:text-sm text-gray-600">Development Design</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Connecting Line */}
-                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
-
-                {/* Material Ordering */}
-                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
-                      <Package className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
-                    </div>
-                    <div>
-                      <div className="text-base md:text-lg font-semibold text-[#000B24]">발주(소재/부품)</div>
-                      <div className="text-xs md:text-sm text-gray-600">Material Ordering</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Connecting Line */}
-                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
-
-                {/* Manufacturing */}
-                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
-                      <Settings className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
-                    </div>
-                    <div>
-                      <div className="text-base md:text-lg font-semibold text-[#000B24]">가공/제작</div>
-                      <div className="text-xs md:text-sm text-gray-600">Manufacturing</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Connecting Line */}
-                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
-
-                {/* Final Inspection */}
-                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
-                      <Package className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
-                    </div>
-                    <div>
-                      <div className="text-base md:text-lg font-semibold text-[#000B24]">출하 및 조립/측정 검사</div>
-                      <div className="text-xs md:text-sm text-gray-600">Final Inspection</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Connecting Line */}
-                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
-
-                {/* Packaging */}
-                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
-                      <Package className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
-                    </div>
-                    <div>
-                      <div className="text-base md:text-lg font-semibold text-[#000B24]">포장</div>
-                      <div className="text-xs md:text-sm text-gray-600">Packaging</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Connecting Line */}
-                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
-
-                {/* Customer Delivery */}
-                <div className="bg-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg border border-[#000B24]/10 w-full max-w-md text-center">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="bg-[#000B24]/10 rounded-full p-2 md:p-3">
-                      <Truck className="w-5 h-5 md:w-6 md:h-6 text-[#000B24]" />
-                    </div>
-                    <div>
-                      <div className="text-base md:text-lg font-semibold text-[#000B24]">고객사 납품</div>
-                      <div className="text-xs md:text-sm text-gray-600">Customer Delivery</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Connecting Line */}
-                <div className="w-1 h-8 bg-[#000B24] rounded-full"></div>
-
-                {/* Feedback Loop */}
-                <div className="bg-[#000B24] text-white rounded-xl md:rounded-2xl px-6 md:px-8 py-4 md:py-6 shadow-lg w-full max-w-md text-center">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="bg-white/20 rounded-full p-2">
-                      <RotateCcw className="w-5 h-5 md:w-6 md:h-6" />
-                    </div>
-                    <div>
-                      <div className="text-base md:text-lg font-semibold">Re-Order 개선/반영</div>
-                      <div className="text-xs md:text-sm opacity-90">Continuous Improvement</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <hr className="my-8 border-gray-200 w-full" />
       </Layout>
     </>
   );
