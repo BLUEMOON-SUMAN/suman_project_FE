@@ -74,10 +74,9 @@ export default function CeoPage() {
               {lang === "KOR" ? (
                 <>
                   <span className="text-blue-600 font-bold tracking-wide">SUMAN</span>
-                  <span className="text-black font-bold tracking-wide">을</span>
                   <br />
                   <span className="text-black font-bold tracking-wide">
-                    찾아주신 고객 여러분, 반갑습니다.
+                    찾아주신 여러분, 반갑습니다.
                   </span>
                 </>
               ) : (

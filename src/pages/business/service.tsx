@@ -187,7 +187,7 @@ export default function ServicePage() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                   >
-                    <div className="w-full h-20 md:h-28 relative mb-2">
+                    <div className="w-full h-20 md:h-28 relative mb-0">
                       {equipment.image && (
                         <Image
                           src={equipment.image}
@@ -197,8 +197,8 @@ export default function ServicePage() {
                         />
                       )}
                     </div>
-                    <div className="absolute bottom-0 left-0 w-full h-1/3 bg-[#434343]/30 text-center py-1 md:py-2 flex items-center justify-center border border-gray-500/10">
-                      <p className="text-xs md:text-base font-medium text-white text-center">
+                    <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 bg-[#1F2432]/70px-3 flex items-center justify-center">
+                      <p className="text-sm md:text-base font-medium text-white line-clamp-1">
                         {equipment.name}
                       </p>
                     </div>

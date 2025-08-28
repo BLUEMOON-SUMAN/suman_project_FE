@@ -116,7 +116,7 @@ export default function Vision2Page() {
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "비전 | 수만" : "Vision | SUMAN"}</title>
+        <title>{lang === "KOR" ? "기업 비전" : "Vision"}</title>
       </Head>
 
       <Layout>

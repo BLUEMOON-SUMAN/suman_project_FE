@@ -20,21 +20,21 @@ export const serviceContent = {
     ],
     // 생산가공/ 조립 영역
     equipmentList: [
-      { name: "85호기", image: "/images/business/equipment/equip1.png" },
-      { name: "조각기", image: "/images/business/equipment/equip2.png" },
-      { name: "MCT", image: "/images/business/equipment/equip3.png" },
-      { name: "레이저마킹기", image: "/images/business/equipment/equip4.png" },
-      { name: "자동포장기", image: "/images/business/equipment/equip5.png" },
+      { name: "MCT", image: "/images/business/equipment/mct.png" },
+      { name: "CNC 선반", image: "/images/business/equipment/cnc.png" },
+      { name: "수직형 머시닝 센터", image: "/images/business/equipment/machining.png" },
+      { name: "CNC정밀 자동 선반", image: "/images/business/equipment/cncmodul.png" },
+      { name: "수평드릴 태핑머신", image: "/images/business/equipment/taping.png" },
+      { name: "UV평판프린터", image: "/images/business/equipment/uv.png" },
+      {
+        name: "3D프린터",
+        image: "/images/business/equipment/3d.png",
+      },
       { name: "CNC 가공기", image: "/images/business/equipment/equip6.png" },
       { name: "CNC ROUTER", image: "/images/business/equipment/equip7.png" },
-      {
-        name: "3D PRINT 대면적 3D PRINT",
-        image: "/images/business/equipment/equip8.png",
-      },
       { name: "CO2 LAZER CUTTER", image: "/images/business/equipment/equip2.png" },
       { name: "DIGITAL FLAT CUTTER", image: "/images/business/equipment/equip9.png" },
       { name: "CNC 가공기", image: "/images/business/equipment/equip10.png" },
-      { name: "CNC ROUTER", image: "/images/business/equipment/equip4.png" },
     ],
     // 신뢰성 측정 영역
     measurementEquipmentList: [
@@ -101,16 +101,17 @@ export const serviceContent = {
       },
     ],
     equipmentList: [
-      { name: "Unit 85", image: "/images/business/equipment/equip1.png" },
-      { name: "Engraving Machine", image: "/images/business/equipment/equip2.png" },
-      { name: "MCT", image: "/images/business/equipment/equip3.png" },
-      { name: "Laser Marker", image: "/images/business/equipment/equip4.png" },
+      { name: "MCT", image: "/images/business/equipment/mct.png" },
+      { name: "CNC Lathe", image: "/images/business/equipment/cnc.png" },
+      { name: "VNC", image: "/images/business/equipment/machining.png" },
+      { name: "CNC precision automatic lathe", image: "/images/business/equipment/cncmodul.png" },
       {
         name: "Automatic Packaging Machine",
         image: "/images/business/equipment/equip5.png",
       },
-      { name: "CNC Machining Equipment", image: "/images/business/equipment/equip6.png" },
-      { name: "CNC Router", image: "/images/business/equipment/equip7.png" },
+      { name: "Horizontal Drill Tapper", image: "/images/business/equipment/taping.png" },
+      { name: "UV flatbed printer", image: "/images/business/equipment/uv.png" },
+      { name: "3D Printer", image: "/images/business/equipment/3d.png" },
       {
         name: "3D PRINT - Large Area 3D Printer",
         image: "/images/business/equipment/equip8.png",

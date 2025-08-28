@@ -69,8 +69,8 @@ const RecruitmentDownloadBanner: React.FC = () => {
 
   const label =
     lang === "KOR"
-      ? " [채용공고]PLC 제어 부문 신입 및 경력직 채용 공고문 2025.00.00"
-      : " [Recruitment Notice] Entry-Level & Experienced Hiring PLC Control Division 2025.00.00";
+      ? " [채용공고]PLC 제어 부문 신입 및 경력직 채용(게시일 2025.00.00)"
+      : " [Recruitment Notice] Entry-Level and Experienced Positions in PLC Control (Posted on 2025.00.00)";
 
   return (
     <section className="bg-white mt-2 px-4">
