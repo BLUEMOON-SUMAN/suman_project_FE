@@ -31,10 +31,7 @@ export const serviceContent = {
         image: "/images/business/equipment/3d.png",
       },
       { name: "CNC 가공기", image: "/images/business/equipment/equip6.png" },
-      { name: "CNC ROUTER", image: "/images/business/equipment/equip7.png" },
-      { name: "CO2 LAZER CUTTER", image: "/images/business/equipment/equip2.png" },
-      { name: "DIGITAL FLAT CUTTER", image: "/images/business/equipment/equip9.png" },
-      { name: "CNC 가공기", image: "/images/business/equipment/equip10.png" },
+
     ],
     // 신뢰성 측정 영역
     measurementEquipmentList: [

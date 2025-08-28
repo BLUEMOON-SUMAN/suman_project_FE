@@ -51,7 +51,7 @@ const navItemsEng = [
     href: "/eng/company/ceo",
     submenu: [
       { label: "CEO Message", href: "/eng/company/ceo" },
-      //{ label: "Vision", href: "/eng/company/vision" },
+      { label: "Vision", href: "/eng/company/vision" },
       { label: "Vision", href: "/eng/company/vision2" },
       { label: "History", href: "/eng/company/history" },
       { label: "Organization", href: "/eng/company/org" },
@@ -131,7 +131,7 @@ export default function Header() {
           {/* Logo */}
           <Link
           href="/"
-          className="flex items-center h-full mr-auto lg:mr-0 ml-[3cm] shrink-0"
+          className="flex items-center h-full mr-auto lg:mr-0 ml-[1cm] shrink-0"
           >
             <Image
               src="/images/logo_suman.png"

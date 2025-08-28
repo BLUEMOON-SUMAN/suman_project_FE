@@ -41,12 +41,12 @@ export default function ServicePage() {
     KOR: {
       image: "/images/business/process/gambarKorean.png",
       alt: "조직도",
-      pageTitle: "조직도 | 수만"
+      pageTitle: "조직도"
     },
     ENG: {
       image: "/images/business/process/gambarEng.png",
       alt: "Organization Chart",
-      pageTitle: "Organization | SUMAN"
+      pageTitle: "Organization"
     }
   };
 
@@ -78,7 +78,7 @@ export default function ServicePage() {
       <Layout>
         <HeroSection
           title={lang === "KOR" ? "기술 소개" : "Technology"}
-          subtitle="SUMAN"
+          //subtitle="SUMAN"
           backgroundImage="/images/sub_banner/business_hero.png"
         />
 

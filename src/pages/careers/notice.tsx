@@ -12,7 +12,7 @@ const RecruitmentBoard: React.FC = () => {
   return (
     <Layout>
       <Head>
-        <title>{lang === "KOR" ? "채용공고 | 수만" : "Recruit Notice | SUMAN"}</title>
+        <title>{lang === "KOR" ? "외부공고 | 수만" : "Recruit Notice | SUMAN"}</title>
       </Head>
 
       <HeroSection
@@ -33,7 +33,7 @@ const RecruitmentBoard: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section className="py-16 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-left">
               {lang === "KOR" ? "채용공고" : "Recruit Notice"}
             </h2>
 
@@ -69,8 +69,8 @@ const RecruitmentDownloadBanner: React.FC = () => {
 
   const label =
     lang === "KOR"
-      ? " [채용공고]PLC 제어 부문 신입 및 경력직 채용(게시일 2025.00.00)"
-      : " [Recruitment Notice] Entry-Level and Experienced Positions in PLC Control (Posted on 2025.00.00)";
+      ? " [TEST][채용공고]PLC 제어 부문 신입 및 경력직 채용(게시일 2025.00.00)"
+      : " [TEST][Recruitment Notice] Entry-Level and Experienced Positions in PLC Control (Posted on 2025.00.00)";
 
   return (
     <section className="bg-white mt-2 px-4">
@@ -78,6 +78,9 @@ const RecruitmentDownloadBanner: React.FC = () => {
         <ul className="space-y-3">
           <li className="flex items-start gap-2">
             <span className="mt-[6px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-left">
+              {lang === "KOR" ? "내부공고" : "Internal Recruitment Notice"}
+            </h2>
             <a
               href="/images/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
               download
