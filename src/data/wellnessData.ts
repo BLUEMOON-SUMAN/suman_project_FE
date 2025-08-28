@@ -31,7 +31,7 @@ export interface WellnessItem {
 export interface WellnessSection {
   key: string;
   title: string;
-  subtitle: string;
+  //subtitle: string;
   heroImage: string;
   items: WellnessItem[];
 }
@@ -39,7 +39,7 @@ export interface WellnessSection {
 export interface WellnessData {
   hero: {
     title: string;
-    subtitle: string;
+    //subtitle: string;
     path: string;
     heroImage: string;
   };
@@ -50,7 +50,7 @@ export const wellnessContent: Record<string, WellnessData> = {
   KOR: {
     hero: {
       title: "복리후생",
-      subtitle: "일과 생활의 균형, 즐거운 일터를 만들기 위하여 다양한 복지제도를 시행 중입니다",
+      //subtitle: "일과 생활의 균형, 즐거운 일터를 만들기 위하여 다양한 복지제도를 시행 중입니다",
       path: "회사소개 > 복리후생",
       heroImage: "/images/wellness/well_bg.png",
     },
@@ -58,7 +58,7 @@ export const wellnessContent: Record<string, WellnessData> = {
       {
         key: "office-life",
         title: "Office Life",
-        subtitle: "회사생활",
+        //subtitle: "회사생활",
         heroImage: "/images/wellness/life_bg.png",
         items: [
           { title: "기숙사", description: "원거리 거주자 지원", iconKey: "dormitory" },
@@ -72,7 +72,7 @@ export const wellnessContent: Record<string, WellnessData> = {
   ENG: {
     hero: {
       title: "EMPLOYEE WELLNESS",
-      subtitle: "To create a balance between work and life, we are implementing various welfare programs.",
+      //subtitle: "To create a balance between work and life, we are implementing various welfare programs.",
       path: "About Us > Employee Wellness",
       heroImage: "/images/wellness/well_bg.png",
     },
@@ -80,7 +80,7 @@ export const wellnessContent: Record<string, WellnessData> = {
       {
         key: "office-life",
         title: "Office Life",
-        subtitle: "Office Life",
+        //subtitle: "Office Life",
         heroImage: "/images/wellness/life_bg.png",
         items: [
           { title: "Dormitory", description: "Support for long-distance residents", iconKey: "dormitory" },

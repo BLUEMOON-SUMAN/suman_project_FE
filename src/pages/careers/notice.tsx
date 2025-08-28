@@ -17,7 +17,7 @@ const RecruitmentBoard: React.FC = () => {
 
       <HeroSection
         title={lang === "KOR" ? "채용공고" : "Recruit Notice"}
-        subtitle={lang === "KOR" ? "인재채용" : "Recruit"}
+        //subtitle={lang === "KOR" ? "인재채용" : "Recruit"}
         backgroundImage="/images/sub_banner/careers_hero.png"
       />
 

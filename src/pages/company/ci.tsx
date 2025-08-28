@@ -16,7 +16,7 @@ export default function OrgPage() {
   const { lang } = useLangStore();
 
   const heroTitle = "CI";
-  const heroSubtitle = "CI";
+  //const heroSubtitle = "CI";
   const breadcrumbPath = lang === "KOR" ? "회사소개 > CI" : "Company > CI";
   const pageTitle = lang === "KOR" ? "CI | 수만" : "CI | SUMAN";
 
@@ -45,7 +45,7 @@ export default function OrgPage() {
 
       <HeroSection
         title={heroTitle}
-        subtitle={heroSubtitle}
+        //subtitle={heroSubtitle}
         backgroundImage="/images/sub_banner/company_banner.png"
       />
 

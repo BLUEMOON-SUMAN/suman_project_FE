@@ -123,7 +123,7 @@ export default function Vision2Page() {
         <main className="min-h-screen bg-white text-slate-900">
           <HeroSection
             title={hero.title}
-            subtitle={hero.subtitle}
+            //subtitle={hero.subtitle}
             backgroundImage="/images/sub_banner/company_banner.png"
           />
           <BreadcrumbSection path={lang === "KOR" ? "회사소개 > 기업 비전" : "Company > Vision"} />

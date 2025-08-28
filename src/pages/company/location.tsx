@@ -205,13 +205,13 @@ export default function LocationPage() {
     <>
       <Head>
         <title>
-          {lang === "KOR" ? "오시는길 | 수만" : "Directions | SUMAN"}
+          {lang === "KOR" ? "오시는길" : "Location"}
         </title>
       </Head>
       <Layout>
         <HeroSection
-          title={lang === "KOR" ? "오시는 길" : "Our Locations"}
-          subtitle={lang === "KOR" ? "Locations" : "How to Reach Us"}
+          title={lang === "KOR" ? "오시는 길" : "Our Location"}
+          //subtitle={lang === "KOR" ? "Locations" : "How to Reach Us"}
           backgroundImage="/images/sub_banner/company_banner.png"
         />
         <BreadcrumbSection

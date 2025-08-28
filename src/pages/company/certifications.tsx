@@ -41,12 +41,12 @@ export default function CertificationsPage() {
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "인증 현황 | 수만" : "Certifications | SUMAN"}</title>
+        <title>{lang === "KOR" ? "인증 현황" : "Certifications "}</title>
       </Head>
       <Layout>
         <HeroSection
           title={lang === "KOR" ? "인증 현황" : "Certifications"}
-          subtitle={lang === "KOR" ? "Certifications" : "Certifications"}
+          //subtitle={lang === "KOR" ? "Certifications" : "Certifications"}
           backgroundImage="/images/sub_banner/company_banner.png"
         />
 

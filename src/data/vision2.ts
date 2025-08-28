@@ -1,11 +1,9 @@
 export const visionHeroText = {
   KOR: {
     title: "기업 비전",
-    subtitle: "Vision",
   },
   ENG: {
-    title: "Corporate Vision",
-    subtitle: "Vision",
+    title: "Vision",
   },
 };
 

@@ -1,7 +1,7 @@
 export const historyText = {
   KOR: {
     title: "연 혁",
-    subtitle: "History",
+    //subtitle: "History",
     breadcrumb: "회사소개 > 연혁",
     summaryTitle: "SUMAN은\n끊임없는 혁신과 신시장 개척을 통해\n신뢰성 있는 기업으로 성장하였습니다.",
     bulletList: [
@@ -56,7 +56,7 @@ export const historyText = {
 
   ENG: {
     title: "History",
-    subtitle: "History",
+    //subtitle: "History",
     breadcrumb: "Company > History",
     summaryTitle: "SUMAN has grown into a reliable company\nthrough continuous innovation and market expansion.",
     bulletList: [

@@ -18,7 +18,7 @@ export default function OrgPage() {
   const content = {
     KOR: {
       title: "조직도",
-      subtitle: "Organization Chart",
+      //subtitle: "Organization Chart",
       breadcrumb: "회사소개 > 조직도",
       image: "/images/company/organization/organization_suman_korean.png",
       alt: "조직도",
@@ -26,7 +26,7 @@ export default function OrgPage() {
     },
     ENG: {
       title: "Organization Chart",
-      subtitle: "조직도",
+      //subtitle: "조직도",
       breadcrumb: "Company > Organization",
       image: "/images/company/organization/organization_suman_english.png",
       alt: "Organization Chart",
@@ -44,7 +44,7 @@ export default function OrgPage() {
 
       <HeroSection
         title={currentContent.title}
-        subtitle={currentContent.subtitle}
+        //subtitle={currentContent.subtitle}
         backgroundImage="/images/sub_banner/company_banner.png"
       />
 

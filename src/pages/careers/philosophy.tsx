@@ -81,7 +81,7 @@ export default function TalentPage() {
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "인재상 | 수만" : "Talent Philosophy | SUMAN"}</title>
+        <title>{lang === "KOR" ? "인재상" : "Talent Philosophy "}</title>
         <meta
           name="description"
           content={
@@ -94,7 +94,7 @@ export default function TalentPage() {
       <Layout>
         <HeroSection
           title={lang === "KOR" ? "인재상" : "Talent Philosophy"}
-          subtitle={lang === "KOR" ? "우리의 인재상" : "Our Talent Values"}
+          //subtitle={lang === "KOR" ? "우리의 인재상" : "Our Talent Values"}
           backgroundImage="/images/sub_banner/careers_hero.png"
         />
 

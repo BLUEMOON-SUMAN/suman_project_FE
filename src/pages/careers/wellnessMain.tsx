@@ -61,7 +61,7 @@ export default function WellnessPage() {
       <Layout>
         <HeroSection
           title={currentData.hero.title}
-          subtitle={currentData.hero.subtitle}
+          //subtitle={currentData.hero.subtitle}
           backgroundImage={currentData.hero.heroImage}
         />
         <BreadcrumbSection path={currentData.hero.path} />
@@ -82,7 +82,7 @@ export default function WellnessPage() {
                   />
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
                     <h2 className="text-2xl md:text-3xl font-extrabold mb-2">{section.title}</h2>
-                    <p className="text-lg font-light">{section.subtitle}</p>
+                    {/*<p className="text-lg font-light">{section.subtitle}</p>*/}
                   </div>
                 </div>
 

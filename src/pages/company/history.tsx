@@ -38,7 +38,7 @@ export default function HistoryPage() {
       <Layout>
         <HeroSection
           title={<span className="text-5xl font-bold tracking-wide">{content.title}</span>}
-          subtitle={<span className="text-xl font-bold tracking-wide px-2">{content.subtitle}</span>}
+          //subtitle={<span className="text-xl font-bold tracking-wide px-2">{content.subtitle}</span>}
           backgroundImage="/images/sub_banner/company_banner.png"
         />
         <BreadcrumbSection path={content.breadcrumb} />
