@@ -129,7 +129,10 @@ export default function Header() {
           style={{ height: "90px" }}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center h-full mr-auto lg:mr-0">
+          <Link
+          href="/"
+          className="flex items-center h-full mr-auto lg:mr-0 ml-[3cm] shrink-0"
+          >
             <Image
               src="/images/logo_suman.png"
               alt="SUMAN CO., Ltd company logo"

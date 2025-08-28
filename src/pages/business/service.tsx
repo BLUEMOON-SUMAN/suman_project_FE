@@ -34,19 +34,19 @@ export default function ServicePage() {
     "/images/business/process/service_deliver.png",
   ];
   const fadeIn = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1 } as Transition },
-  };
-  const content = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1 } as Transition },
+};
+    const content = {
     KOR: {
       image: "/images/business/process/gambarKorean.png",
       alt: "조직도",
-      pageTitle: "조직도"
+      pageTitle: "조직도 | 수만"
     },
     ENG: {
       image: "/images/business/process/gambarEng.png",
       alt: "Organization Chart",
-      pageTitle: "Organization"
+      pageTitle: "Organization | SUMAN"
     }
   };
 
@@ -78,7 +78,7 @@ export default function ServicePage() {
       <Layout>
         <HeroSection
           title={lang === "KOR" ? "기술 소개" : "Technology"}
-          //subtitle="SUMAN"
+          subtitle="SUMAN"
           backgroundImage="/images/sub_banner/business_hero.png"
         />
 
@@ -129,7 +129,7 @@ export default function ServicePage() {
               className={`relative transition-all duration-500 ease-in-out ${
                 showAllEquipment
                   ? "max-h-[5000px] overflow-visible"
-                  : "max-h-[780px] overflow-hidden" /* biar satu baris kartu terlihat penuh */
+                  : "max-h-[530px] overflow-hidden"
               }`}
             >
               {/* 생산가공 / 조립 */}
@@ -143,33 +143,33 @@ export default function ServicePage() {
                 {section?.production}
               </motion.button>
 
-              {/* PRODUKSI — responsive 653×392 (contain) */}
-              <div className="flex flex-wrap justify-center gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 {equipmentList.map((equipment, index) => (
-                  <motion.figure
+                  <motion.div
                     key={`prod-${index}`}
-                    className="relative w-full sm:w-[520px] md:w-[653px] h-[230px] sm:h-[320px] md:h-[392px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10 bg-black"
+                    className="relative bg-white/10 rounded-lg whitespace-pre-line overflow-hidden shadow-lg w-full h-40 md:h-50 p-2 border-2 border-gray-400/10"
                     variants={itemVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                   >
-                    <Image
-                      src={equipment.image}
-                      alt={equipment.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 520px, 653px"
-                      className="object-contain"
-                      priority={index === 0}
-                    />
-                    <figcaption className="absolute inset-x-0 bottom-0">
-                      <div className="bg-[#1F2432]/75 px-4 py-2 text-center">
-                        <p className="text-sm md:text-base font-medium text-white line-clamp-1">
-                          {equipment.name}
-                        </p>
-                      </div>
-                    </figcaption>
-                  </motion.figure>
+                    <div className="w-full h-20 md:h-28 relative mb-2">
+                      {equipment.image && (
+                        <Image
+                          src={equipment.image}
+                          alt={equipment.name}
+                          fill
+                          style={{ objectFit: "cover" }}
+                          className="rounded-[10px]"
+                        />
+                      )}
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full h-1/3 bg-[#434343]/30 text-center py-1 md:py-2 flex items-center justify-center border border-gray-500/10">
+                      <p className="text-xs md:text-base font-medium text-white text-center">
+                        {equipment.name}
+                      </p>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
 
@@ -177,33 +177,32 @@ export default function ServicePage() {
               <button className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16 mt-16 md:mt-28">
                 {section?.measurement}
               </button>
-
-              {/* MEASUREMENT — responsive 653×392 (contain) */}
-              <div className="flex flex-wrap justify-center gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 {measurementEquipmentList.map((equipment, index) => (
-                  <motion.figure
+                  <motion.div
                     key={`meas-${index}`}
-                    className="relative w-full sm:w-[520px] md:w-[453px] h-[230px] sm:h-[320px] md:h-[192px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10 bg-black"
+                    className="relative bg-white/10 rounded-lg whitespace-pre-line overflow-hidden shadow-lg w-full h-40 md:h-50 p-2 border-2 border-gray-400/10"
                     variants={itemVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                   >
-                    <Image
-                      src={equipment.image}
-                      alt={equipment.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 520px, 653px"
-                      className="object-contain"
-                    />
-                    <figcaption className="absolute inset-x-0 bottom-0">
-                      <div className="bg-[#1F2432]/75 px-4 py-2 text-center">
-                        <p className="text-sm md:text-base font-medium text-white line-clamp-1">
-                          {equipment.name}
-                        </p>
-                      </div>
-                    </figcaption>
-                  </motion.figure>
+                    <div className="w-full h-20 md:h-28 relative mb-0">
+                      {equipment.image && (
+                        <Image
+                          src={equipment.image}
+                          alt={equipment.name}
+                          fill
+                          className="object-cover rounded-[10px]"
+                        />
+                      )}
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 bg-[#1F2432]/70px-3 flex items-center justify-center">
+                      <p className="text-sm md:text-base font-medium text-white line-clamp-1">
+                        {equipment.name}
+                      </p>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -220,31 +219,30 @@ export default function ServicePage() {
             )}
           </div>
         </div>
-
         {/* 3. Process Section */}
         <div className="content-wrapper py-20 px-4 md:px-8 bg-white flex justify-center items-center">
-          <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
-            <motion.div
-              className="w-full"
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
-                <Image
-                  src={currentContent.image}
-                  alt={currentContent.alt}
-                  width={1200}
-                  height={800}
-                  layout="responsive"
-                  objectFit="contain"
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
-            </motion.div>
-          </div>
+        <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
+          <motion.div
+            className="w-full"
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
+              <Image
+                src={currentContent.image}
+                alt={currentContent.alt}
+                width={1200}
+                height={800}
+                layout="responsive"
+                objectFit="contain"
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+          </motion.div>
+        </div>
         </div>
         <hr className="my-6 border-gray-200 w-full" />
       </Layout>
