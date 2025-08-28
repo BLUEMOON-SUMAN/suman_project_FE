@@ -8,22 +8,21 @@ import { serviceContent } from "@/data/service";
 import { useLangStore } from "@/stores/langStore";
 import Head from "next/head";
 // Import the required icons from Lucide React
-import { 
-  Users, 
-  FileText, 
-  XCircle, 
-  Settings, 
-  Package, 
-  ArrowLeft, 
-  Truck, 
-  RotateCcw 
+import {
+  Users,
+  FileText,
+  XCircle,
+  Settings,
+  Package,
+  ArrowLeft,
+  Truck,
+  RotateCcw,
 } from "lucide-react";
 
 export default function ServicePage() {
   const [showAllEquipment, setShowAllEquipment] = useState(false);
   const { lang } = useLangStore();
-  const { equipmentList, measurementEquipmentList} =
-    serviceContent[lang];
+  const { equipmentList, measurementEquipmentList } = serviceContent[lang];
   const section = serviceContent[lang].sectionList?.[0];
 
   const processImages = [
@@ -34,20 +33,20 @@ export default function ServicePage() {
     "/images/business/process/service_deliver.png",
   ];
   const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 1 } as Transition },
-};
-    const content = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } as Transition },
+  };
+  const content = {
     KOR: {
       image: "/images/business/process/gambarKorean.png",
       alt: "조직도",
-      pageTitle: "조직도"
+      pageTitle: "조직도",
     },
     ENG: {
       image: "/images/business/process/gambarEng.png",
       alt: "Organization Chart",
-      pageTitle: "Organization"
-    }
+      pageTitle: "Organization",
+    },
   };
 
   const itemVariants = {
@@ -69,7 +68,8 @@ export default function ServicePage() {
   };
 
   const initialDisplayCount = 10;
-  const currentContent = content[lang];
+  const currentContent = content[lang as keyof typeof content];
+
   return (
     <>
       <Head>
@@ -129,7 +129,7 @@ export default function ServicePage() {
               className={`relative transition-all duration-500 ease-in-out ${
                 showAllEquipment
                   ? "max-h-[5000px] overflow-visible"
-                  : "max-h-[530px] overflow-hidden"
+                  : "max-h-[900px] overflow-hidden"
               }`}
             >
               {/* 생산가공 / 조립 */}
@@ -147,25 +147,27 @@ export default function ServicePage() {
                 {equipmentList.map((equipment, index) => (
                   <motion.div
                     key={`prod-${index}`}
-                    className="relative bg-white/10 rounded-lg whitespace-pre-line overflow-hidden shadow-lg w-full h-40 md:h-50 p-2 border-2 border-gray-400/10"
+                    className="relative bg-white/10 rounded-lg overflow-hidden shadow-lg w-full p-2 border-2 border-gray-400/10 h-[calc(10rem+114px)] md:h-[calc(12.5rem+114px)]"
                     variants={itemVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                   >
-                    <div className="w-full h-20 md:h-28 relative mb-2">
+                    {/* Foto lebih tinggi (+ ~95px) */}
+                    <div className="w-full h-[calc(5rem+95px)] md:h-[calc(7rem+95px)] relative mb-0">
                       {equipment.image && (
                         <Image
                           src={equipment.image}
                           alt={equipment.name}
                           fill
-                          style={{ objectFit: "cover" }}
-                          className="rounded-[10px]"
+                          className="object-cover rounded-[10px]"
                         />
                       )}
                     </div>
-                    <div className="absolute bottom-0 left-0 w-full h-1/3 bg-[#434343]/30 text-center py-1 md:py-2 flex items-center justify-center border border-gray-500/10">
-                      <p className="text-xs md:text-base font-medium text-white text-center">
+
+                    {/* Bar judul fixed height */}
+                    <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 bg-[#1F2432]/70 px-3 flex items-center justify-center border border-gray-500/10">
+                      <p className="text-sm md:text-base font-medium text-white line-clamp-1">
                         {equipment.name}
                       </p>
                     </div>
@@ -177,17 +179,19 @@ export default function ServicePage() {
               <button className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16 mt-16 md:mt-28">
                 {section?.measurement}
               </button>
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 {measurementEquipmentList.map((equipment, index) => (
                   <motion.div
                     key={`meas-${index}`}
-                    className="relative bg-white/10 rounded-lg whitespace-pre-line overflow-hidden shadow-lg w-full h-40 md:h-50 p-2 border-2 border-gray-400/10"
+                    className="relative bg-white/10 rounded-lg overflow-hidden shadow-lg w-full p-2 border-2 border-gray-400/10 h-[calc(10rem+114px)] md:h-[calc(12.5rem+114px)]"
                     variants={itemVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                   >
-                    <div className="w-full h-20 md:h-28 relative mb-0">
+                    {/* Foto lebih tinggi (+ ~95px) */}
+                    <div className="w-full h-[calc(5rem+95px)] md:h-[calc(7rem+95px)] relative mb-0">
                       {equipment.image && (
                         <Image
                           src={equipment.image}
@@ -197,7 +201,8 @@ export default function ServicePage() {
                         />
                       )}
                     </div>
-                    <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 bg-[#1F2432]/70px-3 flex items-center justify-center">
+
+                    <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 bg-[#1F2432]/70 px-3 flex items-center justify-center">
                       <p className="text-sm md:text-base font-medium text-white line-clamp-1">
                         {equipment.name}
                       </p>
@@ -207,7 +212,8 @@ export default function ServicePage() {
               </div>
             </motion.div>
 
-            {equipmentList.length + measurementEquipmentList.length > initialDisplayCount && (
+            {equipmentList.length + measurementEquipmentList.length >
+              initialDisplayCount && (
               <div className="mt-8 md:mt-10 mb-8 md:mb-10 text-right">
                 <button
                   onClick={() => setShowAllEquipment(!showAllEquipment)}
@@ -219,30 +225,35 @@ export default function ServicePage() {
             )}
           </div>
         </div>
+
         {/* 3. Process Section */}
         <div className="content-wrapper py-20 px-4 md:px-8 bg-white flex justify-center items-center">
-        <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
-          <motion.div
-            className="w-full"
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
-              <Image
-                src={currentContent.image}
-                alt={currentContent.alt}
-                width={1200}
-                height={800}
-                layout="responsive"
-                objectFit="contain"
-                className="w-full h-auto"
-                priority
-              />
-            </div>
-          </motion.div>
-        </div>
+          <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
+            {/* NEW: title kiri */}
+            <h2 className="self-start w-full text-left text-sm sm:text-base lg:text-2xl font-semibold tracking-wide mb-4 md:mb-6">
+              PROCESS
+            </h2>
+            <motion.div
+              className="w-full"
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
+                <Image
+                  src={currentContent.image}
+                  alt={currentContent.alt}
+                  width={1400}
+                  height={1000}
+                  layout="responsive"
+                  objectFit="contain"
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
         <hr className="my-6 border-gray-200 w-full" />
       </Layout>

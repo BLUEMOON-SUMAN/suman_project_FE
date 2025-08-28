@@ -12,7 +12,7 @@ const RecruitmentBoard: React.FC = () => {
   return (
     <Layout>
       <Head>
-        <title>{lang === "KOR" ? "외부공고 | 수만" : "Recruit Notice | SUMAN"}</title>
+        <title>{lang === "KOR" ? "채용공고 | 수만" : "Recruit Notice | SUMAN"}</title>
       </Head>
 
       <HeroSection
@@ -34,7 +34,7 @@ const RecruitmentBoard: React.FC = () => {
         <section className="py-16 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-left">
-              {lang === "KOR" ? "채용공고" : "Recruit Notice"}
+              {lang === "KOR" ? "외부공고" : "External Recruitment Notice"}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -77,10 +77,10 @@ const RecruitmentDownloadBanner: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <ul className="space-y-3">
           <li className="flex items-start gap-2">
-            <span className="mt-[6px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-left">
               {lang === "KOR" ? "내부공고" : "Internal Recruitment Notice"}
             </h2>
+            <span className="mt-[6px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
             <a
               href="/images/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
               download

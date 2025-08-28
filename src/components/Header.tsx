@@ -124,14 +124,11 @@ export default function Header() {
         className="fixed top-0 left-0 w-full z-50 bg-white transition-shadow duration-300 shadow-md"
       >
         {/* Main Nav Container */}
-        <div
-          className="w-full mx-auto max-w-screen-2xl px-4 lg:px-20 flex justify-between items-center text-sm lg:text-base font-medium text-black"
-          style={{ height: "90px" }}
-        >
+        <div className="w-full mx-auto max-w-6xl px-4 md:px-8 flex justify-between items-center text-sm lg:text-base font-medium text-black" style={{ height: "90px" }}>
           {/* Logo */}
           <Link
           href="/"
-          className="flex items-center h-full mr-auto lg:mr-0 ml-[1cm] shrink-0"
+          className="flex items-center h-full mr-auto lg:mr-0 shrink-0"
           >
             <Image
               src="/images/logo_suman.png"

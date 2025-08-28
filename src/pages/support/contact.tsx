@@ -63,16 +63,12 @@ export default function HistoryPage() {
                 <div className="mb-10 p-5 bg-blue-50 rounded-lg border border-blue-100">
                   <p className="text-base md:text-lg text-gray-700 text-center">
                     {lang === "KOR"
-                      ? "아래의 내용을 기재하여 ooo@suman.co.kr로 문의 주시면 신속하게 답변드리도록 하겠습니다."
+                      ? "아래의 내용을 기재하여 하단의 메일으로 문의 주시면 신속하게 답변드리도록 하겠습니다."
                       : "Please include the following information in your email to ooo@suman.co.kr and we will respond promptly."}
                   </p>
                 </div>
 
-                {/* ========================= UPDATED (align ":" perfectly) ========================= */}
-                {/* 1) Gunakan flex satu baris per item supaya kolom punya lebar sama di semua baris
-                    2) Label diberi lebar tetap (responsif) -> semua baris punya start yg sama
-                    3) Kolom ":" diberi lebar 1ch + text-center -> titik dua selalu di kolom yang sama
-                    4) items-baseline menjaga baseline huruf dan ":" sejajar rapi */}
+                {/* ========================= UPDATED (align ":" and add emails) ========================= */}
                 <div className="space-y-6 mb-10">
                   {contactInfo.map((item, index) => (
                     <div
@@ -84,8 +80,8 @@ export default function HistoryPage() {
                         {item.label}
                       </div>
 
-                      {/* Colon column (exactly 1 character width) */}
-                      <div className="w-[1ch] text-blue-500 text-lg font-semibold text-center">
+                      {/* Colon column (exactly 1 character width, shifted left ~ one tab) */}
+                      <div className="w-[1ch] -ml-2 md:-ml-3 text-blue-500 text-lg font-semibold text-center">
                         :
                       </div>
 
@@ -95,33 +91,44 @@ export default function HistoryPage() {
                       </div>
                     </div>
                   ))}
+
+                  {/* Emails placed directly UNDER '문의내용' */}
+                  {[
+                    {
+                      label: lang === "KOR" ? "영업문의" : "Sales Inquiry",
+                      value: "bksikk@suman.co.kr",
+                    },
+                    {
+                      label: lang === "KOR" ? "기술문의" : "Technical Inquiry",
+                      value: "nsmyoung@suman.co.kr",
+                    },
+                    {
+                      label: lang === "KOR" ? "경영문의" : "Management Inquiry",
+                      value: "suman5713@suman.co.kr",
+                    },
+                  ].map((row, i) => (
+                    <div
+                      key={`email-${i}`}
+                      className="flex items-baseline border-b border-gray-200 pb-4"
+                    >
+                      <div className="shrink-0 w-28 sm:w-40 md:w-56 lg:w-64 font-semibold text-gray-800 text-lg whitespace-nowrap">
+                        {row.label}
+                      </div>
+                      <div className="w-[1ch] -ml-2 md:-ml-3 text-blue-500 text-lg font-semibold text-center">
+                        :
+                      </div>
+                      <div className="flex-1 min-h-[1.75rem]">
+                        <a
+                          href={`mailto:${row.value}`}
+                          className="text-blue-600 hover:underline"
+                        >
+                          {row.value}
+                        </a>
+                      </div>
+                    </div>
+                  ))}
                 </div>
                 {/* ======================= END UPDATED ======================= */}
-
-                <div className="text-center mt-12">
-                  <a
-                    href="mailto:ooo@suman.co.kr"
-                    className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-200"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 mr-2"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                    {lang === "KOR" ? "이메일 보내기" : "Send Email"}
-                  </a>
-
-                  <p className="mt-4 text-gray-500 text-sm">ooo@suman.co.kr</p>
-                </div>
               </section>
             </motion.div>
           </div>
