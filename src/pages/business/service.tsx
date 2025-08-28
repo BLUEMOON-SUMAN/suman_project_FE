@@ -73,7 +73,7 @@ export default function ServicePage() {
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "기술소개 | 수만" : "Technology | SUMAN"}</title>
+        <title>{lang === "KOR" ? "기술소개 " : "Technology"}</title>
       </Head>
       <Layout>
         <HeroSection

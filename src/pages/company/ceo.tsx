@@ -44,21 +44,21 @@ export default function CeoPage() {
   return (
     <Layout>
       <Head>
-        <title>CEO인사말 | 수만</title>
+        <title>{lang === "KOR" ? "CEO 인사말 " : "Recruit Notice | SUMAN"}</title>
       </Head>
 
       <Header />
 
       {/* "CEO 인사말" HeroSection */}
       <HeroSection
-        title="CEO 인사말"
-        subtitle="CEO Message"
+        title={lang === "KOR" ? "CEO 인사말" : "CEO Message"}
         backgroundImage="/images/sub_banner/ceo_hero.png"
       />
 
       {/* 서브 내비게이션 (Breadcrumb) 섹션 */}
-      <BreadcrumbSection path="회사소개 > CEO 인사말" />
-
+        <BreadcrumbSection
+          path={lang === "KOR" ? "회사 소개 > CEO 인사말" : " Company > CEO Message"}
+        />
       {/* CEO 인사말 섹션 */}
       <main className="content-wrapper py-16 px-4 sm:px-6 lg:px-8 bg-white flex justify-center">
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-start gap-12">
