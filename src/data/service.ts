@@ -38,7 +38,7 @@ export const serviceContent = {
       { name: "3D 측정기 (접촉식)", image: "/images/business/equipment/equip11.png" },
       { name: "3D 측정기 (비접촉식)", image: "/images/business/equipment/equip12.png" },
       { name: "투영기", image: "/images/business/equipment/tuyong.png" },
-      { name: "계측기", image: "/images/business/equipment/equip1111.png" },
+      { name: "계측기", image: "/images/business/equipment/gyee.png" },
  
     ],
     // product 영역

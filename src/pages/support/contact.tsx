@@ -32,9 +32,7 @@ export default function HistoryPage() {
   return (
     <>
       <Head>
-        <title>
-          {lang === "KOR" ? "문의하기 | 수만" : "Contact Us | SUMAN"}
-        </title>
+        <title>{lang === "KOR" ? "문의하기 | 수만" : "Contact Us | SUMAN"}</title>
       </Head>
       <Layout>
         <HeroSection
@@ -68,67 +66,68 @@ export default function HistoryPage() {
                   </p>
                 </div>
 
-                {/* ========================= UPDATED (align ":" and add emails) ========================= */}
-                <div className="space-y-6 mb-10">
+                {/* Form rows dengan ":" rata kiri */}
+                <div className="space-y-6 mb-6">
                   {contactInfo.map((item, index) => (
                     <div
                       key={index}
                       className="flex items-baseline border-b border-gray-200 pb-4"
                     >
-                      {/* Label column (fixed width, responsive) */}
+                      {/* Label (lebar tetap) */}
                       <div className="shrink-0 w-28 sm:w-40 md:w-56 lg:w-64 font-semibold text-gray-800 text-lg whitespace-nowrap">
                         {item.label}
                       </div>
 
-                      {/* Colon column (exactly 1 character width, shifted left ~ one tab) */}
+                      {/* Kolom ":" (geser kiri ~ satu tab) */}
                       <div className="w-[1ch] -ml-2 md:-ml-3 text-blue-500 text-lg font-semibold text-center">
                         :
                       </div>
 
-                      {/* Value column */}
+                      {/* Nilai */}
                       <div className="flex-1 min-h-[1.75rem] text-gray-600">
                         {item.value}
                       </div>
                     </div>
                   ))}
-
-                  {/* Emails placed directly UNDER '문의내용' */}
-                  {[
-                    {
-                      label: lang === "KOR" ? "영업문의" : "Sales Inquiry",
-                      value: "bksikk@suman.co.kr",
-                    },
-                    {
-                      label: lang === "KOR" ? "기술문의" : "Technical Inquiry",
-                      value: "nsmyoung@suman.co.kr",
-                    },
-                    {
-                      label: lang === "KOR" ? "경영문의" : "Management Inquiry",
-                      value: "suman5713@suman.co.kr",
-                    },
-                  ].map((row, i) => (
-                    <div
-                      key={`email-${i}`}
-                      className="flex items-baseline border-b border-gray-200 pb-4"
-                    >
-                      <div className="shrink-0 w-28 sm:w-40 md:w-56 lg:w-64 font-semibold text-gray-800 text-lg whitespace-nowrap">
-                        {row.label}
-                      </div>
-                      <div className="w-[1ch] -ml-2 md:-ml-3 text-blue-500 text-lg font-semibold text-center">
-                        :
-                      </div>
-                      <div className="flex-1 min-h-[1.75rem]">
-                        <a
-                          href={`mailto:${row.value}`}
-                          className="text-blue-600 hover:underline"
-                        >
-                          {row.value}
-                        </a>
-                      </div>
-                    </div>
-                  ))}
                 </div>
-                {/* ======================= END UPDATED ======================= */}
+
+                {/* === Bagian bawah seperti screenshot === */}
+                <div className="mt-4 space-y-1">
+                  <div className="flex items-baseline gap-2 text-sm md:text-base">
+                    <span className="font-semibold text-blue-600">
+                      {lang === "KOR" ? "영업문의" : "Sales Inquiry"}
+                    </span>
+                    <a
+                      href="mailto:bksikk@suman.co.kr"
+                      className="text-blue-600 hover:underline"
+                    >
+                      bksikk@suman.co.kr
+                    </a>
+                  </div>
+                  <div className="flex items-baseline gap-2 text-sm md:text-base">
+                    <span className="font-semibold text-blue-600">
+                      {lang === "KOR" ? "기술문의" : "Technical Inquiry"}
+                    </span>
+                    <a
+                      href="mailto:nsmyoung@suman.co.kr"
+                      className="text-blue-600 hover:underline"
+                    >
+                      nsmyoung@suman.co.kr
+                    </a>
+                  </div>
+                  <div className="flex items-baseline gap-2 text-sm md:text-base">
+                    <span className="font-semibold text-blue-600">
+                      {lang === "KOR" ? "경영문의" : "Management Inquiry"}
+                    </span>
+                    <a
+                      href="mailto:suman5713@suman.co.kr"
+                      className="text-blue-600 hover:underline"
+                    >
+                      suman5713@suman.co.kr
+                    </a>
+                  </div>
+                </div>
+                {/* === END === */}
               </section>
             </motion.div>
           </div>

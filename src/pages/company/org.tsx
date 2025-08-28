@@ -59,7 +59,8 @@ export default function OrgPage() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
+            {/* <-- DIBESARKAN ~20%: kurangi padding kiri/kanan */}
+            <div className="relative w-full h-auto overflow-hidden rounded-lg px-[3%] md:px-[8%] lg:px-[14%]">
               <Image
                 src={currentContent.image}
                 alt={currentContent.alt}
@@ -68,6 +69,7 @@ export default function OrgPage() {
                 layout="responsive"
                 objectFit="contain"
                 className="w-full h-auto"
+                sizes="(min-width:1024px) 72vw, (min-width:768px) 84vw, 94vw"
                 priority
               />
             </div>

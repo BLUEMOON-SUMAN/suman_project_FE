@@ -3,7 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { motion, type Transition } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
 import { serviceContent } from "@/data/service";
 import { useLangStore } from "@/stores/langStore";
 import Head from "next/head";
@@ -20,7 +19,6 @@ import {
 } from "lucide-react";
 
 export default function ServicePage() {
-  const [showAllEquipment, setShowAllEquipment] = useState(false);
   const { lang } = useLangStore();
   const { equipmentList, measurementEquipmentList } = serviceContent[lang];
   const section = serviceContent[lang].sectionList?.[0];
@@ -67,7 +65,6 @@ export default function ServicePage() {
     },
   };
 
-  const initialDisplayCount = 10;
   const currentContent = content[lang as keyof typeof content];
 
   return (
@@ -113,7 +110,8 @@ export default function ServicePage() {
         </div>
 
         {/* 2. 생산가공 / 측정장비 Section */}
-        <div className="relative z-0 bg-[#000B24] pt-12 md:pt-20 pb-40 md:pb-60 px-4">
+        {/* Pangkas ruang kosong bawah: pb-40/md:pb-60 -> pb-6/md:pb-8 */}
+        <div className="relative z-0 bg-[#000B24] pt-12 md:pt-20 pb-6 md:pb-8 px-4">
           <div className="absolute inset-0 pointer-events-none">
             <Image
               src="/images/business/layer.png"
@@ -125,13 +123,8 @@ export default function ServicePage() {
           </div>
 
           <div className="max-w-7xl mx-auto">
-            <motion.div
-              className={`relative transition-all duration-500 ease-in-out ${
-                showAllEquipment
-                  ? "max-h-[5000px] overflow-visible"
-                  : "max-h-[900px] overflow-hidden"
-              }`}
-            >
+            {/* Hapus logika max-height/toggle: semua langsung tampil */}
+            <motion.div className="relative transition-all duration-500 ease-in-out">
               {/* 생산가공 / 조립 */}
               <motion.button
                 className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16"
@@ -212,17 +205,7 @@ export default function ServicePage() {
               </div>
             </motion.div>
 
-            {equipmentList.length + measurementEquipmentList.length >
-              initialDisplayCount && (
-              <div className="mt-8 md:mt-10 mb-8 md:mb-10 text-right">
-                <button
-                  onClick={() => setShowAllEquipment(!showAllEquipment)}
-                  className="text-base md:text-lg text-gray-200 hover:text-white font-md cursor-pointer"
-                >
-                  {showAllEquipment ? "간략히 보기" : "전체 설비 보기"} →
-                </button>
-              </div>
-            )}
+            {/* HAPUS tombol '전체 설비 보기' */}
           </div>
         </div>
 
