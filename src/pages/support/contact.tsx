@@ -91,43 +91,43 @@ export default function HistoryPage() {
                   ))}
                 </div>
 
-                {/* === Bagian bawah seperti screenshot === */}
-                <div className="mt-4 space-y-1">
-                  <div className="flex items-baseline gap-2 text-sm md:text-base">
-                    <span className="font-semibold text-blue-600">
+                {/* === UPDATED: Bagian bawah disesuaikan seperti screenshot === */}
+                <div className="mt-1 space-y-1">
+                  <div className="flex items-baseline text-sm md:text-base">
+                    <span className="font-semibold text-blue-600 mr-2">
                       {lang === "KOR" ? "영업문의" : "Sales Inquiry"}
                     </span>
                     <a
                       href="mailto:bksikk@suman.co.kr"
-                      className="text-blue-600 hover:underline"
+                      className="text-gray-800 no-underline hover:text-blue-600"
                     >
                       bksikk@suman.co.kr
                     </a>
                   </div>
-                  <div className="flex items-baseline gap-2 text-sm md:text-base">
-                    <span className="font-semibold text-blue-600">
+                  <div className="flex items-baseline text-sm md:text-base">
+                    <span className="font-semibold text-blue-600 mr-2">
                       {lang === "KOR" ? "기술문의" : "Technical Inquiry"}
                     </span>
                     <a
                       href="mailto:nsmyoung@suman.co.kr"
-                      className="text-blue-600 hover:underline"
+                      className="text-gray-800 no-underline hover:text-blue-600"
                     >
                       nsmyoung@suman.co.kr
                     </a>
                   </div>
-                  <div className="flex items-baseline gap-2 text-sm md:text-base">
-                    <span className="font-semibold text-blue-600">
+                  <div className="flex items-baseline text-sm md:text-base">
+                    <span className="font-semibold text-blue-600 mr-2">
                       {lang === "KOR" ? "경영문의" : "Management Inquiry"}
                     </span>
                     <a
                       href="mailto:suman5713@suman.co.kr"
-                      className="text-blue-600 hover:underline"
+                      className="text-gray-800 no-underline hover:text-blue-600"
                     >
                       suman5713@suman.co.kr
                     </a>
                   </div>
                 </div>
-                {/* === END === */}
+                {/* === END UPDATED === */}
               </section>
             </motion.div>
           </div>

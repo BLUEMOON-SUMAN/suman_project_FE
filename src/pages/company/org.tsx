@@ -60,7 +60,7 @@ export default function OrgPage() {
             viewport={{ once: true, amount: 0.3 }}
           >
             {/* <-- DIBESARKAN ~20%: kurangi padding kiri/kanan */}
-            <div className="relative w-full h-auto overflow-hidden rounded-lg px-[3%] md:px-[8%] lg:px-[14%]">
+            <div className="relative w-full h-auto overflow-hidden rounded-lg px-0 md:px-[8%] lg:px-[14%]">
               <Image
                 src={currentContent.image}
                 alt={currentContent.alt}
