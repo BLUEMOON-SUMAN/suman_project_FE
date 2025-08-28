@@ -126,6 +126,17 @@ export default function HistoryPage() {
                       suman5713@suman.co.kr
                     </a>
                   </div>
+                  <div className="flex items-baseline text-sm md:text-base">
+                    <span className="font-semibold text-blue-600 mr-2">
+                      {lang === "KOR" ? "대표 연락처" : "CEO Contact"}
+                    </span>
+                    <a
+                      href="042 - 434 - 1517"
+                      className="text-gray-800 no-underline hover:text-blue-600"
+                    >
+                      suman5713@suman.co.kr
+                    </a>
+                  </div>
                 </div>
                 {/* === END UPDATED === */}
               </section>
