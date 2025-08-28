@@ -78,7 +78,7 @@ export default function ServicePage() {
       <Layout>
         <HeroSection
           title={lang === "KOR" ? "기술 소개" : "Technology"}
-          subtitle="SUMAN"
+          //subtitle="SUMAN"
           backgroundImage="/images/sub_banner/business_hero.png"
         />
 
@@ -129,7 +129,7 @@ export default function ServicePage() {
               className={`relative transition-all duration-500 ease-in-out ${
                 showAllEquipment
                   ? "max-h-[5000px] overflow-visible"
-                  : "max-h-[780px] overflow-hidden" /* UPDATED: naikkan agar 1 baris kartu 392px tampil utuh */
+                  : "max-h-[780px] overflow-hidden" /* biar satu baris kartu terlihat penuh */
               }`}
             >
               {/* 생산가공 / 조립 */}
@@ -143,12 +143,12 @@ export default function ServicePage() {
                 {section?.production}
               </motion.button>
 
-              {/* UPDATED START: PRODUKSI wrapper + item 653×392 */}
+              {/* PRODUKSI — responsive 653×392 (contain) */}
               <div className="flex flex-wrap justify-center gap-6">
                 {equipmentList.map((equipment, index) => (
                   <motion.figure
                     key={`prod-${index}`}
-                    className="relative w-[653px] h-[392px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10 bg-black"
+                    className="relative w-full sm:w-[520px] md:w-[653px] h-[230px] sm:h-[320px] md:h-[392px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10 bg-black"
                     variants={itemVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -158,8 +158,8 @@ export default function ServicePage() {
                       src={equipment.image}
                       alt={equipment.name}
                       fill
-                      sizes="(max-width: 680px) 100vw, 653px"
-                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 520px, 653px"
+                      className="object-contain"
                       priority={index === 0}
                     />
                     <figcaption className="absolute inset-x-0 bottom-0">
@@ -172,19 +172,18 @@ export default function ServicePage() {
                   </motion.figure>
                 ))}
               </div>
-              {/* UPDATED END */}
 
               {/* 신뢰성 (측정 / 분석) */}
               <button className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16 mt-16 md:mt-28">
                 {section?.measurement}
               </button>
 
-              {/* UPDATED START: MEASUREMENT wrapper + item 653×392 */}
+              {/* MEASUREMENT — responsive 653×392 (contain) */}
               <div className="flex flex-wrap justify-center gap-6">
                 {measurementEquipmentList.map((equipment, index) => (
                   <motion.figure
                     key={`meas-${index}`}
-                    className="relative w-[653px] h-[392px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10 bg-black"
+                    className="relative w-full sm:w-[520px] md:w-[453px] h-[230px] sm:h-[320px] md:h-[192px] rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10 bg-black"
                     variants={itemVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -194,8 +193,8 @@ export default function ServicePage() {
                       src={equipment.image}
                       alt={equipment.name}
                       fill
-                      sizes="(max-width: 680px) 100vw, 653px"
-                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 520px, 653px"
+                      className="object-contain"
                     />
                     <figcaption className="absolute inset-x-0 bottom-0">
                       <div className="bg-[#1F2432]/75 px-4 py-2 text-center">
@@ -207,7 +206,6 @@ export default function ServicePage() {
                   </motion.figure>
                 ))}
               </div>
-              {/* UPDATED END */}
             </motion.div>
 
             {equipmentList.length + measurementEquipmentList.length > initialDisplayCount && (
