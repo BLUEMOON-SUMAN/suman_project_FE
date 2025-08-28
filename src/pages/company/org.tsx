@@ -63,8 +63,8 @@ export default function OrgPage() {
               <Image
                 src={currentContent.image}
                 alt={currentContent.alt}
-                width={1300}
-                height={900}
+                width={1500}
+                height={1100}
                 layout="responsive"
                 objectFit="contain"
                 className="w-full h-auto"
