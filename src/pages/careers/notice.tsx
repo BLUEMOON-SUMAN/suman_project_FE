@@ -57,6 +57,7 @@ const RecruitmentBoard: React.FC = () => {
         <hr className="my-12 border-navy-200 w-full" />
         {/* ✅ Download Link Section RIGHT AFTER 3 Cards */}
         <RecruitmentDownloadBanner />
+        <DocumentDownloadBanner />
       </div>
       <hr className="my-6 border-gray-200 w-full" />
     </Layout>
@@ -90,6 +91,50 @@ const RecruitmentDownloadBanner: React.FC = () => {
           >
             {label}
           </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// 📎 Download Banner Section (KOR/ENG Support)
+const DocumentDownloadBanner: React.FC = () => {
+  const lang = useLangStore((state) => state.lang) || "KOR";
+
+  const label1 =
+    lang === "KOR"
+      ? " 입사지원서 양식 다운로드 (Word)"
+      : " Download Application Form (Word)";
+  const label2 =
+    lang === "KOR"
+      ? " 입사지원서 양식 다운로드 (HWP)"
+      : " Download Application Form (HWP)";
+
+  return (
+    <section className="bg-white mt-2 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Judul di baris sendiri */}
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 text-left">
+          {lang === "KOR" ? "자료실" : "Related Document"}
+        </h2>
+
+        {/* Baris link di bawah judul */}
+        <div className="flex items-start gap-2">
+          <span className="mt-[10px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
+          <a
+            href="/images/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
+            download
+            className="text-[#1D3762] text-[18px] hover:underline leading-tight"
+          >
+            {label1}
+          </a> 
+          <a
+            href="/images/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
+            download
+            className="text-[#1D3762] text-[18px] hover:underline leading-tight"
+          >
+            {label2}
+          </a>           
         </div>
       </div>
     </section>

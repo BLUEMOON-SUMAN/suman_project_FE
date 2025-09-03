@@ -21,12 +21,7 @@ export default function HistoryPage() {
   };
 
   const contactInfo = [
-    { label: lang === "KOR" ? "이름" : "Name", value: "" },
-    { label: lang === "KOR" ? "소속" : "Affiliation", value: "" },
-    { label: lang === "KOR" ? "연락처" : "Phone", value: "" },
-    { label: "E-mail", value: "" },
-    { label: lang === "KOR" ? "문의부서" : "Department", value: "" },
-    { label: lang === "KOR" ? "문의내용" : "Inquiry Content", value: "" },
+    { label: lang === "KOR" ? "이름 / 소속 / 연락처 / 문의부서 / 문의내용" : "Name / Affiliation / Phone / Department / Inquiry Contents", value: "" },
   ];
 
   return (
@@ -95,7 +90,7 @@ export default function HistoryPage() {
                 <div className="mt-1 space-y-1">
                   <div className="flex items-baseline text-sm md:text-base">
                     <span className="font-semibold text-blue-600 mr-2">
-                      {lang === "KOR" ? "영업문의" : "Sales Inquiry"}
+                      {lang === "KOR" ? "영업" : "Sales"}
                     </span>
                     <a
                       href="mailto:bksikk@suman.co.kr"
@@ -106,7 +101,7 @@ export default function HistoryPage() {
                   </div>
                   <div className="flex items-baseline text-sm md:text-base">
                     <span className="font-semibold text-blue-600 mr-2">
-                      {lang === "KOR" ? "기술문의" : "Technical Inquiry"}
+                      {lang === "KOR" ? "기술" : "Technical"}
                     </span>
                     <a
                       href="mailto:nsmyoung@suman.co.kr"
@@ -117,7 +112,7 @@ export default function HistoryPage() {
                   </div>
                   <div className="flex items-baseline text-sm md:text-base">
                     <span className="font-semibold text-blue-600 mr-2">
-                      {lang === "KOR" ? "경영문의" : "Management Inquiry"}
+                      {lang === "KOR" ? "인사" : "HR"}
                     </span>
                     <a
                       href="mailto:suman5713@suman.co.kr"
@@ -134,7 +129,7 @@ export default function HistoryPage() {
                       href="042 - 434 - 1517"
                       className="text-gray-800 no-underline hover:text-blue-600"
                     >
-                      suman5713@suman.co.kr
+                      042-934-1517
                     </a>
                   </div>
                 </div>

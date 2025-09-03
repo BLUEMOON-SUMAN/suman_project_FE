@@ -1,2 +1,2 @@
-import historyPage from "@/pages/company/history"
+import historyPage from "@/pages/company/history";
 export default historyPage;

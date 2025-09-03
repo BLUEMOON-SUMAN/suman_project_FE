@@ -30,8 +30,8 @@ export const serviceContent = {
         image: "/images/business/product/service_elec.png",
       },
       {
-        label: "Semiconductor",
-        name: "반도체",
+        label: "Semiconductor / Display",
+        name: "반도체 / 디스플레이",
         subtitle: "정밀 부품 / 모듈 설계 / 자동화 기술 통합",
         image: "/images/business/product/service_semi.png",
       },
@@ -79,8 +79,8 @@ export const serviceContent = {
         image: "/images/business/product/service_elec.png",
       },
       {
-        label: "Semiconductor",
-        name: "Semiconductor",
+        label: "Semiconductor / Display",
+        name: "Semiconductor / Display",
         subtitle: "Precision Module Design / Automation",
         image: "/images/business/product/service_semi.png",
       },

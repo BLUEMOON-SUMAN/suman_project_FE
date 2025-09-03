@@ -38,12 +38,13 @@ export default function HistoryPage() {
       <Layout>
         <HeroSection
           title={<span className="text-5xl font-bold tracking-wide">{content.title}</span>}
-          //subtitle={<span className="text-xl font-bold tracking-wide px-2">{content.subtitle}</span>}
           backgroundImage="/images/sub_banner/company_banner.png"
         />
         <BreadcrumbSection path={content.breadcrumb} />
 
-        <section className="relative w-full h-[560px] md:h-[700px]">
+        {/* =================== HISTORY HERO BLOCK =================== */}
+        {/* UPDATED: make section height responsive using min-h + padding, and move metrics into normal flow */}
+        <section className="relative w-full min-h-[520px] md:min-h-[620px]">
           <div
             className="absolute inset-0 bg-cover z-0"
             style={{
@@ -57,71 +58,85 @@ export default function HistoryPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="relative z-20 max-w-7xl mx-auto px-4 md:px-8 lg:px-8 xl:px-0 py-24 text-white"
+              className="relative z-20 max-w-7xl mx-auto px-4 md:px-8 lg:px-8 xl:px-0 py-16 md:py-24 text-white"
             >
-              <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-3 tracking-wide whitespace-pre-line">
-                {content.summaryTitle}
-              </h2>
-              <ul className="text-lg sm:text-xl flex-col items-start space-y-6 mt-7 tracking-wide">
-                {content.bulletList.map((text, index) => (
-                  <motion.li
-                    key={index}
-                    className="relative w-fit bg-white/15 text-white font-medium py-3.5 px-6 rounded-full z-10"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.5 + index * 0.2,
-                      ease: "easeOut",
-                    }}
-                    viewport={{ once: true }}
-                  >
-                    {text}
-                  </motion.li>
-                ))}
-              </ul>
+              {/* UPDATED: wrap into a responsive layout; metrics live in the flow */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+                {/* Left: title + bullets */}
+                <div className="lg:col-span-8">
+                  <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-3 tracking-wide whitespace-pre-line">
+                    {content.summaryTitle}
+                  </h2>
+
+                  {/* Bullet list (chips) */}
+                  <ul className="text-base md:text-lg lg:text-xl flex flex-col items-start space-y-4 md:space-y-5 mt-6 tracking-wide">
+                    {content.bulletList.map((text, index) => (
+                      <motion.li
+                        key={index}
+                        className="relative w-fit bg-white/15 text-white font-medium py-3 px-5 md:py-3.5 md:px-6 rounded-full z-10"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: 0.5 + index * 0.2,
+                          ease: "easeOut",
+                        }}
+                        viewport={{ once: true }}
+                      >
+                        {text}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Right: metrics (responsive) */}
+                {/* UPDATED: no absolute positioning; right-aligned on lg, stacked on small */}
+                <motion.div
+                  className="lg:col-span-4 mt-6 lg:mt-0 lg:text-right text-sm md:text-base text-gray-300 space-y-1"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                >
+                  <p className="drop-shadow-md">{content.sales}</p>
+                  <p className="drop-shadow-md">{content.staff}</p>
+                </motion.div>
+              </div>
             </motion.div>
-            <motion.div
-              className="absolute bottom-6 right-4 sm:bottom-8 sm:right-8 md:top-[620px] md:right-[360px] md:bottom-auto z-20 text-right text-xs sm:text-sm text-gray-400 drop-shadow-md space-y-1"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              viewport={{ once: true }}
+
+            {/* Arrow overlay unchanged */}
+            <svg
+              className="absolute inset-0 w-full h-full mx-auto my-auto z-20 opacity-80 pointer-events-none"
+              viewBox="0 0 700 300"
+              preserveAspectRatio="xMidYMid meet"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <p>{content.sales}</p>
-              <p>{content.staff}</p>
-            </motion.div>
+              <defs>
+                <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="white" stopOpacity="0" />
+                  <stop offset="100%" stopColor="white" stopOpacity="1" />
+                </linearGradient>
+              </defs>
+              <motion.path
+                d="M 150 233 Q 460 220, 555 50"
+                stroke="url(#arrow-gradient)"
+                strokeWidth="6"
+                fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M 566 31 L 561 54 L 549 46 Z"
+                fill="white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.8, duration: 0.1 }}
+              />
+            </svg>
           </div>
-          <svg
-            className="absolute inset-0 w-full h-full mx-auto my-auto z-20 opacity-80 pointer-events-none"
-            viewBox="0 0 700 300"
-            preserveAspectRatio="xMidYMid meet"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="white" stopOpacity="0" />
-                <stop offset="100%" stopColor="white" stopOpacity="1" />
-              </linearGradient>
-            </defs>
-            <motion.path
-              d="M 120 260 Q 360 120, 560 20"
-              stroke="url(#arrow-gradient)"
-              strokeWidth="6"
-              fill="none"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, ease: "easeInOut" }}
-            />
-            <motion.path
-              d="M 562 5 L 558 33 L 538 23 Z"
-              fill="white"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.8, duration: 0.1 }}
-            />
-          </svg>
         </section>
+        {/* =================== /HISTORY HERO BLOCK =================== */}
 
         <div className="content-wrapper">
           <section className="main-history-timeline py-28 px-4 md:px-8 bg-white">
@@ -135,7 +150,8 @@ export default function HistoryPage() {
               >
                 {content.timelineTitle}
               </motion.h2>
-              <div className="max-w-5xl mx-auto relative pl-6 sm:pl-24 md:pl-36">
+
+              <div className="max-w-5xl mx-auto relative pl-6 sm:pl-26 md:pl-36">
                 <motion.div
                   className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300 hidden sm:block"
                   initial={{ opacity: 0, height: 0 }}
@@ -159,9 +175,10 @@ export default function HistoryPage() {
                           </h3>
                         </div>
                         <div className="bg-gray-100 p-6 rounded-[30px] w-full sm:ml-[60px] md:ml-[100px]">
-                          <p className="text-xl sm:text-2xl font-bold text-black tracking-wide ml-4">{entry.label}</p>
+                          <p className="text-2xl font-bold text-black tracking-wide ml-4">{entry.label}</p>
                         </div>
                       </div>
+
                       {entry.items.map((item, idx) => (
                         <motion.div
                           key={idx}
@@ -176,11 +193,11 @@ export default function HistoryPage() {
                           viewport={{ once: true }}
                         >
                           <p
-                            className={`text-base sm:text-lg font-semibold tracking-wide ${
+                            className={`text-lg font-semibold tracking-wide ${
                               item.includes("⦁")
                                 ? "text-black font-bold"
                                 : item.includes("➔")
-                                ? "text-[#8C8C8C] text-sm sm:text-base"
+                                ? "text-[#8C8C8C] text-base"
                                 : "text-[#4C4C4C]"
                             }`}
                           >
@@ -192,7 +209,7 @@ export default function HistoryPage() {
                   ))}
                 </motion.div>
 
-                {/* 점들 */}
+                {/* dots */}
                 <motion.div
                   className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 hidden sm:block"
                   initial={{ opacity: 0, scale: 0.5 }}
@@ -218,6 +235,7 @@ export default function HistoryPage() {
             </div>
           </section>
         </div>
+
         <hr className="my-8 border-gray-200" />
       </Layout>
     </>
