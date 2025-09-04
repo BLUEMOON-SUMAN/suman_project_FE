@@ -11,13 +11,12 @@ import Image from "next/image";
 import Head from "next/head";
 import { wellnessContent, iconMap, WellnessItem, WellnessData } from "@/data/wellnessData";
 
-// --- Wellness Card Component ---
+// --- Wellness Card Component (keep style & effect) ---
 const WellnessCard = ({ item }: { item: WellnessItem }) => {
   const iconName = iconMap[item.iconKey];
   const IconComponent =
     LucideIcons[iconName as keyof typeof LucideIcons] as React.ComponentType<{ className?: string }>;
 
-  // Fallback jika ikon tidak ditemukan
   if (!IconComponent) {
     return (
       <motion.div
@@ -55,7 +54,6 @@ export default function WellnessPage() {
 
   return (
     <>
-      {/* UPDATED: Head di luar Layout, mengikuti pola philosophy.tsx */}
       <Head>
         <title>{lang === "KOR" ? "복리후생 | 수만" : "Employee Wellness | SUMAN"}</title>
         <meta
@@ -68,28 +66,34 @@ export default function WellnessPage() {
         />
       </Head>
 
-      {/* UPDATED: Seluruh halaman dibungkus oleh Layout (header & footer sama seperti philosophy.tsx) */}
       <Layout>
-        {/* UPDATED: HeroSection meniru philosophy.tsx (pakai banner careers_hero.png dan title statis) */}
         <HeroSection
           title={lang === "KOR" ? "복리후생" : "Employee Wellness"}
-          // subtitle opsional; di philosophy juga dikomentari
-          // subtitle={lang === "KOR" ? "우리의 복리후생" : "Our Benefits"}
           backgroundImage="/images/sub_banner/careers_hero.png"
         />
 
-        {/* UPDATED: BreadcrumbSection format sama seperti philosophy.tsx */}
-        <BreadcrumbSection
-          path={lang === "KOR" ? "인재 채용 > 복리후생" : "Careers > Employee Wellness"}
-        />
+        {/* === Breadcrumb selalu terlihat (di atas blok biru) === */}
+        <div className="relative z-30">
+          <BreadcrumbSection
+            path={lang === "KOR" ? "인재 채용 > 복리후생" : "Careers > Employee Wellness"}
+          />
+        </div>
 
-        {/* === Konten asli dipertahankan tanpa perubahan fungsional === */}
-        <div className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain"></div>
+        {/* === PAGE LAYOUT mengikuti product.tsx (BIG LAYOUT ONLY) === */}
+        <motion.div
+          // UPDATED: sama seperti product.tsx => tanpa rounded, tanpa negative margin, z-index di bawah breadcrumb
+          className="relative z-10 bg-[#000B24] pt-20 pb-20 px-4 md:px-8 rounded-none mt-0 overflow-hidden"
+        >
+          {/* OPTIONAL: background layer seperti product.tsx; boleh dibiarkan kosong jika tak perlu */}
+          <div
+            className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain"
+            // style={{ backgroundImage: "url('/images/business/layer2.png')" }}
+          />
 
           <div className="max-w-7xl mx-auto relative z-10">
             {currentData.sections.map((section, sectionIndex) => (
               <div key={section.key} className="mb-20">
+                {/* === Keep section style & effect (hero per section) === */}
                 <div className="relative h-64 overflow-hidden mb-12 rounded-lg shadow-lg">
                   <Image
                     src={section.heroImage}
@@ -104,8 +108,8 @@ export default function WellnessPage() {
                   </div>
                 </div>
 
+                {/* === Keep grid effects exactly as before === */}
                 {sectionIndex === 0 ? (
-                  // Section pertama: tanpa animasi grid
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
                     {section.items.map((item: WellnessItem, idx) => (
                       <div key={idx}>
@@ -114,7 +118,6 @@ export default function WellnessPage() {
                     ))}
                   </div>
                 ) : (
-                  // Section berikutnya: grid dengan animasi
                   <motion.div
                     className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto"
                     initial="hidden"
@@ -138,10 +141,10 @@ export default function WellnessPage() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* (Optional) Garis pemisah seperti di philosophy.tsx */}
-        <hr className="my-6 border-gray-200 w-full" />
+        {/* Hapus garis pemisah agar blok biru menempel ke footer (seperti product.tsx) */}
+        {/* <hr className="my-6 border-gray-200 w-full" /> */}
       </Layout>
     </>
   );

@@ -131,6 +131,7 @@ const DocumentDownloadBanner: React.FC = () => {
           </a> 
         </div>
         <div className="flex items-start gap-2">
+          <span className="mt-[10px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
           <a
             href="/images/입사지원서 양식 다운로드(HWP).docx"
             download

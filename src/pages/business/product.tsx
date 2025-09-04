@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
-import { motion } from "framer-motion";
+import { motion, type Transition } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { serviceContent } from "@/data/product";
@@ -14,7 +14,24 @@ export default function ServicePage() {
   const { productCategories, footerText } = serviceContent[lang];
   const section = serviceContent[lang].sectionList?.[0];
 
-  // (Animations for scroll-in removed; hover effects kept via CSS only)
+  // === Animations (match service.tsx) ===
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" } as Transition,
+    },
+  };
+
+  const leftAlignTextVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" } as Transition,
+    },
+  };
 
   return (
     <>
@@ -27,17 +44,16 @@ export default function ServicePage() {
           backgroundImage="/images/sub_banner/business_hero.png"
         />
 
-        {/* UPDATED: Keep breadcrumb visible and above blue section */}
+        {/* Keep breadcrumb visible and above blue section */}
         <div className="relative z-30">
           <BreadcrumbSection
             path={lang === "KOR" ? "사업분야 > 제품소개" : "Business > Product"}
           />
         </div>
 
-        {/* 4. Products Section */}
+        {/* Products Section (blue block) */}
         {section && (
           <motion.div
-            // UPDATED: no rounded, no negative margin, no white gap above (mt-0), place under breadcrumb (z-10)
             className="relative z-10 bg-[#000B24] pt-20 pb-20 px-4 md:px-8 rounded-none mt-0 overflow-hidden"
           >
             <div
@@ -46,22 +62,42 @@ export default function ServicePage() {
             ></div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-              <h2 className="text-white text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-10">
+              {/* Headings with same effects as service.tsx */}
+              <motion.h2
+                className="text-white text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-10"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={leftAlignTextVariants}
+              >
                 Products
-              </h2>
-              <p className="text-white text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3] mb-12">
+              </motion.h2>
+
+              <motion.p
+                className="text-white text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3] mb-12"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={leftAlignTextVariants}
+              >
                 {section.production2}
                 <br />
                 {section.production2sub}
-              </p>
+              </motion.p>
 
-              {/* UPDATED: remove scroll-in effects (no initial/whileInView/variants) */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Grid with staggered children like service.tsx */}
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+              >
                 {productCategories.map((product, index) => (
-                  // keep motion.div only for potential future hover animations (no variants)
                   <motion.div
                     key={index}
                     className="bg-[#7E7E7E]/25 rounded-[30px] overflow-hidden shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out group mt-15 hover:bg-white"
+                    variants={itemVariants}
                   >
                     <div className="relative w-full h-44 mx-auto mt-4">
                       <Image
@@ -86,18 +122,23 @@ export default function ServicePage() {
                     </div>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
-              {/* UPDATED: remove scroll-in effects here as well */}
-              <p className="text-[#B2B2B2] font-light text-sm md:text-base mt-7 text-right tracking-wide">
+              {/* Footer text animation same style */}
+              <motion.p
+                className="text-[#B2B2B2] font-light text-sm md:text-base mt-7 text-right tracking-wide"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={leftAlignTextVariants}
+              >
                 {footerText}
-              </p>
+              </motion.p>
             </div>
           </motion.div>
         )}
 
-        {/* UPDATED: remove white separator so blue block touches footer */}
-        {/* <hr className="my-6 border-gray-200 w-full" /> */}
+        {/* Keep blue block touching footer (no <hr/>) */}
       </Layout>
     </>
   );

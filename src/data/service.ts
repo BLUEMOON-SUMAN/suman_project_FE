@@ -102,10 +102,6 @@ export const serviceContent = {
       { name: "CNC Lathe", image: "/images/business/equipment/cnc.png" },
       { name: "Vertical Machining Center", image: "/images/business/equipment/machining.png" },
       { name: "CNC precision automatic lathe", image: "/images/business/equipment/cncmodul.png" },
-      {
-        name: "Automatic Packaging Machine",
-        image: "/images/business/equipment/equip5.png",
-      },
       { name: "Horizontal Drill Tapper", image: "/images/business/equipment/taping.png" },
       { name: "UV flatbed printer", image: "/images/business/equipment/uv.png" },
       { name: "3D Printer", image: "/images/business/equipment/3d.png" },

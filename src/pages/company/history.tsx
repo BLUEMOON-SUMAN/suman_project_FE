@@ -31,10 +31,11 @@ export default function HistoryPage() {
     },
   };
 
-  // UPDATED: CSS variable for responsive arrow shift (~5cm max ≈ 190px)
+  // Base shift (≈ previously 5cm) & lift up ≈ 3cm -> net ≈ 2cm down.
+  // 3cm ≈ 114px (approx). Use clamp to stay responsive across screens.
   const arrowShiftStyle = {
-    // 80px on very small screens, up to ~190px on large (≈ 5cm)
-    ["--arrow-shift" as any]: "clamp(80px, 10vw, 190px)",
+    ["--arrow-shift-down" as any]: "clamp(80px, 10vw, 190px)", // base down shift (~up to 5cm)
+    ["--arrow-shift-up" as any]: "clamp(60px, 6vw, 114px)",     // lift up (~3cm)
   } as React.CSSProperties;
 
   return (
@@ -50,8 +51,7 @@ export default function HistoryPage() {
         <BreadcrumbSection path={content.breadcrumb} />
 
         {/* =================== HISTORY HERO BLOCK =================== */}
-        {/* UPDATED: responsive height and padding for consistency */}
-        <section className="relative w-full min-h-[520px] md:min-h-[620px]">
+        <section className="relative w-full min-h-[520px] md:min_h-[620px] md:min-h-[620px]">
           <div
             className="absolute inset-0 bg-cover z-0"
             style={{
@@ -61,7 +61,7 @@ export default function HistoryPage() {
           >
             <div className="absolute inset-0 bg-[#020c23]/85 z-10" />
 
-            {/* Text + bullets */}
+            {/* Content (title + bullets) */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +76,6 @@ export default function HistoryPage() {
                     {content.summaryTitle}
                   </h2>
 
-                  {/* Bullet chips */}
                   <ul className="text-base md:text-lg lg:text-xl flex flex-col items-start space-y-4 md:space-y-5 mt-6 tracking-wide">
                     {content.bulletList.map((text, index) => (
                       <motion.li
@@ -96,29 +95,18 @@ export default function HistoryPage() {
                     ))}
                   </ul>
                 </div>
-
-                {/* Right: metrics */}
-                <motion.div
-                  className="lg:col-span-4 mt-6 lg:mt-0 lg:text-right text-sm md:text-base text-gray-300 space-y-1"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                >
-                  <p className="drop-shadow-md">{content.sales}</p>
-                  <p className="drop-shadow-md">{content.staff}</p>
-                </motion.div>
               </div>
             </motion.div>
 
-            {/* UPDATED: Arrow overlay shifted down responsively (~5cm) and stays responsive */}
+            {/* Arrow overlay — moved UP by ~3cm responsively */}
             <svg
               className="absolute inset-0 w-full h-full mx-auto my-auto z-20 opacity-80 pointer-events-none"
               viewBox="0 0 700 300"
               preserveAspectRatio="xMidYMid meet"
               xmlns="http://www.w3.org/2000/svg"
               style={{
-                transform: "translateY(var(--arrow-shift))",
+                transform:
+                  "translateY(calc(var(--arrow-shift-down) - var(--arrow-shift-up)))",
                 ...arrowShiftStyle,
               }}
             >
@@ -145,6 +133,22 @@ export default function HistoryPage() {
                 transition={{ delay: 1.8, duration: 0.1 }}
               />
             </svg>
+
+            {/* Metrics pinned to bottom-right corner */}
+            <motion.div
+              className="absolute z-20 bottom-4 right-4 md:bottom-8 md:right-8 lg:bottom-10 lg:right-12 text-right text-xs sm:text-sm md:text-base space-y-1"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              <p className="drop-shadow-md text-gray-200 bg-black/25 px-3 py-1 rounded-md inline-block">
+                {content.sales /* e.g., "매출액 87억원 (2024년도 기준)" */}
+              </p>
+              <p className="drop-shadow-md text-gray-200 bg-black/25 px-3 py-1 rounded-md inline-block">
+                {content.staff /* e.g., "임직원 수 45명 (2024년도 기준)" */}
+              </p>
+            </motion.div>
           </div>
         </section>
         {/* =================== /HISTORY HERO BLOCK =================== */}
@@ -163,7 +167,6 @@ export default function HistoryPage() {
               </motion.h2>
 
               <div className="max-w-5xl mx-auto relative pl-6 sm:pl-26 md:pl-36">
-                {/* UPDATED: make vertical dash line fade/expand responsively */}
                 <motion.div
                   className="absolute left-[120px] md:left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300 hidden sm:block"
                   initial={{ opacity: 0, height: 0 }}
@@ -188,7 +191,9 @@ export default function HistoryPage() {
                           </h3>
                         </div>
                         <div className="bg-gray-100 p-6 rounded-[30px] w-full sm:ml-[60px] md:ml-[100px]">
-                          <p className="text-2xl font-bold text-black tracking-wide ml-4">{entry.label}</p>
+                          <p className="text-2xl font-bold text-black tracking-wide ml-4">
+                            {entry.label}
+                          </p>
                         </div>
                       </div>
 
@@ -222,7 +227,7 @@ export default function HistoryPage() {
                   ))}
                 </motion.div>
 
-                {/* dots (responsive x-offset) */}
+                {/* dots */}
                 <motion.div
                   className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-28 md:ml-32 hidden sm:block"
                   initial={{ opacity: 0, scale: 0.5 }}
