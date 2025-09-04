@@ -32,12 +32,19 @@ export default function CeoPage() {
   const lang = useLangStore((state) => state.lang);
   const { intro, body, closing } = ceoText[lang];
 
-  // Match rnd.tsx: hero title/subtitle + breadcrumb directly under it
   const heroTitle = lang === "KOR" ? "CEO 인사말" : "CEO Message";
   const heroSubtitle =
     lang === "KOR"
       ? "신뢰와 혁신으로 미래를 열겠습니다"
       : "Opening the future with trust and innovation";
+
+  // ============================
+  // UPDATED: hitung trim ~1.5 cm per sisi (1 cm ≈ 37.8px di CSS)
+  // Ganti TRIM_EACH_CM untuk ubah besar kecilnya
+  const CM_TO_PX = 37.8;
+  const TRIM_EACH_CM = 1.5;
+  const HERO_TRIM_PX = Math.round(CM_TO_PX * TRIM_EACH_CM); // ≈57px
+  // ============================
 
   return (
     <Layout>
@@ -45,20 +52,28 @@ export default function CeoPage() {
         <title>{lang === "KOR" ? "CEO 인사말 | 수만" : "CEO Message | SUMAN"}</title>
       </Head>
 
-      {/* === Hero (same layout/size pattern as rnd.tsx) === */}
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
-        <HeroSection
-          title={heroTitle}
-          subtitle={heroSubtitle}
-          backgroundImage="/images/sub_banner/ceo_hero.png"
-        />
+        {/* ============================
+           UPDATED: bungkus HeroSection dengan wrapper negative margin
+           untuk mengurangi tinggi visual atas & bawah ~1.5cm masing-masing
+        ============================ */}
+        <div
+          style={{
+            marginTop: `-${HERO_TRIM_PX}px`,
+            marginBottom: `-${HERO_TRIM_PX}px`,
+          }}
+        >
+          <HeroSection
+            title={heroTitle}
+            subtitle={heroSubtitle}
+            backgroundImage="/images/sub_banner/ceo_hero.png"
+          />
+        </div>
 
-        {/* === Breadcrumb (same placement as rnd.tsx, directly below Hero) === */}
         <BreadcrumbSection
           path={lang === "KOR" ? "회사 소개 > CEO 인사말" : "Company > CEO Message"}
         />
 
-        {/* === CEO Content === */}
         <section className="content-wrapper py-16 px-4 sm:px-6 lg:px-8 bg-white flex justify-center">
           <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-start gap-12">
             {/* Message */}
