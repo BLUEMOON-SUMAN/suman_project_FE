@@ -57,6 +57,7 @@ const RecruitmentBoard: React.FC = () => {
         <hr className="my-12 border-navy-200 w-full" />
         {/* ✅ Download Link Section RIGHT AFTER 3 Cards */}
         <RecruitmentDownloadBanner />
+        <hr className="my-12 border-navy-200 w-full" />
         <DocumentDownloadBanner />
       </div>
       <hr className="my-6 border-gray-200 w-full" />
@@ -122,20 +123,22 @@ const DocumentDownloadBanner: React.FC = () => {
         <div className="flex items-start gap-2">
           <span className="mt-[10px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
           <a
-            href="/images/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
+            href="/images/입사지원서 양식 다운로드(Word).docx"
             download
             className="text-[#1D3762] text-[18px] hover:underline leading-tight"
           >
             {label1}
           </a> 
+        </div>
+        <div className="flex items-start gap-2">
           <a
-            href="/images/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
+            href="/images/입사지원서 양식 다운로드(HWP).docx"
             download
             className="text-[#1D3762] text-[18px] hover:underline leading-tight"
           >
             {label2}
-          </a>           
-        </div>
+          </a> 
+          </div>          
       </div>
     </section>
   );

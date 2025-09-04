@@ -38,7 +38,7 @@ export const serviceContent = {
       { name: "3D 측정기 (비접촉식)", image: "/images/business/equipment/equip12.png" },
       { name: "3D 측정기 (접촉식)", image: "/images/business/equipment/jobcek.jpg" },
       { name: "투영기", image: "/images/business/equipment/tuyong.png" },
-      { name: "기타계측기", image: "/images/business/equipment/gyee.png" },
+      { name: "기타 계측기", image: "/images/business/equipment/gyee.png" },
  
     ],
     // product 영역
@@ -100,7 +100,7 @@ export const serviceContent = {
     equipmentList: [
       { name: "MCT", image: "/images/business/equipment/mct.png" },
       { name: "CNC Lathe", image: "/images/business/equipment/cnc.png" },
-      { name: "VNC", image: "/images/business/equipment/machining.png" },
+      { name: "Vertical Machining Center", image: "/images/business/equipment/machining.png" },
       { name: "CNC precision automatic lathe", image: "/images/business/equipment/cncmodul.png" },
       {
         name: "Automatic Packaging Machine",
@@ -109,14 +109,7 @@ export const serviceContent = {
       { name: "Horizontal Drill Tapper", image: "/images/business/equipment/taping.png" },
       { name: "UV flatbed printer", image: "/images/business/equipment/uv.png" },
       { name: "3D Printer", image: "/images/business/equipment/3d.png" },
-      {
-        name: "3D PRINT - Large Area 3D Printer",
-        image: "/images/business/equipment/equip8.png",
-      },
-      { name: "CO2 Laser Cutter", image: "/images/business/equipment/equip2.png" },
-      { name: "Digital Flat Cutter", image: "/images/business/equipment/equip9.png" },
-      { name: "CNC Machining Equipment", image: "/images/business/equipment/equip10.png" },
-      { name: "CNC Router", image: "/images/business/equipment/equip4.png" },
+      { name: "CNC Router", image: "/images/business/equipment/fiber.png" },
     ],
     measurementEquipmentList: [
       {
@@ -124,7 +117,8 @@ export const serviceContent = {
         image: "/images/business/equipment/equip12.png",
       },
       { name: "3D Measuring Machine (Contact)", image: "/images/business/equipment/jobcek.jpg" },
-      { name: "Other Measuring Instrument", image: "/images/business/equipment/equip1.png" },
+      { name: "Projector", image: "/images/business/equipment/tuyong.png" },
+      { name: "Other Measuring Instrument", image: "/images/business/equipment/gyee.png" },
     ],
     productCategories: [
       {

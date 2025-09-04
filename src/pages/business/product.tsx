@@ -11,8 +11,7 @@ import Head from "next/head";
 export default function ServicePage() {
   const [showAllEquipment, setShowAllEquipment] = useState(false);
   const { lang } = useLangStore();
-  const { productCategories, footerText } =
-    serviceContent[lang];
+  const { productCategories, footerText } = serviceContent[lang];
   const section = serviceContent[lang].sectionList?.[0];
 
   const processImages = [
@@ -62,12 +61,16 @@ export default function ServicePage() {
         {/* The conditional check `section &&` ensures the entire section renders only if the data exists. */}
         {section && (
           <motion.div
-            className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden"
+            // UPDATED: make top edge square (no curve) and move section down so breadcrumb shows
+            className="relative z-10 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-none mt-8 md:mt-12 overflow-hidden"
             initial={{ y: 200, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain" style={{ backgroundImage: "url('/images/business/layer2.png')" }}></div>
+            <div
+              className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain"
+              style={{ backgroundImage: "url('/images/business/layer2.png')" }}
+            ></div>
 
             <div className="max-w-7xl mx-auto relative z-10">
               <h2 className="text-white text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-10">

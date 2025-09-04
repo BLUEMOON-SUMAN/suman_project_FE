@@ -51,7 +51,7 @@ const navItemsEng = [
     href: "/eng/company/ceo",
     submenu: [
       { label: "CEO Message", href: "/eng/company/ceo" },
-      { label: "Vision", href: "/eng/company/vision" },
+      //{ label: "Vision", href: "/eng/company/vision" },
       { label: "Vision", href: "/eng/company/vision2" },
       { label: "History", href: "/eng/company/history" },
       { label: "Organization", href: "/eng/company/org" },

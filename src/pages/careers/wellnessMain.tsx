@@ -1,6 +1,6 @@
 // src/pages/careers/wellnessMain.tsx
 
-import { motion, type Transition } from "framer-motion";
+import { motion } from "framer-motion";
 import React from "react";
 import * as LucideIcons from "lucide-react";
 import Layout from "@/components/Layout";
@@ -14,11 +14,11 @@ import { wellnessContent, iconMap, WellnessItem, WellnessData } from "@/data/wel
 // --- Wellness Card Component ---
 const WellnessCard = ({ item }: { item: WellnessItem }) => {
   const iconName = iconMap[item.iconKey];
-  const IconComponent = LucideIcons[iconName as keyof typeof LucideIcons] as React.ComponentType<{ className?: string }>;
+  const IconComponent =
+    LucideIcons[iconName as keyof typeof LucideIcons] as React.ComponentType<{ className?: string }>;
 
-  // A more robust check to handle missing icons gracefully
+  // Fallback jika ikon tidak ditemukan
   if (!IconComponent) {
-    // Return a fallback UI instead of null to maintain layout
     return (
       <motion.div
         whileHover={{ scale: 1.05 }}
@@ -55,21 +55,38 @@ export default function WellnessPage() {
 
   return (
     <>
+      {/* UPDATED: Head di luar Layout, mengikuti pola philosophy.tsx */}
       <Head>
         <title>{lang === "KOR" ? "복리후생 | 수만" : "Employee Wellness | SUMAN"}</title>
-      </Head>
-      <Layout>
-        <HeroSection
-          title={currentData.hero.title}
-          //subtitle={currentData.hero.subtitle}
-          backgroundImage={currentData.hero.heroImage}
+        <meta
+          name="description"
+          content={
+            lang === "KOR"
+              ? "수만의 복리후생 프로그램을 확인해보세요"
+              : "Explore SUMAN's employee wellness & benefits"
+          }
         />
-        <BreadcrumbSection path={currentData.hero.path} />
+      </Head>
 
-        {/* This main div no longer has an animation, its content is visible from the start */}
+      {/* UPDATED: Seluruh halaman dibungkus oleh Layout (header & footer sama seperti philosophy.tsx) */}
+      <Layout>
+        {/* UPDATED: HeroSection meniru philosophy.tsx (pakai banner careers_hero.png dan title statis) */}
+        <HeroSection
+          title={lang === "KOR" ? "복리후생" : "Employee Wellness"}
+          // subtitle opsional; di philosophy juga dikomentari
+          // subtitle={lang === "KOR" ? "우리의 복리후생" : "Our Benefits"}
+          backgroundImage="/images/sub_banner/careers_hero.png"
+        />
+
+        {/* UPDATED: BreadcrumbSection format sama seperti philosophy.tsx */}
+        <BreadcrumbSection
+          path={lang === "KOR" ? "인재 채용 > 복리후생" : "Careers > Employee Wellness"}
+        />
+
+        {/* === Konten asli dipertahankan tanpa perubahan fungsional === */}
         <div className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden">
           <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain"></div>
-          
+
           <div className="max-w-7xl mx-auto relative z-10">
             {currentData.sections.map((section, sectionIndex) => (
               <div key={section.key} className="mb-20">
@@ -79,16 +96,16 @@ export default function WellnessPage() {
                     alt={section.title}
                     fill
                     className="w-full h-full object-cover object-center brightness-75"
+                    priority={sectionIndex === 0}
                   />
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
                     <h2 className="text-2xl md:text-3xl font-extrabold mb-2">{section.title}</h2>
-                    {/*<p className="text-lg font-light">{section.subtitle}</p>*/}
+                    {/* <p className="text-lg font-light">{section.subtitle}</p> */}
                   </div>
                 </div>
 
-                {/* Conditionally render the grid with or without animation based on section index */}
                 {sectionIndex === 0 ? (
-                  // First section: no animation on the grid
+                  // Section pertama: tanpa animasi grid
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
                     {section.items.map((item: WellnessItem, idx) => (
                       <div key={idx}>
@@ -97,7 +114,7 @@ export default function WellnessPage() {
                     ))}
                   </div>
                 ) : (
-                  // Subsequent sections: animation on the grid
+                  // Section berikutnya: grid dengan animasi
                   <motion.div
                     className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto"
                     initial="hidden"
@@ -122,6 +139,9 @@ export default function WellnessPage() {
             ))}
           </div>
         </div>
+
+        {/* (Optional) Garis pemisah seperti di philosophy.tsx */}
+        <hr className="my-6 border-gray-200 w-full" />
       </Layout>
     </>
   );

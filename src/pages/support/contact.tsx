@@ -73,11 +73,6 @@ export default function HistoryPage() {
                         {item.label}
                       </div>
 
-                      {/* Kolom ":" (geser kiri ~ satu tab) */}
-                      <div className="w-[1ch] -ml-2 md:-ml-3 text-blue-500 text-lg font-semibold text-center">
-                        :
-                      </div>
-
                       {/* Nilai */}
                       <div className="flex-1 min-h-[1.75rem] text-gray-600">
                         {item.value}

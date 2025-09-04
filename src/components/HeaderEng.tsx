@@ -4,9 +4,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { useLangStore } from "@/stores/langStore";
 
-
+// ✅ English NAV items (unchanged)
 const navItemsEng = [
   {
     label: "Company",
@@ -24,9 +23,11 @@ const navItemsEng = [
   {
     label: "Business",
     href: "/eng/business/service",
-    submenu: [{ label: "Technology", href: "/eng/business/service" },
+    submenu: [
+      { label: "Technology", href: "/eng/business/service" },
       { label: "Product", href: "/eng/business/product" },
-      { label: "Research field", href: "/eng/business/rnd" }],
+      { label: "Research field", href: "/eng/business/rnd" },
+    ],
   },
   {
     label: "Careers",
@@ -48,21 +49,20 @@ export default function Header() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobileIndex, setExpandedMobileIndex] = useState<number | null>(null);
-  const { lang } = useLangStore();
   const NAV_ITEMS = navItemsEng;
 
-  // Closes the mobile menu on large screens
+  // Match KOR header: close mobile menu when >= lg
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) { // 'lg' breakpoint
+      if (window.innerWidth >= 1024) {
         setMobileMenuOpen(false);
       }
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Prevents body scrolling when the mobile menu is open
+  // Match KOR header: prevent body scroll when mobile menu open
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
     return () => {
@@ -82,13 +82,13 @@ export default function Header() {
         aria-label="Main Navigation"
         className="fixed top-0 left-0 w-full z-50 bg-white transition-shadow duration-300 shadow-md"
       >
-        {/* Main Nav Container */}
+        {/* Main Nav Container — exact same spacing & height as Header.tsx */}
         <div
           className="w-full mx-auto max-w-screen-2xl px-4 lg:px-20 flex justify-between items-center text-sm lg:text-base font-medium text-black"
           style={{ height: "90px" }}
         >
-          {/* Logo */}
-          <Link href="/" className="flex items-center h-full">
+          {/* Logo — same ml-10 and alignment */}
+          <Link href="/" className="flex items-center h-full mr-auto lg:mr-0 ml-10">
             <Image
               src="/images/logo_suman.png"
               alt="SUMAN CO., Ltd company logo"
@@ -99,9 +99,9 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation Container - Centered */}
+          {/* Desktop Navigation — centered, same gaps */}
           <div className="hidden lg:flex flex-grow justify-center items-center h-full">
-            <nav className="flex items-center space-x-28 h-full">
+            <nav className="flex items-center gap-12 xl:gap-20 h-full">
               {NAV_ITEMS.map((item, index) => (
                 <div
                   key={item.label}
@@ -115,6 +115,8 @@ export default function Header() {
                   >
                     {item.label}
                   </Link>
+
+                  {/* Hover submenu — identical animation & styling */}
                   <AnimatePresence>
                     {hoveredIndex === index && item.submenu.length > 0 && (
                       <motion.div
@@ -141,22 +143,25 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* Language Switcher Container */}
+          {/* Mobile: Language switcher + burger (exact match to Header.tsx) */}
+          <div className="flex items-center gap-4 lg:hidden">
+            <LanguageSwitcher />
+            <button
+              className="text-2xl text-black"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open mobile menu"
+            >
+              ☰
+            </button>
+          </div>
+
+          {/* Desktop Language Switcher */}
           <div className="hidden lg:flex items-center h-full">
             <LanguageSwitcher />
           </div>
-
-          {/* Mobile Burger Menu Button - Hidden on large screens */}
-          <button
-            className="text-2xl lg:hidden text-black"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open mobile menu"
-          >
-            ☰
-          </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu — same width, animation, and contents */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -164,9 +169,9 @@ export default function Header() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden fixed top-0 right-0 w-[75%] h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
+              className="lg:hidden fixed top-0 right-0 w-[80%] max-w-sm h-screen bg-white text-black px-6 py-6 space-y-4 shadow-lg z-50 overflow-y-auto"
             >
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-end items-center mb-6">
                 <button
                   onClick={closeMobileMenu}
                   className="text-xl"
@@ -174,8 +179,8 @@ export default function Header() {
                 >
                   ✕
                 </button>
-                <LanguageSwitcher />
               </div>
+
               {NAV_ITEMS.map((item, index) => (
                 <div key={item.label}>
                   <div
@@ -187,8 +192,13 @@ export default function Header() {
                     <Link href={item.href} onClick={closeMobileMenu}>
                       {item.label}
                     </Link>
-                    {item.submenu.length > 0 && <span>{expandedMobileIndex === index ? "−" : "+"}</span>}
+                    {item.submenu.length > 0 && (
+                      <span className="text-gray-500 transition-transform duration-200 transform">
+                        {expandedMobileIndex === index ? "−" : "+"}
+                      </span>
+                    )}
                   </div>
+
                   <AnimatePresence>
                     {expandedMobileIndex === index && (
                       <motion.div
