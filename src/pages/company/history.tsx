@@ -5,6 +5,7 @@ import { motion, type Transition } from "framer-motion";
 import Head from "next/head";
 import { useLangStore } from "@/stores/langStore";
 import { historyText } from "@/data/history";
+import React from "react";
 
 export default function HistoryPage() {
   const { lang } = useLangStore();
@@ -30,6 +31,12 @@ export default function HistoryPage() {
     },
   };
 
+  // UPDATED: CSS variable for responsive arrow shift (~5cm max ≈ 190px)
+  const arrowShiftStyle = {
+    // 80px on very small screens, up to ~190px on large (≈ 5cm)
+    ["--arrow-shift" as any]: "clamp(80px, 10vw, 190px)",
+  } as React.CSSProperties;
+
   return (
     <>
       <Head>
@@ -43,7 +50,7 @@ export default function HistoryPage() {
         <BreadcrumbSection path={content.breadcrumb} />
 
         {/* =================== HISTORY HERO BLOCK =================== */}
-        {/* UPDATED: make section height responsive using min-h + padding, and move metrics into normal flow */}
+        {/* UPDATED: responsive height and padding for consistency */}
         <section className="relative w-full min-h-[520px] md:min-h-[620px]">
           <div
             className="absolute inset-0 bg-cover z-0"
@@ -53,6 +60,8 @@ export default function HistoryPage() {
             }}
           >
             <div className="absolute inset-0 bg-[#020c23]/85 z-10" />
+
+            {/* Text + bullets */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -60,7 +69,6 @@ export default function HistoryPage() {
               viewport={{ once: true }}
               className="relative z-20 max-w-7xl mx-auto px-4 md:px-8 lg:px-8 xl:px-0 py-16 md:py-24 text-white"
             >
-              {/* UPDATED: wrap into a responsive layout; metrics live in the flow */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
                 {/* Left: title + bullets */}
                 <div className="lg:col-span-8">
@@ -68,7 +76,7 @@ export default function HistoryPage() {
                     {content.summaryTitle}
                   </h2>
 
-                  {/* Bullet list (chips) */}
+                  {/* Bullet chips */}
                   <ul className="text-base md:text-lg lg:text-xl flex flex-col items-start space-y-4 md:space-y-5 mt-6 tracking-wide">
                     {content.bulletList.map((text, index) => (
                       <motion.li
@@ -89,8 +97,7 @@ export default function HistoryPage() {
                   </ul>
                 </div>
 
-                {/* Right: metrics (responsive) */}
-                {/* UPDATED: no absolute positioning; right-aligned on lg, stacked on small */}
+                {/* Right: metrics */}
                 <motion.div
                   className="lg:col-span-4 mt-6 lg:mt-0 lg:text-right text-sm md:text-base text-gray-300 space-y-1"
                   initial={{ opacity: 0, y: 20 }}
@@ -104,12 +111,16 @@ export default function HistoryPage() {
               </div>
             </motion.div>
 
-            {/* Arrow overlay unchanged */}
+            {/* UPDATED: Arrow overlay shifted down responsively (~5cm) and stays responsive */}
             <svg
               className="absolute inset-0 w-full h-full mx-auto my-auto z-20 opacity-80 pointer-events-none"
               viewBox="0 0 700 300"
               preserveAspectRatio="xMidYMid meet"
               xmlns="http://www.w3.org/2000/svg"
+              style={{
+                transform: "translateY(var(--arrow-shift))",
+                ...arrowShiftStyle,
+              }}
             >
               <defs>
                 <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -152,13 +163,15 @@ export default function HistoryPage() {
               </motion.h2>
 
               <div className="max-w-5xl mx-auto relative pl-6 sm:pl-26 md:pl-36">
+                {/* UPDATED: make vertical dash line fade/expand responsively */}
                 <motion.div
-                  className="absolute left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300 hidden sm:block"
+                  className="absolute left-[120px] md:left-[150px] top-12 h-full border-l-2 border-dashed border-gray-300 hidden sm:block"
                   initial={{ opacity: 0, height: 0 }}
                   whileInView={{ opacity: 1, height: "100%" }}
-                  transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
+                  transition={{ duration: 1.0, delay: 1.0, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
+
                 <motion.div
                   className="timeline-container relative"
                   variants={staggerContainerVariants}
@@ -209,23 +222,23 @@ export default function HistoryPage() {
                   ))}
                 </motion.div>
 
-                {/* dots */}
+                {/* dots (responsive x-offset) */}
                 <motion.div
-                  className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 hidden sm:block"
+                  className="absolute left-0 top-[1%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-28 md:ml-32 hidden sm:block"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.9, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
                 <motion.div
-                  className="absolute left-0 top-[47.3%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 hidden sm:block"
+                  className="absolute left-0 top-[47.3%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-28 md:ml-32 hidden sm:block"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 1.1, ease: "easeOut" }}
                   viewport={{ once: true }}
                 />
                 <motion.div
-                  className="absolute left-0 top-[86%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-32 hidden sm:block"
+                  className="absolute left-0 top-[86%] w-12 h-12 bg-[#0f172a] rounded-full border-[12px] border-gray-200 ml-28 md:ml-32 hidden sm:block"
                   initial={{ opacity: 0, scale: 0.5 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}

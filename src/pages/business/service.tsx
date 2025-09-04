@@ -3,15 +3,24 @@ import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { motion, type Transition } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
-import { serviceContent } from "@/data/product";
+import { serviceContent } from "@/data/service";
 import { useLangStore } from "@/stores/langStore";
 import Head from "next/head";
+// Import the required icons from Lucide React
+import {
+  Users,
+  FileText,
+  XCircle,
+  Settings,
+  Package,
+  ArrowLeft,
+  Truck,
+  RotateCcw,
+} from "lucide-react";
 
 export default function ServicePage() {
-  const [showAllEquipment, setShowAllEquipment] = useState(false);
   const { lang } = useLangStore();
-  const { productCategories, footerText } = serviceContent[lang];
+  const { equipmentList, measurementEquipmentList } = serviceContent[lang];
   const section = serviceContent[lang].sectionList?.[0];
 
   const processImages = [
@@ -21,6 +30,22 @@ export default function ServicePage() {
     "/images/business/process/service_test.png",
     "/images/business/process/service_deliver.png",
   ];
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1 } as Transition },
+  };
+  const content = {
+    KOR: {
+      image: "/images/business/process/gambarKorean.png",
+      alt: "조직도",
+      pageTitle: "조직도",
+    },
+    ENG: {
+      image: "/images/business/process/gambarEng.png",
+      alt: "Organization Chart",
+      pageTitle: "Organization",
+    },
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.9 },
@@ -40,98 +65,179 @@ export default function ServicePage() {
     },
   };
 
-  const initialDisplayCount = 10;
+  const currentContent = content[lang as keyof typeof content];
 
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "제품 소개 " : "Product "}</title>
+        <title>{lang === "KOR" ? "기술소개 " : "Technology"}</title>
       </Head>
       <Layout>
         <HeroSection
-          title={lang === "KOR" ? "제품 소개" : "Product"}
+          title={lang === "KOR" ? "기술 소개" : "Technology"}
+          //subtitle="SUMAN"
           backgroundImage="/images/sub_banner/business_hero.png"
         />
 
         <BreadcrumbSection
-          path={lang === "KOR" ? "사업분야 > 제품소개" : "Business > Product"}
+          path={lang === "KOR" ? "사업분야 > 기술소개" : "Business > Technology"}
         />
 
-        {/* 4. Products Section */}
-        {/* The conditional check `section &&` ensures the entire section renders only if the data exists. */}
-        {section && (
-          <motion.div
-            // UPDATED: make top edge square (no curve) and move section down so breadcrumb shows
-            className="relative z-10 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-none mt-8 md:mt-12 overflow-hidden"
-            initial={{ y: 200, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <div
-              className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain"
-              style={{ backgroundImage: "url('/images/business/layer2.png')" }}
-            ></div>
+        {/* 1. Main Equipment Section */}
+        <div className="bg-white py-12 md:py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <motion.h2
+              className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-6 md:mb-10"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={leftAlignTextVariants}
+            >
+              Main Equipment
+            </motion.h2>
+            <motion.p
+              className="text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3]"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={leftAlignTextVariants}
+            >
+              {section?.maintitle}
+              <br />
+              {section?.mainsubtitle}
+            </motion.p>
+          </div>
+        </div>
 
-            <div className="max-w-7xl mx-auto relative z-10">
-              <h2 className="text-white text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-10">
-                Products
-              </h2>
-              <p className="text-white text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3] mb-12">
-                {section.production2}
-                <br />
-                {section.production2sub}
-              </p>
+        {/* 2. 생산가공 / 측정장비 Section */}
+        {/* Pangkas ruang kosong bawah: pb-40/md:pb-60 -> pb-6/md:pb-8 */}
+        <div className="relative z-0 bg-[#000B24] pt-12 md:pt-20 pb-6 md:pb-8 px-4">
+          <div className="absolute inset-0 pointer-events-none">
+            <Image
+              src="/images/business/layer.png"
+              alt="배경 이미지"
+              fill
+              style={{ objectFit: "cover", objectPosition: "top" }}
+              priority
+            />
+          </div>
 
-              <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          <div className="max-w-7xl mx-auto">
+            {/* Hapus logika max-height/toggle: semua langsung tampil */}
+            <motion.div className="relative transition-all duration-500 ease-in-out">
+              {/* 생산가공 / 조립 */}
+              <motion.button
+                className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+                variants={leftAlignTextVariants}
               >
-                {productCategories.map((product, index) => (
+                {section?.production}
+              </motion.button>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                {equipmentList.map((equipment, index) => (
                   <motion.div
-                    key={index}
-                    className="bg-[#7E7E7E]/25 rounded-[30px] overflow-hidden shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out group mt-15 hover:bg-white"
+                    key={`prod-${index}`}
+                    className="relative bg-white/10 rounded-lg overflow-hidden shadow-lg w-full p-2 border-2 border-gray-400/10 h-[calc(10rem+114px)] md:h-[calc(12.5rem+114px)]"
                     variants={itemVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
                   >
-                    <div className="relative w-full h-44 mx-auto mt-4">
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <div className="p-4">
-                      {product.label && (
-                        <span className="tracking-wide font-light text-[#CACACA] text-base transition-colors duration-300 group-hover:text-gray-700">
-                          {product.label}
-                        </span>
+                    {/* Foto lebih tinggi (+ ~95px) */}
+                    <div className="w-full h-[calc(5rem+95px)] md:h-[calc(7rem+95px)] relative mb-0">
+                      {equipment.image && (
+                        <Image
+                          src={equipment.image}
+                          alt={equipment.name}
+                          fill
+                          className="object-cover rounded-[10px]"
+                        />
                       )}
-                      <h3 className="tracking-wide text-2xl font-semibold text-white mb-1 mt-5 transition-colors duration-300 group-hover:text-black">
-                        {product.name}
-                      </h3>
-                      <p className="tracking-wide font-light text-[#CACACA] text-sm mb-7 transition-colors duration-300 group-hover:text-gray-700">
-                        {product.subtitle}
+                    </div>
+
+                    {/* Bar judul fixed height */}
+                    <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 bg-[#1F2432]/70 px-3 flex items-center justify-center border border-gray-500/10">
+                      <p className="text-sm md:text-base font-medium text-white line-clamp-1">
+                        {equipment.name}
                       </p>
                     </div>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
 
-              <motion.p
-                className="text-[#B2B2B2] font-light text-sm md:text-base mt-7 text-right tracking-wide"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={itemVariants}
-              >
-                {footerText}
-              </motion.p>
-            </div>
-          </motion.div>
-        )}
+              {/* 신뢰성 (측정 / 분석) */}
+              <button className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16 mt-16 md:mt-28">
+                {section?.measurement}
+              </button>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                {measurementEquipmentList.map((equipment, index) => (
+                  <motion.div
+                    key={`meas-${index}`}
+                    className="relative bg-white/10 rounded-lg overflow-hidden shadow-lg w-full p-2 border-2 border-gray-400/10 h-[calc(10rem+114px)] md:h-[calc(12.5rem+114px)]"
+                    variants={itemVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                  >
+                    {/* Foto lebih tinggi (+ ~95px) */}
+                    <div className="w-full h-[calc(5rem+95px)] md:h-[calc(7rem+95px)] relative mb-0">
+                      {equipment.image && (
+                        <Image
+                          src={equipment.image}
+                          alt={equipment.name}
+                          fill
+                          className="object-cover rounded-[10px]"
+                        />
+                      )}
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 bg-[#1F2432]/70 px-3 flex items-center justify-center">
+                      <p className="text-sm md:text-base font-medium text-white line-clamp-1">
+                        {equipment.name}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* HAPUS tombol '전체 설비 보기' */}
+          </div>
+        </div>
+
+        {/* 3. Process Section */}
+        <div className="content-wrapper py-20 px-4 md:px-8 bg-white flex justify-center items-center">
+          <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
+            {/* NEW: title kiri */}
+            <h2 className="self-start w-full text-left text-sm sm:text-base lg:text-2xl font-semibold tracking-wide mb-4 md:mb-6">
+              PROCESS
+            </h2>
+            <motion.div
+              className="w-full"
+              variants={fadeIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
+                <Image
+                  src={currentContent.image}
+                  alt={currentContent.alt}
+                  width={1400}
+                  height={1000}
+                  layout="responsive"
+                  objectFit="contain"
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
         <hr className="my-6 border-gray-200 w-full" />
       </Layout>
     </>

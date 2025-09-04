@@ -12,7 +12,6 @@ const navItemsKor = [
     href: "/company/ceo",
     submenu: [
       { label: "CEO 인사말", href: "/company/ceo" },
-      //{ label: "기업 비전", href: "/company/vision" },
       { label: "기업 비전", href: "/company/vision2" },
       { label: "연혁", href: "/company/history" },
       { label: "조직도", href: "/company/org" },
@@ -24,9 +23,10 @@ const navItemsKor = [
   {
     label: "사업분야",
     href: "/business/service",
-    submenu: [{ label: "기술 소개", href: "/business/service" },
+    submenu: [
+      { label: "기술 소개", href: "/business/service" },
       { label: "제품 소개", href: "/business/product" },
-      { label: "연구 분야", href: "/business/rnd"},
+      { label: "연구 분야", href: "/business/rnd" },
     ],
   },
   {
@@ -51,20 +51,19 @@ const navItemsEng = [
     href: "/eng/company/ceo",
     submenu: [
       { label: "CEO Message", href: "/eng/company/ceo" },
-      //{ label: "Vision", href: "/eng/company/vision" },
       { label: "Vision", href: "/eng/company/vision2" },
       { label: "History", href: "/eng/company/history" },
       { label: "Organization", href: "/eng/company/org" },
       { label: "CI", href: "/eng/company/ci" },
       { label: "Location", href: "/eng/company/location" },
       { label: "Certifications", href: "/eng/company/certifications" },
-      
     ],
   },
   {
     label: "Business",
     href: "/eng/business/service",
-    submenu: [{ label: "Technology", href: "/eng/business/service" },
+    submenu: [
+      { label: "Technology", href: "/eng/business/service" },
       { label: "Product", href: "/eng/business/product" },
       { label: "Research field", href: "/eng/business/rnd" },
     ],
@@ -81,7 +80,7 @@ const navItemsEng = [
   {
     label: "Support",
     href: "/eng/support/contact",
-    submenu: [{ label: "Contact Us", href: "/eng/support/contact" },],
+    submenu: [{ label: "Contact Us", href: "/eng/support/contact" }],
   },
 ];
 
@@ -92,18 +91,19 @@ export default function Header() {
   const { lang } = useLangStore();
   const NAV_ITEMS = lang === "KOR" ? navItemsKor : navItemsEng;
 
-  // Closes the mobile menu on large screens
+  // UPDATED: dynamic logo href based on language
+  const logoHref = lang === "KOR" ? "/" : "/eng";
+
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) { // 'lg' breakpoint
+      if (window.innerWidth >= 1024) {
         setMobileMenuOpen(false);
       }
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Prevents body scrolling when the mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
     return () => {
@@ -123,13 +123,13 @@ export default function Header() {
         aria-label="Main Navigation"
         className="fixed top-0 left-0 w-full z-50 bg-white transition-shadow duration-300 shadow-md"
       >
-        {/* Main Nav Container */}
+        {/* Main Nav Container (same spacing, height) */}
         <div
           className="w-full mx-auto max-w-screen-2xl px-4 lg:px-20 flex justify-between items-center text-sm lg:text-base font-medium text-black"
           style={{ height: "90px" }}
         >
-
-          <Link href="/" className="flex items-center h-full mr-auto lg:mr-0 ml-10">
+          {/* Logo (same ml-10) */}
+          <Link href={logoHref} className="flex items-center h-full mr-auto lg:mr-0 ml-10">
             <Image
               src="/images/logo_suman.png"
               alt="SUMAN CO., Ltd company logo"
@@ -140,7 +140,7 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation Container - Centered */}
+          {/* Desktop Navigation — centered (same gaps) */}
           <div className="hidden lg:flex flex-grow justify-center items-center h-full">
             <nav className="flex items-center gap-12 xl:gap-20 h-full">
               {NAV_ITEMS.map((item, index) => (
@@ -156,6 +156,7 @@ export default function Header() {
                   >
                     {item.label}
                   </Link>
+
                   <AnimatePresence>
                     {hoveredIndex === index && item.submenu.length > 0 && (
                       <motion.div
@@ -182,7 +183,7 @@ export default function Header() {
             </nav>
           </div>
 
-          {/* Language Switcher and Burger Button Container for Mobile */}
+          {/* Mobile: Language switcher + burger (same placement) */}
           <div className="flex items-center gap-4 lg:hidden">
             <LanguageSwitcher />
             <button
@@ -193,14 +194,14 @@ export default function Header() {
               ☰
             </button>
           </div>
-          
-          {/* Language Switcher for Desktop */}
+
+          {/* Desktop Language Switcher (same placement) */}
           <div className="hidden lg:flex items-center h-full">
             <LanguageSwitcher />
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu — same animation & width */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -219,6 +220,7 @@ export default function Header() {
                   ✕
                 </button>
               </div>
+
               {NAV_ITEMS.map((item, index) => (
                 <div key={item.label}>
                   <div
@@ -236,6 +238,7 @@ export default function Header() {
                       </span>
                     )}
                   </div>
+
                   <AnimatePresence>
                     {expandedMobileIndex === index && (
                       <motion.div

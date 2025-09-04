@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
-import { motion, type Transition } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { serviceContent } from "@/data/product";
@@ -14,33 +14,7 @@ export default function ServicePage() {
   const { productCategories, footerText } = serviceContent[lang];
   const section = serviceContent[lang].sectionList?.[0];
 
-  const processImages = [
-    "/images/business/process/service_design.png",
-    "/images/business/process/service_order.png",
-    "/images/business/process/service_product.png",
-    "/images/business/process/service_test.png",
-    "/images/business/process/service_deliver.png",
-  ];
-
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5, ease: "easeOut" } as Transition,
-    },
-  };
-
-  const leftAlignTextVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" } as Transition,
-    },
-  };
-
-  const initialDisplayCount = 10;
+  // (Animations for scroll-in removed; hover effects kept via CSS only)
 
   return (
     <>
@@ -53,19 +27,18 @@ export default function ServicePage() {
           backgroundImage="/images/sub_banner/business_hero.png"
         />
 
-        <BreadcrumbSection
-          path={lang === "KOR" ? "사업분야 > 제품소개" : "Business > Product"}
-        />
+        {/* UPDATED: Keep breadcrumb visible and above blue section */}
+        <div className="relative z-30">
+          <BreadcrumbSection
+            path={lang === "KOR" ? "사업분야 > 제품소개" : "Business > Product"}
+          />
+        </div>
 
         {/* 4. Products Section */}
-        {/* The conditional check `section &&` ensures the entire section renders only if the data exists. */}
         {section && (
           <motion.div
-            // UPDATED: make top edge square (no curve) and move section down so breadcrumb shows
-            className="relative z-10 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-none mt-8 md:mt-12 overflow-hidden"
-            initial={{ y: 200, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }}
-            viewport={{ once: true, amount: 0.3 }}
+            // UPDATED: no rounded, no negative margin, no white gap above (mt-0), place under breadcrumb (z-10)
+            className="relative z-10 bg-[#000B24] pt-20 pb-20 px-4 md:px-8 rounded-none mt-0 overflow-hidden"
           >
             <div
               className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain"
@@ -82,18 +55,13 @@ export default function ServicePage() {
                 {section.production2sub}
               </p>
 
-              <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-              >
+              {/* UPDATED: remove scroll-in effects (no initial/whileInView/variants) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {productCategories.map((product, index) => (
+                  // keep motion.div only for potential future hover animations (no variants)
                   <motion.div
                     key={index}
                     className="bg-[#7E7E7E]/25 rounded-[30px] overflow-hidden shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out group mt-15 hover:bg-white"
-                    variants={itemVariants}
                   >
                     <div className="relative w-full h-44 mx-auto mt-4">
                       <Image
@@ -118,21 +86,18 @@ export default function ServicePage() {
                     </div>
                   </motion.div>
                 ))}
-              </motion.div>
+              </div>
 
-              <motion.p
-                className="text-[#B2B2B2] font-light text-sm md:text-base mt-7 text-right tracking-wide"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={itemVariants}
-              >
+              {/* UPDATED: remove scroll-in effects here as well */}
+              <p className="text-[#B2B2B2] font-light text-sm md:text-base mt-7 text-right tracking-wide">
                 {footerText}
-              </motion.p>
+              </p>
             </div>
           </motion.div>
         )}
-        <hr className="my-6 border-gray-200 w-full" />
+
+        {/* UPDATED: remove white separator so blue block touches footer */}
+        {/* <hr className="my-6 border-gray-200 w-full" /> */}
       </Layout>
     </>
   );
