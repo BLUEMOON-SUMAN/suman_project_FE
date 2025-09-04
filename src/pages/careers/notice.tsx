@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Layout from "@/components/Layout";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
@@ -15,52 +17,53 @@ const RecruitmentBoard: React.FC = () => {
         <title>{lang === "KOR" ? "채용공고 | 수만" : "Recruit Notice | SUMAN"}</title>
       </Head>
 
-      <HeroSection
-        title={lang === "KOR" ? "채용공고" : "Recruit Notice"}
-        //subtitle={lang === "KOR" ? "인재채용" : "Recruit"}
-        backgroundImage="/images/sub_banner/careers_hero.png"
-      />
+      {/* Match rnd.tsx: big hero + breadcrumb below */}
+      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+        <HeroSection
+          title={lang === "KOR" ? "채용공고" : "Recruit Notice"}
+          subtitle={lang === "KOR" ? "인재채용" : "Recruitment"}
+          backgroundImage="/images/sub_banner/careers_hero.png"
+        />
 
-      <BreadcrumbSection
-        path={
-          lang === "KOR"
-            ? "인재채용 > 채용공고"
-            : "Recruitment > Recruit Notice"
-        }
-      />
+        <BreadcrumbSection
+          path={lang === "KOR" ? "인재채용 > 채용공고" : "Recruitment > Recruit Notice"}
+        />
 
-      {/* 🔽 Platform Cards */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <section className="py-16 md:py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-left">
-              {lang === "KOR" ? "외부공고" : "External Recruitment Notice"}
-            </h2>
+        {/* 🔽 Platform Cards */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="py-16 md:py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-left">
+                {lang === "KOR" ? "외부공고" : "External Recruitment Notice"}
+              </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <RecruitmentCard
-                title="Saramin"
-                link="https://m.saramin.co.kr/job-search/company-info-view/recruit?csn=ZDVyVitYUjJKUno3Y2NmWXl6K0pWQT09&t_ref_content=generic"
-              />
-              <RecruitmentCard
-                title="JOB KOREA"
-                link="https://www.jobkorea.co.kr/net/company/45215125/Recruit"
-                highlight="blue-600"
-              />
-              <RecruitmentCard
-                title="고용24"
-                link="https://www.work24.go.kr"
-              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <RecruitmentCard
+                  title="Saramin"
+                  link="https://m.saramin.co.kr/job-search/company-info-view/recruit?csn=ZDVyVitYUjJKUno3Y2NmWXl6K0pWQT09&t_ref_content=generic"
+                />
+                <RecruitmentCard
+                  title="JOB KOREA"
+                  link="https://www.jobkorea.co.kr/net/company/45215125/Recruit"
+                  highlight="blue-600"
+                />
+                <RecruitmentCard title="고용24" link="https://www.work24.go.kr" />
+              </div>
             </div>
-          </div>
-        </section>
-        <hr className="my-12 border-navy-200 w-full" />
-        {/* ✅ Download Link Section RIGHT AFTER 3 Cards */}
-        <RecruitmentDownloadBanner />
-        <hr className="my-12 border-navy-200 w-full" />
-        <DocumentDownloadBanner />
-      </div>
-      <hr className="my-6 border-gray-200 w-full" />
+          </section>
+
+          <hr className="my-12 border-navy-200 w-full" />
+
+          {/* ✅ Download Link Section RIGHT AFTER 3 Cards */}
+          <RecruitmentDownloadBanner />
+
+          <hr className="my-12 border-navy-200 w-full" />
+
+          <DocumentDownloadBanner />
+        </div>
+
+        <hr className="my-6 border-gray-200 w-full" />
+      </main>
     </Layout>
   );
 };
@@ -103,13 +106,9 @@ const DocumentDownloadBanner: React.FC = () => {
   const lang = useLangStore((state) => state.lang) || "KOR";
 
   const label1 =
-    lang === "KOR"
-      ? " 입사지원서 양식 다운로드 (Word)"
-      : " Download Application Form (Word)";
+    lang === "KOR" ? " 입사지원서 양식 다운로드 (Word)" : " Download Application Form (Word)";
   const label2 =
-    lang === "KOR"
-      ? " 입사지원서 양식 다운로드 (HWP)"
-      : " Download Application Form (HWP)";
+    lang === "KOR" ? " 입사지원서 양식 다운로드 (HWP)" : " Download Application Form (HWP)";
 
   return (
     <section className="bg-white mt-2 px-4">
@@ -128,7 +127,7 @@ const DocumentDownloadBanner: React.FC = () => {
             className="text-[#1D3762] text-[18px] hover:underline leading-tight"
           >
             {label1}
-          </a> 
+          </a>
         </div>
         <div className="flex items-start gap-2">
           <span className="mt-[10px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
@@ -138,8 +137,8 @@ const DocumentDownloadBanner: React.FC = () => {
             className="text-[#1D3762] text-[18px] hover:underline leading-tight"
           >
             {label2}
-          </a> 
-          </div>          
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -168,18 +167,8 @@ const RecruitmentCard: React.FC<{
         className="w-full bg-white border border-gray-200 text-gray-800 px-4 py-3 rounded-lg flex items-center justify-between font-semibold hover:bg-gray-100 transition-colors"
       >
         <span className={`text-xl font-bold text-${highlight}`}>{title}</span>
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-          />
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
         </svg>
       </Link>
     </div>
