@@ -15,6 +15,7 @@ import {
 } from "@/data/vision2";
 
 export default function Vision2Page() {
+  // ✅ read current language from the global store the header switcher updates
   const { lang } = useLangStore();
 
   const hero = visionHeroText[lang];
@@ -40,10 +41,7 @@ export default function Vision2Page() {
 
   const itemRiseVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" } as Transition },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } as Transition },
   };
 
   const rndSectionRiseVariants = {
@@ -115,10 +113,6 @@ export default function Vision2Page() {
     );
   };
 
-  // === HeroSection setup identical to ceo.tsx (trim 1cm atas & bawah) ===
-  const CM_TO_PX = 37.8;
-  const HERO_TRIM_PX = Math.round(CM_TO_PX);
-
   return (
     <>
       <Head>
@@ -127,18 +121,12 @@ export default function Vision2Page() {
 
       <Layout>
         <main className="min-h-screen bg-white text-slate-900">
-          {/* === Hero persis seperti ceo.tsx: title only + trim 1cm up/down === */}
-          <div style={{ marginTop: `-${HERO_TRIM_PX}px`, marginBottom: `-${HERO_TRIM_PX}px` }}>
-            <HeroSection
-              title={hero.title}
-              backgroundImage="/images/sub_banner/company_banner.png"
-            />
-          </div>
-
-          {/* Breadcrumb nempel seperti ceo.tsx */}
-          <div className="relative z-30 -mt-2">
-            <BreadcrumbSection path={lang === "KOR" ? "회사소개 > 기업 비전" : "Company > Vision"} />
-          </div>
+          <HeroSection
+            title={hero.title}
+            //subtitle={hero.subtitle}
+            backgroundImage="/images/sub_banner/company_banner.png"
+          />
+          <BreadcrumbSection path={lang === "KOR" ? "회사소개 > 기업 비전" : "Company > Vision"} />
 
           {/* ============ STRATEGY ============ */}
           <motion.section

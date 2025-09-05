@@ -38,30 +38,17 @@ export default function HistoryPage() {
     ["--arrow-shift-up" as any]: "clamp(60px, 6vw, 114px)",     // lift up (~3cm)
   } as React.CSSProperties;
 
-  const CM_TO_PX = 37.8;                       
-  const HERO_TRIM_PX = Math.round(CM_TO_PX);
-
   return (
     <>
       <Head>
         <title>{lang === "KOR" ? "연혁 | 수만" : "History | SUMAN"}</title>
       </Head>
       <Layout>
-        {/* === HeroSection: sama seperti ceo.tsx (trim 1cm atas/bawah + breadcrumb nempel) === */}
-        <div
-          style={{
-            marginTop: `-${HERO_TRIM_PX}px`,
-            marginBottom: `-${HERO_TRIM_PX}px`,
-          }}
-        >
-          <HeroSection
-            title={content.title}
-            backgroundImage="/images/sub_banner/company_banner.png"
-          />
-        </div>
-        <div className="relative z-30 -mt-2">
-          <BreadcrumbSection path={content.breadcrumb} />
-        </div>
+        <HeroSection
+          title={<span className="text-5xl font-bold tracking-wide">{content.title}</span>}
+          backgroundImage="/images/sub_banner/company_banner.png"
+        />
+        <BreadcrumbSection path={content.breadcrumb} />
 
         {/* =================== HISTORY HERO BLOCK =================== */}
         <section className="relative w-full min-h-[520px] md:min_h-[620px] md:min-h-[620px]">

@@ -33,23 +33,16 @@ export default function ServicePage() {
     },
   };
 
-  // === Match ceo.tsx: trim hero 1cm atas & bawah (1cm ≈ 37.8px) ===
-  const CM_TO_PX = 37.8;
-  const HERO_TRIM_PX = Math.round(CM_TO_PX);
-
   return (
     <>
       <Head>
         <title>{lang === "KOR" ? "제품 소개 " : "Product "}</title>
       </Head>
       <Layout>
-        {/* === UPDATED: wrap HeroSection with negative margins like ceo.tsx === */}
-        <div style={{ marginTop: `-${HERO_TRIM_PX}px`, marginBottom: `-${HERO_TRIM_PX}px` }}>
-          <HeroSection
-            title={lang === "KOR" ? "제품 소개" : "Product"}
-            backgroundImage="/images/sub_banner/business_hero.png"
-          />
-        </div>
+        <HeroSection
+          title={lang === "KOR" ? "제품 소개" : "Product"}
+          backgroundImage="/images/sub_banner/business_hero.png"
+        />
 
         {/* Keep breadcrumb visible and above blue section */}
         <div className="relative z-30">

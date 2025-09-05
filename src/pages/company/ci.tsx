@@ -35,8 +35,6 @@ export default function OrgPage() {
 
   const monoAlt = lang === "KOR" ? "SUMAN 흑백 로고" : "SUMAN Mono Logo";
   const colorAlt = lang === "KOR" ? "SUMAN 컬러 로고" : "SUMAN Color Logo";
-  const CM_TO_PX = 37.8;                       // UPDATED
-  const HERO_TRIM_PX = Math.round(CM_TO_PX);
 
   return (
     <Layout>
@@ -44,23 +42,14 @@ export default function OrgPage() {
         <title>{pageTitle}</title>
       </Head>
 
-      {/* Match rnd.tsx: big hero + breadcrumb below, all inside <main> with header offset */}
+      {/* Match rnd.tsx: big hero + breadcrumb just below it */}
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
-        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
-        <div
-          style={{
-            marginTop: `-${HERO_TRIM_PX}px`,
-            marginBottom: `-${HERO_TRIM_PX}px`,
-          }}
-        >
-          {/* === SAMA DENGAN ceo.tsx: title saja (tanpa subtitle) === */}
-          <HeroSection
-            title={heroTitle}
-            backgroundImage="/images/sub_banner/company_banner.png"
-          />
-        </div>
+        <HeroSection
+          title={heroTitle}
+          subtitle={heroSubtitle}
+          backgroundImage="/images/sub_banner/company_banner.png"
+        />
 
-        {/* Keep breadcrumb visible and above blue section */}
         <BreadcrumbSection path={breadcrumbPath} />
 
         {/* Page content (unchanged) */}
