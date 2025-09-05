@@ -115,12 +115,12 @@ export default function Vision2Page() {
 
   return (
     <>
+    <Layout>
       <Head>
         <title>{lang === "KOR" ? "기업 비전" : "Vision"}</title>
       </Head>
 
-      <Layout>
-        <main className="min-h-screen bg-white text-slate-900">
+        <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
           <HeroSection
             title={hero.title}
             //subtitle={hero.subtitle}
