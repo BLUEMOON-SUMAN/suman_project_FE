@@ -72,7 +72,8 @@ export default function Vision2Page() {
       transition: { duration: 0.4, ease: "easeOut", when: "beforeChildren" } as Transition,
     },
   };
-
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
   const processLineVariants = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } as Transition },
@@ -119,16 +120,23 @@ export default function Vision2Page() {
       <Head>
         <title>{lang === "KOR" ? "기업 비전" : "Vision"}</title>
       </Head>
-
-        <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        >
           <HeroSection
             title={hero.title}
-            //subtitle={hero.subtitle}
-            backgroundImage="/images/sub_banner/company_banner.png"
+            backgroundImage="/images/sub_banner/ceo_hero.png"
           />
+        </div>
+        < div className="relative z-30 -mt-2">
           <BreadcrumbSection path={lang === "KOR" ? "회사소개 > 기업 비전" : "Company > Vision"} />
-
-          {/* ============ STRATEGY ============ */}
+        </div>  
+                    {/* ============ STRATEGY ============ */}
           <motion.section
             className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-b from-slate-50 to-white"
             variants={fadeIn}
