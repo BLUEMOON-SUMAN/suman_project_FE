@@ -1,118 +1,260 @@
-// src/components/HeroSection.tsx
-import { motion } from "framer-motion";
-import Image from "next/image";
-import React from "react";
+"use client";
 
-export interface HeroSectionProps {
-  title: React.ReactNode;
-  subtitle?: React.ReactNode;
-  backgroundImage: string;
+import Head from "next/head";
+import Layout from "@/components/Layout";
+import HeroSection from "@/components/HeroSection";
+import BreadcrumbSection from "@/components/BreadcrumbSection";
+import { motion, type Transition } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useLangStore } from "@/stores/langStore";
+import {
+  visionHeroText,
+  visionStrategyText,
+  visionCoreValue,
+  visionRndText,
+} from "@/data/vision2";
 
-  /** Optional overrides (per page) */
-  titleClassName?: string;
-  subtitleClassName?: string;
-  className?: string;           // override tinggi/spacing section
-  containerClassName?: string;  // override max width / padding container
-  overlay?: "none" | "dark" | "gradient";
-  overlayClassName?: string;    // override overlay jika perlu
-  align?: "left" | "center";
-  objectPosition?: string;      // ex: "object-center" | "object-[50%_30%]"
-  offsetClassName?: string;     // ex: "translate-y-2 md:translate-y-5"
+export default function Vision2Page() {
+  const { lang } = useLangStore();
 
-  /** Trim atas/bawah dalam cm (negatif margin utk “memotong” hero secara visual) */
-  trimTopCm?: number;           // default 1
-  trimBottomCm?: number;        // default 1
-}
+  const hero = visionHeroText[lang];
+  const strategy = visionStrategyText[lang];
+  const coreValues = visionCoreValue[lang];
+  const rnd = visionRndText[lang];
 
-export default function HeroSection({
-  title,
-  subtitle,
-  backgroundImage,
+  // --------- animations ----------
+  const fadeIn: Record<"hidden" | "visible", any> = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
 
-  // Defaults responsif & nyaman di semua layar
-  titleClassName,
-  subtitleClassName,
-  className = "h-[300px] sm:h-[340px] md:h-[400px] lg:h-[460px] xl:h-[520px]",
-  containerClassName = "max-w-7xl mx-auto px-6 md:px-[60px] lg:px-0",
-  overlay = "gradient",
-  overlayClassName,
-  align = "left",
-  objectPosition = "object-center",
-  // Geser teks sedikit ke bawah agar tampak lebih centered secara visual
-  offsetClassName = "transform translate-y-2 sm:translate-y-3 md:translate-y-5 lg:translate-y-6",
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  };
 
-  // Trim default 1 cm atas & 1 cm bawah
-  trimTopCm = 1,
-  trimBottomCm = 1,
-}: HeroSectionProps) {
-  const alignText = align === "center" ? "text-center" : "text-left";
+  const itemVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } as Transition },
+  };
 
-  // alt text aman jika title adalah ReactNode
-  const altText =
-    typeof title === "string" ? `${title} 배경 이미지` : "Hero background image";
+  const itemRiseVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" } as Transition },
+  };
 
-  // Overlay default
-  const overlayDefaults =
-    overlay === "none"
-      ? ""
-      : overlay === "dark"
-      ? "bg-black/40"
-      : "bg-gradient-to-t from-black/50 via-black/30 to-transparent";
+  const rndSectionRiseVariants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1.0, ease: "easeOut", when: "beforeChildren" } as Transition,
+    },
+  };
 
-  // Konversi cm -> px (approx 1cm ≈ 37.8px)
-  const CM_TO_PX = 37.8;
-  const trimTopPx = Math.round((trimTopCm ?? 0) * CM_TO_PX);
-  const trimBottomPx = Math.round((trimBottomCm ?? 0) * CM_TO_PX);
+  const rndBoxLeftInVariants = {
+    hidden: { opacity: 0, x: -100, backgroundColor: "rgba(255,255,255,0)" },
+    visible: {
+      opacity: 1,
+      x: 0,
+      backgroundColor: "rgba(255,255,255,0.4)",
+      transition: { duration: 0.4, ease: "easeOut", when: "beforeChildren" } as Transition,
+    },
+  };
+
+  const rndBoxRightInVariants = {
+    hidden: { opacity: 0, x: 100, backgroundColor: "rgba(0,0,0,0)" },
+    visible: {
+      opacity: 1,
+      x: 0,
+      backgroundColor: "rgba(0,0,0,0.7)",
+      transition: { duration: 0.4, ease: "easeOut", when: "beforeChildren" } as Transition,
+    },
+  };
+
+  const processLineVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } as Transition },
+  };
+
+  // --------- small components ----------
+  const AnimatedCounter = ({
+    end,
+    duration = 2,
+    suffix = "",
+  }: { end: number; duration?: number; suffix?: string }) => {
+    const [count, setCount] = useState(0);
+    const [seen, setSeen] = useState(false);
+
+    useEffect(() => {
+      if (!seen) return;
+      let startTs = 0;
+      const step = (ts: number) => {
+        if (!startTs) startTs = ts;
+        const p = Math.min((ts - startTs) / (duration * 1000), 1);
+        setCount(Math.floor(p * end));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, [seen, end, duration]);
+
+    return (
+      <motion.span
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        onViewportEnter={() => setSeen(true)}
+        className="inline-flex items-baseline gap-2"
+      >
+        <span className="text-5xl md:text-6xl font-extrabold tracking-tight">{count}</span>
+        {suffix ? <span className="text-lg md:text-xl font-semibold opacity-70">{suffix}</span> : null}
+      </motion.span>
+    );
+  };
 
   return (
-    // Wrapper untuk “memotong” hero: negative margin top/bottom
-    <div style={{ marginTop: `-${trimTopPx}px`, marginBottom: `-${trimBottomPx}px` }}>
-      <section
-        className={`relative flex items-center text-white overflow-hidden ${className}`}
-        aria-label={typeof title === "string" ? title : "Hero"}
-      >
-        {/* Background image */}
-        <Image
-          src={backgroundImage}
-          alt={altText}
-          fill
-          priority
-          className={`object-cover ${objectPosition}`}
-          sizes="100vw"
-        />
+    <>
+      <Head>
+        <title>{lang === "KOR" ? "기업 비전" : "Vision"}</title>
+      </Head>
 
-        {/* Overlay */}
-        {overlay !== "none" && (
-          <div
-            className={`absolute inset-0 ${overlayClassName ?? overlayDefaults}`}
-            aria-hidden="true"
+      <Layout>
+        <main className="min-h-screen bg-white text-slate-900">
+          <HeroSection
+            title={hero.title}
+            //subtitle={hero.subtitle}
+            backgroundImage="/images/sub_banner/company_banner.png"
+            // Turunkan judul ~1 baris (one enter), responsif
+            offsetClassName="transform translate-y-6 sm:translate-y-7 md:translate-y-8"
           />
-        )}
+          <BreadcrumbSection path={lang === "KOR" ? "회사소개 > 기업 비전" : "Company > Vision"} />
 
-        {/* Content */}
-        <motion.div
-          className="relative z-10 w-full"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className={`${containerClassName} ${alignText} ${offsetClassName}`}>
-            <h1
-              className={`text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-2 ${titleClassName ?? ""}`}
-            >
-              {title}
-            </h1>
+          {/* ============ STRATEGY ============ */}
+          <motion.section
+            className="py-12 md:py-16 px-4 md:px-8 bg-gradient-to-b from-slate-50 to-white"
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-semibold mb-2">{strategy.subtitle}</h2>
+              <p className="text-slate-600 mb-8">{strategy.title}</p>
 
-            {subtitle ? (
-              <p
-                className={`text-base sm:text-lg md:text-xl font-medium ${subtitleClassName ?? ""}`}
+              <div className="text-center mb-10">
+                <h3 className="text-4xl md:text-6xl font-black mb-6">{strategy.neoTitle}</h3>
+                <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border">
+                  <p className="text-lg md:text-xl whitespace-pre-line leading-relaxed">
+                    {strategy.mainGoal}
+                  </p>
+                </div>
+              </div>
+
+              {/* KPI */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <div className="rounded-2xl border p-6">
+                  <p className="text-center opacity-70 mb-3">
+                    {lang === "KOR" ? "목표 매출액" : "Target Revenue"}
+                  </p>
+                  <div className="flex justify-center">
+                    <AnimatedCounter end={600} suffix={lang === "KOR" ? "억원" : "B KRW"} />
+                  </div>
+                </div>
+                <div className="rounded-2xl border p-6">
+                  <p className="text-center opacity-70 mb-3">
+                    {lang === "KOR" ? "목표 순이익" : "Target Net Profit"}
+                  </p>
+                  <div className="flex justify-center">
+                    <AnimatedCounter end={150} suffix={lang === "KOR" ? "억원" : "B KRW"} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Roadmap */}
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
               >
-                {subtitle}
-              </p>
-            ) : null}
-          </div>
-        </motion.div>
-      </section>
-    </div>
+                {strategy.strategicPoints.map((point: string, i: number) => (
+                  <motion.div key={i} className="rounded-xl border p-6 text-center" variants={itemVariants}>
+                    <div className="text-4xl md:text-5xl font-extrabold mb-2">
+                      {["2024", "2026", "2028"][i] ?? ""}
+                    </div>
+                    <p className="whitespace-pre-line opacity-80">{point}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </motion.section>
+
+          {/* ============ CORE VALUE ============ */}
+          <section className="py-12 md:py-16 px-4 md:px-8 bg-white">
+            <div className="max-w-6xl mx-auto">
+              <h3 className="text-2xl md:text-3xl font-semibold mb-8">
+                {lang === "KOR" ? "핵심 가치" : "Core Values"}
+              </h3>
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {coreValues.map((cv: { title: string; desc: string }, idx: number) => (
+                  <motion.div key={idx} className="rounded-xl p-5 border shadow-sm" variants={itemVariants}>
+                    <h4 className="text-lg md:text-xl font-semibold mb-2">{cv.title}</h4>
+                    <p className="text-sm whitespace-pre-line opacity-80">{cv.desc}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* ============ BIZ MODEL ============ */}
+          <section className="py-12 md:py-16 px-4 md:px-8 bg-slate-50">
+            <div className="max-w-6xl mx-auto">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">{strategy.bizModelTitle}</h3>
+              <p className="text-slate-700 whitespace-pre-line mb-8">{strategy.bizModelSubtitle}</p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="rounded-xl p-5 border bg-white">
+                  <h5 className="font-semibold mb-2">R&BD / Development</h5>
+                  <p className="text-sm whitespace-pre-line opacity-80">
+                    {strategy.businessAreas.development}
+                  </p>
+                </div>
+                <div className="rounded-xl p-5 border bg-white">
+                  <h5 className="font-semibold mb-2">Manufacturing</h5>
+                  <p className="text-sm whitespace-pre-line opacity-80">
+                    {strategy.businessAreas.manufacturing}
+                  </p>
+                </div>
+                <div className="rounded-xl p-5 border bg-white">
+                  <h5 className="font-semibold mb-2">Partnerships</h5>
+                  <p className="text-sm whitespace-pre-line opacity-80">
+                    {strategy.businessAreas.partnerships}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {strategy.businessAreas.sectors.map((s: string, i: number) => (
+                  <div key={i} className="rounded-lg border p-4 bg-white text-center">
+                    <p className="text-sm whitespace-pre-line">{s}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </main>
+        <hr className="my-8 border-gray-200 w-full" />
+      </Layout>
+    </>
   );
 }

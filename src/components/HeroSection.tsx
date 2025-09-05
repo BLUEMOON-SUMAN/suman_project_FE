@@ -1,11 +1,14 @@
 // src/components/HeroSection.tsx
+import React, { ReactNode } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React from "react";
+
+type OverlayKind = "none" | "dark" | "gradient";
+type AlignKind = "left" | "center";
 
 interface HeroSectionProps {
-  title: React.ReactNode;
-  subtitle?: React.ReactNode;
+  title: ReactNode;
+  subtitle?: ReactNode;
   backgroundImage: string;
 
   /** Optional overrides (per page) */
@@ -13,15 +16,15 @@ interface HeroSectionProps {
   subtitleClassName?: string;
   className?: string;           // override tinggi/spacing section
   containerClassName?: string;  // override max width / padding container
-  overlay?: "none" | "dark" | "gradient";
+  overlay?: OverlayKind;
   overlayClassName?: string;    // override overlay jika perlu
-  align?: "left" | "center";
+  align?: AlignKind;
   objectPosition?: string;      // ex: "object-center" | "object-[50%_30%]"
-  offsetClassName?: string;     // ex: "translate-y-2 md:translate-y-5"
+  offsetClassName?: string;     // geser title/subtitle turun/naik (ex: "translate-y-6")
 
-  /** Trim atas/bawah dalam cm (negatif margin utk “memotong” hero secara visual) */
-  trimTopCm?: number;           // default 1
-  trimBottomCm?: number;        // default 1
+  /** (opsional) Trim visual atas/bawah pakai negative margin */
+  trimTopCm?: number;           // default 0
+  trimBottomCm?: number;        // default 0
 }
 
 export default function HeroSection({
@@ -29,23 +32,20 @@ export default function HeroSection({
   subtitle,
   backgroundImage,
 
-  // === Defaults mengikuti style ceo.tsx (CEO 인사말) ===
+  // Defaults responsif & enak dibaca di semua layar
   titleClassName,
   subtitleClassName,
-  // tinggi sedikit lebih rendah + responsif
-  className = "h-[260px] sm:h-[300px] md:h-[360px] lg:h-[420px]",
+  className = "h-[300px] sm:h-[340px] md:h-[400px] lg:h-[460px] xl:h-[520px]",
   containerClassName = "max-w-7xl mx-auto px-6 md:px-[60px] lg:px-0",
-  // overlay gradient lembut seperti di ceo
   overlay = "gradient",
   overlayClassName,
   align = "left",
   objectPosition = "object-center",
-  // sedikit diturunkan agar terasa lebih ke tengah (visual centering)
-  offsetClassName = "transform translate-y-2 sm:translate-y-3 md:translate-y-4",
+  offsetClassName = "",
 
-  // default trim 1cm atas & bawah (supaya hero lebih pendek, breadcrumb terlihat rapat)
-  trimTopCm = 1,
-  trimBottomCm = 1,
+  // default trim 0 agar tidak ganggu halaman lain
+  trimTopCm = 0,
+  trimBottomCm = 0,
 }: HeroSectionProps) {
   const alignText = align === "center" ? "text-center" : "text-left";
 
@@ -99,14 +99,12 @@ export default function HeroSection({
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className={`${containerClassName} ${alignText} ${offsetClassName}`}>
-            {/* === Title mengikuti skala ceo.tsx (CEO 인사말) === */}
             <h1
-              className={`text-2xl sm:text-3xl md:text-4xl font-bold leading-snug mb-1 ${titleClassName ?? ""}`}
+              className={`text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-2 ${titleClassName ?? ""}`}
             >
               {title}
             </h1>
 
-            {/* Subtitle opsional; skala diselaraskan */}
             {subtitle ? (
               <p
                 className={`text-base sm:text-lg md:text-xl font-medium ${subtitleClassName ?? ""}`}
