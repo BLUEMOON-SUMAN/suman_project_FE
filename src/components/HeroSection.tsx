@@ -32,10 +32,10 @@ export default function HeroSection({
   subtitle,
   backgroundImage,
 
-  // Defaults responsif & enak dibaca di semua layar
+  // === Smaller defaults ===
   titleClassName,
   subtitleClassName,
-  className = "h-[300px] sm:h-[340px] md:h-[400px] lg:h-[460px] xl:h-[520px]",
+  className = "h-[200px] sm:h-[240px] md:h-[280px] lg:h-[320px] xl:h-[360px]",
   containerClassName = "max-w-7xl mx-auto px-6 md:px-[60px] lg:px-0",
   overlay = "gradient",
   overlayClassName,
@@ -43,17 +43,15 @@ export default function HeroSection({
   objectPosition = "object-center",
   offsetClassName = "",
 
-  // default trim 0 agar tidak ganggu halaman lain
+  // default trim 0 (gunakan di page jika butuh lebih kecil)
   trimTopCm = 0,
   trimBottomCm = 0,
 }: HeroSectionProps) {
   const alignText = align === "center" ? "text-center" : "text-left";
 
-  // alt text aman jika title adalah ReactNode
   const altText =
     typeof title === "string" ? `${title} 배경 이미지` : "Hero background image";
 
-  // Overlay default
   const overlayDefaults =
     overlay === "none"
       ? ""
@@ -61,13 +59,12 @@ export default function HeroSection({
       ? "bg-black/40"
       : "bg-gradient-to-t from-black/50 via-black/30 to-transparent";
 
-  // Konversi cm -> px (approx 1cm ≈ 37.8px)
+  // cm -> px (≈ 1cm = 37.8px)
   const CM_TO_PX = 37.8;
   const trimTopPx = Math.round((trimTopCm ?? 0) * CM_TO_PX);
   const trimBottomPx = Math.round((trimBottomCm ?? 0) * CM_TO_PX);
 
   return (
-    // Wrapper untuk “memotong” hero: negative margin top/bottom
     <div style={{ marginTop: `-${trimTopPx}px`, marginBottom: `-${trimBottomPx}px` }}>
       <section
         className={`relative flex items-center text-white overflow-hidden ${className}`}
@@ -94,13 +91,13 @@ export default function HeroSection({
         {/* Content */}
         <motion.div
           className="relative z-10 w-full"
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className={`${containerClassName} ${alignText} ${offsetClassName}`}>
             <h1
-              className={`text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-2 ${titleClassName ?? ""}`}
+              className={`text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-1 ${titleClassName ?? ""}`}
             >
               {title}
             </h1>

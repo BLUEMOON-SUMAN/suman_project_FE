@@ -154,7 +154,8 @@ export default function LocationPage() {
       });
     }
   }, []);
-
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
   const handleToggleMap = useCallback(
     (location: string) => {
       setOpenMap((prevOpenMap) => {
@@ -209,6 +210,14 @@ export default function LocationPage() {
         </title>
       </Head>
       <Layout>
+
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        ></div>
         <HeroSection
           title={lang === "KOR" ? "오시는 길" : "Our Location"}
           //subtitle={lang === "KOR" ? "Locations" : "How to Reach Us"}

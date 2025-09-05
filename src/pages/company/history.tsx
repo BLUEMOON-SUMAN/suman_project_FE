@@ -38,12 +38,22 @@ export default function HistoryPage() {
     ["--arrow-shift-up" as any]: "clamp(60px, 6vw, 114px)",     // lift up (~3cm)
   } as React.CSSProperties;
 
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
+
   return (
     <>
       <Head>
         <title>{lang === "KOR" ? "연혁 | 수만" : "History | SUMAN"}</title>
       </Head>
       <Layout>
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        ></div>
         <HeroSection
           title={<span className="text-5xl font-bold tracking-wide">{content.title}</span>}
           backgroundImage="/images/sub_banner/company_banner.png"
