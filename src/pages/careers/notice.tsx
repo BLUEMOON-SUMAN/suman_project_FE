@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Layout from "@/components/Layout";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
@@ -17,17 +15,24 @@ const RecruitmentBoard: React.FC = () => {
         <title>{lang === "KOR" ? "채용공고 | 수만" : "Recruit Notice | SUMAN"}</title>
       </Head>
 
-      {/* Match rnd.tsx: big hero + breadcrumb below */}
+      {/* ===================== UPDATED: wrap with <main> like rnd.tsx ===================== */}
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+        {/* ===================== UPDATED: Hero like rnd.tsx (no subtitle prop) ============== */}
         <HeroSection
           title={lang === "KOR" ? "채용공고" : "Recruit Notice"}
-          subtitle={lang === "KOR" ? "인재채용" : "Recruitment"}
           backgroundImage="/images/sub_banner/careers_hero.png"
         />
 
-        <BreadcrumbSection
-          path={lang === "KOR" ? "인재채용 > 채용공고" : "Recruitment > Recruit Notice"}
-        />
+        {/* ===================== UPDATED: breadcrumb wrapper like rnd.tsx ==================== */}
+        <div className="relative z-30">
+          <BreadcrumbSection
+            path={
+              lang === "KOR"
+                ? "인재채용 > 채용공고"
+                : "Recruitment > Recruit Notice"
+            }
+          />
+        </div>
 
         {/* 🔽 Platform Cards */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,7 +52,10 @@ const RecruitmentBoard: React.FC = () => {
                   link="https://www.jobkorea.co.kr/net/company/45215125/Recruit"
                   highlight="blue-600"
                 />
-                <RecruitmentCard title="고용24" link="https://www.work24.go.kr" />
+                <RecruitmentCard
+                  title="고용24"
+                  link="https://www.work24.go.kr"
+                />
               </div>
             </div>
           </section>
@@ -64,6 +72,7 @@ const RecruitmentBoard: React.FC = () => {
 
         <hr className="my-6 border-gray-200 w-full" />
       </main>
+      {/* ===================== END UPDATED ================================================ */}
     </Layout>
   );
 };
@@ -106,9 +115,13 @@ const DocumentDownloadBanner: React.FC = () => {
   const lang = useLangStore((state) => state.lang) || "KOR";
 
   const label1 =
-    lang === "KOR" ? " 입사지원서 양식 다운로드 (Word)" : " Download Application Form (Word)";
+    lang === "KOR"
+      ? " 입사지원서 양식 다운로드 (Word)"
+      : " Download Application Form (Word)";
   const label2 =
-    lang === "KOR" ? " 입사지원서 양식 다운로드 (HWP)" : " Download Application Form (HWP)";
+    lang === "KOR"
+      ? " 입사지원서 양식 다운로드 (HWP)"
+      : " Download Application Form (HWP)";
 
   return (
     <section className="bg-white mt-2 px-4">
@@ -167,8 +180,18 @@ const RecruitmentCard: React.FC<{
         className="w-full bg-white border border-gray-200 text-gray-800 px-4 py-3 rounded-lg flex items-center justify-between font-semibold hover:bg-gray-100 transition-colors"
       >
         <span className={`text-xl font-bold text-${highlight}`}>{title}</span>
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+          />
         </svg>
       </Link>
     </div>

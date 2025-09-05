@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, type Transition } from "framer-motion";
 import Head from "next/head";
 
@@ -8,12 +6,6 @@ import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { useLangStore } from "@/stores/langStore";
-
-declare global {
-  interface Window {
-    kakao: any;
-  }
-}
 
 const kakaoMapConfigs: {
   [key: string]: {
@@ -88,11 +80,6 @@ export default function LocationPage() {
     {}
   );
   const currentOpenInfowindow = useRef<kakao.maps.InfoWindow | null>(null);
-
-  // === Match rnd.tsx: set document title via useEffect ===
-  useEffect(() => {
-    document.title = lang === "KOR" ? "오시는 길" : "Location";
-  }, [lang]);
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -217,121 +204,113 @@ export default function LocationPage() {
   return (
     <>
       <Head>
-        <title>{lang === "KOR" ? "오시는길" : "Location"}</title>
+        <title>
+          {lang === "KOR" ? "오시는길" : "Location"}
+        </title>
       </Head>
-
       <Layout>
-        {/* === Match rnd.tsx: big layout wrapper + Hero + Breadcrumb === */}
-        <main
-          className="min-h-screen bg-white text-slate-900"
-          style={{ paddingTop: "90px" }}
-        >
-          <HeroSection
-            title={lang === "KOR" ? "오시는 길" : "Our Location"}
-            subtitle={lang === "KOR" ? "회사 위치 및 찾아오시는 길" : "Addresses & Directions"}
-            backgroundImage="/images/sub_banner/company_banner.png"
-          />
+        <HeroSection
+          title={lang === "KOR" ? "오시는 길" : "Our Location"}
+          //subtitle={lang === "KOR" ? "Locations" : "How to Reach Us"}
+          backgroundImage="/images/sub_banner/company_banner.png"
+        />
+        <BreadcrumbSection
+          path={
+            lang === "KOR"
+              ? "회사소개 > 오시는길"
+              : "Company > Location / Directions"
+          }
+        />
 
-          <BreadcrumbSection
-            path={
-              lang === "KOR"
-                ? "회사소개 > 오시는길"
-                : "Company > Location / Directions"
-            }
-          />
+        <div className="content-wrapper py-20 px-4 md:px-8 bg-white text-black">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInVariants}
+            >
+              <h2 className="text-3xl font-bold mb-8">
+                {lang === "KOR" ? (
+                  <span className="text-black font-bold">오시는 길</span>
+                ) : (
+                  <>
+                    <span className="text-black font-bold">Directions to </span>
+                    <span className="text-blue-600 font-bold">SUMAN</span>
+                  </>
+                )}
+              </h2>
 
-          {/* === Original content preserved === */}
-          <div className="content-wrapper py-20 px-4 md:px-8 bg-white text-black">
-            <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={fadeInVariants}
-              >
-                <h2 className="text-3xl font-bold mb-8">
-                  {lang === "KOR" ? (
-                    <span className="text-black font-bold">오시는 길</span>
-                  ) : (
-                    <>
-                      <span className="text-black font-bold">Directions to </span>
-                      <span className="text-blue-600 font-bold">SUMAN</span>
-                    </>
-                  )}
-                </h2>
-
-                <div className="space-y-0 border-t-2 border-gray-900">
-                  {locationsData.map((location) => (
+              <div className="space-y-0 border-t-2 border-gray-900">
+                {locationsData.map((location) => (
+                  <div
+                    key={location.key}
+                    className="p-6 border-b border-gray-300"
+                  >
                     <div
-                      key={location.key}
-                      className="p-6 border-b border-gray-300"
+                      className="flex justify-between items-center cursor-pointer"
+                      onClick={() => handleToggleMap(location.key)}
+                    >
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2">
+                          {location.title[lang]}
+                        </h3>
+                        <p className="text-gray-700">
+                          {location.addressSnippet[lang]}
+                        </p>
+                      </div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        className={`w-8 h-8 text-blue-600 transition-transform duration-300 ${
+                          openMap === location.key ? "" : "rotate-180"
+                        }`}
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.56l-2.69 2.69a.75.75 0 0 1-1.06-1.06l3.75-3.75Z"
+                          clipRule="evenodd"
+                        />
+                        <path
+                          fillRule="evenodd"
+                          d="M11.47 11.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 1 1-1.06 1.06L12 13.56l-2.69 2.69a.75.75 0 0 1-1.06-1.06l3.75-3.75Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        height: openMap === location.key ? "250px" : "0px",
+                        opacity: openMap === location.key ? 1 : 0,
+                      }}
+                      transition={mapTransition}
+                      className="mt-4 overflow-hidden relative"
                     >
                       <div
-                        className="flex justify-between items-center cursor-pointer"
-                        onClick={() => handleToggleMap(location.key)}
-                      >
-                        <div>
-                          <h3 className="text-xl font-semibold mb-2">
-                            {location.title[lang]}
-                          </h3>
-                          <p className="text-gray-700">
-                            {location.addressSnippet[lang]}
-                          </p>
-                        </div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                          className={`w-8 h-8 text-blue-600 transition-transform duration-300 ${
-                            openMap === location.key ? "" : "rotate-180"
-                          }`}
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.56l-2.69 2.69a.75.75 0 0 1-1.06-1.06l3.75-3.75Z"
-                            clipRule="evenodd"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            d="M11.47 11.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 1 1-1.06 1.06L12 13.56l-2.69 2.69a.75.75 0 0 1-1.06-1.06l3.75-3.75Z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </div>
-
-                      <motion.div
-                        initial={false}
-                        animate={{
-                          height: openMap === location.key ? "250px" : "0px",
-                          opacity: openMap === location.key ? 1 : 0,
+                        ref={(el) => {
+                          mapRefs.current[location.key] = el;
                         }}
-                        transition={mapTransition}
-                        className="mt-4 overflow-hidden relative"
+                        className="w-full h-full absolute top-0 left-0"
+                        style={{ backgroundColor: "lightgray" }}
                       >
-                        <div
-                          ref={(el) => {
-                            mapRefs.current[location.key] = el;
-                          }}
-                          className="w-full h-full absolute top-0 left-0"
-                          style={{ backgroundColor: "lightgray" }}
-                        >
-                          {openMap !== location.key && (
-                            <div
-                              className="absolute inset-0 z-10"
-                              style={{ pointerEvents: "auto" }}
-                            />
-                          )}
-                        </div>
-                      </motion.div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
+                        {openMap !== location.key && (
+                          <div
+                            className="absolute inset-0 z-10"
+                            style={{ pointerEvents: "auto" }}
+                          />
+                        )}
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
-
-          <hr className="my-8 border-gray-200 w-full" />
-        </main>
+        </div>
+        <hr className="my-8 border-gray-200 w-full" />
       </Layout>
     </>
   );
