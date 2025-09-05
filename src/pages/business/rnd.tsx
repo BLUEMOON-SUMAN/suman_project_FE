@@ -21,9 +21,9 @@ export default function App() {
   const hero = heroText[lang];
   const businessData = businessAreasData[lang];
 
-  // === UPDATED: trim hero 1cm atas & bawah (1cm ≈ 37.8px) ===
-  const CM_TO_PX = 37.8;                  // UPDATED
-  const HERO_TRIM_PX = Math.round(CM_TO_PX); // UPDATED
+  // === Hero trim (match ceo.tsx): 1cm top & bottom ===
+  const CM_TO_PX = 37.8;
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
 
   // Animation variants
   const fadeIn: Record<"hidden" | "visible", any> = {
@@ -49,21 +49,21 @@ export default function App() {
   return (
     <Layout>
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: '90px' }}>
-        {/* === UPDATED: Hero mengikuti ceo.tsx (tanpa subtitle) + trim 1cm atas/bawah === */}
+        {/* === Hero (same pattern as ceo.tsx) === */}
         <div
           style={{
-            marginTop: `-${HERO_TRIM_PX}px`,     // UPDATED
-            marginBottom: `-${HERO_TRIM_PX}px`,  // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,
+            marginBottom: `-${HERO_TRIM_PX}px`,
           }}
         >
           <HeroSection
-            title={hero.title}                                    // UPDATED (subtitle dihilangkan)
-            backgroundImage="/images/sub_banner/business_hero.png" // UPDATED (gunakan image lokal)
+            title={hero.title}
+            backgroundImage="/images/sub_banner/business_hero.png"
           />
         </div>
 
-        {/* === UPDATED: Breadcrumb nempel ke hero === */}
-        <div className="relative z-30 -mt-2"> {/* UPDATED */}
+        {/* Breadcrumb close to hero (like ceo.tsx) */}
+        <div className="relative z-30 -mt-2">
           <BreadcrumbSection path={lang === "KOR" ? "사업분야 > 연구분야" : "Business > Research Fields"} />
         </div>
 

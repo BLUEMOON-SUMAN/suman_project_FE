@@ -36,17 +36,23 @@ export default function OrgPage() {
 
   const currentContent = content[lang];
 
+  // === sama seperti ceo.tsx: trim 1cm atas & bawah pada hero ===
+  const CM_TO_PX = 37.8;
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
+
   return (
     <Layout>
       <Head>
         <title>{currentContent.pageTitle}</title>
       </Head>
 
-      <HeroSection
-        title={currentContent.title}
-        //subtitle={currentContent.subtitle}
-        backgroundImage="/images/sub_banner/company_banner.png"
-      />
+      {/* HeroSection mengikuti ceo.tsx: tanpa subtitle + trim 1cm atas/bawah */}
+      <div style={{ marginTop: `-${HERO_TRIM_PX}px`, marginBottom: `-${HERO_TRIM_PX}px` }}>
+        <HeroSection
+          title={currentContent.title}
+          backgroundImage="/images/sub_banner/company_banner.png"
+        />
+      </div>
 
       <BreadcrumbSection path={currentContent.breadcrumb} />
 

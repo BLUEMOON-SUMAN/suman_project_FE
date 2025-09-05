@@ -44,24 +44,23 @@ export default function OrgPage() {
         <title>{pageTitle}</title>
       </Head>
 
-{/* Match rnd.tsx: big hero + breadcrumb below, all inside <main> with header offset */}
-        <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+      {/* Match rnd.tsx: big hero + breadcrumb below, all inside <main> with header offset */}
+      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
         {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
-        <div                                       // UPDATED
-          style={{                                 // UPDATED
-            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
-            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
-          }}                                       // UPDATED
+        <div
+          style={{
+            marginTop: `-${HERO_TRIM_PX}px`,
+            marginBottom: `-${HERO_TRIM_PX}px`,
+          }}
         >
-        <HeroSection
-          title={heroTitle}
-          subtitle={heroSubtitle}
-          backgroundImage="/images/sub_banner/company_banner.png"
-        />
+          {/* === SAMA DENGAN ceo.tsx: title saja (tanpa subtitle) === */}
+          <HeroSection
+            title={heroTitle}
+            backgroundImage="/images/sub_banner/company_banner.png"
+          />
         </div>
 
         {/* Keep breadcrumb visible and above blue section */}
-
         <BreadcrumbSection path={breadcrumbPath} />
 
         {/* Page content (unchanged) */}

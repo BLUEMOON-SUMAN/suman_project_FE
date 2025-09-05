@@ -115,6 +115,10 @@ export default function Vision2Page() {
     );
   };
 
+  // === HeroSection setup identical to ceo.tsx (trim 1cm atas & bawah) ===
+  const CM_TO_PX = 37.8;
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
+
   return (
     <>
       <Head>
@@ -123,14 +127,18 @@ export default function Vision2Page() {
 
       <Layout>
         <main className="min-h-screen bg-white text-slate-900">
-          <HeroSection
-            title={hero.title}
-            //subtitle={hero.subtitle}
-            backgroundImage="/images/sub_banner/company_banner.png"
-            // Turunkan judul ~1 baris (one enter), responsif
-            offsetClassName="transform translate-y-6 sm:translate-y-7 md:translate-y-8"
-          />
-          <BreadcrumbSection path={lang === "KOR" ? "회사소개 > 기업 비전" : "Company > Vision"} />
+          {/* === Hero persis seperti ceo.tsx: title only + trim 1cm up/down === */}
+          <div style={{ marginTop: `-${HERO_TRIM_PX}px`, marginBottom: `-${HERO_TRIM_PX}px` }}>
+            <HeroSection
+              title={hero.title}
+              backgroundImage="/images/sub_banner/company_banner.png"
+            />
+          </div>
+
+          {/* Breadcrumb nempel seperti ceo.tsx */}
+          <div className="relative z-30 -mt-2">
+            <BreadcrumbSection path={lang === "KOR" ? "회사소개 > 기업 비전" : "Company > Vision"} />
+          </div>
 
           {/* ============ STRATEGY ============ */}
           <motion.section
