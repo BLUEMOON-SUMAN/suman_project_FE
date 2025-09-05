@@ -33,19 +33,31 @@ export default function ServicePage() {
     },
   };
 
+  // ================= UPDATED: trim hero 1cm atas & bawah (ikuti ceo.tsx) =================
+  const CM_TO_PX = 37.8;
+  const HERO_TRIM_PX = Math.round(CM_TO_PX); // 1cm ≈ 37.8px
+  // =======================================================================================
+
   return (
     <>
       <Head>
         <title>{lang === "KOR" ? "제품 소개 " : "Product "}</title>
       </Head>
       <Layout>
-        <HeroSection
-          title={lang === "KOR" ? "제품 소개" : "Product"}
-          backgroundImage="/images/sub_banner/business_hero.png"
-        />
-
-        {/* Keep breadcrumb visible and above blue section */}
-        <div className="relative z-30">
+        {/* ================= UPDATED: bungkus HeroSection dg negative margin seperti ceo.tsx ================ */}
+        <div
+          style={{
+            marginTop: `-${HERO_TRIM_PX}px`,
+            marginBottom: `-${HERO_TRIM_PX}px`,
+          }}
+        >
+          <HeroSection
+            title={lang === "KOR" ? "제품 소개" : "Product"}
+            backgroundImage="/images/sub_banner/business_hero.png"
+          />
+        </div>
+        {/* ================= UPDATED: Breadcrumb nempel ke hero (ikuti ceo.tsx) ============================ */}
+        <div className="relative z-30 -mt-2">
           <BreadcrumbSection
             path={lang === "KOR" ? "사업분야 > 제품소개" : "Business > Product"}
           />
@@ -62,7 +74,7 @@ export default function ServicePage() {
             ></div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-              {/* ================= UPDATED: title + subtitle styled/positioned like rnd.tsx ================= */}
+              {/* (Biarkan heading di dalam blok biru seperti sebelumnya) */}
               <motion.div
                 className="text-center mb-16"
                 initial="hidden"
@@ -79,7 +91,6 @@ export default function ServicePage() {
                   {section.production2sub}
                 </p>
               </motion.div>
-              {/* ================= END UPDATED ================= */}
 
               {/* Grid with staggered children like service.tsx */}
               <motion.div

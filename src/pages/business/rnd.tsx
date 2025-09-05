@@ -21,6 +21,10 @@ export default function App() {
   const hero = heroText[lang];
   const businessData = businessAreasData[lang];
 
+  // === UPDATED: trim hero 1cm atas & bawah (1cm ≈ 37.8px) ===
+  const CM_TO_PX = 37.8;                  // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX); // UPDATED
+
   // Animation variants
   const fadeIn: Record<"hidden" | "visible", any> = {
     hidden: { opacity: 0, y: 24 },
@@ -45,12 +49,23 @@ export default function App() {
   return (
     <Layout>
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: '90px' }}>
-        <HeroSection
-          title={hero.title}
-          subtitle={hero.subtitle}
-          backgroundImage="https://images.unsplash.com/photo-1654764746504-cf01f4de040a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBidXNpbmVzcyUyMGJ1aWxkaW5nJTIwaW5kdXN0cmlhbCUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzU2OTcwMDE1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-        />
-        <BreadcrumbSection path={lang === "KOR" ? "사업분야 > 연구분야" : "Business > Research Fields"} />
+        {/* === UPDATED: Hero mengikuti ceo.tsx (tanpa subtitle) + trim 1cm atas/bawah === */}
+        <div
+          style={{
+            marginTop: `-${HERO_TRIM_PX}px`,     // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,  // UPDATED
+          }}
+        >
+          <HeroSection
+            title={hero.title}                                    // UPDATED (subtitle dihilangkan)
+            backgroundImage="/images/sub_banner/business_hero.png" // UPDATED (gunakan image lokal)
+          />
+        </div>
+
+        {/* === UPDATED: Breadcrumb nempel ke hero === */}
+        <div className="relative z-30 -mt-2"> {/* UPDATED */}
+          <BreadcrumbSection path={lang === "KOR" ? "사업분야 > 연구분야" : "Business > Research Fields"} />
+        </div>
 
         {/* Main Business Areas Section */}
         <motion.section

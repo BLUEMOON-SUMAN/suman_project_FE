@@ -1,252 +1,245 @@
+"use client";
+
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
 import { motion, type Transition } from "framer-motion";
-import Image from "next/image";
-import { serviceContent } from "@/data/service";
 import { useLangStore } from "@/stores/langStore";
-import Head from "next/head";
-// Import the required icons from Lucide React
-import {
-  Users,
-  FileText,
-  XCircle,
-  Settings,
-  Package,
-  ArrowLeft,
-  Truck,
-  RotateCcw,
-} from "lucide-react";
+import { heroText, businessAreasData } from "@/data/rnd";
+import Image from "next/image";
+import { CheckCircle, Cog, Cpu, Car } from "lucide-react";
+import { useEffect } from "react";
 
-export default function ServicePage() {
+export default function App() {
   const { lang } = useLangStore();
-  const { equipmentList, measurementEquipmentList } = serviceContent[lang];
-  const section = serviceContent[lang].sectionList?.[0];
 
-  const processImages = [
-    "/images/business/process/service_design.png",
-    "/images/business/process/service_order.png",
-    "/images/business/process/service_product.png",
-    "/images/business/process/service_test.png",
-    "/images/business/process/service_deliver.png",
-  ];
-  const fadeIn = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1 } as Transition },
+  // Set document title
+  useEffect(() => {
+    document.title = lang === "KOR" ? "사업영역" : "Business Areas";
+  }, [lang]);
+
+  const hero = heroText[lang];
+  const businessData = businessAreasData[lang];
+
+  // Animation variants
+  const fadeIn: Record<"hidden" | "visible", any> = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
-  const content = {
-    KOR: {
-      image: "/images/business/process/gambarKorean.png",
-      alt: "조직도",
-      pageTitle: "조직도",
-    },
-    ENG: {
-      image: "/images/business/process/gambarEng.png",
-      alt: "Organization Chart",
-      pageTitle: "Organization",
-    },
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5, ease: "easeOut" } as Transition,
-    },
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } as Transition },
   };
 
-  const leftAlignTextVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" } as Transition,
-    },
+  const cardHover = {
+    rest: { scale: 1, y: 0 },
+    hover: { scale: 1.02, y: -5, transition: { duration: 0.3 } as Transition },
   };
-
-  const currentContent = content[lang as keyof typeof content];
 
   return (
-    <>
-      <Head>
-        <title>{lang === "KOR" ? "기술소개 " : "Technology"}</title>
-      </Head>
-      <Layout>
+    <Layout>
+      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+        {/* === UPDATED: samakan pemanggilan HeroSection dengan service.tsx (tanpa subtitle) === */}
         <HeroSection
-          title={lang === "KOR" ? "기술 소개" : "Technology"}
-          //subtitle="SUMAN"
+          title={hero.title}
           backgroundImage="/images/sub_banner/business_hero.png"
         />
+        {/* === UPDATED: Breadcrumb langsung di bawah Hero (tanpa wrapper khusus) === */}
+        <BreadcrumbSection path={lang === "KOR" ? "사업분야 > 연구분야" : "Business > Research Field"} />
 
-        <BreadcrumbSection
-          path={lang === "KOR" ? "사업분야 > 기술소개" : "Business > Technology"}
-        />
-
-        {/* 1. Main Equipment Section */}
-        <div className="bg-white py-12 md:py-20 px-4">
-          <div className="max-w-7xl mx-auto">
-            {/* (opsional) label kecil tetap ada */}
-            <motion.h2
-              className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-6 md:mb-6"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={leftAlignTextVariants}
-            >
-              Main Equipment
-            </motion.h2>
-
-            {/* ===================== UPDATED: title + subtitle match rnd.tsx (center, size) ===================== */}
-            <motion.div
-              className="text-center mb-10"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={leftAlignTextVariants}
-            >
+        {/* Main Business Areas Section */}
+        <motion.section
+          className="py-16 md:py-24 px-4 md:px-8 bg-white"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <div className="max-w-6xl mx-auto">
+            <motion.div className="text-center mb-16" variants={fadeIn}>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {section?.maintitle}
+                {lang === "KOR" ? "핵심 사업 영역" : "Core Business Areas"}
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                {section?.mainsubtitle}
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                {lang === "KOR"
+                  ? "최첨단 기술과 혁신적인 솔루션으로 다양한 산업 분야에서 고객의 성공을 지원합니다."
+                  : "Supporting customer success across various industries with cutting-edge technology and innovative solutions."}
               </p>
             </motion.div>
-            {/* ===================== END UPDATED =============================================================== */}
-          </div>
-        </div>
 
-        {/* 2. 생산가공 / 측정장비 Section */}
-        {/* Pangkas ruang kosong bawah: pb-40/md:pb-60 -> pb-6/md:pb-8 */}
-        <div className="relative z-0 bg-[#000B24] pt-12 md:pt-20 pb-6 md:pb-8 px-4">
-          <div className="absolute inset-0 pointer-events-none">
-            <Image
-              src="/images/business/layer.png"
-              alt="배경 이미지"
-              fill
-              style={{ objectFit: "cover", objectPosition: "top" }}
-              priority
-            />
-          </div>
-
-          <div className="max-w-7xl mx-auto">
-            {/* Hapus logika max-height/toggle: semua langsung tampil */}
-            <motion.div className="relative transition-all duration-500 ease-in-out">
-              {/* 생산가공 / 조립 */}
-              <motion.button
-                className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={leftAlignTextVariants}
-              >
-                {section?.production}
-              </motion.button>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                {equipmentList.map((equipment, index) => (
-                  <motion.div
-                    key={`prod-${index}`}
-                    className="relative bg-white/10 rounded-lg overflow-hidden shadow-lg w-full p-2 border-2 border-gray-400/10 h-[calc(10rem+114px)] md:h-[calc(12.5rem+114px)]"
-                    variants={itemVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                  >
-                    {/* Foto lebih tinggi (+ ~95px) */}
-                    <div className="w-full h-[calc(5rem+95px)] md:h-[calc(7rem+95px)] relative mb-0">
-                      {equipment.image && (
-                        <Image
-                          src={equipment.image}
-                          alt={equipment.name}
-                          fill
-                          className="object-cover rounded-[10px]"
-                        />
-                      )}
-                    </div>
-
-                    {/* Bar judul fixed height */}
-                    <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 bg-[#1F2432]/70 px-3 flex items-center justify-center border border-gray-500/10">
-                      <p className="text-sm md:text-base font-medium text-white line-clamp-1">
-                        {equipment.name}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* 신뢰성 (측정 / 분석) */}
-              <button className="text-base sm:text-lg bg-[#505050]/40 text-white rounded-full px-6 py-1 mb-10 md:mb-16 mt-16 md:mt-28">
-                {section?.measurement}
-              </button>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                {measurementEquipmentList.map((equipment, index) => (
-                  <motion.div
-                    key={`meas-${index}`}
-                    className="relative bg-white/10 rounded-lg overflow-hidden shadow-lg w-full p-2 border-2 border-gray-400/10 h-[calc(10rem+114px)] md:h-[calc(12.5rem+114px)]"
-                    variants={itemVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                  >
-                    {/* Foto lebih tinggi (+ ~95px) */}
-                    <div className="w-full h-[calc(5rem+95px)] md:h-[calc(7rem+95px)] relative mb-0">
-                      {equipment.image && (
-                        <Image
-                          src={equipment.image}
-                          alt={equipment.name}
-                          fill
-                          className="object-cover rounded-[10px]"
-                        />
-                      )}
-                    </div>
-
-                    <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 bg-[#1F2432]/70 px-3 flex items-center justify-center">
-                      <p className="text-sm md:text-base font-medium text-white line-clamp-1">
-                        {equipment.name}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* HAPUS tombol '전체 설비 보기' */}
-          </div>
-        </div>
-
-        {/* 3. Process Section */}
-        <div className="content-wrapper py-20 px-4 md:px-8 bg-white flex justify-center items-center">
-          <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
-            {/* NEW: title kiri */}
-            <h2 className="self-start w-full text-left text-sm sm:text-base lg:text-2xl font-semibold tracking-wide mb-4 md:mb-6">
-              PROCESS
-            </h2>
+            {/* Business Areas Grid */}
             <motion.div
-              className="w-full"
-              variants={fadeIn}
+              className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+              variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true }}
             >
-              <div className="relative w-full h-auto overflow-hidden rounded-lg px-[7.5%] md:px-[15%] lg:px-[20%]">
-                <Image
-                  src={currentContent.image}
-                  alt={currentContent.alt}
-                  width={1400}
-                  height={1000}
-                  layout="responsive"
-                  objectFit="contain"
-                  className="w-full h-auto"
-                  priority
-                />
-              </div>
+              {/* Semiconductor */}
+              <motion.div
+                className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
+                variants={itemVariants}
+                whileHover="hover"
+                initial="rest"
+              >
+                <motion.div variants={cardHover}>
+                  <div className="relative h-64">
+                    <Image
+                      src="https://images.unsplash.com/photo-1583737097428-af53774819a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZW1pY29uZHVjdG9yJTIwbWFudWZhY3R1cmluZyUyMGVxdWlwbWVudCUyMGZhY3Rvcnl8ZW58MXx8fHwxNzU2MzcyODUxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                      alt="Semiconductor Equipment"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <Cpu className="w-8 h-8 mb-2" />
+                      <h3 className="text-lg font-semibold">{businessData.semiconductor.subtitle}</h3>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-4">
+                      {businessData.semiconductor.title}
+                    </h4>
+                    <div className="space-y-3">
+                      {businessData.semiconductor.services.map((service, index) => (
+                        <div key={index} className="flex items-start space-x-3">
+                          <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-gray-700 leading-relaxed">{service}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-gray-100">
+                      <h5 className="font-semibold text-gray-900 mb-3">
+                        {lang === "KOR" ? "이차전지 제조 및 신뢰성 장비" : "Secondary Battery & Reliability Equipment"}
+                      </h5>
+                      <div className="space-y-2">
+                        {businessData.semiconductor.additionalServices.map((service, index) => (
+                          <div key={index} className="flex items-start space-x-2">
+                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0" />
+                            <span className="text-xs text-gray-600 leading-relaxed">{service}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Factory Automation */}
+              <motion.div
+                className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
+                variants={itemVariants}
+                whileHover="hover"
+                initial="rest"
+              >
+                <motion.div variants={cardHover}>
+                  <div className="relative h-64">
+                    <Image
+                      src="https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYWN0b3J5JTIwYXV0b21hdGlvbiUyMGluZHVzdHJpYWwlMjByb2JvdHN8ZW58MXx8fHwxNzU2MzcyODUxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                      alt="Factory Automation"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <Cog className="w-8 h-8 mb-2" />
+                      <h3 className="text-lg font-semibold">{businessData.automation.subtitle}</h3>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-4">
+                      {businessData.automation.title}
+                    </h4>
+                    <div className="space-y-3 mb-6">
+                      {businessData.automation.services.map((service, index) => (
+                        <div key={index} className="flex items-start space-x-3">
+                          <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-gray-700 leading-relaxed">{service}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-gray-100">
+                      <h5 className="font-semibold text-gray-900 mb-3">
+                        {lang === "KOR" ? "시스템 통합(System Integration)" : "System Integration"}
+                      </h5>
+                      <div className="space-y-2">
+                        {businessData.automation.systemIntegration.map((service, index) => (
+                          <div key={index} className="flex items-start space-x-2">
+                            <div className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 flex-shrink-0" />
+                            <span className="text-xs text-gray-600 leading-relaxed">{service}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Mobility */}
+              <motion.div
+                className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
+                variants={itemVariants}
+                whileHover="hover"
+                initial="rest"
+              >
+                <motion.div variants={cardHover}>
+                  <div className="relative h-64">
+                    <Image
+                      src="https://images.unsplash.com/photo-1590038667005-7d82ac6f864b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdXRvbm9tb3VzJTIwbW9iaWxlJTIwcm9ib3QlMjB3YXJlaG91c2V8ZW58MXx8fHwxNzU2MzcyODUxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                      alt="Mobility Robot"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <Car className="w-8 h-8 mb-2" />
+                      <h3 className="text-lg font-semibold">{businessData.mobility.subtitle}</h3>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-xl font-bold text-gray-900 mb-4">
+                      {businessData.mobility.title}
+                    </h4>
+                    <div className="space-y-3">
+                      {businessData.mobility.services.map((service, index) => (
+                        <div key={index} className="flex items-start space-x-3">
+                          <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-gray-700 leading-relaxed">{service}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
             </motion.div>
           </div>
-        </div>
-        <hr className="my-6 border-gray-200 w-full" />
-      </Layout>
-    </>
+        </motion.section>
+
+        {/* Additional Info Section */}
+        <motion.section
+          className="py-16 px-4 md:px-8 bg-gray-50"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <div className="max-w-6xl mx-auto text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+              {lang === "KOR"
+                ? "혁신적인 기술력으로 고객과 함께 성장합니다"
+                : "Growing together with customers through innovative technology"}
+            </h3>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              {lang === "KOR"
+                ? "반도체, 자동화, 모빌리티 분야에서 축적된 기술력과 경험을 바탕으로 고객의 요구에 맞는 맞춤형 솔루션을 제공하며, 지속적인 연구개발을 통해 미래 기술을 선도하고 있습니다."
+                : "Based on our accumulated technical expertise and experience in semiconductors, automation, and mobility, we provide customized solutions that meet customer needs and lead future technology through continuous R&D."}
+            </p>
+          </div>
+        </motion.section>
+      </main>
+    </Layout>
   );
 }
