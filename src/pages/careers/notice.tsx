@@ -1,249 +1,201 @@
-"use client";
-
+import React from "react";
 import Layout from "@/components/Layout";
-import HeroSection from "@/components/HeroSection";
 import BreadcrumbSection from "@/components/BreadcrumbSection";
-import { motion, type Transition } from "framer-motion";
+import HeroSection from "@/components/HeroSection";
+import Link from "next/link";
 import { useLangStore } from "@/stores/langStore";
-import { heroText, businessAreasData } from "@/data/rnd";
-import Image from "next/image";
-import { CheckCircle, Cog, Cpu, Car } from "lucide-react";
-import { useEffect } from "react";
+import Head from "next/head";
 
-export default function App() {
-  const { lang } = useLangStore();
-
-  // Set document title
-  useEffect(() => {
-    document.title = lang === "KOR" ? "사업영역" : "Business Areas";
-  }, [lang]);
-
-  const hero = heroText[lang];
-  const businessData = businessAreasData[lang];
-
-  // Animation variants
-  const fadeIn: Record<"hidden" | "visible", any> = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } as Transition },
-  };
-
-  const cardHover = {
-    rest: { scale: 1, y: 0 },
-    hover: { scale: 1.02, y: -5, transition: { duration: 0.3 } as Transition },
-  };
+const RecruitmentBoard: React.FC = () => {
+  const lang = useLangStore((state) => state.lang) || "KOR";
 
   return (
     <Layout>
+      <Head>
+        <title>{lang === "KOR" ? "채용공고 | 수만" : "Recruit Notice | SUMAN"}</title>
+      </Head>
+
+      {/* ===================== UPDATED: wrap with <main> like rnd.tsx ===================== */}
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
-        {/* ===================== UPDATED: samakan cara panggil HeroSection seperti notice.tsx ===================== */}
+        {/* ===================== UPDATED: Hero like rnd.tsx (no subtitle prop) ============== */}
         <HeroSection
-          title={hero.title}                                // UPDATED: hanya title (tanpa subtitle)
-          backgroundImage="/images/sub_banner/business_hero.png" // UPDATED: pakai image lokal (style/size konsisten)
+          title={lang === "KOR" ? "채용공고" : "Recruit Notice"}
+          backgroundImage="/images/sub_banner/careers_hero.png"
         />
-        {/* ===================== UPDATED: breadcrumb dibungkus wrapper seperti notice.tsx ===================== */}
+
+        {/* ===================== UPDATED: breadcrumb wrapper like rnd.tsx ==================== */}
         <div className="relative z-30">
           <BreadcrumbSection
-            path={lang === "KOR" ? "사업분야 > 연구분야" : "Business > Research Field"}
+            path={
+              lang === "KOR"
+                ? "인재채용 > 채용공고"
+                : "Recruitment > Recruit Notice"
+            }
           />
         </div>
 
-        {/* Main Business Areas Section */}
-        <motion.section
-          className="py-16 md:py-24 px-4 md:px-8 bg-white"
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <motion.div className="text-center mb-16" variants={fadeIn}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {lang === "KOR" ? "핵심 사업 영역" : "Core Business Areas"}
+        {/* 🔽 Platform Cards */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section className="py-16 md:py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-10 text-left">
+                {lang === "KOR" ? "외부공고" : "External Recruitment Notice"}
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                {lang === "KOR"
-                  ? "최첨단 기술과 혁신적인 솔루션으로 다양한 산업 분야에서 고객의 성공을 지원합니다."
-                  : "Supporting customer success across various industries with cutting-edge technology and innovative solutions."}
-              </p>
-            </motion.div>
 
-            {/* Business Areas Grid */}
-            <motion.div
-              className="grid grid-cols-1 lg:grid-cols-3 gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              {/* Semiconductor */}
-              <motion.div
-                className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
-                variants={itemVariants}
-                whileHover="hover"
-                initial="rest"
-              >
-                <motion.div variants={cardHover}>
-                  <div className="relative h-64">
-                    <Image
-                      src="https://images.unsplash.com/photo-1583737097428-af53774819a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZW1pY29uZHVjdG9yJTIwbWFudWZhY3R1cmluZyUyMGVxdWlwbWVudCUyMGZhY3Rvcnl8ZW58MXx8fHwxNzU2MzcyODUxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                      alt="Semiconductor Equipment"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <Cpu className="w-8 h-8 mb-2" />
-                      <h3 className="text-lg font-semibold">{businessData.semiconductor.subtitle}</h3>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-4">
-                      {businessData.semiconductor.title}
-                    </h4>
-                    <div className="space-y-3">
-                      {businessData.semiconductor.services.map((service, index) => (
-                        <div key={index} className="flex items-start space-x-3">
-                          <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-gray-700 leading-relaxed">{service}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-6 pt-4 border-t border-gray-100">
-                      <h5 className="font-semibold text-gray-900 mb-3">
-                        {lang === "KOR" ? "이차전지 제조 및 신뢰성 장비" : "Secondary Battery & Reliability Equipment"}
-                      </h5>
-                      <div className="space-y-2">
-                        {businessData.semiconductor.additionalServices.map((service, index) => (
-                          <div key={index} className="flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-xs text-gray-600 leading-relaxed">{service}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <RecruitmentCard
+                  title="Saramin"
+                  link="https://m.saramin.co.kr/job-search/company-info-view/recruit?csn=ZDVyVitYUjJKUno3Y2NmWXl6K0pWQT09&t_ref_content=generic"
+                />
+                <RecruitmentCard
+                  title="JOB KOREA"
+                  link="https://www.jobkorea.co.kr/net/company/45215125/Recruit"
+                  highlight="blue-600"
+                />
+                <RecruitmentCard
+                  title="고용24"
+                  link="https://www.work24.go.kr"
+                />
+              </div>
+            </div>
+          </section>
 
-              {/* Factory Automation */}
-              <motion.div
-                className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
-                variants={itemVariants}
-                whileHover="hover"
-                initial="rest"
-              >
-                <motion.div variants={cardHover}>
-                  <div className="relative h-64">
-                    <Image
-                      src="https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYWN0b3J5JTIwYXV0b21hdGlvbiUyMGluZHVzdHJpYWwlMjByb2JvdHN8ZW58MXx8fHwxNzU2MzcyODUxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                      alt="Factory Automation"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <Cog className="w-8 h-8 mb-2" />
-                      <h3 className="text-lg font-semibold">{businessData.automation.subtitle}</h3>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-4">
-                      {businessData.automation.title}
-                    </h4>
-                    <div className="space-y-3 mb-6">
-                      {businessData.automation.services.map((service, index) => (
-                        <div key={index} className="flex items-start space-x-3">
-                          <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-gray-700 leading-relaxed">{service}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-6 pt-4 border-t border-gray-100">
-                      <h5 className="font-semibold text-gray-900 mb-3">
-                        {lang === "KOR" ? "시스템 통합(System Integration)" : "System Integration"}
-                      </h5>
-                      <div className="space-y-2">
-                        {businessData.automation.systemIntegration.map((service, index) => (
-                          <div key={index} className="flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-xs text-gray-600 leading-relaxed">{service}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
+          <hr className="my-12 border-navy-200 w-full" />
 
-              {/* Mobility */}
-              <motion.div
-                className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
-                variants={itemVariants}
-                whileHover="hover"
-                initial="rest"
-              >
-                <motion.div variants={cardHover}>
-                  <div className="relative h-64">
-                    <Image
-                      src="https://images.unsplash.com/photo-1590038667005-7d82ac6f864b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdXRvbm9tb3VzJTIwbW9iaWxlJTIwcm9ib3QlMjB3YXJlaG91c2V8ZW58MXx8fHwxNzU2MzcyODUxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                      alt="Mobility Robot"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <Car className="w-8 h-8 mb-2" />
-                      <h3 className="text-lg font-semibold">{businessData.mobility.subtitle}</h3>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-4">
-                      {businessData.mobility.title}
-                    </h4>
-                    <div className="space-y-3">
-                      {businessData.mobility.services.map((service, index) => (
-                        <div key={index} className="flex items-start space-x-3">
-                          <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-gray-700 leading-relaxed">{service}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.section>
+          {/* ✅ Download Link Section RIGHT AFTER 3 Cards */}
+          <RecruitmentDownloadBanner />
 
-        {/* Additional Info Section */}
-        <motion.section
-          className="py-16 px-4 md:px-8 bg-gray-50"
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <div className="max-w-6xl mx-auto text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-              {lang === "KOR"
-                ? "혁신적인 기술력으로 고객과 함께 성장합니다"
-                : "Growing together with customers through innovative technology"}
-            </h3>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              {lang === "KOR"
-                ? "반도체, 자동화, 모빌리티 분야에서 축적된 기술력과 경험을 바탕으로 고객의 요구에 맞는 맞춤형 솔루션을 제공하며, 지속적인 연구개발을 통해 미래 기술을 선도하고 있습니다."
-                : "Based on our accumulated technical expertise and experience in semiconductors, automation, and mobility, we provide customized solutions that meet customer needs and lead future technology through continuous R&D."}
-            </p>
-          </div>
-        </motion.section>
+          <hr className="my-12 border-navy-200 w-full" />
+
+          <DocumentDownloadBanner />
+        </div>
+
+        <hr className="my-6 border-gray-200 w-full" />
       </main>
+      {/* ===================== END UPDATED ================================================ */}
     </Layout>
   );
-}
+};
+
+// 📎 Download Banner Section (KOR/ENG Support)
+const RecruitmentDownloadBanner: React.FC = () => {
+  const lang = useLangStore((state) => state.lang) || "KOR";
+
+  const label =
+    lang === "KOR"
+      ? " [TEST][채용공고]PLC 제어 부문 신입 및 경력직 채용(게시일 2025.00.00)"
+      : " [TEST][Recruitment Notice] Entry-Level and Experienced Positions in PLC Control (Posted on 2025.00.00)";
+
+  return (
+    <section className="bg-white mt-2 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Judul di baris sendiri */}
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 text-left">
+          {lang === "KOR" ? "내부공고" : "Internal Recruitment Notice"}
+        </h2>
+
+        {/* Baris link di bawah judul */}
+        <div className="flex items-start gap-2">
+          <span className="mt-[10px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
+          <a
+            href="/images/PLC제어 부문 신입 및 경력직 채용 공고문_2025.00.00.docx"
+            download
+            className="text-[#1D3762] text-[18px] hover:underline leading-tight"
+          >
+            {label}
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// 📎 Download Banner Section (KOR/ENG Support)
+const DocumentDownloadBanner: React.FC = () => {
+  const lang = useLangStore((state) => state.lang) || "KOR";
+
+  const label1 =
+    lang === "KOR"
+      ? " 입사지원서 양식 다운로드 (Word)"
+      : " Download Application Form (Word)";
+  const label2 =
+    lang === "KOR"
+      ? " 입사지원서 양식 다운로드 (HWP)"
+      : " Download Application Form (HWP)";
+
+  return (
+    <section className="bg-white mt-2 px-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Judul di baris sendiri */}
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 text-left">
+          {lang === "KOR" ? "자료실" : "Related Document"}
+        </h2>
+
+        {/* Baris link di bawah judul */}
+        <div className="flex items-start gap-2">
+          <span className="mt-[10px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
+          <a
+            href="/images/입사지원서 양식 다운로드(Word).docx"
+            download
+            className="text-[#1D3762] text-[18px] hover:underline leading-tight"
+          >
+            {label1}
+          </a>
+        </div>
+        <div className="flex items-start gap-2">
+          <span className="mt-[10px] w-[6px] h-[6px] rounded-full bg-[#1D3762]" />
+          <a
+            href="/images/입사지원서 양식 다운로드(HWP).docx"
+            download
+            className="text-[#1D3762] text-[18px] hover:underline leading-tight"
+          >
+            {label2}
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// 💼 Recruitment Card Component
+const RecruitmentCard: React.FC<{
+  title: string;
+  link: string;
+  highlight?: string;
+}> = ({ title, link, highlight = "gray-800" }) => {
+  const lang = useLangStore((state) => state.lang) || "KOR";
+
+  return (
+    <div className="flex flex-col bg-[#0A1633] rounded-xl p-6 md:p-8 text-white min-h-[220px]">
+      <div className="flex-grow">
+        <h3 className="text-lg font-semibold mb-2">{title}</h3>
+        <p className="text-sm text-gray-300 mb-6">
+          {lang === "KOR" ? "지금 바로 지원해 보세요" : "Apply now"}
+        </p>
+      </div>
+      <Link
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-full bg-white border border-gray-200 text-gray-800 px-4 py-3 rounded-lg flex items-center justify-between font-semibold hover:bg-gray-100 transition-colors"
+      >
+        <span className={`text-xl font-bold text-${highlight}`}>{title}</span>
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+          />
+        </svg>
+      </Link>
+    </div>
+  );
+};
+
+export default RecruitmentBoard;
