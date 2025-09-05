@@ -1,10 +1,10 @@
 export const heroText = {
   KOR: {
-    title: "사업 영역",
+    title: "연구분야",
     subtitle: "혁신적인 기술로 미래를 선도합니다"
   },
   ENG: {
-    title: "Business Areas",
+    title: "Research Fields",
     subtitle: "Leading the future with innovative technology"
   }
 };

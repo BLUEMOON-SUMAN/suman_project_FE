@@ -35,7 +35,7 @@ export const serviceContent = {
     ],
     // 신뢰성 측정 영역
     measurementEquipmentList: [
-      { name: "3D 측정기 (비접촉식)", image: "/images/business/equipment/equip12.png" },
+      { name: "3D 측정기 (비접촉식)", image: "/images/business/equipment/equip11.png" },
       { name: "3D 측정기 (접촉식)", image: "/images/business/equipment/jobcek.jpg" },
       { name: "투영기", image: "/images/business/equipment/tuyong.png" },
       { name: "기타 계측기", image: "/images/business/equipment/gyee.png" },
@@ -110,7 +110,7 @@ export const serviceContent = {
     measurementEquipmentList: [
       {
         name: "3D Measuring Machine (Non-contact)",
-        image: "/images/business/equipment/equip12.png",
+        image: "/images/business/equipment/equip11.png",
       },
       { name: "3D Measuring Machine (Contact)", image: "/images/business/equipment/jobcek.jpg" },
       { name: "Projector", image: "/images/business/equipment/tuyong.png" },
