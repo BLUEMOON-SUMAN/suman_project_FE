@@ -52,7 +52,7 @@ export default function CertificationsPage() {
             title={lang === "KOR" ? "인증 현황" : "Certifications"}
             subtitle={lang === "KOR" ? "회사소개" : "Company"}
             backgroundImage="/images/sub_banner/company_banner.png"
-            /* tidak ada override: pakai default HeroSection.tsx */
+            /* no overrides — follow HeroSection defaults */
           />
 
           <BreadcrumbSection
