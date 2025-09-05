@@ -39,8 +39,11 @@ export default function CertificationsPage() {
 
   const visibleCerts = certData.slice(0, 8);
   const moreCerts = certData.slice(8);
-  const CM_TO_PX = 37.8;                       // UPDATED
+
+  // === match ceo.tsx hero trim (1cm top & bottom) ===
+  const CM_TO_PX = 37.8;
   const HERO_TRIM_PX = Math.round(CM_TO_PX);
+
   return (
     <>
       <Head>
@@ -48,27 +51,27 @@ export default function CertificationsPage() {
       </Head>
 
       <Layout>
-        {/* Match rnd.tsx: big hero + breadcrumb below, all inside <main> with header offset */}
-              <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
-        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
-        <div                                       // UPDATED
-          style={{                                 // UPDATED
-            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
-            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
-          }}                                       // UPDATED
-        >
-          <HeroSection
-            title={lang === "KOR" ? "인증 현황" : "Certifications"}
-            subtitle={lang === "KOR" ? "회사소개" : "Company"}
-            backgroundImage="/images/sub_banner/company_banner.png"
-          />
-        </div>
+        {/* Match ceo.tsx: header offset + trimmed hero + tight breadcrumb */}
+        <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+          {/* === trimmed HeroSection (1cm top/bottom), NO subtitle (same as ceo.tsx) === */}
+          <div
+            style={{
+              marginTop: `-${HERO_TRIM_PX}px`,
+              marginBottom: `-${HERO_TRIM_PX}px`,
+            }}
+          >
+            <HeroSection
+              title={lang === "KOR" ? "인증 현황" : "Certifications"}
+              backgroundImage="/images/sub_banner/company_banner.png"
+            />
+          </div>
 
-          {/* Keep breadcrumb visible and above blue section */}
-
-          <BreadcrumbSection
-            path={lang === "KOR" ? "회사소개 > 인증 현황" : "Company > Certifications"}
-          />
+          {/* breadcrumb snug to hero like ceo.tsx */}
+          <div className="relative z-30 -mt-2">
+            <BreadcrumbSection
+              path={lang === "KOR" ? "회사소개 > 인증 현황" : "Company > Certifications"}
+            />
+          </div>
 
           <section className="relative z-30 bg-white py-20 px-4 md:px-8 flex justify-center items-center">
             <div className="max-w-7xl mx-auto w-full">
