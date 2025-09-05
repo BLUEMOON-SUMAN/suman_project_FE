@@ -33,31 +33,19 @@ export default function ServicePage() {
     },
   };
 
-  // ================= UPDATED: trim hero 1cm atas & bawah (ikuti ceo.tsx) =================
-  const CM_TO_PX = 37.8;
-  const HERO_TRIM_PX = Math.round(CM_TO_PX); // 1cm ≈ 37.8px
-  // =======================================================================================
-
   return (
     <>
       <Head>
         <title>{lang === "KOR" ? "제품 소개 " : "Product "}</title>
       </Head>
       <Layout>
-        {/* ================= UPDATED: bungkus HeroSection dg negative margin seperti ceo.tsx ================ */}
-        <div
-          style={{
-            marginTop: `-${HERO_TRIM_PX}px`,
-            marginBottom: `-${HERO_TRIM_PX}px`,
-          }}
-        >
-          <HeroSection
-            title={lang === "KOR" ? "제품 소개" : "Product"}
-            backgroundImage="/images/sub_banner/business_hero.png"
-          />
-        </div>
-        {/* ================= UPDATED: Breadcrumb nempel ke hero (ikuti ceo.tsx) ============================ */}
-        <div className="relative z-30 -mt-2">
+        <HeroSection
+          title={lang === "KOR" ? "제품 소개" : "Product"}
+          backgroundImage="/images/sub_banner/business_hero.png"
+        />
+
+        {/* Keep breadcrumb visible and above blue section */}
+        <div className="relative z-30">
           <BreadcrumbSection
             path={lang === "KOR" ? "사업분야 > 제품소개" : "Business > Product"}
           />
@@ -74,23 +62,28 @@ export default function ServicePage() {
             ></div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-              {/* (Biarkan heading di dalam blok biru seperti sebelumnya) */}
-              <motion.div
-                className="text-center mb-16"
+              {/* Headings with same effects as service.tsx */}
+              <motion.h2
+                className="text-white text-base sm:text-lg lg:text-2xl font-semibold tracking-wide mb-10"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={leftAlignTextVariants}
               >
-                <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
-                  {lang === "KOR" ? "제품 소개" : "Product"}
-                </h2>
-                <p className="text-white text-lg max-w-3xl mx-auto leading-relaxed">
-                  {section.production2}
-                  <br />
-                  {section.production2sub}
-                </p>
-              </motion.div>
+                Products
+              </motion.h2>
+
+              <motion.p
+                className="text-white text-xl md:text-2xl lg:text-4xl font-bold tracking-wide leading-[1.3] mb-12"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={leftAlignTextVariants}
+              >
+                {section.production2}
+                <br />
+                {section.production2sub}
+              </motion.p>
 
               {/* Grid with staggered children like service.tsx */}
               <motion.div
