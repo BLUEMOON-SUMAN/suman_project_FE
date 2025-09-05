@@ -67,17 +67,29 @@ export default function ServicePage() {
 
   const currentContent = content[lang as keyof typeof content];
 
+  // === Match CEO hero style: trim 1cm atas & bawah (1cm ≈ 37.8px) ===
+  const CM_TO_PX = 37.8;
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
+
   return (
     <>
       <Head>
         <title>{lang === "KOR" ? "기술소개 " : "Technology"}</title>
       </Head>
       <Layout>
-        <HeroSection
-          title={lang === "KOR" ? "기술 소개" : "Technology"}
-          //subtitle="SUMAN"
-          backgroundImage="/images/sub_banner/business_hero.png"
-        />
+        {/* ===== HeroSection: disamakan dengan ceo.tsx (tanpa subtitle + trim 1cm) ===== */}
+        <div
+          style={{
+            marginTop: `-${HERO_TRIM_PX}px`,
+            marginBottom: `-${HERO_TRIM_PX}px`,
+          }}
+        >
+          <HeroSection
+            title={lang === "KOR" ? "기술 소개" : "Technology"}
+            backgroundImage="/images/sub_banner/business_hero.png"
+          />
+        </div>
+        {/* ======================================================================= */}
 
         <BreadcrumbSection
           path={lang === "KOR" ? "사업분야 > 기술소개" : "Business > Technology"}
