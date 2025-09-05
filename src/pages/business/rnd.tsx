@@ -9,6 +9,7 @@ import { heroText, businessAreasData } from "@/data/rnd";
 import Image from "next/image";
 import { CheckCircle, Cog, Cpu, Car } from "lucide-react";
 import { useEffect } from "react";
+import Head from "next/head";
 
 export default function App() {
   const { lang } = useLangStore();
@@ -21,9 +22,6 @@ export default function App() {
   const hero = heroText[lang];
   const businessData = businessAreasData[lang];
 
-  // === Hero trim (match ceo.tsx): 1cm top & bottom ===
-  const CM_TO_PX = 37.8;
-  const HERO_TRIM_PX = Math.round(CM_TO_PX);
 
   // Animation variants
   const fadeIn: Record<"hidden" | "visible", any> = {
@@ -45,10 +43,15 @@ export default function App() {
     rest: { scale: 1, y: 0 },
     hover: { scale: 1.02, y: -5, transition: { duration: 0.3 } as Transition }
   };
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
 
   return (
     <Layout>
-      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: '90px' }}>
+      <Head>
+        <title>{lang === "KOR" ? "연구분야 | 수만" : "Research Fields | SUMAN"}</title>
+        </Head>
+        <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: '90px' }}>
         {/* === Hero (same pattern as ceo.tsx) === */}
         <div
           style={{

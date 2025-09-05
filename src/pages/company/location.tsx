@@ -100,6 +100,8 @@ export default function LocationPage() {
       } as Transition),
     []
   );
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);  
 
   const KAKAO_MAP_APP_KEY = process.env.NEXT_PUBLIC_KAKAO_MAP_APP_KEY;
 
@@ -203,24 +205,36 @@ export default function LocationPage() {
 
   return (
     <>
+    <Layout>
       <Head>
         <title>
           {lang === "KOR" ? "오시는길" : "Location"}
         </title>
       </Head>
-      <Layout>
+
+      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        >
         <HeroSection
           title={lang === "KOR" ? "오시는 길" : "Our Location"}
           //subtitle={lang === "KOR" ? "Locations" : "How to Reach Us"}
           backgroundImage="/images/sub_banner/company_banner.png"
         />
+        </div>
+
+        <div className="relative z-30 -mt-2">  
         <BreadcrumbSection
           path={
             lang === "KOR"
               ? "회사소개 > 오시는길"
               : "Company > Location / Directions"
           }
-        />
+        /> </div>
 
         <div className="content-wrapper py-20 px-4 md:px-8 bg-white text-black">
           <div className="max-w-7xl mx-auto">
@@ -311,6 +325,7 @@ export default function LocationPage() {
           </div>
         </div>
         <hr className="my-8 border-gray-200 w-full" />
+        </main>
       </Layout>
     </>
   );

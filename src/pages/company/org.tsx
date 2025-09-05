@@ -33,7 +33,8 @@ export default function OrgPage() {
       pageTitle: "Organization | SUMAN"
     }
   };
-
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
   const currentContent = content[lang];
 
   return (
@@ -41,14 +42,22 @@ export default function OrgPage() {
       <Head>
         <title>{currentContent.pageTitle}</title>
       </Head>
-
+    <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        >
       <HeroSection
         title={currentContent.title}
         //subtitle={currentContent.subtitle}
         backgroundImage="/images/sub_banner/company_banner.png"
       />
-
-      <BreadcrumbSection path={currentContent.breadcrumb} />
+      </div>
+      <div className="relative z-30 -mt-2">  
+      <BreadcrumbSection path={currentContent.breadcrumb} /></div>
 
       <main className="content-wrapper py-20 px-4 md:px-8 bg-white flex justify-center items-center">
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
@@ -77,6 +86,7 @@ export default function OrgPage() {
         </div>
       </main>
       <hr className="my-8 border-gray-200 w-full" />
+      </main>
     </Layout>
   );
 }

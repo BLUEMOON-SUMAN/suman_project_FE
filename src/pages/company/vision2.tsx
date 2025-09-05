@@ -130,7 +130,7 @@ export default function Vision2Page() {
         >
           <HeroSection
             title={hero.title}
-            backgroundImage="/images/sub_banner/ceo_hero.png"
+            backgroundImage="/images/company_banner/ceo_hero.png"
           />
         </div>
         < div className="relative z-30 -mt-2">
