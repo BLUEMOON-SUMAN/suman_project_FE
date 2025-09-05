@@ -19,25 +19,35 @@ export default function HistoryPage() {
       },
     },
   };
-
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX); 
   const contactInfo = [
     { label: lang === "KOR" ? "이름 / 소속 / 연락처 / 문의부서 / 문의내용" : "Name / Affiliation / Phone / Department / Inquiry Contents", value: "" },
   ];
 
   return (
     <>
+    <Layout>
       <Head>
         <title>{lang === "KOR" ? "문의하기 | 수만" : "Contact Us | SUMAN"}</title>
       </Head>
-      <Layout>
+      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        >
         <HeroSection
           title={lang === "KOR" ? "문의하기" : "Contact Us"}
           backgroundImage="/images/sub_banner/support_banner.png"
-        />
-
+        /> </div>
+        {/* === UPDATED: Nempelin breadcrumb ke hero (sedikit -mt agar benar-benar rapat) === */}
+        <div className="relative z-30 -mt-2">    
         <BreadcrumbSection
           path={lang === "KOR" ? "고객지원 > 문의하기" : "Support > Contact Us"}
-        />
+        /></div>
 
         <div className="content-wrapper py-12 md:py-20 px-4 md:px-8 bg-white">
           <div className="max-w-4xl mx-auto w-full">
@@ -134,6 +144,7 @@ export default function HistoryPage() {
           </div>
         </div>
         <hr className="my-8 border-gray-200 w-full" />
+        </main>
       </Layout>
     </>
   );

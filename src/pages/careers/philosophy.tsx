@@ -48,7 +48,8 @@ export default function TalentPage() {
   const lang = useLangStore((state) => state.lang);
   const currentText = Herotext[lang];
   const traits = traitData[lang];
-
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -80,6 +81,7 @@ export default function TalentPage() {
 
   return (
     <>
+    <Layout>
       <Head>
         <title>{lang === "KOR" ? "인재상" : "Talent Philosophy "}</title>
         <meta
@@ -91,16 +93,23 @@ export default function TalentPage() {
           }
         />
       </Head>
-      <Layout>
+      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        >
         <HeroSection
           title={lang === "KOR" ? "인재상" : "Talent Philosophy"}
           //subtitle={lang === "KOR" ? "우리의 인재상" : "Our Talent Values"}
           backgroundImage="/images/sub_banner/careers_hero.png"
-        />
-
+        /></div>
+        <div className="relative z-30 -mt-2">  
         <BreadcrumbSection
           path={lang === "KOR" ? "인재 채용 > 인재상" : "Careers > Talent Philosophy"}
-        />
+        /></div>
 
         <div className="content-wrapper py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
@@ -204,6 +213,7 @@ export default function TalentPage() {
           </div>
         </div>
         <hr className="my-6 border-gray-200 w-full" />
+        </main>
       </Layout>
     </>
   );
