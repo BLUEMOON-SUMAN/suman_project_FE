@@ -35,6 +35,10 @@ export default function CeoPage() {
   // Hero title (match rnd.tsx style/behavior)
   const heroTitle = lang === "KOR" ? "CEO 인사말" : "CEO Message";
 
+  // === UPDATED: konstanta trim 1cm atas & 1cm bawah ===
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);   // UPDATED -> 1cm ≈ 37.8px
+
   return (
     <Layout>
       <Head>
@@ -42,13 +46,21 @@ export default function CeoPage() {
       </Head>
 
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
-        {/* ================= UPDATED: Hero sama seperti rnd.tsx (title only, no subtitle) ================ */}
-        <HeroSection
-          title={heroTitle}
-          backgroundImage="/images/sub_banner/ceo_hero.png"
-        />
-        {/* ================= UPDATED: Breadcrumb dibungkus relative z-30 seperti rnd.tsx ================== */}
-        <div className="relative z-30">
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        >
+          <HeroSection
+            title={heroTitle}
+            backgroundImage="/images/sub_banner/ceo_hero.png"
+          />
+        </div>
+
+        {/* === UPDATED: Nempelin breadcrumb ke hero (sedikit -mt agar benar-benar rapat) === */}
+        <div className="relative z-30 -mt-2">      {/* UPDATED */}
           <BreadcrumbSection
             path={lang === "KOR" ? "회사 소개 > CEO 인사말" : "Company > CEO Message"}
           />

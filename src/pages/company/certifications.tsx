@@ -46,7 +46,7 @@ export default function CertificationsPage() {
       <Layout>
         <HeroSection
           title={lang === "KOR" ? "인증 현황" : "Certifications"}
-          //subtitle={lang === "KOR" ? "Certifications" : "Certifications"}
+          // subtitle tetap tidak digunakan agar konsisten dengan rnd.tsx
           backgroundImage="/images/sub_banner/company_banner.png"
         />
 
@@ -56,6 +56,26 @@ export default function CertificationsPage() {
 
         <section className="relative z-30 bg-white py-20 px-4 md:px-8 flex justify-center items-center">
           <div className="max-w-7xl mx-auto w-full">
+            {/* ===================== UPDATED: Title + Subtitle block (match rnd.tsx) ===================== */}
+            <motion.div
+              className="text-center mb-16"
+              initial="hidden"
+              whileInView="visible"
+              variants={fadeInVariants}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+                {lang === "KOR" ? "인증 현황" : "Certifications"}
+              </h2>
+              <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed whitespace-pre-line">
+                {lang === "KOR"
+                  ? "정부기관의 인증을 비롯해\nISO 품질·환경·안전경영 시스템을 모두 구축하여\n고객 중심의 고신뢰 생산 체계를 갖추고 있습니다."
+                  : "We have established ISO Quality, Environmental, and Safety Management Systems\nand hold national certifications, ensuring a customer-centered, reliable production system."}
+              </p>
+            </motion.div>
+            {/* ===================== END UPDATED ========================================================= */}
+
+            {/* REMOVED: bar kiri kecil 'Certifications' (diganti center title di atas)
             <motion.div
               className="relative z-20 w-full flex flex-col md:flex-row items-start md:items-center gap-4 mb-10"
               initial="hidden"
@@ -68,7 +88,9 @@ export default function CertificationsPage() {
               </p>
               <div className="flex-grow" />
             </motion.div>
+            */}
 
+            {/* REMOVED: subtitle besar kiri; digabung ke block center di atas
             <motion.div
               className="text-left text-black whitespace-pre-line mb-4 w-full"
               initial="hidden"
@@ -77,11 +99,10 @@ export default function CertificationsPage() {
               viewport={{ once: true, amount: 0.3 }}
             >
               <p className="text-xl md:text-2xl lg:text-4xl font-bold mb-4 md:mb-7 tracking-wide leading-[1.3]">
-                {lang === "KOR"
-                  ? "정부기관의 인증을 비롯해\nISO 품질·환경·안전경영 시스템을 모두 구축하여\n고객 중심의 고신뢰 생산 체계를 갖추고 있습니다."
-                  : "We have established ISO Quality, Environmental, and Safety Management Systems\nand hold national certifications, ensuring a customer-centered, reliable production system."}
+                ...
               </p>
             </motion.div>
+            */}
 
             <motion.div
               className="flex gap-2 mt-1 sm:mt-8 w-full"
