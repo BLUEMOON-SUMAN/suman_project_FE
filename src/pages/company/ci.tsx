@@ -42,18 +42,17 @@ export default function OrgPage() {
         <title>{pageTitle}</title>
       </Head>
 
-      {/* Biarkan HeroSection & BreadcrumbSection pakai default style dari komponennya */}
+      {/* Match rnd.tsx: big hero + breadcrumb just below it */}
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
         <HeroSection
           title={heroTitle}
           subtitle={heroSubtitle}
           backgroundImage="/images/sub_banner/company_banner.png"
-          /* Tidak ada override class/trim/align/overlay di sini */
         />
 
         <BreadcrumbSection path={breadcrumbPath} />
 
-        {/* Page content */}
+        {/* Page content (unchanged) */}
         <section className="content-wrapper py-24 px-4 md:px-8 bg-white flex justify-center items-center overflow-x-hidden">
           <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
             <motion.div
@@ -76,6 +75,7 @@ export default function OrgPage() {
 
               {/* Logo Section */}
               <div className="mb-16">
+                {/* 제목 + 버튼 한 줄 */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 gap-4">
                   <h3 className="text-base sm:text-lg lg:text-2xl font-semibold tracking-wide">
                     {logoTitle}

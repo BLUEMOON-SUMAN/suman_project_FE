@@ -12,14 +12,18 @@ import { useEffect } from "react";
 
 export default function App() {
   const { lang } = useLangStore();
-
+  
   // Set document title
   useEffect(() => {
     document.title = lang === "KOR" ? "사업영역" : "Business Areas";
   }, [lang]);
-
+  
   const hero = heroText[lang];
   const businessData = businessAreasData[lang];
+
+  // === UPDATED: trim hero 1cm atas & bawah (1cm ≈ 37.8px) ===
+  const CM_TO_PX = 37.8;                  // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX); // UPDATED
 
   // Animation variants
   const fadeIn: Record<"hidden" | "visible", any> = {
@@ -39,23 +43,29 @@ export default function App() {
 
   const cardHover = {
     rest: { scale: 1, y: 0 },
-    hover: { scale: 1.02, y: -5, transition: { duration: 0.3 } as Transition },
+    hover: { scale: 1.02, y: -5, transition: { duration: 0.3 } as Transition }
   };
 
   return (
     <Layout>
-      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
-        {/* Hero mengikuti default HeroSection.tsx (tanpa wrapper trim/offset khusus) */}
-        <HeroSection
-          title={hero.title}
-          backgroundImage="/images/sub_banner/business_hero.png"
-          /* tidak ada override: pakai default HeroSection */
-        />
+      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: '90px' }}>
+        {/* === UPDATED: Hero mengikuti ceo.tsx (tanpa subtitle) + trim 1cm atas/bawah === */}
+        <div
+          style={{
+            marginTop: `-${HERO_TRIM_PX}px`,     // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,  // UPDATED
+          }}
+        >
+          <HeroSection
+            title={hero.title}                                    // UPDATED (subtitle dihilangkan)
+            backgroundImage="/images/sub_banner/business_hero.png" // UPDATED (gunakan image lokal)
+          />
+        </div>
 
-        {/* Breadcrumb default */}
-        <BreadcrumbSection
-          path={lang === "KOR" ? "사업분야 > 연구분야" : "Business > Research Fields"}
-        />
+        {/* === UPDATED: Breadcrumb nempel ke hero === */}
+        <div className="relative z-30 -mt-2"> {/* UPDATED */}
+          <BreadcrumbSection path={lang === "KOR" ? "사업분야 > 연구분야" : "Business > Research Fields"} />
+        </div>
 
         {/* Main Business Areas Section */}
         <motion.section
@@ -66,14 +76,18 @@ export default function App() {
           viewport={{ once: true }}
         >
           <div className="max-w-6xl mx-auto">
-            <motion.div className="text-center mb-16" variants={fadeIn}>
+            <motion.div
+              className="text-center mb-16"
+              variants={fadeIn}
+            >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {lang === "KOR" ? "핵심 연구 분야" : "Core Research Fields"}
+                {lang === 'KOR' ? '핵심 연구 분야' : 'Core Research Fields'}
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                {lang === "KOR"
-                  ? "최첨단 기술과 혁신적인 솔루션으로 다양한 산업 분야에서 고객의 성공을 지원합니다."
-                  : "Supporting customer success across various industries with cutting-edge technology and innovative solutions."}
+                {lang === 'KOR' 
+                  ? '최첨단 기술과 혁신적인 솔루션으로 다양한 산업 분야에서 고객의 성공을 지원합니다.'
+                  : 'Supporting customer success across various industries with cutting-edge technology and innovative solutions.'
+                }
               </p>
             </motion.div>
 
@@ -106,9 +120,7 @@ export default function App() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-4">
-                      {businessData.semiconductor.title}
-                    </h4>
+                    <h4 className="text-xl font-bold text-gray-900 mb-4">{businessData.semiconductor.title}</h4>
                     <div className="space-y-3">
                       {businessData.semiconductor.services.map((service, index) => (
                         <div key={index} className="flex items-start space-x-3">
@@ -119,7 +131,7 @@ export default function App() {
                     </div>
                     <div className="mt-6 pt-4 border-t border-gray-100">
                       <h5 className="font-semibold text-gray-900 mb-3">
-                        {lang === "KOR" ? "이차전지 제조 및 신뢰성 장비" : "Secondary Battery & Reliability Equipment"}
+                        {lang === 'KOR' ? '이차전지 제조 및 신뢰성 장비' : 'Secondary Battery & Reliability Equipment'}
                       </h5>
                       <div className="space-y-2">
                         {businessData.semiconductor.additionalServices.map((service, index) => (
@@ -155,9 +167,7 @@ export default function App() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-4">
-                      {businessData.automation.title}
-                    </h4>
+                    <h4 className="text-xl font-bold text-gray-900 mb-4">{businessData.automation.title}</h4>
                     <div className="space-y-3 mb-6">
                       {businessData.automation.services.map((service, index) => (
                         <div key={index} className="flex items-start space-x-3">
@@ -168,7 +178,7 @@ export default function App() {
                     </div>
                     <div className="mt-6 pt-4 border-t border-gray-100">
                       <h5 className="font-semibold text-gray-900 mb-3">
-                        {lang === "KOR" ? "시스템 통합(System Integration)" : "System Integration"}
+                        {lang === 'KOR' ? '시스템 통합(System Integration)' : 'System Integration'}
                       </h5>
                       <div className="space-y-2">
                         {businessData.automation.systemIntegration.map((service, index) => (
@@ -204,9 +214,7 @@ export default function App() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <h4 className="text-xl font-bold text-gray-900 mb-4">
-                      {businessData.mobility.title}
-                    </h4>
+                    <h4 className="text-xl font-bold text-gray-900 mb-4">{businessData.mobility.title}</h4>
                     <div className="space-y-3">
                       {businessData.mobility.services.map((service, index) => (
                         <div key={index} className="flex items-start space-x-3">
@@ -232,12 +240,13 @@ export default function App() {
         >
           <div className="max-w-6xl mx-auto text-center">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-              {lang === "KOR" ? "혁신적인 기술력으로 고객과 함께 성장합니다" : "Growing together with customers through innovative technology"}
+              {lang === 'KOR' ? '혁신적인 기술력으로 고객과 함께 성장합니다' : 'Growing together with customers through innovative technology'}
             </h3>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              {lang === "KOR"
-                ? "반도체, 자동화, 모빌리티 분야에서 축적된 기술력과 경험을 바탕으로 고객의 요구에 맞는 맞춤형 솔루션을 제공하며, 지속적인 연구개발을 통해 미래 기술을 선도하고 있습니다."
-                : "Based on our accumulated technical expertise and experience in semiconductors, automation, and mobility, we provide customized solutions that meet customer needs and lead future technology through continuous R&D."}
+              {lang === 'KOR' 
+                ? '반도체, 자동화, 모빌리티 분야에서 축적된 기술력과 경험을 바탕으로 고객의 요구에 맞는 맞춤형 솔루션을 제공하며, 지속적인 연구개발을 통해 미래 기술을 선도하고 있습니다.'
+                : 'Based on our accumulated technical expertise and experience in semiconductors, automation, and mobility, we provide customized solutions that meet customer needs and lead future technology through continuous R&D.'
+              }
             </p>
           </div>
         </motion.section>

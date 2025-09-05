@@ -47,12 +47,12 @@ export default function CertificationsPage() {
       </Head>
 
       <Layout>
+        {/* Match rnd.tsx: big hero + breadcrumb below, all inside <main> with header offset */}
         <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
           <HeroSection
             title={lang === "KOR" ? "인증 현황" : "Certifications"}
             subtitle={lang === "KOR" ? "회사소개" : "Company"}
             backgroundImage="/images/sub_banner/company_banner.png"
-            /* no overrides — follow HeroSection defaults */
           />
 
           <BreadcrumbSection

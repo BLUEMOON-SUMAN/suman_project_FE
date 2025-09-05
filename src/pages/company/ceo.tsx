@@ -32,8 +32,12 @@ export default function CeoPage() {
   const lang = useLangStore((state) => state.lang);
   const { intro, body, closing } = ceoText[lang];
 
-  // Hero title (ikutin default HeroSection)
+  // Hero title (match rnd.tsx style/behavior)
   const heroTitle = lang === "KOR" ? "CEO 인사말" : "CEO Message";
+
+  // === UPDATED: konstanta trim 1cm atas & 1cm bawah ===
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);   // UPDATED -> 1cm ≈ 37.8px
 
   return (
     <Layout>
@@ -42,16 +46,25 @@ export default function CeoPage() {
       </Head>
 
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
-        {/* Hero pakai default dari HeroSection.tsx (tanpa override/trim manual di halaman) */}
-        <HeroSection
-          title={heroTitle}
-          backgroundImage="/images/sub_banner/ceo_hero.png"
-        />
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        >
+          <HeroSection
+            title={heroTitle}
+            backgroundImage="/images/sub_banner/ceo_hero.png"
+          />
+        </div>
 
-        {/* Breadcrumb pakai default komponennya, tanpa -mt khusus */}
-        <BreadcrumbSection
-          path={lang === "KOR" ? "회사 소개 > CEO 인사말" : "Company > CEO Message"}
-        />
+        {/* === UPDATED: Nempelin breadcrumb ke hero (sedikit -mt agar benar-benar rapat) === */}
+        <div className="relative z-30 -mt-2">      {/* UPDATED */}
+          <BreadcrumbSection
+            path={lang === "KOR" ? "회사 소개 > CEO 인사말" : "Company > CEO Message"}
+          />
+        </div>
 
         {/* === CEO Content === */}
         <section className="content-wrapper py-16 px-4 sm:px-6 lg:px-8 bg-white flex justify-center">
