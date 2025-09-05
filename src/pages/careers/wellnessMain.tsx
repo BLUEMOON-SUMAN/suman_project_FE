@@ -1,6 +1,6 @@
 // src/pages/careers/wellnessMain.tsx
 
-import { motion, type Variants } from "framer-motion"; // UPDATED: import Variants
+import { motion } from "framer-motion";
 import React from "react";
 import * as LucideIcons from "lucide-react";
 import Layout from "@/components/Layout";
@@ -11,12 +11,13 @@ import Image from "next/image";
 import Head from "next/head";
 import { wellnessContent, iconMap, WellnessItem, WellnessData } from "@/data/wellnessData";
 
-// --- Wellness Card Component (keep style & effect) ---
+// --- Wellness Card Component ---
 const WellnessCard = ({ item }: { item: WellnessItem }) => {
   const iconName = iconMap[item.iconKey];
   const IconComponent =
     LucideIcons[iconName as keyof typeof LucideIcons] as React.ComponentType<{ className?: string }>;
 
+  // Fallback jika ikon tidak ditemukan
   if (!IconComponent) {
     return (
       <motion.div
@@ -52,20 +53,9 @@ export default function WellnessPage() {
   const { lang } = useLangStore();
   const currentData: WellnessData = wellnessContent[lang] || wellnessContent.KOR;
 
-  // ===================== UPDATED: animasi judul/subtitle ala rnd.tsx =====================
-  // Ganti easing string -> cubic-bezier agar cocok dgn tipe Easing pada motion-dom / framer-motion
-  const titleFade: Variants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }, // UPDATED
-    },
-  };
-  // =====================================================================================
-
   return (
     <>
+      {/* UPDATED: Head di luar Layout, mengikuti pola philosophy.tsx */}
       <Head>
         <title>{lang === "KOR" ? "복리후생 | 수만" : "Employee Wellness | SUMAN"}</title>
         <meta
@@ -78,51 +68,28 @@ export default function WellnessPage() {
         />
       </Head>
 
+      {/* UPDATED: Seluruh halaman dibungkus oleh Layout (header & footer sama seperti philosophy.tsx) */}
       <Layout>
+        {/* UPDATED: HeroSection meniru philosophy.tsx (pakai banner careers_hero.png dan title statis) */}
         <HeroSection
           title={lang === "KOR" ? "복리후생" : "Employee Wellness"}
+          // subtitle opsional; di philosophy juga dikomentari
+          // subtitle={lang === "KOR" ? "우리의 복리후생" : "Our Benefits"}
           backgroundImage="/images/sub_banner/careers_hero.png"
         />
 
-        {/* === Breadcrumb selalu terlihat (di atas blok biru) === */}
-        <div className="relative z-30">
-          <BreadcrumbSection
-            path={lang === "KOR" ? "인재 채용 > 복리후생" : "Careers > Employee Wellness"}
-          />
-        </div>
+        {/* UPDATED: BreadcrumbSection format sama seperti philosophy.tsx */}
+        <BreadcrumbSection
+          path={lang === "KOR" ? "인재 채용 > 복리후생" : "Careers > Employee Wellness"}
+        />
 
-        {/* === PAGE LAYOUT mengikuti product.tsx (BIG LAYOUT ONLY) === */}
-        <motion.div
-          className="relative z-10 bg-[#000B24] pt-20 pb-20 px-4 md:px-8 rounded-none mt-0 overflow-hidden"
-        >
-          <div
-            className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain"
-            // style={{ backgroundImage: "url('/images/business/layer2.png')" }}
-          />
+        {/* === Konten asli dipertahankan tanpa perubahan fungsional === */}
+        <div className="relative z-20 bg-[#000B24] pt-20 pb-35 px-4 md:px-8 rounded-t-[60px] mt-[-100px] overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none flex bg-no-repeat bg-top bg-contain"></div>
 
           <div className="max-w-7xl mx-auto relative z-10">
-            {/* ===================== UPDATED: Title + Subtitle block ala rnd.tsx ===================== */}
-            <motion.div
-              className="text-center mb-16"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={titleFade}
-            >
-              <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">
-                {lang === "KOR" ? "복리후생" : "Employee Wellness"}
-              </h2>
-              <p className="text-white/80 text-lg max-w-3xl mx-auto leading-relaxed">
-                {lang === "KOR"
-                  ? "임직원 모두의 행복과 성장을 위해 실질적인 복지 혜택을 제공합니다."
-                  : "We provide practical benefits that support every employee’s well-being and growth."}
-              </p>
-            </motion.div>
-            {/* ===================== END UPDATED ==================================================== */}
-
             {currentData.sections.map((section, sectionIndex) => (
               <div key={section.key} className="mb-20">
-                {/* === Keep section style & effect (hero per section) === */}
                 <div className="relative h-64 overflow-hidden mb-12 rounded-lg shadow-lg">
                   <Image
                     src={section.heroImage}
@@ -132,14 +99,13 @@ export default function WellnessPage() {
                     priority={sectionIndex === 0}
                   />
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-                    {/* ===================== UPDATED: ukuran judul per-section ala rnd.tsx ===================== */}
-                    <h2 className="text-3xl md:text-4xl font-bold mb-2">{section.title}</h2>
-                    {/* ===================== UPDATED: tampilkan subtitle jika ada, ala rnd.tsx ================ */}
+                    <h2 className="text-2xl md:text-3xl font-extrabold mb-2">{section.title}</h2>
+                    {/* <p className="text-lg font-light">{section.subtitle}</p> */}
                   </div>
                 </div>
 
-                {/* === Keep grid effects exactly as before === */}
                 {sectionIndex === 0 ? (
+                  // Section pertama: tanpa animasi grid
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
                     {section.items.map((item: WellnessItem, idx) => (
                       <div key={idx}>
@@ -148,6 +114,7 @@ export default function WellnessPage() {
                     ))}
                   </div>
                 ) : (
+                  // Section berikutnya: grid dengan animasi
                   <motion.div
                     className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto"
                     initial="hidden"
@@ -171,10 +138,10 @@ export default function WellnessPage() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Hapus garis pemisah agar blok biru menempel ke footer (seperti product.tsx) */}
-        {/* <hr className="my-6 border-gray-200 w-full" /> */}
+        {/* (Optional) Garis pemisah seperti di philosophy.tsx */}
+        <hr className="my-6 border-gray-200 w-full" />
       </Layout>
     </>
   );
