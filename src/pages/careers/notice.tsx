@@ -9,6 +9,10 @@ import Head from "next/head";
 const RecruitmentBoard: React.FC = () => {
   const lang = useLangStore((state) => state.lang) || "KOR";
 
+  // === trim hero 1cm atas & bawah (≈ 37.8px) — sama seperti ceo.tsx ===
+  const CM_TO_PX = 37.8;
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
+
   return (
     <Layout>
       <Head>
@@ -17,13 +21,15 @@ const RecruitmentBoard: React.FC = () => {
 
       {/* ===================== UPDATED: wrap with <main> like rnd.tsx ===================== */}
       <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
-        {/* ===================== UPDATED: Hero like rnd.tsx (no subtitle prop) ============== */}
-        <HeroSection
-          title={lang === "KOR" ? "채용공고" : "Recruit Notice"}
-          backgroundImage="/images/sub_banner/careers_hero.png"
-        />
+        {/* ===================== UPDATED: Hero same trimming style as ceo.tsx ============== */}
+        <div style={{ marginTop: `-${HERO_TRIM_PX}px`, marginBottom: `-${HERO_TRIM_PX}px` }}>
+          <HeroSection
+            title={lang === "KOR" ? "채용공고" : "Recruit Notice"}
+            backgroundImage="/images/sub_banner/careers_hero.png"
+          />
+        </div>
 
-        {/* ===================== UPDATED: breadcrumb wrapper like rnd.tsx ==================== */}
+        {/* ===================== breadcrumb wrapper (tidak diubah) ==================== */}
         <div className="relative z-30">
           <BreadcrumbSection
             path={
