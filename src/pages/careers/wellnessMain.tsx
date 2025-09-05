@@ -62,10 +62,13 @@ export default function WellnessPage() {
       transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }, // UPDATED
     },
   };
+  const CM_TO_PX = 37.8;                       // UPDATED
+  const HERO_TRIM_PX = Math.round(CM_TO_PX);
   // =====================================================================================
 
   return (
     <>
+    <Layout>
       <Head>
         <title>{lang === "KOR" ? "복리후생 | 수만" : "Employee Wellness | SUMAN"}</title>
         <meta
@@ -78,14 +81,21 @@ export default function WellnessPage() {
         />
       </Head>
 
-      <Layout>
+      <main className="min-h-screen bg-white text-slate-900" style={{ paddingTop: "90px" }}>
+        {/* === UPDATED: Bungkus HeroSection dengan negative margin top/bottom (1cm per sisi) === */}
+        <div                                       // UPDATED
+          style={{                                 // UPDATED
+            marginTop: `-${HERO_TRIM_PX}px`,       // UPDATED
+            marginBottom: `-${HERO_TRIM_PX}px`,    // UPDATED
+          }}                                       // UPDATED
+        >
         <HeroSection
           title={lang === "KOR" ? "복리후생" : "Employee Wellness"}
           backgroundImage="/images/sub_banner/careers_hero.png"
-        />
+        /></div>
 
         {/* === Breadcrumb selalu terlihat (di atas blok biru) === */}
-        <div className="relative z-30">
+        <div className="relative z-30 -mt-2">
           <BreadcrumbSection
             path={lang === "KOR" ? "인재 채용 > 복리후생" : "Careers > Employee Wellness"}
           />
@@ -172,6 +182,7 @@ export default function WellnessPage() {
 
         {/* Hapus garis pemisah agar blok biru menempel ke footer (seperti product.tsx) */}
         {/* <hr className="my-6 border-gray-200 w-full" /> */}
+        </main>
       </Layout>
     </>
   );
